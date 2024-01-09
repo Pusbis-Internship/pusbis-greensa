@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class GuestController extends Controller
 {
+
+    public function showhome()
+    {return view('pelanggan.page.home', ['title' => 'Home']);}
+
+    public function showhotel()
+    {return view('pelanggan.page.hotel', ['title' => 'Hotel']);}
+
+    public function showtrain()
+    {return view('pelanggan.page.train', ['title' => 'Training Center']);}
+
+    public function showabout()
+    {return view('pelanggan.page.about', ['title' => 'About']);}
+
     public function register(Request $request)
     {
         $validate = $request->validate([
