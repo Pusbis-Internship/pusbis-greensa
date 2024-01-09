@@ -23,3 +23,4 @@ Route::get('/about', [GuestController::class, 'showabout']);
 
 Route::post('/guestlogin', [GuestController::class, 'login']);
 Route::post('/guestregister', [GuestController::class, 'register']);
+Route::post('/guestlogout', [GuestController::class, 'logout']);

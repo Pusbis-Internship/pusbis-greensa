@@ -47,6 +47,8 @@
     @include('pelanggan.component.navbar')
     {{-- Akhir Navbar --}}
     
+    @include('pelanggan.component.error')
+
     {{-- Content Section --}}
     @yield('content')
     {{-- Akhir Content Section --}}

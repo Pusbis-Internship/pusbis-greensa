@@ -23,19 +23,23 @@
                     <a class="nav-link {{ Request::path() == 'about' ? 'active' : '' }}" href="/about">About</a>
                 </li>
             </ul>
-            <div class="d-flex align-items-center gap-2" >
-                <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">Masuk</button>
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#registerModal">Daftar</button>
-                
-                {{-- Dari OLSHOP --}}
-                {{-- <div class="notif">                
-                    <a href="transaksi">
-                        <i class="fa-solid fa-store icon-nav fs-3"></i>
-                    </a>
-                    <div class="circle">3</div>
-                </div> --}}
-                {{-- Dari OLSHOP --}}
-            </div>
+
+            @guest('guest')
+                <div class="d-flex align-items-center gap-2" >
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"      data-bs-target="#loginModal">Masuk</button>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal"      data-bs-target="#registerModal">Daftar</button>
+                </div>
+            @endguest
+        
+            @auth('guest')
+                <div class="d-flex align-items-center gap-2" >
+                    <form action="/guestlogout" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light">Logout</button>
+                    </form>
+                </div>
+            @endauth
+            
         </div>
     </div>
 </nav>
