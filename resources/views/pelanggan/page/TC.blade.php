@@ -1,0 +1,1 @@
+@extends('pelanggan.layout.index')
