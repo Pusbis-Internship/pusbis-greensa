@@ -239,9 +239,11 @@
                     </div>
                 </div>                
                 <div class="row justify-content-center text-center">
-                    <a href="#">
-                        <button class="btn btn-outline-success w-25">Lihat Selengkapnya</button>
-                    </a>
+                    <div class="col-12">
+                        <a href="#">
+                            <button class="btn btn-outline-success w-25">Lihat Selengkapnya</button>
+                        </a>
+                    </div>
                 </div>
             </div>
     </section>
@@ -311,9 +313,11 @@
                     </div>
                 </div>
                 <div class="row justify-content-center text-center">
-                    <a href="#">
-                        <button class="btn btn-outline-warning w-25">Lihat Selengkapnya</button>
-                    </a>
+                    <div class="col-12">
+                        <a href="#">
+                            <button class="btn btn-outline-warning w-25">Lihat Selengkapnya</button>
+                        </a>
+                    </div>
                 </div>
             </div>
     </section>
