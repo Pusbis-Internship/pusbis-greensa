@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class GuestController extends Controller
 {
@@ -33,22 +34,24 @@ class GuestController extends Controller
             'alamat' => 'required',
             'kota' => 'required',
             'provinsi' => 'required',
-            'negara' => 'required'
+            'negara' => 'required',
+            'tanggallahir' => 'required'
         ]);
     
         Guest::create([
             'username' => $credentials['username'],
             'password' => bcrypt($credentials['password']),
-            'name' => $credentials[''],
-            'nik' => $credentials[''],
-            'telp' => $credentials[''],
-            'alamat' => $credentials[''],
-            'kota' => $credentials[''],
-            'provinsi' => $credentials[''],
-            'negara' => $credentials[''],
+            'name' => $credentials['name'],
+            'nik' => $credentials['nik'],
+            'telp' => $credentials['telp'],
+            'alamat' => $credentials['alamat'],
+            'kota' => $credentials['kota'],
+            'provinsi' => $credentials['provinsi'],
+            'negara' => $credentials['negara'],
+            'tanggallahir' => $credentials['tanggallahir'],
         ]);
 
-        return redirect('/pelanggan/page/home')->withErrors('Account Created !!!');
+        return redirect('/')->withErrors('Account Created !!!');
     }
 
     public function login(Request $request)
@@ -66,7 +69,7 @@ class GuestController extends Controller
             return redirect()->intended('/')->withErrors('Sudah Login !!!');
         }
 
-        return back()->withErrors('Akun salah');
+        return redirect()->back()->withErrors('Password is wrong');
     }
 
     public function logout(Request $request)

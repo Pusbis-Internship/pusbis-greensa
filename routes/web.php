@@ -16,8 +16,6 @@ use App\Http\Controllers\GuestController;
 */
 
 Route::get('/', [GuestController::class, 'showhome']);
-// Route::get('/home', [GuestController::class, 'showhome']);
-Route::get('/hotel', [GuestController::class, 'showhotel']);
 Route::get('/training-center', [GuestController::class, 'showtrain']);
 Route::get('/about', [GuestController::class, 'showabout']);
 

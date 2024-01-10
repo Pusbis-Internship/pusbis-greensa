@@ -25,7 +25,8 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form>
+            <form action="/guestregister" method="POST">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title d-flex align-items-center">
                         <i class="bi bi-person-lines-fill fs-3 me-2"></i> Daftar Pengguna
@@ -45,63 +46,54 @@
                             <!-- Satu Baris -->
                             <div class="col-md-12 p-0 mb-3">
                                 <label class="form-label">Nama</label>
-                                <input type="text" class="form-control shadow-none">
+                                <input type="text" name="name" class="form-control shadow-none">
                             </div>
                             <!-- Satu Baris -->
                             <div class="col-md-6 ps-0 mb-3">
                                 <label class="form-label">NIK (KTP)</label>
-                                <input type="NIK" class="form-control shadow-none">
+                                <input type="NIK" name="nik" class="form-control shadow-none">
                             </div>
-                            {{-- <div class="col-md-6 p-0 mb-3">
-                                    <label class="form-label">Foto KTP</label>
-                                    <input type="file" class="form-control shadow-none">
-                                </div> --}}
-                            <div class="input-group col-md-6 p-0 mb-3">
+                            <div class="col-md-6 p-0 mb-3">
                                 <label class="form-label">No. Telepon</label>
-                                <input type="tel" class="form-control">
+                                <input type="tel" name="telp" class="form-control">
                             </div>
-
-                            {{-- <div class="col-md-6 p-0 mb-3">
-                                <label class="form-label">No. Telepon</label>
-                                <input type="number" class="form-control shadow-none">
-                            </div> --}}
                             <!-- Satu Baris -->
                             <div class="col-md-12 p-0 mb-3">
                                 <label class="form-label">Alamat</label>
-                                <textarea class="form-control shadow-none" rows="1"></textarea>
+                                <textarea name="alamat" class="form-control shadow-none" rows="1"></textarea>
                             </div>
                             <!-- Satu Baris -->
                             <div class="col-md-6 ps-0 mb-3">
                                 <label class="form-label">Kota</label>
-                                <input type="text" class="form-control shadow-none">
+                                <input type="text" name="kota" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 p-0 mb-3">
                                 <label class="form-label">Provinsi</label>
-                                <input type="text" class="form-control shadow-none">
+                                <input type="text" name="provinsi" class="form-control shadow-none">
                             </div>
                             <!-- Satu Baris -->
                             <div class="col-md-6 ps-0 mb-3 ">
                                 <label class="form-label">Negara</label>
-                                <input type="text" class="form-control shadow-none">
+                                <input type="text" name="negara" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 p-0 mb-3">
                                 <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control shadow-none">
+                                <input type="date" name="tanggallahir" class="form-control shadow-none">
                             </div>
                             <!-- Satu Baris -->
                             <div class="col-md-12 p-0 mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control shadow-none">
+                                <input type="email" name="username" class="form-control shadow-none">
                             </div>
                             <!-- Satu Baris -->
                             <div class="col-md-6 ps-0 mb-1">
                                 <label class="form-label">Password</label>
-                                <input type="password" class="form-control shadow-none"
+                                <input type="password" name="password" class="form-control shadow-none"
                                     aria-describedby="passwordHelpBlock">
                             </div>
                             <div class="col-md-6 p-0 mb-1">
                                 <label class="form-label">Ulangi Password</label>
-                                <input type="password" class="form-control shadow-none"
+                                <input type="password" name="passwordr" class="form-control shadow-none"
                                     aria-describedby="passwordHelpBlock">
                             </div>
                             <!-- Satu Baris -->
