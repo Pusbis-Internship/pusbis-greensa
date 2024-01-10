@@ -63,7 +63,7 @@ class GuestController extends Controller
 
             $request->session()->regenerate();
             $request->session()->put('guest', $guest);
-            return redirect()->intended('home')->withErrors('Sudah Login !!!');
+            return redirect()->intended('/')->withErrors('Sudah Login !!!');
         }
 
         return back()->withErrors('Akun salah');
@@ -75,6 +75,6 @@ class GuestController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         
-        return redirect('home')->withErrors('Sudah Logout');
+        return redirect('/');
     }
 }
