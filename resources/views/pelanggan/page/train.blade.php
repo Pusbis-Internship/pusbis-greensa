@@ -207,6 +207,9 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .available-form1{
+            width: 100%;
+        }
         .availability-box h5 {
         margin-top: 20px;
         margin-left: 10px;
@@ -229,6 +232,20 @@
         margin-top: 10px;
        }
 
+       .card-content{
+        background-color:#B4BFA9;
+       }
+       .remove-button{
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+        transition: background-color 0.3s ease;
+        }
+        .remove-button:hover {
+        background-color: #007bff;
+        border-color: #007bff;
+        }
+
        
       
         
@@ -245,26 +262,29 @@
                                 <h5 style="">Check Availability</h5>
                                 <form id="availability-form col-lg-4">
                                     <div class="available-form1 d-flex row align-items-center">
-                                    <div class="col-3">
-                                    <label class="form-label" style="margin-bottom: 12px;">Check in date</label>
-                                    <input type="date" name="check-in-date" required>
-                                </div>
-                                <div class="col-3">
-                                    <label class="form-label" style="margin-bottom: 12px;">Capacity</label>
-                                    <input type="select" name="check-out-date" required>
-                                </div>
-                                <div class="col-3" style="margin-bottom: 12px;">
-                                    <label class="form-label" style="margin-bottom: 12px;">Lantai</label>
-                                    <select class="form-select form-select-sm" aria-label="Small select example">
-                                        <!-- <option selected>Open this select menu</option> -->
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                                        <div class="col-3"style="margin-top:12px;">
-                                            <button type="submit" class="check-avail-button">Check</button>
+                                        <div class="col-3">
+                                            <label class="form-label" style="margin-bottom: 12px;">Check-in date</label>
+                                            <input type="date" name="check-in-date" required>
                                         </div>
+                                        <div class="col-3">
+                                            <label class="form-label" style="margin-bottom: 12px;">Check-out date</label>
+                                            <input type="date" name="check-out-date" required>
+                                        </div>
+                                        <div class="col-3">
+                                            <label class="form-label" style="margin-bottom: 12px;">Capacity</label>
+                                            <input type="select" name="check-out-date" required>
+                                        </div>    
+                                        <div class="col-3" style="margin-bottom: 12px;">
+                                            <label class="form-label" style="margin-bottom: 12px;">Floor</label>
+                                            <select class="form-select form-select-sm" aria-label="Small select example">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                        <!-- <div class="col-3" style="margin-top:12px;">
+                                            <button type="submit" class="check-avail-button">Check</button>
+                                        </div> -->
                                     </div>
                                 </form>
                             </div>
@@ -322,23 +342,29 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                <div class="card" style="width: 18rem; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-                    <div class="card-body">
-                        <h5 class="card-title">Shopping Cart</h5>
-                        <p class="card-text">Thank you for shopping with us! Here are your order details:</p>
-                        <hr>
-                        <p><strong>Nama Ruangan:</strong> <span id="namaRuangan">Living Room</span></p>
-                        <p><strong>Harga:</strong> Rp<span id="harga">150</span></p>
-                        <p><strong>Total Harga:</strong> Rp<span id="totalHarga">300</span></p>
-                        <button class="remove-button btn btn-danger" type="button">Remove</button>
-                        <a href="#" class="btn btn-primary checkout-button">Check Out</a>
+                    <div class="card" style="width: 18rem; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                        <div class="card-body">
+                            <h5 class="card-title">Shopping Cart</h5>
+                            <p class="card-text">Thank you for shopping with us! Here are your order details:</p>
+                            <hr>
+                            <div class="card-content" style="display: flex; justify-content: space-between; align-items: center;">
+                                <p><strong>Rooms:</strong> <span id="namaRuangan">Living Room</span></p>
+                                <p><strong>Price:</strong> Rp<span id="harga">150</span></p>
+                                <button class="remove-button btn btn-danger" type="button">Remove</button>
+                            </div>
+                            <hr>
+                            <div>
+                            <p><strong>Total Harga:</strong> Rp<span id="totalHarga">300</span></p>
+                            </div>
+                            <a href="#" class="btn btn-primary checkout-button">Check Out</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-                </div>
-            </div>
-        </div>
+         </div>
+    </div>
+</div>
 
        
                     
@@ -474,3 +500,5 @@ function addItemToCart(namaRuangan, harga) {
 </body>
 
 </html>
+                            
+                       
