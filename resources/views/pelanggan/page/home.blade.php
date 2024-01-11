@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        #hero {
+        /* #hero {
             background: linear-gradient(220deg, #006B39 0%, rgba(0, 0, 0, 0.79) 257.44%);
             height: 100vh;
             width: 100%;
@@ -31,7 +31,7 @@
             color: #fafafa;
             font-size: 18px;
             line-height: 200%
-        }
+        } */
 
         /* TC */
         #tc-content {
@@ -143,7 +143,115 @@
         /* HOTEL */
     </style>
 
-    <section id="hero" class="jumbotron container-fluid ">
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{{ asset('assets/images/hom2-banner-1.png')}}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 700px;">
+                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Greensa Inn
+                            </h6>
+                            <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Berkegiatan Dan Istirahat Dengan Nyaman.
+                            </h1>
+                            <a href="" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
+                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">RESERVASI</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{{ asset('assets/images/hom2-banner-3.png')}}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 700px;">
+                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Greensa Inn
+                            </h6>
+                            <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Berkegiatan Dan Istirahat Dengan Nyaman.
+                            </h1>
+                            <a href="" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
+                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">RESERVASI</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{{ asset('assets/images/hom2-banner-4.png')}}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 700px;">
+                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Greensa Inn
+                            </h6>
+                            <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Berkegiatan Dan Istirahat Dengan Nyaman.
+                            </h1>
+                            <a href="" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
+                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">RESERVASI</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+    <!-- Booking Start -->
+    <div class="container-fluid booking pb-5 wow animated fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="bg-white shadow rounded" style="padding: 35px;">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <div class="row g-2">
+
+                            <div class="col-md-3">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="text" class="form-control" id="check-in"
+                                        placeholder="Check in" data-target="#date1" value="" onfocus="(this.type='date')"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="text" class="form-control" id="check-out"
+                                        placeholder="Check out" data-target="#date2" value="" onfocus="(this.type='date')"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class="form-select" style="color: #6c757d;">
+                                    <option selected>Pilih Lantai</option> 
+                                    <option value="1">Lantai 1</option>
+                                    <option value="2">Lantai 2</option>
+                                    <option value="3">Lantai 3</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="peserta" id="peserta" data-target-input="nearest">
+                                    <input type="number" class="form-control" id="peserta"
+                                        placeholder="Jumlah Peserta" data-target="#date2"/>
+                                </div>
+                                <!-- <select class="form-select">
+                                    <option selected>Peserta</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking End -->
+
+    {{-- <section id="hero" class="jumbotron container-fluid ">
         <div class="container h-100">
             <div class="row h-100 d-flex align-items-center justify-content-evenly">
 
@@ -170,7 +278,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- TC Desc --}}
     <section id="tc-content">
