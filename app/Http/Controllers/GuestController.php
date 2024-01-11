@@ -19,6 +19,12 @@ class GuestController extends Controller
     public function showabout()
     {return view('pelanggan.page.about', ['title' => 'About']);}
 
+    public function showlogin()
+    {return view('pelanggan.page.login', ['title' => 'About']);}
+
+    public function showregister()
+    {return view('pelanggan.page.register', ['title' => 'About']);}
+
     public function showtrain()
     {
         $trains = Train::all();
@@ -66,16 +72,20 @@ class GuestController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-
+    
+        $guest = Guest::where('username', $credentials['username'])->first();
+    
+        if (!$guest) {
+            return redirect()->back()->withErrors(['username' => 'Email belum terdaftar']);
+        }
+    
         if (Auth::guard('guest')->attempt($credentials)) {
-            $guest = Guest::where('username', $credentials['username'])->first();
-
             $request->session()->regenerate();
             $request->session()->put('guest', $guest);
             return redirect()->intended('/')->withErrors('Sudah Login !!!');
         }
-
-        return redirect()->back()->withErrors('Password is wrong');
+    
+        return redirect()->back()->withErrors(['password' => 'Password salah']);
     }
 
     public function logout(Request $request)
