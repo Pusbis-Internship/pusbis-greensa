@@ -290,57 +290,34 @@
                             </div>
                         </div>
                     </div>
+
+                    @foreach ($trains as $train)
                     <div class="menu-item">
                         <div class="menu-item-image">
-                            <img src="{{ asset('assets/images/hall.jpg') }}" alt="Nama Menu">
+                            <img src="{{ asset($train->gambar) }}" alt="Nama Menu">
                             <div class="size-room" style="font-size: 8px; margin-top:8px">
-                                <i class="fas fa-user" style="margin-right: 5px;"></i> Guest 2 person<br>
+                                <i class="fas fa-user" style="margin-right: 5px;"></i>Kapasitas {{ $train->kapasitas }}<br>
                                 <i class="fas fa-home" style="margin-right: 5px;"></i> Ukuran Ruangan: 100m<sup>2</sup>
                             </div>
                         </div>
                         <div class="menu-item-details">
-                            <div class="menu-item-title">Luxury Room | lantai 12</div>
+                            <div class="menu-item-title">{{ $train->nama }}</div>
+                            <p>Lantai {{ $train->lantai }}</p>
                             <hr>
-                            <div class="menu-item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, cumque debitis? Libero hic nam dicta, delectus mollitia porro fugiat quasi laboriosam eligendi exercitationem eum voluptas rem? Architecto suscipit blanditiis vel..</div>
+                            <div class="menu-item-description">{{ $train->deskripsi }}</div>
                             <div class="menu-item-price">
                             <hr>
-                                <span class="price">Rp 50.000</span>
+                                <span class="price">Rp {{ $train->harga }}</span>
                             </div>
-                            <!-- <div class="price-select">
-                                <button class="decrement">-</button>
-                                <span class="quantity">0</span>
-                                <button class="increment">+</button>
-                            </div> -->
                             <div class>
                                 <button class="menu-item-select"data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book Now</button>
                             </div>
                         </div>
                     </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="{{ asset('assets/images/hall.jpg') }}" alt="Nama Menu">
-                            <div class="size-room" style="font-size: 8px; margin-top:8px">
-                                <i class="fas fa-user" style="margin-right: 5px;"></i> Guest 2 person<br>
-                                <i class="fas fa-home" style="margin-right: 5px;"></i> Ukuran Ruangan: 100m<sup>2</sup>
-                            </div>
-                        </div>
-                        <div class="menu-item-details">
-                            <div class="menu-item-title">Deluxe room</div>
-                            <hr>
-                            <div class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, sequi. Architecto quam veritatis nemo obcaecati, ducimus illo consequuntur debitis fuga cum assumenda facilis sed ad asperiores. Amet numquam voluptatibus inventore.</div>
-                            <div class="menu-item-price">
-                            <hr>
-                                <span class="price"> Rp 75.00</span>
-                            </div>
-                            <!-- <div class="price-select">
-                                <button class="decrement">-</button>
-                                <span class="quantity">0</span>
-                                <button class="increment">+</button>
-                            </div> -->
-                            <button class="menu-item-select" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book Now</button>
-                        </div>
-                    </div>
+                    @endforeach 
                 </div>
+
+                {{-- Cart --}}
                 <div class="col-lg-4">
                     <div class="card" style="width: 18rem; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
                         <div class="card-body">
