@@ -30,8 +30,8 @@
 
             @guest('guest')
                 <div class="d-flex align-items-center gap-2" >
-                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"      data-bs-target="#loginModal">Masuk</button>
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal"      data-bs-target="#registerModal">Daftar</button>
+                    <a href="/login" class="btn btn-outline-light">Masuk</a>
+                    <a href="register" class="btn btn-light">Daftar</a>
                 </div>
             @endguest
         

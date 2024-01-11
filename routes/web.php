@@ -9,6 +9,9 @@ Route::get('/hotel', [GuestController::class, 'showhotel']);
 Route::get('/training-center', [GuestController::class, 'showtrain']);
 Route::get('/about', [GuestController::class, 'showabout']);
 
+Route::get('/login', [GuestController::class, 'showlogin']);
+Route::get('/register', [GuestController::class, 'showregister']);
+
 Route::post('/guestlogin', [GuestController::class, 'login']);
 Route::post('/guestregister', [GuestController::class, 'register']);
 Route::post('/guestlogout', [GuestController::class, 'logout']);
