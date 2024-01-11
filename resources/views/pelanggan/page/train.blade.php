@@ -43,11 +43,11 @@
 		.menu-item {
 			display: flex;
 			margin-bottom: 20px;
-			border: 2px solid #4CAF50;
-			border-radius: 4px;
+			border: 2px solid #ccc; 
+			border-radius: 10px;
 			padding: 10px;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background-color:f2f2f2;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            background-color: #fff;
 		}
 
 		.menu-item-image {
@@ -220,6 +220,7 @@
         .col-3 input {
             margin-left: 10px;
             margin-bottom: 10px;
+            width: 90%;
         }
        .form-select select{
         margin: bottom 10px;
@@ -227,6 +228,8 @@
        .col-3 button {
         margin-top: 10px;
        }
+
+       
       
         
 	</style>
@@ -277,8 +280,10 @@
                         </div>
                         <div class="menu-item-details">
                             <div class="menu-item-title">Luxury Room | lantai 12</div>
+                            <hr>
                             <div class="menu-item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, cumque debitis? Libero hic nam dicta, delectus mollitia porro fugiat quasi laboriosam eligendi exercitationem eum voluptas rem? Architecto suscipit blanditiis vel..</div>
                             <div class="menu-item-price">
+                            <hr>
                                 <span class="price">Rp 50.000</span>
                             </div>
                             <!-- <div class="price-select">
@@ -301,8 +306,10 @@
                         </div>
                         <div class="menu-item-details">
                             <div class="menu-item-title">Deluxe room</div>
+                            <hr>
                             <div class="menu-item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, sequi. Architecto quam veritatis nemo obcaecati, ducimus illo consequuntur debitis fuga cum assumenda facilis sed ad asperiores. Amet numquam voluptatibus inventore.</div>
                             <div class="menu-item-price">
+                            <hr>
                                 <span class="price"> Rp 75.00</span>
                             </div>
                             <!-- <div class="price-select">
@@ -315,18 +322,28 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Keranjang</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+                <div class="card" style="width: 18rem; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                    <div class="card-body">
+                        <h5 class="card-title">Shopping Cart</h5>
+                        <p class="card-text">Thank you for shopping with us! Here are your order details:</p>
+                        <hr>
+                        <p><strong>Nama Ruangan:</strong> <span id="namaRuangan">Living Room</span></p>
+                        <p><strong>Harga:</strong> Rp<span id="harga">150</span></p>
+                        <p><strong>Total Harga:</strong> Rp<span id="totalHarga">300</span></p>
+                        <button class="remove-button btn btn-danger" type="button">Remove</button>
+                        <a href="#" class="btn btn-primary checkout-button">Check Out</a>
                     </div>
-                </div>    
+                </div>
+            </div>
+
+                </div>
             </div>
         </div>
 
        
+                    
+                    
+                    
     </div>
 <!-- Modal -->
 <div class="modal fade" id="staticbackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -394,6 +411,63 @@
         priceElements[index].textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
     }
     });
+    window.addEventListener('scroll', function() {
+        var card = document.querySelector('.card');
+        card.style.position = 'fixed';
+        card.style.top = '50%';
+        card.style.transform = 'translateY(-50%)';
+    });
+    // Ambil semua tombol "Book Now"
+const bookNowButtons = document.querySelectorAll('.menu-item-select');
+
+// Iterasi melalui setiap tombol "Book Now"
+bookNowButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Ambil informasi harga dan nama ruangan dari elemen terkait
+    const menuItem = button.closest('.menu-item');
+    const harga = menuItem.querySelector('.menu-item-price .price').textContent;
+    const namaRuangan = menuItem.querySelector('.menu-item-title').textContent;
+    
+    // Tampilkan informasi harga dan nama ruangan di menu card
+    const hargaElement = document.getElementById('harga');
+    const namaRuanganElement = document.getElementById('namaRuangan');
+    hargaElement.textContent = harga;
+    namaRuanganElement.textContent = namaRuangan;
+    // Tambahkan event listener untuk tombol "Remove"
+  const removeButton = item.querySelector('.remove-button');
+  removeButton.addEventListener('click', removeItem);
+  });
+});
+// Ambil elemen keranjang
+const cartItemsElement = document.getElementById('cart-items');
+
+// Fungsi untuk menghapus item dari keranjang
+function removeItem(event) {
+  const item = event.target.closest('.cart-item');
+  item.remove();
+}
+
+// Iterasi melalui setiap tombol "Remove"
+const removeButtons = document.querySelectorAll('.remove-button');
+removeButtons.forEach(button => {
+  button.addEventListener('click', removeItem);
+});
+
+// Fungsi untuk menambahkan item ke keranjang
+function addItemToCart(namaRuangan, harga) {
+  const item = document.createElement('div');
+  item.classList.add('cart-item');
+  item.innerHTML = `
+    <p>Nama Ruangan: <span>${namaRuangan}</span></p>
+    <p>Harga: <span>${harga}</span></p>
+    <button class="remove-button" type="button">Remove</button>
+  `;
+  cartItemsElement.appendChild(item);
+  
+  // Tambahkan event listener untuk tombol "Remove"
+  const removeButton = item.querySelector('.remove-button');
+  removeButton.addEventListener('click', removeItem);
+}
 
     </script>
 </div>
