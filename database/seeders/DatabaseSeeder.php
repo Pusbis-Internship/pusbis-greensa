@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Guest;
+use App\Models\Train;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,42 @@ class DatabaseSeeder extends Seeder
             'negara' => 'sby',
             'username' => 'anon@mail',
             'password' => bcrypt(1)
+        ]);
+
+        Train::create([
+            'nama' => 'Room 1',
+            'lantai' => 1,
+            'kapasitas' => 100,
+            'harga' => 10000,
+            'deskripsi' => 'Ini deskripsi',
+            'gambar' => 'images/room1.jpg',
+        ]);
+
+        Train::create([
+            'nama' => 'Room 2',
+            'lantai' => 1,
+            'kapasitas' => 150,
+            'harga' => 20000,
+            'deskripsi' => 'Ini deskripsi',
+            'gambar' => 'images/room2.jpg',
+        ]);
+
+        Train::create([
+            'nama' => 'Room 3',
+            'lantai' => 2,
+            'kapasitas' => 100,
+            'harga' => 10000,
+            'deskripsi' => 'Ini deskripsi',
+            'gambar' => 'images/room3.jpg',
+        ]);
+
+        Train::create([
+            'nama' => 'Room 4',
+            'lantai' => 2,
+            'kapasitas' => 200,
+            'harga' => 20000,
+            'deskripsi' => 'Ini deskripsi',
+            'gambar' => 'images/room4.jpg',
         ]);
     }
 }

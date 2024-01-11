@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guest;
+use App\Models\Train;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 
 class GuestController extends Controller
 {
@@ -17,11 +16,18 @@ class GuestController extends Controller
     public function showhotel()
     {return view('pelanggan.page.hotel', ['title' => 'Hotel']);}
 
-    public function showtrain()
-    {return view('pelanggan.page.train', ['title' => 'Training Center']);}
-
     public function showabout()
     {return view('pelanggan.page.about', ['title' => 'About']);}
+
+    public function showtrain()
+    {
+        $trains = Train::all();
+        
+        return view('pelanggan.page.train', [
+            'title' => 'Training Center',
+            'trains' => $trains
+        ]);
+    }
 
     public function register(Request $request)
     {
