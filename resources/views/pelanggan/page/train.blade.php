@@ -1,4 +1,7 @@
-@extends('pelanggan.layout.index')
+@extends('pelanggan.layout.source')
+
+@include('pelanggan.component.navbar')
+
 
 
 @section('content')
@@ -233,29 +236,28 @@
        }
 
        .card-content{
-        background-color:#B4BFA9;
+        background-color:#fff;
+        shadow: none
        }
-       .remove-button{
-        color: #fff;
-        background-color: #dc3545;
-        border-color: #dc3545;
-        transition: background-color 0.3s ease;
+       .remove-button btn btn-danger {
+        background-color: transparent;
+        border: none;
         }
-        .remove-button:hover {
-        background-color: #007bff;
-        border-color: #007bff;
-        }
+        
 
        
       
         
 	</style>
 </head>
+
 <div id="hotel">
-        <div class="catalog-hotel">
+        
             <div class="container">
                 <div class="catalog-container col-lg-8">
-                    <h1>Training Center</h1>
+                    <div class="title">
+                        <h1>Training Center</h1>
+                    </div>
                     <div class="row py-2 m-4">
                         <div class="check">
                             <div class="availability-box col-lg-12 bg-white shadow-4 rounded">
@@ -324,10 +326,12 @@
                             <h5 class="card-title">Shopping Cart</h5>
                             <p class="card-text">Thank you for shopping with us! Here are your order details:</p>
                             <hr>
-                            <div class="card-content" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="card-content" style="display: flex; justify-content: space-between; align-items: center; gap: 2px;">
                                 <p><strong>Rooms:</strong> <span id="namaRuangan">Living Room</span></p>
-                                <p><strong>Price:</strong> Rp<span id="harga">150</span></p>
-                                <button class="remove-button btn btn-danger" type="button">Remove</button>
+                                <p><strong>Price:</strong> <span id="harga">150</span></p>
+                                <button class="remove-button btn"style="background:transparant" type="button">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                             <hr>
                             <div>
@@ -340,6 +344,7 @@
             </div>
 
          </div>
+
     </div>
 </div>
 
@@ -474,6 +479,7 @@ function addItemToCart(namaRuangan, harga) {
 
     </script>
 </div>
+
 </body>
 
 </html>
