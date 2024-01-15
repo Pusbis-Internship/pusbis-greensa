@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'provinsi' => 'sby',
             'negara' => 'sby',
             'username' => 'anon@mail',
+            'email' => 'anon@mail',
             'password' => bcrypt(1)
         ]);
 

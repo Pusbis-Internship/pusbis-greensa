@@ -40,7 +40,7 @@
                                         <label for="email" class="form-label">Email <span
                                                 class="text-danger">*</span></label>
                                         <input type="email"
-                                            class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="email"
+                                            class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="username"
                                             id="email" placeholder="name@example.com" required>
                                     </div>
                                     <div class="col-12">
