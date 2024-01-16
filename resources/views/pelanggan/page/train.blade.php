@@ -1,365 +1,418 @@
-@extends('pelanggan.layout.source')
 @extends('pelanggan.layout.index')
 
-{{-- @include('pelanggan.component.navbar') --}}
-
 @section('content')
-    <style>
-        /* template */
-        #hotel {
-            background: linear-gradient(220deg, #006B39 0%, rgba(0, 0, 0, 0.79) 257.44%);
-            /* height: 100vh; */
-            width: 100%;
-            padding: 100px 0px 100px 0px;
-        }
-
-        .catalog-hotel {
-            height: 100vh;
-            width: 100%;
-        }
-
-        .hero-tagline h1 {
-            color: #fafafa;
-            font-weight: 700;
-            font-size: 48px;
-            line-height: 72px;
-
-        }
-
-        .hero-tagline p {
-            font-size: 18px;
-            color: #fafafa;
-            width: 90%;
-        }
-
-        .hero-tagline h4 {
-            color: #fafafa;
-            font-size: 18px;
-            line-height: 200%
-        }
-
-        /* template */
-
-        h1 {
-            text-align: center;
-        }
-
-        .menu-item {
-            display: flex;
-            margin-bottom: 20px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            background-color: #fff;
-        }
-
-        .menu-item-image {
-            flex: 0 0 150px;
-            margin-right: 20px;
-            margin-top: 50px;
-            border-radius: 8px;
-        }
-
-        .menu-item-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .menu-item-details {
-            flex: 1;
-        }
-
-        .menu-item-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .menu-item-description {
-            margin-bottom: 10px;
-        }
-
-        .menu-item-price {
-            font-weight: bold;
-            position: relative;
-        }
-
-        .menu-item-price button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 30px;
-            height: 30px;
-            font-weight: bold;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        .menu-item-price .decrement {
-            left: -35px;
-        }
-
-        .menu-item-price .increment {
-            right: -35px;
-        }
-
-        .checkout-button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            border-radius: px;
-            cursor: pointer;
-        }
 
 
-        .container {
-            display: flex;
-            justify-content: space-between;
-            /* margin-top: 20px; */
-
-        }
-
-        .catalog-container {
-            flex: 1;
-            margin-right: 20px;
-
-        }
-
-        .cart-container {
-            flex: 0 0 300px;
-            background-color: #f2f2f2;
-            padding: 20px;
-        }
-
-        .menu-item-select {
-            background-color: transparent;
-            border: 2px solid #4CAF50;
-            color: #4CAF50;
-            padding: 5px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .menu-item-select:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .price-select {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-
-        }
-
-        .price-select button {
-            padding: 5px;
-            width: 30px;
-            height: 30px;
-            font-weight: bold;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        .price-select .decrement {
-            margin-right: 5px;
-        }
-
-        .availability-box {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .check-avail-button {
-            background-color: transparent;
-            border: 2px solid #4CAF50;
-            color: #4CAF50;
-            padding: 2px 5px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .check-avail-button:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-
-        .available-form1 label {
-            margin-bottom: 15px;
-            margin-left: 10px;
-        }
-
-        .available-form1 input[type="date"],
-        .available-form1 button {
-            padding: 2px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .available-form1 input[type="select"],
-        .available-form1 button {
-            padding: 2px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .available-form1 {
-            width: 100%;
-        }
-
-        .availability-box h5 {
-            margin-top: 20px;
-            margin-left: 10px;
-        }
-
-        .size-room {
-            background-color: #bbd16e;
-            border-radius: 3px;
-            box-shadow: 35px:
-        }
-
-        .col-3 input {
-            margin-left: 10px;
-            margin-bottom: 10px;
-            width: 90%;
-        }
-
-        .form-select select {
-            margin: bottom 10px;
-        }
-
-        .col-3 button {
-            margin-top: 10px;
-        }
-
-        .card-content {
-            background-color: #fff;
-            shadow: none
-        }
-
-        .remove-button btn btn-danger {
-            background-color: transparent;
-            border: none;
-        }
-    </style>
-
-    <section id="hotel" class="m-0">
-        <div class="container container-fluid">
-            <div class="catalog-container col-lg-8">
-                <div class="title" style="color: #fafafa">
-                    <h1>Training Center</h1>
-                </div>
-
-                <div class="row py-2">
-                    <div class="check">
-                        <div class="availability-box col-lg-12 bg-white shadow-4 rounded p-3 mt-4">
-                            <h5 style="">Check Availability</h5>
-                            <form id="availability-form col-lg-4">
-                                <div class="available-form1 d-flex row align-items-center">
-                                    <div class="col-3">
-                                        <label class="form-label" style="margin-bottom: 12px;">Check-in date</label>
-                                        <input type="date" name="check-in-date" required>
-                                    </div>
-                                    <div class="col-3">
-                                        <label class="form-label" style="margin-bottom: 12px;">Check-out date</label>
-                                        <input type="date" name="check-out-date" required>
-                                    </div>
-                                    <div class="col-3">
-                                        <label class="form-label" style="margin-bottom: 12px;">Capacity</label>
-                                        <input type="select" name="check-out-date" required>
-                                    </div>
-                                    <div class="col-3" style="margin-bottom: 12px;">
-                                        <label class="form-label" style="margin-bottom: 12px;">Floor</label>
-                                        <select class="form-select form-select-sm" aria-label="Small select example">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                    <!-- <div class="col-3" style="margin-top:12px;">
-                                                    <button type="submit" class="check-avail-button">Check</button>
-                                                </div> -->
-                                </div>
-                            </form>
+    <!-- Banner Start -->
+    <div class="container-fluid p-0 mb-5">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{{ asset('assets/images/tc-banner-1.png') }}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 700px;">
+                            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Greensa Inn
+                            </h6>
+                            <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Our Training Center
+                            </h1>
                         </div>
-                    </div>
-                </div>
-
-                @foreach ($trains as $train)
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="{{ asset($train->gambar) }}" alt="Nama Menu">
-                            <div class="size-room" style="font-size: 8px; margin-top:8px">
-                                <i class="fas fa-user" style="margin-right: 5px;"></i>Kapasitas {{ $train->kapasitas }}<br>
-                                <i class="fas fa-home" style="margin-right: 5px;"></i> Ukuran Ruangan: 100m<sup>2</sup>
-                            </div>
-                        </div>
-                        <div class="menu-item-details">
-                            <div class="menu-item-title">{{ $train->nama }}</div>
-                            <p>Lantai {{ $train->lantai }}</p>
-                            <hr>
-                            <div class="menu-item-description">{{ $train->deskripsi }}</div>
-                            <div class="menu-item-price">
-                                <hr>
-                                <span class="price">Rp {{ $train->harga }}</span>
-                            </div>
-                            <div class>
-                                <button class="menu-item-select"data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            {{-- Cart --}}
-            <div class="col-lg-4">
-                <div class="card"
-                    style="width: 18rem; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-                    <div class="card-body">
-                        <h5 class="card-title">Shopping Cart</h5>
-                        <p class="card-text">Thank you for shopping with us! Here are your order details:</p>
-                        <hr>
-                        <div class="card-content"
-                            style="display: flex; justify-content: space-between; align-items: center; gap: 2px;">
-                            <p><strong>Rooms:</strong> <span id="namaRuangan">Living Room</span></p>
-                            <p><strong>Price:</strong> <span id="harga">150</span></p>
-                            <button class="remove-button btn"style="background:transparant" type="button">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                        <hr>
-                        <div>
-                            <p><strong>Total Harga:</strong> Rp<span id="totalHarga">300</span></p>
-                        </div>
-                        <a href="#" class="btn btn-primary checkout-button">Check Out</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Banner End -->
 
+    <!-- Booking Start -->
+    <div class="container-fluid booking booking-2 pb-5 wow animated fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="bg-white shadow rounded" style="padding: 35px;">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <div class="row g-2">
+
+                            <div class="col-md-3">
+                                <div class="date" id="date1" data-target-input="nearest">
+                                    <input type="text" class="form-control" id="check-in" placeholder="Check in"
+                                        data-target="#date1" value="" onfocus="(this.type='date')" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="text" class="form-control" id="check-out" placeholder="Check out"
+                                        data-target="#date2" value="" onfocus="(this.type='date')" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class="form-select" style="color: #6c757d;">
+                                    <option selected>Pilih Lantai</option>
+                                    <option value="1">Lantai 1</option>
+                                    <option value="2">Lantai 2</option>
+                                    <option value="3">Lantai 3</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="peserta" id="peserta" data-target-input="nearest">
+                                    <input type="number" class="form-control" id="peserta" placeholder="Jumlah Peserta"
+                                        data-target="#date2" min="0" max="999" />
+                                </div>
+                                <!-- <select class="form-select">
+                                                <option selected>Peserta</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking End -->
+
+    <!-- Catalog List -->
+    <section class="my-3">
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- Filter -->
+                        <div class="col-lg-3 col-md-12 mb-lg-0 px-lg-0 mb-4">
+                            <nav class="navbar navbar-filterDropdown navbar-expand-lg navbar-light bg-white rounded shadow">
+                                <div class="container-fluid flex-lg-column align-items-stretch">
+                                    <h5 class="mt-2">FILTER</h5>
+                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#filterDropdown" aria-controls="filterDropdown"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse flex-column align-items-stretch mt-2"
+                                        id="filterDropdown">
+                                        <div class="border bg-light p-3 rounded mb-3">
+                                            <h6 class="mb-3" style="font-size: 18px;">CEK KETERSEDIAAN</h6>
+                                            <label class="form-labar">Check In</label>
+                                            <input type="date" class="form-control shadow-none">
+                                            <label class="form-labar">Check Out</label>
+                                            <input type="date" class="form-control shadow-none">
+                                        </div>
+                                        <div class="border bg-light p-3 rounded mb-3">
+                                            <h6 class="mb-3" style="font-size: 18px;">FASILITAS</h6>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="f1"
+                                                    class="form-check-input shadow-none me-1">
+                                                <label class="form-check-label" for="f1">Fasilitas 1</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="f2"
+                                                    class="form-check-input shadow-none me-1">
+                                                <label class="form-check-label" for="f2">Fasilitas 2</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="f3"
+                                                    class="form-check-input shadow-none me-1">
+                                                <label class="form-check-label" for="f3">Fasilitas 3</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- Akhir Filter -->
+
+                        <!-- Awal Card -->
+                        <div class="col-lg-9 col-md-12 px-4 catalog-tc">
+                            <div class="card mb-4 border-0 shadow">
+                                <div class="row g-0 p-3 align-items-center">
+                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
+                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
+                                            class="img-fluid rounded" alt="training-center">
+                                    </div>
+                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
+                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
+                                        <div class="row">
+                                            <div class="features d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Fitur</p>
+                                                </div>
+                                                <div class="col-6 align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
+                                                </div>
+                                            </div>
+                                            <div class="lantai  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Lantai </p>
+                                                </div>
+                                                <div class="col-6  align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
+                                                </div>
+                                            </div>
+                                            <div class="capacity  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Kapasitas </p>
+                                                </div>
+                                                <div class="col-6 align-items-center ">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">200
+                                                        Orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="desc-catalog mt-2">
+                                            <p class="fw-lighter">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
+                                                doloremque in odit et corrupti maxime molestias voluptas libero
+                                                dolore.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <p class="fw-lighter mb-1">Harga per hari</p>
+                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <a href="#"
+                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
+                                                <a href="#"
+                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
+                                                    Detail</a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4 border-0 shadow">
+                                <div class="row g-0 p-3 align-items-center">
+                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
+                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
+                                            class="img-fluid rounded" alt="training-center">
+                                    </div>
+                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
+                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
+                                        <div class="row">
+                                            <div class="features d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Fitur</p>
+                                                </div>
+                                                <div class="col-6 align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
+                                                </div>
+                                            </div>
+                                            <div class="lantai  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Lantai </p>
+                                                </div>
+                                                <div class="col-6  align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
+                                                </div>
+                                            </div>
+                                            <div class="capacity  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Kapasitas </p>
+                                                </div>
+                                                <div class="col-6 align-items-center ">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">200
+                                                        Orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="desc-catalog mt-2">
+                                            <p class="fw-lighter">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
+                                                doloremque in odit et corrupti maxime molestias voluptas libero
+                                                dolore.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <p class="fw-lighter mb-1">Harga per hari</p>
+                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <a href="#"
+                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
+                                                <a href="#"
+                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
+                                                    Detail</a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4 border-0 shadow">
+                                <div class="row g-0 p-3 align-items-center">
+                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
+                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
+                                            class="img-fluid rounded" alt="training-center">
+                                    </div>
+                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
+                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
+                                        <div class="row">
+                                            <div class="features d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Fitur</p>
+                                                </div>
+                                                <div class="col-6 align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
+                                                </div>
+                                            </div>
+                                            <div class="lantai  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Lantai </p>
+                                                </div>
+                                                <div class="col-6  align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
+                                                </div>
+                                            </div>
+                                            <div class="capacity  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Kapasitas </p>
+                                                </div>
+                                                <div class="col-6 align-items-center ">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">200
+                                                        Orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="desc-catalog mt-2">
+                                            <p class="fw-lighter">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
+                                                doloremque in odit et corrupti maxime molestias voluptas libero
+                                                dolore.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <p class="fw-lighter mb-1">Harga per hari</p>
+                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <a href="#"
+                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
+                                                <a href="#"
+                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
+                                                    Detail</a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4 border-0 shadow">
+                                <div class="row g-0 p-3 align-items-center">
+                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
+                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
+                                            class="img-fluid rounded" alt="training-center">
+                                    </div>
+                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
+                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
+                                        <div class="row">
+                                            <div class="features d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Fitur</p>
+                                                </div>
+                                                <div class="col-6 align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
+                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
+                                                </div>
+                                            </div>
+                                            <div class="lantai  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Lantai </p>
+                                                </div>
+                                                <div class="col-6  align-items-center">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
+                                                </div>
+                                            </div>
+                                            <div class="capacity  d-flex align-items-center mb-1">
+                                                <div class="col-6">
+                                                    <p class="mb-1">Kapasitas </p>
+                                                </div>
+                                                <div class="col-6 align-items-center ">
+                                                    <span>:</span>
+                                                    <span class="badge bg-light text-dark text-wrap">200
+                                                        Orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="desc-catalog mt-2">
+                                            <p class="fw-lighter">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
+                                                doloremque in odit et corrupti maxime molestias voluptas libero
+                                                dolore.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <p class="fw-lighter mb-1">Harga per hari</p>
+                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <a href="#"
+                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
+                                                <a href="#"
+                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
+                                                    Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Akhir Card -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticbackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalBook" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -367,113 +420,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const decrementButtons = document.querySelectorAll('.decrement');
-            const incrementButtons = document.querySelectorAll('.increment');
-            const quantityElements = document.querySelectorAll('.quantity');
-            const priceElements = document.querySelectorAll('.price');
-            const selectButtons = document.querySelectorAll('.menu-item-select');
-
-            decrementButtons.forEach(function(button, index) {
-                button.addEventListener('click', function() {
-                    const quantity = parseInt(quantityElements[index].textContent);
-                    if (quantity > 0) {
-                        quantityElements[index].textContent = quantity - 1;
-                        updatePrice(index);
-                    }
-                });
-            });
-
-            incrementButtons.forEach(function(button, index) {
-                button.addEventListener('click', function() {
-                    const quantity = parseInt(quantityElements[index].textContent);
-                    quantityElements[index].textContent = quantity + 1;
-                    updatePrice(index);
-                });
-            });
-
-            selectButtons.forEach(function(button, index) {
-                button.addEventListener('click', function() {
-                    const quantity = parseInt(quantityElements[index].textContent);
-                    const price = parseFloat(priceElements[index].textContent.slice(
-                        3)); // Menghapus "Rp " dari harga
-                    const totalPrice = quantity * price;
-                    console.log('Total Harga:', totalPrice.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR'
-                    }));
-                });
-            });
-
-            function updatePrice(index) {
-                const quantity = parseInt(quantityElements[index].textContent);
-                const price = parseFloat(priceElements[index].textContent.slice(3)); // Menghapus "Rp " dari harga
-                const totalPrice = quantity * price;
-                priceElements[index].textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
-            }
-        });
-        window.addEventListener('scroll', function() {
-            var card = document.querySelector('.card');
-            card.style.position = 'fixed';
-            card.style.top = '50%';
-            card.style.transform = 'translateY(-50%)';
-        });
-        // Ambil semua tombol "Book Now"
-        const bookNowButtons = document.querySelectorAll('.menu-item-select');
-
-        // Iterasi melalui setiap tombol "Book Now"
-        bookNowButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Ambil informasi harga dan nama ruangan dari elemen terkait
-                const menuItem = button.closest('.menu-item');
-                const harga = menuItem.querySelector('.menu-item-price .price').textContent;
-                const namaRuangan = menuItem.querySelector('.menu-item-title').textContent;
-
-                // Tampilkan informasi harga dan nama ruangan di menu card
-                const hargaElement = document.getElementById('harga');
-                const namaRuanganElement = document.getElementById('namaRuangan');
-                hargaElement.textContent = harga;
-                namaRuanganElement.textContent = namaRuangan;
-                // Tambahkan event listener untuk tombol "Remove"
-                const removeButton = item.querySelector('.remove-button');
-                removeButton.addEventListener('click', removeItem);
-            });
-        });
-        // Ambil elemen keranjang
-        const cartItemsElement = document.getElementById('cart-items');
-
-        // Fungsi untuk menghapus item dari keranjang
-        function removeItem(event) {
-            const item = event.target.closest('.cart-item');
-            item.remove();
-        }
-
-        // Iterasi melalui setiap tombol "Remove"
-        const removeButtons = document.querySelectorAll('.remove-button');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', removeItem);
-        });
-
-        // Fungsi untuk menambahkan item ke keranjang
-        function addItemToCart(namaRuangan, harga) {
-            const item = document.createElement('div');
-            item.classList.add('cart-item');
-            item.innerHTML = `
-                <p>Nama Ruangan: <span>${namaRuangan}</span></p>
-                <p>Harga: <span>${harga}</span></p>
-                <button class="remove-button" type="button">Remove</button>
-                `;
-            cartItemsElement.appendChild(item);
-
-            // Tambahkan event listener untuk tombol "Remove"
-            const removeButton = item.querySelector('.remove-button');
-            removeButton.addEventListener('click', removeItem);
-        }
-    </script>
+@endsection

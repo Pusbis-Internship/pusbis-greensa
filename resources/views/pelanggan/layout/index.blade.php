@@ -31,6 +31,8 @@
 
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/customer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/train.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/loader.css') }}">
     {{-- Akhir CSS --}}
 
