@@ -30,7 +30,7 @@
                                     <div class="col-md-12 col-sm-122">
                                         <label for="nama" class="form-label">Nama <span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="nama" id="nama"
+                                        <input type="text" class="form-control" name="name" id="nama"
                                             placeholder="Masukkan nama anda" required>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
@@ -71,13 +71,13 @@
                                     <div class="col-md-6 col-sm-12">
                                         <label for="tgl-lahir" class="form-label">Tanggal lahir <span
                                                 class="text-danger">*</span></label>
-                                        <input type="date" class="form-control" name="tgl-lahir" id="tgl-lahir"
+                                        <input type="date" class="form-control" name="tanggallahir" id="tgl-lahir"
                                             placeholder="Tanggal lahir" required>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <label for="email" class="form-label">Email <span
                                                 class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" name="email" id="email"
+                                        <input type="email" class="form-control" name="username" id="email"
                                             placeholder="name@example.com" required>
                                     </div>
                                     <div class="col-md-6 col-sm-12">

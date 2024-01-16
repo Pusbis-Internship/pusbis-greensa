@@ -6,6 +6,7 @@ use App\Models\Guest;
 use App\Models\Train;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class GuestController extends Controller
 {
@@ -38,8 +39,8 @@ class GuestController extends Controller
     public function register(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|min:6|max:255|email',
-            'password' => 'required|min:5|max:255',
+            'username' => 'required|min:4|max:255|email',
+            'password' => 'required|min:8|max:255',
             'name' => 'required',
             'nik' => 'required',
             'telp' => 'required',
@@ -50,8 +51,9 @@ class GuestController extends Controller
             'tanggallahir' => 'required'
         ]);
     
-        Guest::create([
+        $guest = Guest::create([
             'username' => $credentials['username'],
+            'email' => $credentials['username'],
             'password' => bcrypt($credentials['password']),
             'name' => $credentials['name'],
             'nik' => $credentials['nik'],
@@ -63,7 +65,18 @@ class GuestController extends Controller
             'tanggallahir' => $credentials['tanggallahir'],
         ]);
 
-        return redirect('/')->withErrors('Account Created !!!');
+        // kirim email
+        event(new Registered($guest));
+
+        // login
+        Auth::guard('guest')->login($guest);
+
+        // redirect
+        $request->session()->regenerate();
+        $request->session()->put('guest', $guest);
+        return redirect('/email/verify');
+
+        // return redirect('/login')->withErrors('Akun berhasil dibuat !!!');
     }
 
     public function login(Request $request)

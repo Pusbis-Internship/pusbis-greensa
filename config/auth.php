@@ -4,7 +4,7 @@ return [
 
     'defaults' => [
         'guard' => 'admin',
-        'passwords' => 'admins',
+        'password' => 'admin'
     ],
 
     'guards' => [
@@ -19,10 +19,10 @@ return [
     ],
 
     'providers' => [
-        // 'admins' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Admin::class,
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
         'guests' => [
             'driver' => 'eloquent',
             'model' => App\Models\Guest::class,
