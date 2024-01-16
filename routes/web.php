@@ -10,7 +10,7 @@ Route::get('/training-center', [GuestController::class, 'showtrain']);
 Route::get('/about', [GuestController::class, 'showabout'])->middleware('guestmustlogin');
 
 Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
-Route::get('/register', [GuestController::class, 'showregister']);
+Route::get('/register', [GuestController::class, 'showregister'])->middleware('guestnotlogin');
 
 Route::post('/guestlogin', [GuestController::class, 'login']);
 Route::post('/guestregister', [GuestController::class, 'register']);

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('negara');
             $table->date('tanggallahir')->nullable();
             $table->string('username')->unique();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
