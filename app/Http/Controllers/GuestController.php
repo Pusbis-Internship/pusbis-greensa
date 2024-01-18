@@ -21,10 +21,13 @@ class GuestController extends Controller
     {return view('pelanggan.page.about', ['title' => 'About']);}
 
     public function showlogin()
-    {return view('pelanggan.page.login', ['title' => 'About']);}
+    {return view('pelanggan.page.login', ['title' => 'Login']);}
 
     public function showregister()
-    {return view('pelanggan.page.register', ['title' => 'About']);}
+    {return view('pelanggan.page.register', ['title' => 'Register']);}
+
+    public function showdetail_tc()
+    {return view('pelanggan.page.detail_tc', ['title' => 'Detail-TC']);}
 
     public function showtrain()
     {

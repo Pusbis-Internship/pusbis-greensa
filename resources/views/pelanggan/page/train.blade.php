@@ -94,29 +94,34 @@
                                     </button>
                                     <div class="collapse navbar-collapse flex-column align-items-stretch mt-2"
                                         id="filterDropdown">
-                                        <div class="border bg-light p-3 rounded mb-3">
+                                        {{-- <div class="border bg-light p-3 rounded mb-3">
                                             <h6 class="mb-3" style="font-size: 18px;">CEK KETERSEDIAAN</h6>
                                             <label class="form-labar">Check In</label>
                                             <input type="date" class="form-control shadow-none">
                                             <label class="form-labar">Check Out</label>
                                             <input type="date" class="form-control shadow-none">
-                                        </div>
+                                        </div> --}}
                                         <div class="border bg-light p-3 rounded mb-3">
-                                            <h6 class="mb-3" style="font-size: 18px;">FASILITAS</h6>
+                                            <h6 class="mb-3" style="font-size: 18px;">Ruangan</h6>
                                             <div class="mb-2">
                                                 <input type="checkbox" id="f1"
                                                     class="form-check-input shadow-none me-1">
-                                                <label class="form-check-label" for="f1">Fasilitas 1</label>
-                                            </div>
-                                            <div class="mb-2">
-                                                <input type="checkbox" id="f2"
-                                                    class="form-check-input shadow-none me-1">
-                                                <label class="form-check-label" for="f2">Fasilitas 2</label>
+                                                <label class="form-check-label" for="f1">Reguler</label>
                                             </div>
                                             <div class="mb-2">
                                                 <input type="checkbox" id="f3"
                                                     class="form-check-input shadow-none me-1">
-                                                <label class="form-check-label" for="f3">Fasilitas 3</label>
+                                                <label class="form-check-label" for="f3">Ujian Terbuka</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="f3"
+                                                    class="form-check-input shadow-none me-1">
+                                                <label class="form-check-label" for="f3">Aljabar</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="f3"
+                                                    class="form-check-input shadow-none me-1">
+                                                <label class="form-check-label" for="f3">Hall</label>
                                             </div>
                                         </div>
                                     </div>
@@ -134,29 +139,24 @@
                                             class="img-fluid rounded" alt="training-center">
                                     </div>
                                     <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
+                                        <h4 class="mb-1 fw-medium">Convention Hall</h4>
                                         <div class="row">
-                                            <div class="features d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Fitur</p>
-                                                </div>
-                                                <div class="col-6 align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
-                                                </div>
+                                            <div class="features mb-3 me-1">
+                                                    <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i> Sound</span>
+                                                    <span class="badge bg-light text-dark text-wrap"><i class="fa-solid fa-display me-1"></i> Projector</span>
+                                                    <span class="badge bg-light text-dark text-wrap"><i class="fa-solid fa-wifi me-1"></i> Wifi</span>
+                                                    <span class="badge bg-light text-dark text-wrap"><i class="fa-regular fa-snowflake me-1"></i>Air Conditioner</span>
                                             </div>
-                                            <div class="lantai  d-flex align-items-center mb-1">
+                                            <div class="lantai  d-flex align-items-center ">
                                                 <div class="col-6">
                                                     <p class="mb-1">Lantai </p>
                                                 </div>
                                                 <div class="col-6  align-items-center">
                                                     <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
+                                                    <span class="badge bg-light text-dark text-wrap">5</span>
                                                 </div>
                                             </div>
-                                            <div class="capacity  d-flex align-items-center mb-1">
+                                            {{-- <div class="capacity  d-flex align-items-center mb-1">
                                                 <div class="col-6">
                                                     <p class="mb-1">Kapasitas </p>
                                                 </div>
@@ -165,231 +165,25 @@
                                                     <span class="badge bg-light text-dark text-wrap">200
                                                         Orang</span>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
-                                        <div class="desc-catalog mt-2">
+                                        <div class="desc-catalog">
                                             <p class="fw-lighter">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
-                                                doloremque in odit et corrupti maxime molestias voluptas libero
-                                                dolore.
+                                                Convention Hall mampu menampung hingga 250 orang dengan model tempat duduk Teater, 130 orang dengan model Classroom, dan 45 dengan model Round Table.  
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
                                         <div class="row">
                                             <div class="col-12 ">
-                                                <p class="fw-lighter mb-1">Harga per hari</p>
+                                                <p class="fw-lighter mb-1">Harga</p>
                                                 <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
                                             </div>
                                             <div class="col-12 ">
                                                 <a href="#"
                                                     class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
                                                     data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
-                                                <a href="#"
-                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
-                                                    Detail</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-4 border-0 shadow">
-                                <div class="row g-0 p-3 align-items-center">
-                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
-                                            class="img-fluid rounded" alt="training-center">
-                                    </div>
-                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
-                                        <div class="row">
-                                            <div class="features d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Fitur</p>
-                                                </div>
-                                                <div class="col-6 align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
-                                                </div>
-                                            </div>
-                                            <div class="lantai  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Lantai </p>
-                                                </div>
-                                                <div class="col-6  align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
-                                                </div>
-                                            </div>
-                                            <div class="capacity  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Kapasitas </p>
-                                                </div>
-                                                <div class="col-6 align-items-center ">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">200
-                                                        Orang</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="desc-catalog mt-2">
-                                            <p class="fw-lighter">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
-                                                doloremque in odit et corrupti maxime molestias voluptas libero
-                                                dolore.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
-                                        <div class="row">
-                                            <div class="col-12 ">
-                                                <p class="fw-lighter mb-1">Harga per hari</p>
-                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
-                                            </div>
-                                            <div class="col-12 ">
-                                                <a href="#"
-                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
-                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
-                                                <a href="#"
-                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
-                                                    Detail</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-4 border-0 shadow">
-                                <div class="row g-0 p-3 align-items-center">
-                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
-                                            class="img-fluid rounded" alt="training-center">
-                                    </div>
-                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
-                                        <div class="row">
-                                            <div class="features d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Fitur</p>
-                                                </div>
-                                                <div class="col-6 align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
-                                                </div>
-                                            </div>
-                                            <div class="lantai  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Lantai </p>
-                                                </div>
-                                                <div class="col-6  align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
-                                                </div>
-                                            </div>
-                                            <div class="capacity  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Kapasitas </p>
-                                                </div>
-                                                <div class="col-6 align-items-center ">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">200
-                                                        Orang</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="desc-catalog mt-2">
-                                            <p class="fw-lighter">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
-                                                doloremque in odit et corrupti maxime molestias voluptas libero
-                                                dolore.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
-                                        <div class="row">
-                                            <div class="col-12 ">
-                                                <p class="fw-lighter mb-1">Harga per hari</p>
-                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
-                                            </div>
-                                            <div class="col-12 ">
-                                                <a href="#"
-                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
-                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
-                                                <a href="#"
-                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
-                                                    Detail</a>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-4 border-0 shadow">
-                                <div class="row g-0 p-3 align-items-center">
-                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
-                                            class="img-fluid rounded" alt="training-center">
-                                    </div>
-                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                        <h4 class="mb-2 fw-medium">Convention Hall</h4>
-                                        <div class="row">
-                                            <div class="features d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Fitur</p>
-                                                </div>
-                                                <div class="col-6 align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Kursi</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Meja</span>
-                                                    <span class="badge bg-light text-dark text-wrap">Sound</span>
-                                                </div>
-                                            </div>
-                                            <div class="lantai  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Lantai </p>
-                                                </div>
-                                                <div class="col-6  align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">1 (Satu)</span>
-                                                </div>
-                                            </div>
-                                            <div class="capacity  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Kapasitas </p>
-                                                </div>
-                                                <div class="col-6 align-items-center ">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">200
-                                                        Orang</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="desc-catalog mt-2">
-                                            <p class="fw-lighter">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quam
-                                                doloremque in odit et corrupti maxime molestias voluptas libero
-                                                dolore.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
-                                        <div class="row">
-                                            <div class="col-12 ">
-                                                <p class="fw-lighter mb-1">Harga per hari</p>
-                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
-                                            </div>
-                                            <div class="col-12 ">
-                                                <a href="#"
-                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
-                                                    data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
-                                                <a href="#"
+                                                <a href="/detail_tc"
                                                     class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
                                                     Detail</a>
                                             </div>

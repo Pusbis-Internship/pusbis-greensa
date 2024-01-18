@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/', [GuestController::class, 'showhome'])->name('home');
 Route::get('/hotel', [GuestController::class, 'showhotel']);
 Route::get('/training-center', [GuestController::class, 'showtrain']);
+Route::get('/detail_tc', [GuestController::class, 'showdetail_tc']);
 Route::get('/about', [GuestController::class, 'showabout'])->middleware('guestmustlogin');
 
 Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
