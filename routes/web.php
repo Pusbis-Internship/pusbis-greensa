@@ -1,11 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
+// Admin
+Route::get('/admin', [AdminController::class, 'showadmin']);
+Route::get('/adminold', [AdminController::class, 'showadminold']);
+
+// Guest
 Route::get('/', [GuestController::class, 'showhome'])->name('home');
 Route::get('/hotel', [GuestController::class, 'showhotel']);
 Route::get('/training-center', [GuestController::class, 'showtrain']);
