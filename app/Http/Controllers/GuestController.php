@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guest;
 use App\Models\Train;
+use App\Models\TrainFacility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
@@ -32,10 +33,12 @@ class GuestController extends Controller
     public function showtrain()
     {
         $trains = Train::all();
+        $facilities = TrainFacility::all();
         
         return view('pelanggan.page.train', [
             'title' => 'Training Center',
-            'trains' => $trains
+            'trains' => $trains,
+            'facilities' => $facilities
         ]);
     }
 

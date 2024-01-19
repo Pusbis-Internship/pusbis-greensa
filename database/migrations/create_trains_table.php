@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('lantai');
-            $table->integer('kapasitas');
+            $table->integer('kap_class');
+            $table->integer('kap_teater');
             $table->integer('harga');
             $table->text('deskripsi');
             $table->string('gambar');

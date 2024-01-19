@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <!-- Banner Start -->
     <div class="container-fluid p-0 mb-5">
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -132,20 +131,34 @@
 
                         <!-- Awal Card -->
                         <div class="col-lg-9 col-md-12 px-4 catalog-tc">
+                        @foreach ($trains as $train)
+                        
                             <div class="card mb-4 border-0 shadow">
                                 <div class="row g-0 p-3 align-items-center">
                                     <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="{{ asset('assets/images/convention-hall2.jpg') }}"
+                                        <img src="{{ $train->gambar }}"
                                             class="img-fluid rounded" alt="training-center">
                                     </div>
                                     <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                        <h4 class="mb-1 fw-medium">Convention Hall</h4>
+                                        <h4 class="mb-1 fw-medium">{{ $train->nama }}</h4>
                                         <div class="row">
                                             <div class="features mb-3 me-1">
+                                                
+                                                @foreach ($train->facilities as $facility)
+                                                @if ($facility->fasilitas == 'Sound')
                                                     <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i> Sound</span>
+                                                @endif
+                                                @if ($facility->fasilitas == 'Projector')
                                                     <span class="badge bg-light text-dark text-wrap"><i class="fa-solid fa-display me-1"></i> Projector</span>
+                                                @endif
+                                                @if ($facility->fasilitas == 'WiFi')
                                                     <span class="badge bg-light text-dark text-wrap"><i class="fa-solid fa-wifi me-1"></i> Wifi</span>
+                                                @endif
+                                                @if ($facility->fasilitas == 'Air Conditioner')
                                                     <span class="badge bg-light text-dark text-wrap"><i class="fa-regular fa-snowflake me-1"></i>Air Conditioner</span>
+                                                @endif
+                                                                              
+                                                @endforeach
                                             </div>
                                             <div class="lantai  d-flex align-items-center ">
                                                 <div class="col-6">
@@ -153,7 +166,7 @@
                                                 </div>
                                                 <div class="col-6  align-items-center">
                                                     <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">5</span>
+                                                    <span class="badge bg-light text-dark text-wrap">{{ $train->lantai }}</span>
                                                 </div>
                                             </div>
                                             {{-- <div class="capacity  d-flex align-items-center mb-1">
@@ -169,7 +182,7 @@
                                         </div>
                                         <div class="desc-catalog">
                                             <p class="fw-lighter">
-                                                Convention Hall mampu menampung hingga 250 orang dengan model tempat duduk Teater, 130 orang dengan model Classroom, dan 45 dengan model Round Table.  
+                                                {{ $train->deskripsi }} 
                                             </p>
                                         </div>
                                     </div>
@@ -177,7 +190,7 @@
                                         <div class="row">
                                             <div class="col-12 ">
                                                 <p class="fw-lighter mb-1">Harga</p>
-                                                <h6 class="fw-semibold text-success mb-3">Rp. 3.000.000</h6>
+                                                <h6 class="fw-semibold text-success mb-3">Rp. {{ $train->harga }}</h6>
                                             </div>
                                             <div class="col-12 ">
                                                 <a href="#"
@@ -191,7 +204,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
+                        @endforeach    
+                    </div>
                         <!-- Akhir Card -->
 
                     </div>
