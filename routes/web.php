@@ -9,9 +9,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 // Admin
 Route::get('/admin', [AdminController::class, 'showadmin']);
-Route::get('/admin/training-order', [AdminController::class, 'showtrorder']);
-Route::get('/admin/training-center-list', [AdminController::class, 'showtrlist']);
-Route::get('/admin/user-list', [AdminController::class, 'showuser']);
+Route::get('/admin-training-center-order', [AdminController::class, 'showtrorder']);
+Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist']);
+Route::get('/admin-user-list', [AdminController::class, 'showuser']);
 Route::get('/adminold', [AdminController::class, 'showadminold']);
 
 // Guest

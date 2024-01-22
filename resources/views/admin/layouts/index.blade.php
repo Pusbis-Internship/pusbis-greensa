@@ -10,20 +10,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
     <title>Admin | Dashboard</title>
-    <link rel="manifest" href="assets/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Vendors styles-->
-    <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="css/vendors/simplebar.css">
-  
-      <!-- CoreUI for Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-H8oVKJOQVGGCdfFNM+9gLKN0xagtq9oiNLirmijheEuqD3kItTbTvoOGgxVKqNiB" crossorigin="anonymous">
-  
+    <!-- Main styles for this application-->
+    <link href="/css/style.css" rel="stylesheet">
     
   </head>
   <body>
