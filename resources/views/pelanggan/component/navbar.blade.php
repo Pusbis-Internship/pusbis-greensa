@@ -21,7 +21,7 @@
                     <a class="nav-link {{ Request::path() == 'hotel' ? 'active' : '' }}" href="/hotel">Hotel</a>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == 'traincenter' ? 'active' : '' }}" href="/training-center">Training Center</a>
+                    <a class="nav-link {{ Request::path() == 'training-center' ? 'active' : '' }}" href="/training-center">Training Center</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'about' ? 'active' : '' }}" href="/about">About</a>

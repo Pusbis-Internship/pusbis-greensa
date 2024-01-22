@@ -30,10 +30,10 @@
     {{-- Akhir icons boostrap --}}
 
     {{-- CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/customer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/train.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/loader.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/customer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user/train.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/user/loader.css') }}"> --}}
     {{-- Akhir CSS --}}
 
     {{-- Animate CSS --}}

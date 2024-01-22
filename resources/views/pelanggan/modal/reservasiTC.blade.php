@@ -1,0 +1,94 @@
+    <!-- Modal -->
+    <div class="modal fade" id="modalBook" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Booking Start -->
+                    <div class="container-xxl py-5">
+                        <div class="container">
+                            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                                <h6 class="section-title text-center text-dark text-uppercase">Reservasi Ruangan</h6>
+                                <h1 class="mb-5 fw-bolder text-success text-uppercase">Convention Hall
+                                </h1>
+                            </div>
+                            <div class="row g-5">
+                                <div class="col-lg-12">
+                                    <div class="wow fadeInUp" data-wow-delay="0.2s">
+                                        <form>
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating date" id="date3"
+                                                        data-target-input="nearest">
+                                                        <input type="text" class="form-control datetimepicker-input"
+                                                            id="checkin" placeholder="Check In" data-target="#date3"
+                                                            data-toggle="datetimepicker"
+                                                            onfocus="(this.type='datetime-local')" />
+                                                        <label class="labelBook" for="checkin">Check In</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-floating date" id="date4"
+                                                        data-target-input="nearest">
+                                                        <input type="text" class="form-control datetimepicker-input"
+                                                            id="checkout" placeholder="Check Out" data-target="#date4"
+                                                            data-toggle="datetimepicker"
+                                                            onfocus="(this.type='datetime-local')" />
+                                                        <label class="labelBook" for="checkout">Check Out</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <select class="form-select" id="select1">
+                                                            <option value="0" disabled selected>Pilih Layout
+                                                            </option>
+                                                            <option value="1">Classroom</option>
+                                                            <option value="2">Teater</option>
+                                                            <option value="3">Round Table</option>
+                                                        </select>
+                                                        <label class="labelBook" for="select1">Layout Model</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <fieldset disabled="disabled">
+                                                        <div class="form-floating input-group">
+                                                            <input type="number" class="form-control" id="capacityPax"
+                                                                placeholder="Kapasitas" value="200">
+                                                            <div class="input-group-text">PAX</div>
+                                                            <label class="labelBook" for="capacityPax">Kapasitas</label>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                                        <label class="labelBook" for="message">Special Request</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <button class="btn btn-success w-100 py-3" type="submit">Reservasi
+                                                        Sekarang</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button class="btn btn-outline-success w-100 py-3"
+                                                        type="submit">Tambah Keranjang</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Booking End -->
+                </div>
+            </div>
+        </div>
+    </div>

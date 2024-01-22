@@ -1,5 +1,7 @@
 @extends('pelanggan.layout.index')
 
+@include('pelanggan.modal.reservasiTC')
+
 @section('content')
 
     <!-- Banner Start -->
@@ -194,7 +196,7 @@
                                             </div>
                                             <div class="col-12 ">
                                                 <a href="/reservasi"
-                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2" data-bs-toggle="modal" data-bs-target="#modalBook"
                                                     >Reservasi</a>
                                                 <a href="/detail_tc"
                                                     class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
