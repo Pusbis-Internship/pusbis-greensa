@@ -7,12 +7,17 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
+
 // Admin
 Route::get('/admin', [AdminController::class, 'showadmin']);
 Route::get('/admin-training-center-order', [AdminController::class, 'showtrorder']);
 Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist']);
 Route::get('/admin-user-list', [AdminController::class, 'showuser']);
-Route::get('/adminold', [AdminController::class, 'showadminold']);
+
+Route::get('/admin-insertTC', [AdminController::class, 'showinsertTC']);
+
+Route::get('/delete/{id}', [AdminController::class, 'destroy'])->name('train.delete');
+Route::post('/train/store', [AdminController::class, 'store'])->name('train.store');
 
 // Guest
 Route::get('/', [GuestController::class, 'showhome'])->name('home');
