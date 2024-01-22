@@ -10,12 +10,12 @@
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-spreadsheet"></use>
             </svg> Dashboard<span class="badge badge-sm bg-info ms-auto"></span></a></li>
-            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="">
               <svg class="nav-icon">
                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-school"></use>
               </svg> Training Center</a>
             <ul class="nav-group-items">
-              <li class="nav-item"><a class="nav-link" href="/admin/tc-order"><span class="nav-icon"></span> Order</a></li>
+              <li class="nav-item"><a class="nav-link" href="/admin/training-center-order"><span class="nav-icon"></span> Order</a></li>
               <li class="nav-item"><a class="nav-link" href="/admin/training-center-list"><span class="nav-icon"></span> List</a></li>
             </ul>
           </li>
@@ -23,9 +23,4 @@
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
             </svg> User</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin/user-list">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg> try</a></li>
-            
 </div>

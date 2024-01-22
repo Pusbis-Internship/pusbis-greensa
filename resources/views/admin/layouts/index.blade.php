@@ -7,10 +7,9 @@
 --><!-- Breadcrumb-->
 <html lang="en">
   <head>
-    <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <title>Admin | Dashboard</title>
@@ -21,9 +20,11 @@
     <!-- Vendors styles-->
     <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
     <link rel="stylesheet" href="css/vendors/simplebar.css">
-    <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+  
+      <!-- CoreUI for Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-H8oVKJOQVGGCdfFNM+9gLKN0xagtq9oiNLirmijheEuqD3kItTbTvoOGgxVKqNiB" crossorigin="anonymous">
+  
+    
   </head>
   <body>
     <!-- sidebar -->
@@ -49,8 +50,6 @@
     <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
     <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
     <script src="js/main.js"></script>
-    <script>
-    </script>
 
   </body>
 </html>

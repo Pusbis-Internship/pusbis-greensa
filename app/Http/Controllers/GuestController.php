@@ -30,6 +30,9 @@ class GuestController extends Controller
     public function showdetail_tc()
     {return view('pelanggan.page.detail_tc', ['title' => 'Detail-TC']);}
 
+    public function showreservasi()
+    {return view('pelanggan.page.reservasi', ['title' => 'About']);}
+
     public function showtrain()
     {
         $trains = Train::all();

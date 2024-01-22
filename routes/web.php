@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 // Admin
 Route::get('/admin', [AdminController::class, 'showadmin']);
-Route::get('/admin/tc-order', [AdminController::class, 'showtrorder']);
+Route::get('/admin/training-order', [AdminController::class, 'showtrorder']);
 Route::get('/admin/training-center-list', [AdminController::class, 'showtrlist']);
 Route::get('/admin/user-list', [AdminController::class, 'showuser']);
 Route::get('/adminold', [AdminController::class, 'showadminold']);
@@ -19,7 +19,8 @@ Route::get('/', [GuestController::class, 'showhome'])->name('home');
 Route::get('/hotel', [GuestController::class, 'showhotel']);
 Route::get('/training-center', [GuestController::class, 'showtrain']);
 Route::get('/detail_tc', [GuestController::class, 'showdetail_tc']);
-Route::get('/about', [GuestController::class, 'showabout'])->middleware('guestmustlogin');
+Route::get('/about', [GuestController::class, 'showabout']);
+Route::get('/reservasi', [GuestController::class, 'showreservasi'])->middleware('guestmustlogin');
 
 Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
 Route::get('/register', [GuestController::class, 'showregister'])->middleware('guestnotlogin');
