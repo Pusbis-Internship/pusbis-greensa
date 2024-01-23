@@ -3,55 +3,77 @@
 namespace App\Http\Controllers;
 use App\Models\Guest;
 use App\Models\Train;
-
-
 use Illuminate\Http\Request;
+use Termwind\Components\Dd;
 
 class AdminController extends Controller
 {
     
+    public function showtrorder()
+    {return view('admin.page.trainorder');}
+
+    public function showtcstore()
+    {return view('admin.page.listTC.trainstore');}
+
+    public function showtcedit($id)
+    {
+        $train = Train::findOrFail($id);
+        return view('admin.page.listTC.trainedit', ['train' => $train]);
+    }
+
     public function showadmin()
     {
         $trains = Train::all();
-
         return view('admin.page.dashboard', ['trains' => $trains]);
     }
-    
-    public function showtrorder()
-    {return view('admin.page.trainorder');}
 
     public function showtrlist()
     {   
         $trains = Train::all();
-
         return view('admin.page.listTC.trainlist', ['trains' => $trains]);
     }
-    
-    public function showuser()
-    {return view('admin.page.userlist');}
 
+    public function showuserlist()
+    {   
+        $guests = Guest::all();
+        return view('admin.page.userlist', ['guests' => $guests]);
+    }
 
+    public function userdelete($id)
+    {
+        $guest = Guest::findOrFail($id);
+        $guest->delete();
+        
+        return redirect('/admin-user-list')->withErrors(['Akun berhasil dihapus']);
+    }
 
-    
-    
-    // delete lict tc
-    public function destroy($id)
+    public function tcedit(Request $request, $id, Train $train)
+    {
+        $train = Train::findOrFail($id);
+
+        $train->update([
+            'nama'     => $request->nama,
+            'lantai'   => $request->lantai,
+            'kap_class'   => $request->kap_class,
+            'kap_teater'   => $request->kap_teater,
+            'harga'   => $request->harga,
+            'deskripsi'   => $request->deskripsi,
+            'gambar'   => $request->gambar,
+        ]);
+
+        return redirect()->route('train.showlist')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
+    public function tcdelete($id)
     {
         $train = Train::findOrFail($id);
         $train->delete();
         
-        return redirect('/admin-training-center-list')->withErrors(['Password salah']);
-    }
+        return redirect('/admin-training-center-list')->withErrors(['Training Center berhasil dihapus']);
+    }  
 
-
-    
-    public function showinsertTC()
-    {return view('admin.page.listTC.insert');}
-    
-
-    public function store(Request $request)
+    public function tcstore(Request $request)
     {
-        // Validasi data
         $request->validate([
             'nama' => 'required',
             'lantai' => 'required',
@@ -60,13 +82,10 @@ class AdminController extends Controller
             'harga' => 'required|numeric',
             'deskripsi' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            // Tambahkan validasi untuk kolom lainnya sesuai kebutuhan
         ]);
 
-        // Simpan gambar ke direktori penyimpanan (misalnya: storage/app/public/images)
         $gambarPath = $request->file('gambar')->store('images', 'public');
 
-        // Simpan data ke database
         Train::create([
             'nama' => $request->nama,
             'lantai' => $request->lantai,
@@ -74,11 +93,9 @@ class AdminController extends Controller
             'kap_teater' => $request->kap_teater,
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $gambarPath, // Simpan path gambar
-            // Simpan kolom lainnya sesuai kebutuhan
+            'gambar' => $gambarPath,
         ]);
 
-        // Redirect ke halaman yang diinginkan setelah penyimpanan data
         return redirect('/admin-training-center-list')->with('success', 'Data pelatihan berhasil ditambahkan.');
     }
 }

@@ -13,7 +13,16 @@
     <title>Admin | Dashboard</title>
     <!-- Main styles for this application-->
     <link href="/css/style.css" rel="stylesheet">
-    
+
+    <style>
+      th, td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+
   </head>
   <body>
     <!-- sidebar -->
@@ -25,8 +34,13 @@
       <!-- header/navbar -->
       @include('admin.component.header')
 
-      {{-- Content Section --}}
-      @yield('content')
+      <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
+          {{-- Content Section --}}
+          @yield('content')
+        </div>
+      </div>
+      
       {{-- Akhir Content Section --}}
 
 
