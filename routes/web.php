@@ -14,7 +14,7 @@ Route::get('/admin-training-center-order', [AdminController::class, 'showtrorder
 Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist'])->name('train.showlist');
 Route::get('/admin-user-list', [AdminController::class, 'showuserlist']);
 
-Route::post('/admin-user-list-delete', [AdminController::class, 'userdelete'])->name('user.delete');
+Route::post('/admin-user-list-delete/{id}', [AdminController::class, 'userdelete'])->name('user.delete');
 
 Route::get('/admin-training-center-store', [AdminController::class, 'showtcstore']);
 Route::post('/admin-training-center-store', [AdminController::class, 'tcstore'])->name('train.store');

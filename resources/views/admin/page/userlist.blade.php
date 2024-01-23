@@ -27,7 +27,10 @@
                     <td>{{ $guest->provinsi }}</td>
                     <td>{{ $guest->negara }}</td>
                     <td>
-                        <a href="{{ route('user.delete', $guest->id) }}" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
+                        <form action="/admin-user-list-delete/{{ $guest->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

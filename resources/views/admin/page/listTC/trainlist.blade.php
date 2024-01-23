@@ -31,8 +31,12 @@
                     <td>{{ $train->deskripsi }}</td>
                     <td><img src="{{ $train->gambar }}" alt="Train Image" width="100"></td>
                     <td>
-                        <a href="{{ route('train.showedit', $train->id) }}" class="btn btn-warning">Edit</a>
-                        <a href="{{ route('train.delete', $train->id) }}" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
+                        
+                        <form action="/admin-training-center-delete/{{ $train->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            @csrf
+                            <a href="{{ route('train.showedit', $train->id) }}" class="btn btn-warning">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                   
                 </tr>
