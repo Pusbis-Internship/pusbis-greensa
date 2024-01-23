@@ -11,13 +11,16 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // Admin
 Route::get('/admin', [AdminController::class, 'showadmin']);
 Route::get('/admin-training-center-order', [AdminController::class, 'showtrorder']);
-Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist']);
-Route::get('/admin-user-list', [AdminController::class, 'showuser']);
+Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist'])->name('train.showlist');
+Route::get('/admin-user-list', [AdminController::class, 'showuserlist']);
 
-Route::get('/admin-insertTC', [AdminController::class, 'showinsertTC']);
+Route::post('/admin-user-list-delete/{id}', [AdminController::class, 'userdelete'])->name('user.delete');
 
-Route::get('/delete/{id}', [AdminController::class, 'destroy'])->name('train.delete');
-Route::post('/train/store', [AdminController::class, 'store'])->name('train.store');
+Route::get('/admin-training-center-store', [AdminController::class, 'showtcstore']);
+Route::post('/admin-training-center-store', [AdminController::class, 'tcstore'])->name('train.store');
+Route::get('/admin-training-center-edit/{id}', [AdminController::class, 'showtcedit'])->name('train.showedit');
+Route::put('/admin-training-center-edit/{id}', [AdminController::class, 'tcedit'])->name('train.edit');
+Route::post('/admin-training-center-delete/{id}', [AdminController::class, 'tcdelete'])->name('train.delete');
 
 // Guest
 Route::get('/', [GuestController::class, 'showhome'])->name('home');

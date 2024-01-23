@@ -5,9 +5,9 @@
 <div class="container">
     <h2>TC List</h2>
     
-    <a href="/admin-insertTC" class="btn btn-primary mb-3">Insert</a>
+    <a href="/admin-training-center-store" class="btn btn-primary mb-3">Insert</a>
 
-    <table class="table table-bordered">
+    <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
                 <th>Nama</th>
@@ -17,7 +17,7 @@
                 <th>Harga</th>
                 <th>Deskripsi</th>
                 <th>Gambar</th>
-                
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +31,12 @@
                     <td>{{ $train->deskripsi }}</td>
                     <td><img src="{{ $train->gambar }}" alt="Train Image" width="100"></td>
                     <td>
-                        <a href="" class="btn btn-warning">Edit</a>
-                        <a href="{{ route('train.delete', $train->id) }}" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</a>
+                        
+                        <form action="/admin-training-center-delete/{{ $train->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            @csrf
+                            <a href="{{ route('train.showedit', $train->id) }}" class="btn btn-warning">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                   
                 </tr>
