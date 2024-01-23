@@ -69,8 +69,11 @@
     @include('pelanggan.component.footer')
     {{-- Akhir Footer --}}
 
-    @include('pelanggan.modal.loginPelanggan')
-    @include('pelanggan.modal.registerPelanggan')
+    {{-- MODAL --}}
+    {{-- @include('pelanggan.modal.loginPelanggan')
+    @include('pelanggan.modal.registerPelanggan') --}}
+    @include('pelanggan.modal.reservasiTC')
+    {{-- Akhir Modal --}}
 
     {{-- Loader --}}
     @include('pelanggan.component.loader')

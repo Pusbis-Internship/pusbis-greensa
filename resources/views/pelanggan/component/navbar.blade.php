@@ -37,7 +37,20 @@
         
             @auth('guest')
                 <div class="d-flex align-items-center gap-2" >
-                    <label>Halo dek {{ $guest->name }}</label>
+                    {{-- <label>Halo dek {{ $guest->name }}</label>
+                    <form action="/guestlogout" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light">Logout</button>
+                    </form> --}}
+                    <a class="nav-link text-white">Hi! {{ $guest->name }}
+                        <i class="fa-solid fa-user text-white fs-5 ms-2"></i>
+                    </a>
+                    <div class="notif">
+                        <a href="transaksi">
+                            <i class="fa-solid fa-cart-shopping icon-nav fs-5 text-white"></i>
+                        </a>
+                        <div class="circle">3</div>
+                    </div>
                     <form action="/guestlogout" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-outline-light">Logout</button>

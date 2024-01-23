@@ -11,10 +11,13 @@
                     <!-- Booking Start -->
                     <div class="container-xxl py-5">
                         <div class="container">
-                            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                                 <h6 class="section-title text-center text-dark text-uppercase">Reservasi Ruangan</h6>
-                                <h1 class="mb-5 fw-bolder text-success text-uppercase">Convention Hall
+                                <h1 class="fw-bolder text-success text-uppercase">Convention Hall
                                 </h1>
+                                <span class="badge bg-light text-dark text-wrap lh-base">
+                                    Note : Harga sewa terhitung per 8 jam dalam sehari, apabila check-out melebihi jam sewa akan dikenakan charge per jam.
+                                </span>
                             </div>
                             <div class="row g-5">
                                 <div class="col-lg-12">
@@ -32,15 +35,25 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <fieldset disabled="disabled">
+                                                        <div class="form-floating input-group">
+                                                            <input type="number" class="form-control" id="jumlahSewa"
+                                                                placeholder="Kapasitas" value="2">
+                                                            <div class="input-group-text">HARI</div>
+                                                            <label class="labelBook" for="jumlahSewa">Jumlah Sewa</label>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                {{-- <div class="col-md-6">
                                                     <div class="form-floating date" id="date4"
                                                         data-target-input="nearest">
                                                         <input type="text" class="form-control datetimepicker-input"
                                                             id="checkout" placeholder="Check Out" data-target="#date4"
                                                             data-toggle="datetimepicker"
-                                                            onfocus="(this.type='datetime-local')" />
+                                                            onfocus="(this.type='date')" />
                                                         <label class="labelBook" for="checkout">Check Out</label>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
@@ -64,6 +77,21 @@
                                                         </div>
                                                     </fieldset>
                                                 </div>
+                                                {{-- <div class="col-md-12">
+                                                    <div class="form-floating date" id="nameAct"
+                                                        data-target-input="nearest">
+                                                        <input type="text" class="form-control datetimepicker-input"
+                                                            id="nameActivity" placeholder="Check In" data-target="#nameAct"
+                                                            data-toggle="datetimepicker" />
+                                                        <label class="labelBook" for="nameActivity">Nama Kegiatan</label>
+                                                    </div>
+                                                </div> --}}
+                                                <div class="col-12">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" placeholder="Nama Kegiatan" id="nameActivity"></input>
+                                                        <label class="labelBook" for="nameActivity">Nama Kegiatan</label>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12">
                                                     <div class="form-floating">
                                                         <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
@@ -72,6 +100,10 @@
                                                 </div>
                                             </div>
                                             <div class="row g-3">
+                                                <div class="col-12 text-end">
+                                                    <h6>Total</h6>
+                                                    <h3 id="totalHarga" class="fw-bolder text-success">Rp. 4000000</h3>
+                                                </div>
                                                 <div class="col-6">
                                                     <button class="btn btn-success w-100 py-3" type="submit">Reservasi
                                                         Sekarang</button>
@@ -92,3 +124,19 @@
             </div>
         </div>
     </div>
+
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const jumlahSewaInput = document.getElementById('jumlahSewa');
+            const hargaRuangan = {{ $train->harga }};
+            const totalHargaElement = document.getElementById('totalHarga');
+    
+            jumlahSewaInput.addEventListener('input', function () {
+                const jumlahSewa = parseInt(jumlahSewaInput.value);
+                const totalHarga = jumlahSewa * hargaRuangan;
+    
+                totalHargaElement.textContent = `Rp. ${totalHarga}`;
+            });
+        });
+    </script> --}}
+    
