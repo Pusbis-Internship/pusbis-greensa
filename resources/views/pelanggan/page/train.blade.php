@@ -138,7 +138,7 @@
                             <div class="card mb-4 border-0 shadow">
                                 <div class="row g-0 p-3 align-items-center">
                                     <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="{{ $train->gambar }}"
+                                        <img src="{{asset('/storage/posts/'. $train->gambar) }}"
                                             class="img-fluid rounded" alt="training-center">
                                     </div>
                                     <div class="col-md-6 px-lg-4 px-md-4 px-0">
