@@ -6,6 +6,9 @@
 * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
 --><!-- Breadcrumb-->
 <html lang="en">
+    @php
+      $admin = session('admin');
+    @endphp
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Admin;
 use App\Models\Guest;
 use App\Models\Train;
 use App\Models\TrainFacility;
@@ -15,6 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Admin::create([
+            'username' => 'admin@mail',
+            'password' => bcrypt(1)
+        ]);
+
         Guest::create([
             'name' => 'anon',
             'nik' => '123',

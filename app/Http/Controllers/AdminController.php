@@ -1,19 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Admin;
 use App\Models\Guest;
 use App\Models\Train;
 use Illuminate\Http\Request;
-use Termwind\Components\Dd;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    
+    public function showlogin()
+    {return view('admin.page.login');}
     
     public function showtrorder()
     {return view('admin.page.trainorder');}
 
     public function showtcstore()
     {return view('admin.page.listTC.trainstore');}
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        $admin = Admin::where('username', $credentials['username'])->first();
+    
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            $request->session()->put('admin', $admin);
+            return redirect()->intended('/admin')->withErrors(['akun' => 'Sudah Login !!!']);
+        }
+    
+        return redirect()->back()->withErrors(['akun' => 'Akun salah']);
+    }
 
     public function showtcedit($id)
     {

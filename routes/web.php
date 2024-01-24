@@ -9,10 +9,13 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 // Admin
+Route::get('/admin-login', [AdminController::class, 'showlogin']);
 Route::get('/admin', [AdminController::class, 'showadmin']);
 Route::get('/admin-training-center-order', [AdminController::class, 'showtrorder']);
 Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist'])->name('train.showlist');
 Route::get('/admin-user-list', [AdminController::class, 'showuserlist']);
+
+Route::post('/admin-login', [AdminController::class, 'login']);
 
 Route::post('/admin-user-list-delete/{id}', [AdminController::class, 'userdelete'])->name('user.delete');
 
