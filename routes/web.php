@@ -29,11 +29,12 @@ Route::post('/admin-training-center-delete/{id}', [AdminController::class, 'tcde
 Route::get('/', [GuestController::class, 'showhome'])->name('home');
 Route::get('/hotel', [GuestController::class, 'showhotel']);
 Route::get('/training-center', [GuestController::class, 'showtrain']);
-// Route::get('/detail_tc', [GuestController::class, 'showdetail_tc']);
 Route::get('/detail/{id}', [GuestController::class,'showdetail_tc'])->name('train.detail');
 Route::get('/about', [GuestController::class, 'showabout']);
 Route::get('/reservasi', [GuestController::class, 'showreservasi'])->middleware('guestmustlogin');
 Route::get('/cart', [GuestController::class, 'showcart'])->middleware('guestmustlogin');
+
+Route::post('/training-center', [GuestController::class, 'search']);
 
 Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
 Route::get('/register', [GuestController::class, 'showregister'])->middleware('guestnotlogin');

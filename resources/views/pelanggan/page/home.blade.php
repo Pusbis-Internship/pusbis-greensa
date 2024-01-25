@@ -62,7 +62,8 @@
     <div class="container-fluid booking pb-5 wow animated fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="bg-white shadow rounded" style="padding: 35px;">
-                <form action="">
+                <form action="/training-center" method="POST">
+                    @csrf
 
                     <div class="row g-2">
                         <div class="col-md-10">
@@ -82,19 +83,19 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <select class="form-select" style="color: #6c757d;">
-                                        <option selected>Semua Lantai</option>
-                                        <option value="1">Lantai 1</option>
-                                        <option value="2">Lantai 2</option>
-                                        <option value="3">Lantai 3</option>
-                                        <option value="3">Lantai 4</option>
-                                        <option value="3">Lantai 5</option>
+                                    <select class="form-select" name="lantai" style="color: #6c757d;">
+                                        <option selected value=0>Semua Lantai</option>
+                                        <option value=1>Lantai 1</option>
+                                        <option value=2>Lantai 2</option>
+                                        <option value=3>Lantai 3</option>
+                                        <option value=4>Lantai 4</option>
+                                        <option value=5>Lantai 5</option>
                                     </select>
                                 </div>
                                 
                                 <div class="col-md-3">
-                                    <div class="peserta" id="peserta" data-target-input="nearest">
-                                        <input type="number" class="form-control" id="peserta"
+                                    <div class="peserta" name="peserta" id="peserta" data-target-input="nearest">
+                                        <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
                                             max="999" />
                                     </div>
@@ -106,6 +107,7 @@
                         <div class="col-md-2">
                             <button class="btn btn-success w-100" type="submit">Submit</button>
                         </div>
+
                     </div>
 
                 </form>

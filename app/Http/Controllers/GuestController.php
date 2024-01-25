@@ -13,40 +13,75 @@ class GuestController extends Controller
 {
 
     public function showhome()
-    {return view('pelanggan.page.home', ['title' => 'Home']);}
+    {
+        return view('pelanggan.page.home', ['title' => 'Home']);
+    }
 
     public function showhotel()
-    {return view('pelanggan.page.hotel', ['title' => 'Hotel']);}
+    {
+        return view('pelanggan.page.hotel', ['title' => 'Hotel']);
+    }
 
     public function showabout()
-    {return view('pelanggan.page.about', ['title' => 'About']);}
+    {
+        return view('pelanggan.page.about', ['title' => 'About']);
+    }
 
     public function showlogin()
-    {return view('pelanggan.page.login', ['title' => 'Login']);}
+    {
+        return view('pelanggan.page.login', ['title' => 'Login']);
+    }
 
     public function showregister()
-    {return view('pelanggan.page.register', ['title' => 'Register']);}
+    {
+        return view('pelanggan.page.register', ['title' => 'Register']);
+    }
 
     public function showdetail_tc($id)
     {
         $train = Train::findOrFail($id);
         $facilities = TrainFacility::all();  // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
-        
+
         return view('pelanggan.page.detail_tc', [
             'title' => 'Detail Training Center',
             'train' => $train,
             'facilities' => $facilities
         ]);
     }
-    
+
     public function showcart()
-    {return view('pelanggan.page.cart', ['title' => 'Keranjang']);}
+    {
+        return view('pelanggan.page.cart', ['title' => 'Keranjang']);
+    }
 
     public function showtrain()
     {
         $trains = Train::all();
         $facilities = TrainFacility::all();
-        
+
+        return view('pelanggan.page.train', [
+            'title' => 'Training Center',
+            'trains' => $trains,
+            'facilities' => $facilities
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $lantai = $request->lantai;
+        $peserta = $request->peserta;
+
+        $query = Train::query();
+
+        if ($lantai !== null) {
+            $query->where('lantai', $lantai);}
+
+        if ($peserta !== null) {
+            $query->where('kap_teater', '>', $peserta);}
+
+        $trains = $query->get();
+        $facilities = TrainFacility::all();
+
         return view('pelanggan.page.train', [
             'title' => 'Training Center',
             'trains' => $trains,
@@ -68,7 +103,7 @@ class GuestController extends Controller
             'negara' => 'required',
             'tanggallahir' => 'required'
         ]);
-    
+
         $guest = Guest::create([
             'username' => $credentials['username'],
             'email' => $credentials['username'],
@@ -103,19 +138,19 @@ class GuestController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-    
+
         $guest = Guest::where('username', $credentials['username'])->first();
-    
+
         if (!$guest) {
             return redirect()->back()->withErrors(['username' => 'Email belum terdaftar']);
         }
-    
+
         if (Auth::guard('guest')->attempt($credentials)) {
             $request->session()->regenerate();
             $request->session()->put('guest', $guest);
             return redirect()->intended('/')->withErrors('Sudah Login !!!');
         }
-    
+
         return redirect()->back()->withErrors(['password' => 'Password salah']);
     }
 
@@ -124,7 +159,7 @@ class GuestController extends Controller
         Auth::guard('guest')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        
+
         return redirect('/');
     }
 }
