@@ -70,34 +70,40 @@
                             <div class="row g-2">
 
                                 <div class="col-md-3">
-                                    <div class="date" id="date1" data-target-input="nearest">
+                                    <div class="date form-floating " id="date1" data-target-input="nearest">
                                         <input type="date" class="form-control" id="check-in" placeholder="Check in"
                                             data-target="#date1" value="" />
+                                            <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <div class="hari" id="hari" data-target-input="nearest">
+                                    <div class="hari form-floating " id="hari" data-target-input="nearest">
                                         <input type="number" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
+                                        <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <select class="form-select" name="lantai" style="color: #6c757d;">
-                                        <option selected value=0>Semua Lantai</option>
-                                        <option value=1>Lantai 1</option>
-                                        <option value=2>Lantai 2</option>
-                                        <option value=3>Lantai 3</option>
-                                        <option value=4>Lantai 4</option>
-                                        <option value=5>Lantai 5</option>
-                                    </select>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="lantaiRuang" name="lantai" >
+                                            <option selected value=0>Semua Lantai</option>
+                                            <option value=1>Lantai 1</option>
+                                            <option value=2>Lantai 2</option>
+                                            <option value=3>Lantai 3</option>
+                                            <option value=4>Lantai 4</option>
+                                            <option value=5>Lantai 5</option>
+                                        </select>
+                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih Lantai</label>
+                                    </div>
                                 </div>
                                 
                                 <div class="col-md-3">
-                                    <div class="peserta" name="peserta" id="peserta" data-target-input="nearest">
+                                    <div class="peserta form-floating" name="peserta" id="peserta" data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
                                             max="999" />
+                                            <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah Peserta</label>
                                     </div>
                                 </div>
 
@@ -105,7 +111,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            <button class="btn btn-success w-100" type="submit">Submit</button>
+                            <button class="btn btn-success w-100 h-100" type="submit">Submit</button>
                         </div>
 
                     </div>
@@ -150,30 +156,85 @@
     <section id="tc-content">
         <div class="container container-fluid" style="background-color: #fafafa">
             <div class="row d-flex align-items-center mt-5 mb-5 tc-desc">
-                <div class="col-lg-6">
-                    <div class="content-text">
-                        <h2 class="fw-bolder mb-4">Training Center</h2>
-                        <p style="width: 80%">Training center merupakan ruangan yang disediakan untuk pertemuan. Ada banyak
+                <div class="col-md-6 col-12">
+                    <div class="content-text flex-column">
+                        <h2 class="fw-bolder mb-4 text-md-start text-center">Training Center</h2>
+                        <p  class="text-md-start text-center">Training center merupakan ruangan yang disediakan untuk pertemuan. Ada banyak
                             pilihan ruangan
                             yang bisa anda gunakan untuk berbagai kegiatan.</p>
                     </div>
                 </div>
-                <div class="col-lg-1">
-                </div>
-                <div class="col-lg-5 align-items-center">
+                {{-- <div class="col-lg-1">
+                </div> --}}
+                <div class="col-md-6 col-12 text-md-end text-start">
                     <img src="{{ asset('assets/images/tcmain.jpg') }}" style="width: 70%; border-radius: 15px;"
                         class="justify-content-center ms-5" alt="">
                 </div>
             </div>
             <hr>
             {{-- Catalog TC --}}
+
             <div class="row tc-catalog-main">
                 <div class="col-12 text-center mb-4">
                     <h2 class="fw-bolder">Training Center</h2>
                     <span class="sub-title fs-5">Berkegiatan bersama-sama dengan nyaman</span>
                 </div>
-                <div class="row mb-5 d-flex justify-content-evenly text-center">
-                    <div class="col-lg-4 mt-3">
+                <div class="row mb-5 d-flex text-center">
+                    <div class="col-md-4 col-sm-6 mt-3">
+                        <div class="card border-0 p-2">
+                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
+                            <div class="card-body">
+                                <h5 class="card-title fw-semibold">Convention Hall</h5>
+                                <p class="card-text">
+                                    Ruang pertemuan dengan kapasitas 200 orang.
+                                </p>
+                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-4 col-sm-6 mt-3">
+                        <div class="card border-0 p-2">
+                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
+                            <div class="card-body">
+                                <h5 class="card-title fw-semibold">Convention Hall</h5>
+                                <p class="card-text">
+                                    Ruang pertemuan dengan kapasitas 200 orang.
+                                </p>
+                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-4 col-sm-6 mt-3">
+                        <div class="card border-0 p-2">
+                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
+                            <div class="card-body">
+                                <h5 class="card-title fw-semibold">Convention Hall</h5>
+                                <p class="card-text">
+                                    Ruang pertemuan dengan kapasitas 200 orang.
+                                </p>
+                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center text-center">
+                    <div class="col-12">
+                        <a href="#">
+                            <button class="btn btn-outline-success w-50 fs-5">Lihat Selengkapnya</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row tc-catalog-main">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="fw-bolder">Training Center</h2>
+                    <span class="sub-title fs-5">Berkegiatan bersama-sama dengan nyaman</span>
+                </div>
+                <div class="row mb-5 d-flex text-center">
+                    <div class="col-md-4 col-12 mt-3">
                         <div class="card border-0 p-2">
                             <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body ">
@@ -186,7 +247,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 mt-3">
+                    <div class="col-md-4 col-12 mt-3">
                         <div class="card border-0 p-2">
                             <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body ">
@@ -199,7 +260,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 mt-3">
+                    <div class="col-md-4 col-12 mt-3">
                         <div class="card border-0 p-2">
                             <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body ">
@@ -215,7 +276,7 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-12">
                         <a href="#">
-                            <button class="btn btn-outline-success w-25">Lihat Selengkapnya</button>
+                            <button class="btn btn-outline-success w-50 fs-5">Lihat Selengkapnya</button>
                         </a>
                     </div>
                 </div>
@@ -224,7 +285,7 @@
     {{-- Akhir TC Desc --}}
 
     {{-- Hotel Desc --}}
-    <section id="hotel-content">
+    {{-- <section id="hotel-content">
         <div class="container container-fluid">
             <div class="row d-flex align-items-center mt-5 mb-5 hotel-desc">
                 <div class="col-lg-5 align-items-center">
@@ -241,9 +302,9 @@
                     </div>
                 </div>
             </div>
-            <hr style="color: #FAFAFA">
+            <hr style="color: #FAFAFA"> --}}
             {{-- Catalog Hotel --}}
-            <div class="row hotel-catalog-main">
+            {{-- <div class="row hotel-catalog-main">
                 <div class="col-12 text-center mb-4">
                     <h2 class="fw-bolder">Hotel</h2>
                     <span class="sub-title fs-5" style="color: #FAFAFA;">Berkegiatan bersama-sama dengan nyaman</span>
@@ -294,7 +355,7 @@
                     </div>
                 </div>
             </div>
-    </section>
+    </section> --}}
     {{-- Akhir Hotel Desc --}}
     
 @endsection

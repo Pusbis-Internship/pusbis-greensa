@@ -6,12 +6,12 @@ body {
     /* background: linear-gradient(220deg, #006B39 0%, rgba(0, 0, 0, 0.79) 257.44%); */
 }
 
-*{
+* {
     font-family: 'Poppins', sans-serif;
 }
 
 /* Navbar */
-.navbar{
+.navbar {
     z-index: 3;
 }
 
@@ -194,4 +194,34 @@ body {
         font-weight: 600
     }
 }
+
 /* Akhir Footer */
+
+
+/* keranjang  */
+.icon-nav {
+    /* background-color: #555; */
+    color: white;
+    text-decoration: none;
+    /* padding: 15px 26px; */
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.icon-nav:hover {
+    color: red;
+}
+
+.notifCart .circle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #B31312;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    top: -7px;
+    right: -7px;
+}
