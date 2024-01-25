@@ -198,7 +198,7 @@
                                                 <a href="/reservasi"
                                                     class="btn btn-sm btn-success w-100 text-white shadow-none mb-2" data-bs-toggle="modal" data-bs-target="#modalBook"
                                                     >Reservasi</a>
-                                                <a href="/detail_tc"
+                                                <a href="{{ route('train.detail', $train->id) }}"
                                                     class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
                                                     Detail</a>
                                             </div>

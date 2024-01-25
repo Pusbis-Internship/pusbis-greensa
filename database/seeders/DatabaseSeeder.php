@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -111,7 +111,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -151,7 +151,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room1.jpg',
+            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 90,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room2.jpg',
+            'gambar' => 'room2.jpg',
         ]);
 
         Train::create([
@@ -171,7 +171,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 60,
             'harga' => 3000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room3.jpg',
+            'gambar' => 'room3.jpg',
         ]);
 
         Train::create([
@@ -181,7 +181,7 @@ class DatabaseSeeder extends Seeder
             'kap_teater' => 250,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'images/room3.jpg',
+            'gambar' => 'room4.jpg',
         ]);
 
         TrainFacility::create([

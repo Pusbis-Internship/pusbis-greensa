@@ -27,14 +27,20 @@ class GuestController extends Controller
     public function showregister()
     {return view('pelanggan.page.register', ['title' => 'Register']);}
 
-    public function showdetail_tc()
-    {return view('pelanggan.page.detail_tc', ['title' => 'Detail-TC']);}
-
+    public function showdetail_tc($id)
+    {
+        $train = Train::findOrFail($id);
+        $facilities = TrainFacility::all();  // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
+        
+        return view('pelanggan.page.detail_tc', [
+            'title' => 'Detail Training Center',
+            'train' => $train,
+            'facilities' => $facilities
+        ]);
+    }
+    
     public function showcart()
     {return view('pelanggan.page.cart', ['title' => 'Keranjang']);}
-
-    // public function showreservasi()
-    // {return view('pelanggan.page.reservasi', ['title' => 'About']);}
 
     public function showtrain()
     {

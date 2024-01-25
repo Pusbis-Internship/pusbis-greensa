@@ -154,11 +154,6 @@ class AdminController extends Controller
         $gambarPath = $request->file('gambar');
         $gambarPath->storeAs('public/posts', $gambarPath->hashName());
 
-        //  //upload image
-        //  $image = $request->file('image');
-        //  $image->storeAs('public/posts', $image->hashName());
-
-
         Train::create([
             'nama' => $request->nama,
             'lantai' => $request->lantai,

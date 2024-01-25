@@ -6,7 +6,11 @@
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
+<<<<<<< HEAD
+                <img class="w-100" src="{{ asset('assets/images/tc-banner-1.png') }}" alt="Image">
+=======
                 <img class="w-100" src="{{asset('/storage/posts/'. $train->gambar) }}" alt="Image">
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 700px;">
                         <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Greensa Inn
@@ -73,12 +77,25 @@
             <div class="col-md-6">
                 <div class="row mb-1">
                     <a href="{{ asset('assets/images/convention-hall.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-12 column-img img-fluid">
+<<<<<<< HEAD
+                        <img src="{{asset('/storage/posts/'. $train->gambar) }}" class="img-fluid">
+=======
                         <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="img-fluid">
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                     </a>
                 </div>
 
                 <div class="row g-1">
                     <a href="{{ asset('assets/images/5.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-4 column-img img-fluid">
+<<<<<<< HEAD
+                        <img src="{{asset('/storage/posts/'. $train->gambar) }}" class="img-fluid">
+                    </a>
+                    <a href="{{ asset('assets/images/6.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-4 column-img img-fluid">
+                        <img src="{{asset('/storage/posts/'. $train->gambar) }}" class="img-fluid">
+                    </a>
+                    <a href="{{ asset('assets/images/11.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-4 column-img img-fluid">
+                        <img src="{{asset('/storage/posts/'. $train->gambar) }}" class="img-fluid">
+=======
                         <img src="{{ asset('assets/images/5.jpg') }}" class="img-fluid">
                     </a>
                     <a href="{{ asset('assets/images/6.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-4 column-img img-fluid">
@@ -86,13 +103,18 @@
                     </a>
                     <a href="{{ asset('assets/images/11.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-4 column-img img-fluid">
                         <img src="{{ asset('assets/images/11.jpg') }}" class="img-fluid">
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                     </a>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="small mb-1">SKU: BST-498</div>
+<<<<<<< HEAD
+                <h1 class="display-5 fw-bolder">{{ $train->nama}}</h1>
+=======
                 <h1 class="display-5 fw-bolder">Convention Hall</h1>
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                 <div class="facilities mb-3">
                     <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i>
                         Sound</span>
@@ -104,12 +126,20 @@
                         Conditioner</span>
                 </div>
                 <div class="fw-medium">
+<<<<<<< HEAD
+                    <span class="text-decoration-line-through">Rp. {{ $train->harga }}</span>
+=======
                     <span class="text-decoration-line-through">Rp. 9.000.000</span>
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                     <!-- <span>Rp. 8.500.000</span> -->
                 </div>
                 <div class="fs-3 fw-bolder text-success mb-3">
                     <!-- <span class="text-decoration-line-through">Rp. 9.000.000</span> -->
+<<<<<<< HEAD
+                    <span>Rp. {{ $train->harga }}</span>
+=======
                     <span>Rp. 8.500.000</span>
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                 </div>
                 <div class="lantai d-flex align-items-center mb-1">
                     <div class="col-6">
@@ -117,12 +147,20 @@
                     </div>
                     <div class="col-6  align-items-center">
                         <span>:</span>
+<<<<<<< HEAD
+                        <span class="badge bg-light text-dark text-wrap">{{ $train->lantai }}</span>
+                    </div>
+                </div>
+
+                <p class="fw-lighter">{{ $train->deskripsi}}
+=======
                         <span class="badge bg-light text-dark text-wrap">5</span>
                     </div>
                 </div>
 
                 <p class="fw-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, odit
                     aspernatur? Debitis libero repudiandae accusamus possimus aperiam consequuntur modi nihil?
+>>>>>>> 4e7aa6548e2323fb2e5a04c28ea301991bd40eae
                 </p>
 
                 <div class="lantai row flex align-items-center mb-3">
