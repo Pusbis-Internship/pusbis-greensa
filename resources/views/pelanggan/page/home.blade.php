@@ -62,49 +62,54 @@
     <div class="container-fluid booking pb-5 wow animated fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="bg-white shadow rounded" style="padding: 35px;">
-                <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
+                <form action="">
 
-                            <div class="col-md-3">
-                                <div class="date" id="date1" data-target-input="nearest">
-                                    <input type="text" class="form-control" id="check-in"
-                                        placeholder="Check in" data-target="#date1" value="" onfocus="(this.type='date')"/>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="date" id="date2" data-target-input="nearest">
-                                    <input type="text" class="form-control" id="check-out"
-                                        placeholder="Check out" data-target="#date2" value="" onfocus="(this.type='date')"/>
-                                </div>
-                            </div>
+                    <div class="row g-2">
+                        <div class="col-md-10">
+                            <div class="row g-2">
 
-                            <div class="col-md-3">
-                                <select class="form-select" style="color: #6c757d;">
-                                    <option selected>Pilih Lantai</option> 
-                                    <option value="1">Lantai 1</option>
-                                    <option value="2">Lantai 2</option>
-                                    <option value="3">Lantai 3</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="peserta" id="peserta" data-target-input="nearest">
-                                    <input type="number" class="form-control" id="peserta"
-                                        placeholder="Jumlah Peserta" data-target="#date2"/>
+                                <div class="col-md-3">
+                                    <div class="date" id="date1" data-target-input="nearest">
+                                        <input type="date" class="form-control" id="check-in" placeholder="Check in"
+                                            data-target="#date1" value="" />
+                                    </div>
                                 </div>
-                                <!-- <select class="form-select">
-                                    <option selected>Peserta</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select> -->
+
+                                <div class="col-md-3">
+                                    <div class="hari" id="hari" data-target-input="nearest">
+                                        <input type="number" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <select class="form-select" style="color: #6c757d;">
+                                        <option selected>Semua Lantai</option>
+                                        <option value="1">Lantai 1</option>
+                                        <option value="2">Lantai 2</option>
+                                        <option value="3">Lantai 3</option>
+                                        <option value="3">Lantai 4</option>
+                                        <option value="3">Lantai 5</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <div class="peserta" id="peserta" data-target-input="nearest">
+                                        <input type="number" class="form-control" id="peserta"
+                                            placeholder="Jumlah Peserta" data-target="#date2" min="0"
+                                            max="999" />
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+
+                        <div class="col-md-2">
+                            <button class="btn btn-success w-100" type="submit">Submit</button>
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-success w-100">Submit</button>
-                    </div>
-                </div>
+
+                </form>
+
             </div>
         </div>
     </div>

@@ -8,20 +8,31 @@ window.addEventListener("scroll", function () {
     }
 });
 
+// GET TOMORROW DATE
+// Get tomorrow's date
+var tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
 
-// Tanggal Check-in Check-out
-$(document).ready(function() {
-    $('#check-in').on('change', function() {
-        var checkInDate = $(this).val();
-        var nextDay = new Date(checkInDate);
-        nextDay.setDate(nextDay.getDate() + 1);
-        var nextDayFormatted = nextDay.toISOString().split('T')[0];
-        $('#check-out').prop('min', nextDayFormatted);
-    });
-});
+// Format the date as "YYYY-MM-DD"
+var formattedDate = tomorrow.toISOString().split('T')[0];
 
-document.addEventListener('DOMContentLoaded', function() {
-    var checkIn = document.getElementById('check-in');
-    var today = new Date();
-    checkIn.setAttribute('min', today.toISOString().split('T')[0]);
-});
+// Set the value of the input
+document.getElementById("check-in").value = formattedDate;  
+document.getElementById("check-in").setAttribute("min", formattedDate);
+
+// // Tanggal Check-in Check-out
+// $(document).ready(function() {
+//     $('#check-in').on('change', function() {
+//         var checkInDate = $(this).val();
+//         var nextDay = new Date(checkInDate);
+//         nextDay.setDate(nextDay.getDate() + 1);
+//         var nextDayFormatted = nextDay.toISOString().split('T')[0];
+//         $('#check-out').prop('min', nextDayFormatted);
+//     });
+// });
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     var checkIn = document.getElementById('check-in');
+//     var today = new Date();
+//     checkIn.setAttribute('min', today.toISOString().split('T')[0]);
+// });

@@ -25,14 +25,16 @@
                                         <form>
                                             <div class="row g-3 mb-4">
                                                 <div class="col-md-6">
-                                                    <div class="form-floating date" id="date3"
+                                                    <fieldset disabled="disabled">
+                                                        <div class="form-floating date" id="date3"
                                                         data-target-input="nearest">
                                                         <input type="text" class="form-control datetimepicker-input"
                                                             id="checkin" placeholder="Check In" data-target="#date3"
-                                                            data-toggle="datetimepicker"
+                                                            data-toggle="datetimepicker" value="Hari ini"
                                                             onfocus="(this.type='datetime-local')" />
                                                         <label class="labelBook" for="checkin">Check In</label>
                                                     </div>
+                                                    </fieldset>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <fieldset disabled="disabled">
@@ -40,20 +42,10 @@
                                                             <input type="number" class="form-control" id="jumlahSewa"
                                                                 placeholder="Kapasitas" value="2">
                                                             <div class="input-group-text">HARI</div>
-                                                            <label class="labelBook" for="jumlahSewa">Jumlah Sewa</label>
+                                                            <label class="labelBook" for="jumlahSewa">Lama hari</label>
                                                         </div>
                                                     </fieldset>
                                                 </div>
-                                                {{-- <div class="col-md-6">
-                                                    <div class="form-floating date" id="date4"
-                                                        data-target-input="nearest">
-                                                        <input type="text" class="form-control datetimepicker-input"
-                                                            id="checkout" placeholder="Check Out" data-target="#date4"
-                                                            data-toggle="datetimepicker"
-                                                            onfocus="(this.type='date')" />
-                                                        <label class="labelBook" for="checkout">Check Out</label>
-                                                    </div>
-                                                </div> --}}
 
                                                 <div class="col-md-6">
                                                     <div class="form-floating">

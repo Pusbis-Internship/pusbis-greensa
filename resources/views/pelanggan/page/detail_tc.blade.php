@@ -28,7 +28,7 @@
             <div class="row g-2">
                 <div class="col-md-10">
                     <div class="row g-2">
-
+                        
                         <div class="col-md-4">
                             <div class="date" id="date1" data-target-input="nearest">
                                 <input type="text" class="form-control" id="check-in" placeholder="Check in" data-target="#date1" value="" onfocus="(this.type='date')" />

@@ -3,7 +3,6 @@
 @include('pelanggan.modal.reservasiTC')
 
 @section('content')
-
     <!-- Banner Start -->
     <div class="container-fluid p-0 mb-5">
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -28,49 +27,56 @@
     <div class="container-fluid booking booking-2 pb-5 wow animated fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="bg-white shadow rounded" style="padding: 35px;">
-                <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
 
-                            <div class="col-md-3">
-                                <div class="date" id="date1" data-target-input="nearest">
-                                    <input type="text" class="form-control" id="check-in" placeholder="Check in"
-                                        data-target="#date1" value="" onfocus="(this.type='date')" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="date" id="date2" data-target-input="nearest">
-                                    <input type="text" class="form-control" id="check-out" placeholder="Check out"
-                                        data-target="#date2" value="" onfocus="(this.type='date')" />
-                                </div>
-                            </div>
+                <form action="">
 
-                            <div class="col-md-3">
-                                <select class="form-select" style="color: #6c757d;">
-                                    <option selected>Pilih Lantai</option>
-                                    <option value="1">Lantai 1</option>
-                                    <option value="2">Lantai 2</option>
-                                    <option value="3">Lantai 3</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="peserta" id="peserta" data-target-input="nearest">
-                                    <input type="number" class="form-control" id="peserta" placeholder="Jumlah Peserta"
-                                        data-target="#date2" min="0" max="999" />
+                    <div class="row g-2">
+                        <div class="col-md-10">
+                            <div class="row g-2">
+
+                                <div class="col-md-3">
+                                    <div class="date" id="date1" data-target-input="nearest">
+                                        <input type="date" class="form-control" id="check-in" placeholder="Check in"
+                                            data-target="#date1" value="" />
+                                    </div>
                                 </div>
-                                <!-- <select class="form-select">
-                                                <option selected>Peserta</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select> -->
+
+                                <div class="col-md-3">
+                                    <div class="hari" id="hari" data-target-input="nearest">
+                                        <input type="number" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <select class="form-select" style="color: #6c757d;">
+                                        <option selected>Semua Lantai</option>
+                                        <option value="1">Lantai 1</option>
+                                        <option value="2">Lantai 2</option>
+                                        <option value="3">Lantai 3</option>
+                                        <option value="3">Lantai 4</option>
+                                        <option value="3">Lantai 5</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <div class="peserta" id="peserta" data-target-input="nearest">
+                                        <input type="number" class="form-control" id="peserta"
+                                            placeholder="Jumlah Peserta" data-target="#date2" min="0"
+                                            max="999" />
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+
+                        <div class="col-md-2">
+                            <button class="btn btn-success w-100" type="submit">Submit</button>
+                        </div>
+
                     </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-success w-100">Submit</button>
-                    </div>
-                </div>
+
+                </form>
+
             </div>
         </div>
     </div>
@@ -133,45 +139,49 @@
 
                         <!-- Awal Card -->
                         <div class="col-lg-9 col-md-12 px-4 catalog-tc">
-                        @foreach ($trains as $train)
-                        
-                            <div class="card mb-4 border-0 shadow">
-                                <div class="row g-0 p-3 align-items-center">
-                                    <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                        <img src="{{asset('/storage/posts/'. $train->gambar) }}"
-                                            class="img-fluid rounded" alt="training-center">
-                                    </div>
-                                    <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                        <h4 class="mb-1 fw-medium">{{ $train->nama }}</h4>
-                                        <div class="row">
-                                            <div class="features mb-3 me-1">
-                                                
-                                                @foreach ($train->facilities as $facility)
-                                                @if ($facility->fasilitas == 'Sound')
-                                                    <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i> Sound</span>
-                                                @endif
-                                                @if ($facility->fasilitas == 'Projector')
-                                                    <span class="badge bg-light text-dark text-wrap"><i class="fa-solid fa-display me-1"></i> Projector</span>
-                                                @endif
-                                                @if ($facility->fasilitas == 'WiFi')
-                                                    <span class="badge bg-light text-dark text-wrap"><i class="fa-solid fa-wifi me-1"></i> Wifi</span>
-                                                @endif
-                                                @if ($facility->fasilitas == 'Air Conditioner')
-                                                    <span class="badge bg-light text-dark text-wrap"><i class="fa-regular fa-snowflake me-1"></i>Air Conditioner</span>
-                                                @endif
-                                                                              
-                                                @endforeach
-                                            </div>
-                                            <div class="lantai  d-flex align-items-center ">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Lantai </p>
+                            @foreach ($trains as $train)
+                                <div class="card mb-4 border-0 shadow">
+                                    <div class="row g-0 p-3 align-items-center">
+                                        <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
+                                            <img src="{{ asset('/storage/posts/' . $train->gambar) }}"
+                                                class="img-fluid rounded" alt="training-center">
+                                        </div>
+                                        <div class="col-md-6 px-lg-4 px-md-4 px-0">
+                                            <h4 class="mb-1 fw-medium">{{ $train->nama }}</h4>
+                                            <div class="row">
+                                                <div class="features mb-3 me-1">
+
+                                                    @foreach ($train->facilities as $facility)
+                                                        @if ($facility->fasilitas == 'Sound')
+                                                            <span class="badge bg-light text-dark text-wrap"> <i
+                                                                    class="fa-solid fa-volume-high me-1"></i> Sound</span>
+                                                        @endif
+                                                        @if ($facility->fasilitas == 'Projector')
+                                                            <span class="badge bg-light text-dark text-wrap"><i
+                                                                    class="fa-solid fa-display me-1"></i> Projector</span>
+                                                        @endif
+                                                        @if ($facility->fasilitas == 'WiFi')
+                                                            <span class="badge bg-light text-dark text-wrap"><i
+                                                                    class="fa-solid fa-wifi me-1"></i> Wifi</span>
+                                                        @endif
+                                                        @if ($facility->fasilitas == 'Air Conditioner')
+                                                            <span class="badge bg-light text-dark text-wrap"><i
+                                                                    class="fa-regular fa-snowflake me-1"></i>Air
+                                                                Conditioner</span>
+                                                        @endif
+                                                    @endforeach
                                                 </div>
-                                                <div class="col-6  align-items-center">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">{{ $train->lantai }}</span>
+                                                <div class="lantai  d-flex align-items-center ">
+                                                    <div class="col-6">
+                                                        <p class="mb-1">Lantai </p>
+                                                    </div>
+                                                    <div class="col-6  align-items-center">
+                                                        <span>:</span>
+                                                        <span
+                                                            class="badge bg-light text-dark text-wrap">{{ $train->lantai }}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- <div class="capacity  d-flex align-items-center mb-1">
+                                                {{-- <div class="capacity  d-flex align-items-center mb-1">
                                                 <div class="col-6">
                                                     <p class="mb-1">Kapasitas </p>
                                                 </div>
@@ -181,34 +191,33 @@
                                                         Orang</span>
                                                 </div>
                                             </div> --}}
-                                        </div>
-                                        <div class="desc-catalog">
-                                            <p class="fw-lighter">
-                                                {{ $train->deskripsi }} 
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
-                                        <div class="row">
-                                            <div class="col-12 ">
-                                                <p class="fw-lighter mb-1">Harga</p>
-                                                <h6 class="fw-semibold text-success mb-3">Rp. {{ $train->harga }}</h6>
                                             </div>
-                                            <div class="col-12 ">
-                                                <a href="/reservasi"
-                                                    class="btn btn-sm btn-success w-100 text-white shadow-none mb-2" data-bs-toggle="modal" data-bs-target="#modalBook"
-                                                    >Reservasi</a>
-                                                <a href="{{ route('train.detail', $train->id) }}"
-                                                    class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
-                                                    Detail</a>
+                                            <div class="desc-catalog">
+                                                <p class="fw-lighter">
+                                                    {{ $train->deskripsi }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 catalog-price text-end mt-lg-5 mt-md-5 mt-3">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <p class="fw-lighter mb-1">Harga</p>
+                                                    <h6 class="fw-semibold text-success mb-3">Rp. {{ $train->harga }}</h6>
+                                                </div>
+                                                <div class="col-12 ">
+                                                    <a href="/reservasi"
+                                                        class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                        data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
+                                                    <a href="{{ route('train.detail', $train->id) }}"
+                                                        class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
+                                                        Detail</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        
-                        @endforeach    
-                    </div>
+                            @endforeach
+                        </div>
                         <!-- Akhir Card -->
 
                     </div>
