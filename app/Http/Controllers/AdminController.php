@@ -17,6 +17,15 @@ class AdminController extends Controller
         return view('admin.page.login');
     }
 
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect('/admin-login');
+    }
+
     public function showtrorder()
     {
         return view('admin.page.trainorder');

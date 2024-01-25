@@ -16,6 +16,7 @@ Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist']
 Route::get('/admin-user-list', [AdminController::class, 'showuserlist']);
 
 Route::post('/admin-login', [AdminController::class, 'login']);
+Route::post('/admin-logout', [AdminController::class, 'logout']);
 
 Route::post('/admin-user-list-delete/{id}', [AdminController::class, 'userdelete'])->name('user.delete');
 
