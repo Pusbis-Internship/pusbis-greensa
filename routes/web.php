@@ -29,7 +29,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/admin-training-center-edit/{id}', [AdminController::class, 'showtcedit'])->name('train.showedit')->middleware('adminmustlogin');
     Route::put('/admin-training-center-edit/{id}', [AdminController::class, 'tcedit'])->name('train.edit')->middleware('adminmustlogin');
     Route::post('/admin-training-center-delete/{id}', [AdminController::class, 'tcdelete'])->name('train.delete')->middleware('adminmustlogin');
-// admin
+// Admin
 
 
 
@@ -45,6 +45,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
     Route::get('/register', [GuestController::class, 'showregister'])->middleware('guestnotlogin');
 
+    Route::post('/training-center', [GuestController::class, 'search']);
     Route::post('/guestlogin', [GuestController::class, 'login']);
     Route::post('/guestregister', [GuestController::class, 'register']);
     Route::post('/guestlogout', [GuestController::class, 'logout']);

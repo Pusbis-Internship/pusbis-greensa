@@ -1,6 +1,6 @@
 @extends('pelanggan.layout.index')
 
-@include('pelanggan.modal.reservasiTC')
+@include('pelanggan.modal.modalBook')
 
 @section('content')
     <!-- Banner Start -->
@@ -37,15 +37,14 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" class="form-control" id="check-in" placeholder="Check in"
-                                            data-target="#date1" value="" />
+                                        <input type="date" name="date" class="form-control" id="check-in" placeholder="Check in" data-target="#date1" value="" />
                                             <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="hari form-floating " id="hari" data-target-input="nearest">
-                                        <input type="number" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
+                                        <input type="number" name="lama" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
                                         <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
                                 </div>
@@ -53,7 +52,7 @@
                                 <div class="col-md-3">
                                     <div class="form-floating">
                                         <select class="form-select" id="lantaiRuang" name="lantai" >
-                                            <option selected value=0>Semua Lantai</option>
+                                            <option selected value="Semua Lantai">Semua Lantai</option>
                                             <option value=1>Lantai 1</option>
                                             <option value=2>Lantai 2</option>
                                             <option value=3>Lantai 3</option>
@@ -109,13 +108,6 @@
                                     </button>
                                     <div class="collapse navbar-collapse flex-column align-items-stretch mt-2"
                                         id="filterDropdown">
-                                        {{-- <div class="border bg-light p-3 rounded mb-3">
-                                            <h6 class="mb-3" style="font-size: 18px;">CEK KETERSEDIAAN</h6>
-                                            <label class="form-labar">Check In</label>
-                                            <input type="date" class="form-control shadow-none">
-                                            <label class="form-labar">Check Out</label>
-                                            <input type="date" class="form-control shadow-none">
-                                        </div> --}}
                                         <div class="border bg-light p-3 rounded mb-3">
                                             <h6 class="mb-3" style="font-size: 18px;">Ruangan</h6>
                                             <div class="mb-2">
@@ -213,7 +205,7 @@
                                                     <h6 class="fw-semibold text-success mb-3">Rp. {{ $train->harga }}</h6>
                                                 </div>
                                                 <div class="col-12 ">
-                                                    <a href="/reservasi"
+                                                    <a href="/"
                                                         class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
                                                         data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
                                                     <a href="{{ route('train.detail', $train->id) }}"

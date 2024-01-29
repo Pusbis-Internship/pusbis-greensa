@@ -18,6 +18,7 @@ var formattedDate = tomorrow.toISOString().split('T')[0];
 
 // Set the value of the input
 document.getElementById("check-in").value = formattedDate;  
+document.getElementById("checkin").value = formattedDate;  
 document.getElementById("check-in").setAttribute("min", formattedDate);
 
 // // Tanggal Check-in Check-out

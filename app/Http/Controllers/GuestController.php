@@ -73,7 +73,7 @@ class GuestController extends Controller
 
         $query = Train::query();
 
-        if ($lantai !== null) {
+        if ($lantai !== "Semua Lantai") {
             $query->where('lantai', $lantai);}
 
         if ($peserta !== null) {

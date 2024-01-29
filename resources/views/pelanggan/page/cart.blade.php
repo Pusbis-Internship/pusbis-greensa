@@ -79,61 +79,51 @@
                     <table class="table cart-table">
                         <thead>
                             <tr class="table-head">
-                                <th scope="col">image</th>
-                                <th scope="col">product name</th>
-                                <th scope="col">price</th>
-                                <th scope="col">quantity</th>
-                                <th scope="col">total</th>
-                                <th scope="col">action</th>
+                                <th scope="col">Gambar</th>
+                                <th scope="col">Ruangan</th>
+                                <th scope="col">Layout</th>
+                                <th scope="col">Tanggal Check-In</th>
+                                <th scope="col">Lama Hari</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <tr>
+                                {{-- gambar --}}
                                 <td>
-                                    <a href="../product/details.html">
-                                        <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="blur-up lazyloaded"
-                                            alt="">
+                                    <a href="{{ route('train.detail', 15) }}">
+                                        <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="blur-up lazyloaded" alt="">
                                     </a>
                                 </td>
+
+                                {{-- nama --}}
                                 <td>
-                                    <a href="../product/details.html">Convention Hall</a>
-                                    <div class="mobile-cart-content row">
-                                        <div class="col">
-                                            <div class="qty-box">
-                                                <div class="input-group">
-                                                    <input type="text" name="quantity" class="form-control input-number"
-                                                        value="1">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <h2>Rp. 8.500.000</h2>
-                                        </div>
-                                        <div class="col">
-                                            <h2 class="td-color">
-                                                <a href="javascript:void(0)">
-                                                    <i class="fas fa-times"></i>
-                                                </a>
-                                            </h2>
-                                        </div>
-                                    </div>
+                                    <a href="{{ route('train.detail', 15) }}">Convention Hall</a>
                                 </td>
+
+                                {{-- layout --}}
                                 <td>
-                                    <span>Rp. 8.500.000</span>
+                                    <span>Classroom</span>
                                 </td>
+
+                                {{-- check-in --}}
                                 <td>
-                                    <div class="qty-box">
-                                        <div class="input-group">
-                                            <input type="number" name="quantity"
-                                                data-rowid="ba02b0dddb000b25445168300c65386d"
-                                                class="form-control input-number" value="1">
-                                        </div>
-                                    </div>
+                                    <span>31/1/2024</span>
                                 </td>
+
+                                {{-- lama hari --}}
+                                <td>
+                                    <span>2</span>
+                                </td>
+
+                                {{-- harga --}}
                                 <td>
                                     <span class="td-color">Rp. 8.500.000</span>
                                 </td>
+
+                                {{-- hapus --}}
                                 <td>
                                     <a href="javascript:void(0)">
                                         <i class="fas fa-times"></i>
@@ -141,57 +131,48 @@
                                 </td>
                             </tr>
 
+                            
                             <tr>
+                                {{-- gambar --}}
                                 <td>
-                                    <a href="../product/details.html">
-                                        <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="blur-up lazyloaded"
-                                            alt="">
+                                    <a href="{{ route('train.detail', 15) }}">
+                                        <img src="{{ asset('assets/images/5.jpg') }}" class="blur-up lazyloaded" alt="">
                                     </a>
                                 </td>
+
+                                {{-- nama --}}
                                 <td>
-                                    <a href="../product/details.html">Convention Hall</a>
-                                    <div class="mobile-cart-content row">
-                                        <div class="col">
-                                            <div class="qty-box">
-                                                <div class="input-group">
-                                                    <input type="text" name="quantity" class="form-control input-number"
-                                                        value="1">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <h2>$8</h2>
-                                        </div>
-                                        <div class="col">
-                                            <h2 class="td-color">
-                                                <a href="javascript:void(0)">
-                                                    <i class="fas fa-times"></i>
-                                                </a>
-                                            </h2>
-                                        </div>
-                                    </div>
+                                    <a href="{{ route('train.detail', 15) }}">Albajar</a>
                                 </td>
+
+                                {{-- layout --}}
                                 <td>
-                                    <span>Rp. 8.500.000</span>
+                                    <span>Teater</span>
                                 </td>
+
+                                {{-- check-in --}}
                                 <td>
-                                    <div class="qty-box">
-                                        <div class="input-group">
-                                            <input type="number" name="quantity"
-                                                data-rowid="8eb747b95b9862e9d83031beb9938720"
-                                                class="form-control input-number" value="1">
-                                        </div>
-                                    </div>
+                                    <span>31/1/2024</span>
                                 </td>
+
+                                {{-- lama hari --}}
+                                <td>
+                                    <span>2</span>
+                                </td>
+
+                                {{-- harga --}}
                                 <td>
                                     <span class="td-color">Rp. 8.500.000</span>
                                 </td>
+
+                                {{-- hapus --}}
                                 <td>
                                     <a href="javascript:void(0)">
                                         <i class="fas fa-times"></i>
                                     </a>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -227,13 +208,6 @@
                                 </form>
                             </div>
                         </div> --}}
-
-                        <div class="col-lg-4 col-sm-6 ">
-                            <div class="checkout-button">
-                                <a href="checkout" class="btn btn-success fw-bold">
-                                    Check Out <i class="fas fa-arrow-right ms-1"></i></a>
-                            </div>
-                        </div>
 
                         <div class="col-lg-4">
                             <div class="cart-box">

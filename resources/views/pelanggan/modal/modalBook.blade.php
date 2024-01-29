@@ -28,10 +28,7 @@
                                                     <fieldset disabled="disabled">
                                                         <div class="form-floating date" id="date3"
                                                         data-target-input="nearest">
-                                                        <input type="text" class="form-control datetimepicker-input"
-                                                            id="checkin" placeholder="Check In" data-target="#date3"
-                                                            data-toggle="datetimepicker" value="Hari ini"
-                                                            onfocus="(this.type='datetime-local')" />
+                                                        <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
                                                         <label class="labelBook" for="checkin">Check In</label>
                                                     </div>
                                                     </fieldset>
@@ -39,8 +36,8 @@
                                                 <div class="col-md-6">
                                                     <fieldset disabled="disabled">
                                                         <div class="form-floating input-group">
-                                                            <input type="number" class="form-control" id="jumlahSewa"
-                                                                placeholder="Kapasitas" value="2">
+                                                            <input type="number" name="lamahari" id="lamahari" class="form-control"
+                                                                placeholder="Kapasitas">
                                                             <div class="input-group-text">HARI</div>
                                                             <label class="labelBook" for="jumlahSewa">Lama hari</label>
                                                         </div>
@@ -117,18 +114,10 @@
         </div>
     </div>
 
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const jumlahSewaInput = document.getElementById('jumlahSewa');
-            const hargaRuangan = {{ $train->harga }};
-            const totalHargaElement = document.getElementById('totalHarga');
-    
-            jumlahSewaInput.addEventListener('input', function () {
-                const jumlahSewa = parseInt(jumlahSewaInput.value);
-                const totalHarga = jumlahSewa * hargaRuangan;
-    
-                totalHargaElement.textContent = `Rp. ${totalHarga}`;
-            });
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+        var lamaHari = document.getElementsByName("lama")[0].value;
+        document.getElementsByName("lamahari")[0].value = lamaHari;
         });
-    </script> --}}
+    </script>
     

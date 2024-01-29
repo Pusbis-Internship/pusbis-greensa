@@ -8,8 +8,6 @@
             /* height: 100vh; */
             width: 100%;
             padding: 0px 0px 100px 0px;
-
-
         }
 
         .catalog-hotel {
