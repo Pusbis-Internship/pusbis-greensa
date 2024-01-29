@@ -89,7 +89,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <tr>
                                 {{-- gambar --}}
                                 <td>
@@ -130,7 +129,6 @@
                                     </a>
                                 </td>
                             </tr>
-
                             
                             <tr>
                                 {{-- gambar --}}

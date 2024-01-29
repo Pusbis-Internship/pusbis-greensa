@@ -14,4 +14,9 @@ class Guest extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use Notifiable;
     protected $guarded = ['id'];
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 }

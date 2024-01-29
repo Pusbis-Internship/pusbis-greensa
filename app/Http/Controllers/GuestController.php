@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Guest;
 use App\Models\Train;
-use App\Models\TrainFacility;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
+use App\Models\TrainFacility;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 
@@ -51,7 +53,14 @@ class GuestController extends Controller
 
     public function showcart()
     {
-        return view('pelanggan.page.cart', ['title' => 'Keranjang']);
+        $cart = Cart::all();
+        $cartItems = CartItem::all();
+
+        return view('pelanggan.page.cart', [
+            'title' => 'Keranjang',
+            'cart' => $cart,
+            'cartItems' => $cartItems
+        ]);
     }
 
     public function showtrain()

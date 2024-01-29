@@ -51,7 +51,6 @@
                                                             </option>
                                                             <option value="1">Classroom</option>
                                                             <option value="2">Teater</option>
-                                                            <option value="3">Round Table</option>
                                                         </select>
                                                         <label class="labelBook" for="select1">Layout Model</label>
                                                     </div>

@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cart;
 use App\Models\Admin;
 use App\Models\Guest;
 use App\Models\Train;
+use App\Models\CartItem;
 use App\Models\TrainFacility;
 use Illuminate\Database\Seeder;
 
@@ -482,6 +484,30 @@ class DatabaseSeeder extends Seeder
         TrainFacility::create([
             'train_id' => 15,
             'fasilitas' => 'Air Conditioner'
+        ]);
+
+        Cart::create([
+            'guest_id' => 1,
+        ]);
+
+        CartItem::create([
+            'cart_id' => 1,
+            'train_id' => 1,
+            'checkin' => '2022-12-31',
+            'lama' => 2,
+            'harga' => 0,
+            'nama_kegiatan' => 'orkes',
+            'special' => 'ngundang pak jokowi',
+        ]);
+
+        CartItem::create([
+            'cart_id' => 1,
+            'train_id' => 15,
+            'checkin' => '2022-12-31',
+            'lama' => 2,
+            'harga' => 0,
+            'nama_kegiatan' => 'orkes',
+            'special' => 'ngundang pak jokowi',
         ]);
     }
 }
