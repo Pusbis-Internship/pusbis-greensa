@@ -234,9 +234,7 @@
                                                         <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                                                             <h6 class="section-title text-center text-dark text-uppercase">
                                                                 Reservasi Ruangan</h6>
-                                                            <h1 class="fw-bolder text-success text-uppercase">Convention
-                                                                Hall
-                                                            </h1>
+                                                            <h1 class="fw-bolder text-success text-uppercase">{{ $train->nama }}</h1>
                                                             <span class="badge bg-light text-dark text-wrap lh-base">
                                                                 Note : Harga sewa terhitung per 8 jam dalam sehari, apabila
                                                                 check-out melebihi jam sewa akan dikenakan charge per jam.
@@ -246,6 +244,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="wow fadeInUp" data-wow-delay="0.2s">
                                                                     <form>
+
                                                                         <div class="row g-3 mb-4">
                                                                             <div class="col-md-6">
                                                                                 <fieldset disabled="disabled">
@@ -263,17 +262,16 @@
                                                                                     </div>
                                                                                 </fieldset>
                                                                             </div>
+
                                                                             <div class="col-md-6">
                                                                                 <fieldset disabled="disabled">
                                                                                     <div class="form-floating input-group">
                                                                                         <input type="number"
-                                                                                            name="lamahari" id="lamahari"
+                                                                                            name="lamaHari" id="lamaHari"
                                                                                             class="form-control"
                                                                                             placeholder="Kapasitas">
-                                                                                        <div class="input-group-text">HARI
-                                                                                        </div>
-                                                                                        <label class="labelBook"
-                                                                                            for="jumlahSewa">Lama
+                                                                                        <div class="input-group-text">HARI</div>
+                                                                                        <label class="labelBook" for="jumlahSewa">Lama
                                                                                             hari</label>
                                                                                     </div>
                                                                                 </fieldset>
@@ -281,14 +279,10 @@
 
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating">
-                                                                                    <select class="form-select"
-                                                                                        id="select1" onchange="updateCapacity()">
-                                                                                        <option value="0" disabled
-                                                                                            selected>Pilih Layout</option>
+                                                                                    <select class="form-select" id="select1">
+                                                                                        <option value="0" disabled selected>Pilih Layout</option>
                                                                                         @foreach ($train->layout_models as $layouts_model)
-                                                                                            <option
-                                                                                                value="{{ $layouts_model->train_id }}"
-                                                                                                data-value="{{ $layouts_model->kapasitas }}">
+                                                                                            <option value="{{ $layouts_model->train_id }}" data-value="{{ $layouts_model->kapasitas }}">
                                                                                                 {{ $layouts_model->nama_layout }}
                                                                                             </option>
                                                                                         @endforeach
@@ -301,15 +295,9 @@
                                                                             <div class="col-md-6">
                                                                                 <fieldset disabled="disabled">
                                                                                     <div class="form-floating input-group">
-                                                                                        <input type="number"
-                                                                                            class="form-control"
-                                                                                            id="capacityPax"
-                                                                                            placeholder="Kapasitas"
-                                                                                            value="">
-                                                                                        <div class="input-group-text">PAX
-                                                                                        </div>
-                                                                                        <label class="labelBook"
-                                                                                            for="capacityPax">Kapasitas</label>
+                                                                                        <input type="number" class="form-control capacity-input" id="capacityPax" placeholder="Kapasitas" value="">
+                                                                                        <div class="input-group-text">PAX</div>
+                                                                                        <label class="labelBook" for="capacityPax">Kapasitas</label>
                                                                                     </div>
                                                                                 </fieldset>
                                                                             </div>
