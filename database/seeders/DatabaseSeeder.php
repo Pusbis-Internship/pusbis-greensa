@@ -37,6 +37,19 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(1)
         ]);
 
+        Guest::create([
+            'name' => 'anon2',
+            'nik' => '234',
+            'telp' => '234',
+            'alamat' => 'sby',
+            'kota' => 'sby',
+            'provinsi' => 'sby',
+            'negara' => 'sby',
+            'username' => 'anon2@mail',
+            'email' => 'anon2@mail',
+            'password' => bcrypt(1)
+        ]);
+
         Train::create([
             'nama' => 'Reguler 101',
             'lantai' => 1,
@@ -487,30 +500,6 @@ class DatabaseSeeder extends Seeder
             'fasilitas' => 'Air Conditioner'
         ]);
 
-        Cart::create([
-            'guest_id' => 1,
-        ]);
-
-        CartItem::create([
-            'cart_id' => 1,
-            'train_id' => 1,
-            'checkin' => '2022-12-31',
-            'lama' => 2,
-            'harga' => 0,
-            'nama_kegiatan' => 'orkes',
-            'special' => 'ngundang pak jokowi',
-        ]);
-
-        CartItem::create([
-            'cart_id' => 1,
-            'train_id' => 15,
-            'checkin' => '2022-12-31',
-            'lama' => 2,
-            'harga' => 0,
-            'nama_kegiatan' => 'orkes',
-            'special' => 'ngundang pak jokowi',
-        ]);
-
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 1,
@@ -680,6 +669,34 @@ class DatabaseSeeder extends Seeder
             'train_id' => 15,
             'nama_layout' => 'Round Table',
             'kapasitas' => 45
+        ]);
+
+        Cart::create([
+            'guest_id' => 1,
+        ]);
+
+        CartItem::create([
+            'cart_id' => 1,
+            'train_id' => 1,
+            'checkin' => '2022-12-31',
+            'lama' => 2,
+            'harga' => 0,
+            'nama_kegiatan' => 'orkes',
+            'special' => 'ngundang pak jokowi',
+        ]);
+
+        CartItem::create([
+            'cart_id' => 1,
+            'train_id' => 15,
+            'checkin' => '2022-12-31',
+            'lama' => 2,
+            'harga' => 0,
+            'nama_kegiatan' => 'orkes',
+            'special' => 'ngundang pak jokowi',
+        ]);
+
+        Cart::create([
+            'guest_id' => 2,
         ]);
     }
 }

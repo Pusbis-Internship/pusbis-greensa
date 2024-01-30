@@ -132,6 +132,10 @@ class GuestController extends Controller
             'tanggallahir' => $credentials['tanggallahir'],
         ]);
 
+        Cart::create([
+            'guest_id' => $guest->id,
+        ]);
+
         // kirim email
         event(new Registered($guest));
 

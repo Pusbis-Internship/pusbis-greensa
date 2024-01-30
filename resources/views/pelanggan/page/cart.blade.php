@@ -71,6 +71,10 @@
         </div>
     </section>
 
+    @php
+        $guest = session('guest');
+    @endphp
+
     <!-- Cart Section Start -->
     <section class="cart-section section-b-space">
         <div class="container">
@@ -89,87 +93,58 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                {{-- gambar --}}
-                                <td>
-                                    <a href="{{ route('train.detail', 15) }}">
-                                        <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="blur-up lazyloaded" alt="">
-                                    </a>
-                                </td>
-
-                                {{-- nama --}}
-                                <td>
-                                    <a href="{{ route('train.detail', 15) }}">Convention Hall</a>
-                                </td>
-
-                                {{-- layout --}}
-                                <td>
-                                    <span>Classroom</span>
-                                </td>
-
-                                {{-- check-in --}}
-                                <td>
-                                    <span>31/1/2024</span>
-                                </td>
-
-                                {{-- lama hari --}}
-                                <td>
-                                    <span>2</span>
-                                </td>
-
-                                {{-- harga --}}
-                                <td>
-                                    <span class="td-color">Rp. 8.500.000</span>
-                                </td>
-
-                                {{-- hapus --}}
-                                <td>
-                                    <a href="javascript:void(0)">
-                                        <i class="fas fa-times"></i>
-                                    </a>
-                                </td>
-                            </tr>
                             
-                            <tr>
-                                {{-- gambar --}}
-                                <td>
-                                    <a href="{{ route('train.detail', 15) }}">
-                                        <img src="{{ asset('assets/images/5.jpg') }}" class="blur-up lazyloaded" alt="">
-                                    </a>
-                                </td>
+                            @if ($guest->cart->items->isEmpty())
+                                <tr>
+                                    <td colspan="7">
+                                        <span>Cart masih kosong</span>
+                                    </td>
+                                </tr>
 
-                                {{-- nama --}}
-                                <td>
-                                    <a href="{{ route('train.detail', 15) }}">Albajar</a>
-                                </td>
+                            @else
+                                @foreach ($guest->cart->items as $item)
+                                <tr>
+                                    {{-- gambar --}}
+                                    <td>
+                                        <a href="{{ route('train.detail', $item->train_id) }}">
+                                            <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="blur-up lazyloaded" alt="">
+                                        </a>
+                                    </td>
 
-                                {{-- layout --}}
-                                <td>
-                                    <span>Teater</span>
-                                </td>
+                                    {{-- nama --}}
+                                    <td>
+                                        <a href="{{ route('train.detail', $item->train_id) }}">Room ke {{ $item->train_id }}</a>
+                                    </td>
 
-                                {{-- check-in --}}
-                                <td>
-                                    <span>31/1/2024</span>
-                                </td>
+                                    {{-- layout --}}
+                                    <td>
+                                        <span>{{ $item->layout }}</span>
+                                    </td>
 
-                                {{-- lama hari --}}
-                                <td>
-                                    <span>2</span>
-                                </td>
+                                    {{-- check-in --}}
+                                    <td>
+                                        <span>{{ $item->checkin }}</span>
+                                    </td>
 
-                                {{-- harga --}}
-                                <td>
-                                    <span class="td-color">Rp. 8.500.000</span>
-                                </td>
+                                    {{-- lama hari --}}
+                                    <td>
+                                        <span>{{ $item->lama }}</span>
+                                    </td>
 
-                                {{-- hapus --}}
-                                <td>
-                                    <a href="javascript:void(0)">
-                                        <i class="fas fa-times"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                    {{-- harga --}}
+                                    <td>
+                                        <span class="td-color">Rp. {{ $item->harga }}</span>
+                                    </td>
+
+                                    {{-- hapus --}}
+                                    <td>
+                                        <a href="javascript:void(0)">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
 
                         </tbody>
                     </table>
