@@ -14,4 +14,9 @@ class Train extends Model
     {
         return $this->hasMany(TrainFacility::class);
     }
+
+    public function layout_models()
+    {
+        return $this->hasMany(LayoutModels::class);
+    }
 }

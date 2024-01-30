@@ -72,7 +72,7 @@
     {{-- MODAL --}}
     {{-- @include('pelanggan.modal.loginPelanggan')
     @include('pelanggan.modal.registerPelanggan') --}}
-    @include('pelanggan.modal.modalBook')
+    {{-- @include('pelanggan.modal.modalBook') --}}
     {{-- Akhir Modal --}}
 
     {{-- Loader --}}

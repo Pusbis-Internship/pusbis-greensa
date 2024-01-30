@@ -1,7 +1,5 @@
 @extends('pelanggan.layout.index')
 
-@include('pelanggan.modal.modalBook')
-
 @section('content')
     <!-- Banner Start -->
     <div class="container-fluid p-0 mb-5">
@@ -37,21 +35,24 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" name="date" class="form-control" id="check-in" placeholder="Check in" data-target="#date1" value="" />
-                                            <label class="labelBook" for="check-in">Check-in</label>
+                                        <input type="date" name="date" class="form-control" id="check-in"
+                                            placeholder="Check in" data-target="#date1" value="" />
+                                        <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="hari form-floating " id="hari" data-target-input="nearest">
-                                        <input type="number" name="lama" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
+                                        <input type="number" name="lama" class="form-control" id="hari"
+                                            placeholder="Lama Hari" value=1 data-target="#date2" min="1"
+                                            max="999" />
                                         <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-floating">
-                                        <select class="form-select" id="lantaiRuang" name="lantai" >
+                                        <select class="form-select" id="lantaiRuang" name="lantai">
                                             <option selected value="Semua Lantai">Semua Lantai</option>
                                             <option value=1>Lantai 1</option>
                                             <option value=2>Lantai 2</option>
@@ -59,16 +60,19 @@
                                             <option value=4>Lantai 4</option>
                                             <option value=5>Lantai 5</option>
                                         </select>
-                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih Lantai</label>
+                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih
+                                            Lantai</label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-3">
-                                    <div class="peserta form-floating" name="peserta" id="peserta" data-target-input="nearest">
+                                    <div class="peserta form-floating" name="peserta" id="peserta"
+                                        data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
                                             max="999" />
-                                            <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah Peserta</label>
+                                        <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
+                                            Peserta</label>
                                     </div>
                                 </div>
 
@@ -181,16 +185,6 @@
                                                             class="badge bg-light text-dark text-wrap">{{ $train->lantai }}</span>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="capacity  d-flex align-items-center mb-1">
-                                                <div class="col-6">
-                                                    <p class="mb-1">Kapasitas </p>
-                                                </div>
-                                                <div class="col-6 align-items-center ">
-                                                    <span>:</span>
-                                                    <span class="badge bg-light text-dark text-wrap">200
-                                                        Orang</span>
-                                                </div>
-                                            </div> --}}
                                             </div>
                                             <div class="desc-catalog">
                                                 <p class="fw-lighter">
@@ -207,7 +201,12 @@
                                                 <div class="col-12 ">
                                                     <a href="/"
                                                         class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
-                                                        data-bs-toggle="modal" data-bs-target="#modalBook">Reservasi</a>
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalBook{{ $train->id }}"
+                                                        data-train-id="{{ $train->id }}"
+                                                        data-train-harga="{{ $train->harga }}"
+                                                        data-train-nama="{{ $train->nama }}">
+                                                        Reservasi</a>
                                                     <a href="{{ route('train.detail', $train->id) }}"
                                                         class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
                                                         Detail</a>
@@ -216,6 +215,157 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalBook{{ $train->id }}" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Booking Start -->
+                                                <div class="container-xxl py-5">
+                                                    <div class="container">
+                                                        <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
+                                                            <h6 class="section-title text-center text-dark text-uppercase">
+                                                                Reservasi Ruangan</h6>
+                                                            <h1 class="fw-bolder text-success text-uppercase">Convention
+                                                                Hall
+                                                            </h1>
+                                                            <span class="badge bg-light text-dark text-wrap lh-base">
+                                                                Note : Harga sewa terhitung per 8 jam dalam sehari, apabila
+                                                                check-out melebihi jam sewa akan dikenakan charge per jam.
+                                                            </span>
+                                                        </div>
+                                                        <div class="row g-5">
+                                                            <div class="col-lg-12">
+                                                                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                                                                    <form>
+                                                                        <div class="row g-3 mb-4">
+                                                                            <div class="col-md-6">
+                                                                                <fieldset disabled="disabled">
+                                                                                    <div class="form-floating date"
+                                                                                        id="date3"
+                                                                                        data-target-input="nearest">
+                                                                                        <input type="date"
+                                                                                            name="checkin" id="checkin"
+                                                                                            class="form-control datetimepicker-input"
+                                                                                            placeholder="Check In"
+                                                                                            data-target="#date3"
+                                                                                            data-toggle="datetimepicker" />
+                                                                                        <label class="labelBook"
+                                                                                            for="checkin">Check In</label>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <fieldset disabled="disabled">
+                                                                                    <div class="form-floating input-group">
+                                                                                        <input type="number"
+                                                                                            name="lamahari" id="lamahari"
+                                                                                            class="form-control"
+                                                                                            placeholder="Kapasitas">
+                                                                                        <div class="input-group-text">HARI
+                                                                                        </div>
+                                                                                        <label class="labelBook"
+                                                                                            for="jumlahSewa">Lama
+                                                                                            hari</label>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-floating">
+                                                                                    <select class="form-select"
+                                                                                        id="select1" onchange="updateCapacity()">
+                                                                                        <option value="0" disabled
+                                                                                            selected>Pilih Layout</option>
+                                                                                        @foreach ($train->layout_models as $layouts_model)
+                                                                                            <option
+                                                                                                value="{{ $layouts_model->train_id }}"
+                                                                                                data-value="{{ $layouts_model->kapasitas }}">
+                                                                                                {{ $layouts_model->nama_layout }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    <label class="labelBook"
+                                                                                        for="select1">Layout Model</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <fieldset disabled="disabled">
+                                                                                    <div class="form-floating input-group">
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            id="capacityPax"
+                                                                                            placeholder="Kapasitas"
+                                                                                            value="">
+                                                                                        <div class="input-group-text">PAX
+                                                                                        </div>
+                                                                                        <label class="labelBook"
+                                                                                            for="capacityPax">Kapasitas</label>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+
+                                                                            <div class="col-12">
+                                                                                <div class="form-floating">
+                                                                                    <input class="form-control"
+                                                                                        placeholder="Nama Kegiatan"
+                                                                                        id="nameActivity"></input>
+                                                                                    <label class="labelBook"
+                                                                                        for="nameActivity">Nama
+                                                                                        Kegiatan</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12">
+                                                                                <div class="form-floating">
+                                                                                    <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                                                                    <label class="labelBook"
+                                                                                        for="message">Special
+                                                                                        Request</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="row g-3">
+                                                                            <div class="col-12 text-end">
+                                                                                <h6>Total</h6>
+                                                                                <h3 id="trainHarga"
+                                                                                    class="fw-bolder text-success">
+                                                                                    Rp. {{ $train->harga }}</h3>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <button class="btn btn-success w-100 py-3"
+                                                                                    type="submit">Reservasi
+                                                                                    Sekarang</button>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <button
+                                                                                    class="btn btn-outline-success w-100 py-3"
+                                                                                    type="submit">Tambah
+                                                                                    Keranjang</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Booking End -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Akhir Modal --}}
                             @endforeach
                         </div>
                         <!-- Akhir Card -->
@@ -226,23 +376,6 @@
         </div>
     </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalBook" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+
 @endsection

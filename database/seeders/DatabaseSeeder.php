@@ -9,6 +9,7 @@ use App\Models\Guest;
 use App\Models\Train;
 use App\Models\CartItem;
 use App\Models\TrainFacility;
+use App\Models\LayoutModels;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -508,6 +509,177 @@ class DatabaseSeeder extends Seeder
             'harga' => 0,
             'nama_kegiatan' => 'orkes',
             'special' => 'ngundang pak jokowi',
+        ]);
+
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 1,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 1,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 2,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 2,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 3,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 3,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 4,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 4,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 5,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 5,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 6,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 6,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 7,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 7,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 8,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 8,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 9,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 9,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 10,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 10,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 11,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 11,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 12,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 12,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 13,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 60
+        ]);
+        LayoutModels::create([
+            'train_id' => 13,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 90
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 60
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 130
+        ]);
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 250
+        ]);
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 45
         ]);
     }
 }

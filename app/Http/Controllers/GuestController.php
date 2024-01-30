@@ -8,6 +8,7 @@ use App\Models\Train;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Models\TrainFacility;
+use App\Models\LayoutModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 
@@ -43,11 +44,13 @@ class GuestController extends Controller
     {
         $train = Train::findOrFail($id);
         $facilities = TrainFacility::all();  // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
+        $layout_models = LayoutModels::where('train_id', $id)->get(); // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
 
         return view('pelanggan.page.detail_tc', [
             'title' => 'Detail Training Center',
             'train' => $train,
-            'facilities' => $facilities
+            'facilities' => $facilities,
+            'layout_models' => $layout_models
         ]);
     }
 
@@ -65,13 +68,13 @@ class GuestController extends Controller
 
     public function showtrain()
     {
-        $trains = Train::all();
+        $trains = Train::with('layout_models')->get();
         $facilities = TrainFacility::all();
 
         return view('pelanggan.page.train', [
             'title' => 'Training Center',
             'trains' => $trains,
-            'facilities' => $facilities
+            'facilities' => $facilities,
         ]);
     }
 
@@ -83,10 +86,12 @@ class GuestController extends Controller
         $query = Train::query();
 
         if ($lantai !== "Semua Lantai") {
-            $query->where('lantai', $lantai);}
+            $query->where('lantai', $lantai);
+        }
 
         if ($peserta !== null) {
-            $query->where('kap_teater', '>', $peserta);}
+            $query->where('kap_teater', '>', $peserta);
+        }
 
         $trains = $query->get();
         $facilities = TrainFacility::all();
