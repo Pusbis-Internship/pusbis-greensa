@@ -44,7 +44,7 @@
                                 <div class="col-md-3">
                                     <div class="hari form-floating " id="hari" data-target-input="nearest">
                                         <input type="number" name="lama" class="form-control" id="hari"
-                                            placeholder="Lama Hari" value=1 data-target="#date2" min="1"
+                                            placeholder="Lama Hari" value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}" data-target="#date2" min="1"
                                             max="999" />
                                         <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
@@ -53,15 +53,14 @@
                                 <div class="col-md-3">
                                     <div class="form-floating">
                                         <select class="form-select" id="lantaiRuang" name="lantai">
-                                            <option selected value="Semua Lantai">Semua Lantai</option>
-                                            <option value=1>Lantai 1</option>
-                                            <option value=2>Lantai 2</option>
-                                            <option value=3>Lantai 3</option>
-                                            <option value=4>Lantai 4</option>
-                                            <option value=5>Lantai 5</option>
+                                            <option value="Semua Lantai" {{ (isset($_POST['lantai']) && $_POST['lantai'] == 'Semua Lantai') ? 'selected' : '' }}>Semua Lantai</option>
+                                            <option value=1 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 1) ? 'selected' : '' }}>Lantai 1</option>
+                                            <option value=2 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 2) ? 'selected' : '' }}>Lantai 2</option>
+                                            <option value=3 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 3) ? 'selected' : '' }}>Lantai 3</option>
+                                            <option value=4 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 4) ? 'selected' : '' }}>Lantai 4</option>
+                                            <option value=5 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 5) ? 'selected' : '' }}>Lantai 5</option>
                                         </select>
-                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih
-                                            Lantai</label>
+                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih Lantai</label>
                                     </div>
                                 </div>
 
@@ -70,7 +69,7 @@
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
-                                            max="999" />
+                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>
@@ -84,7 +83,6 @@
                         </div>
 
                     </div>
-
 
                 </form>
 
@@ -323,8 +321,7 @@
                                                                                             class="form-control"
                                                                                             placeholder="Kapasitas">
                                                                                         <div class="input-group-text">HARI</div>
-                                                                                        <label class="labelBook" for="jumlahSewa">Lama
-                                                                                            hari</label>
+                                                                                        <label class="labelBook" for="jumlahSewa">Lama hari</label>
                                                                                     </div>
                                                                                 </fieldset>
                                                                             </div>
@@ -415,7 +412,4 @@
             </div>
         </div>
     </section>
-
-    
-
 @endsection

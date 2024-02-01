@@ -30,21 +30,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-// // SET SELECT FORM LAYOUT MODELS FOR CAPACITY
-// // Mendapatkan elemen select dan input
-// var select = document.getElementById('select1');
-// var capacityInput = document.getElementById('capacityPax');
-// // Menambahkan event listener untuk perubahan pada select
-// select.addEventListener('change', function () {
-//     // Mendapatkan nilai kapasitas dari atribut data-value
-//     var selectedOption = select.options[select.selectedIndex];
-//     var kapasitas = selectedOption.getAttribute('data-value');
-
-//     // Mengubah nilai input kapasitas
-//     capacityInput.value = kapasitas;
-// });
-
 window.addEventListener('DOMContentLoaded', function () {
     var select = document.getElementById('select1');
     var capacityInput = document.getElementById('capacityPax');

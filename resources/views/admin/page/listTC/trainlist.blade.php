@@ -27,7 +27,7 @@
                 <td>{{ $train->lantai }}</td>
                 <td>{{ $train->kap_class }}</td>
                 <td>{{ $train->kap_teater }}</td>
-                <td>{{ $train->harga }}</td>
+                <td>Rp {{ number_format($train->harga, 0, ',', '.')}}</td>
                 <td>{{ $train->deskripsi }}</td>
                 <td><img src="{{asset('/storage/posts/'. $train->gambar) }}" alt="Train Image" width="100"></td>
                 <td>
