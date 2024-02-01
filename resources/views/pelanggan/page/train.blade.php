@@ -196,7 +196,7 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <p class="fw-lighter mb-1">Harga</p>
-                                                    <h6 class="fw-semibold text-success mb-3">Rp. {{ $train->harga }}</h6>
+                                                    <h6 class="fw-semibold text-success mb-3">Rp {{ number_format($train->harga, 0, ',', '.')}}</h6>
                                                 </div>
                                                 <div class="col-12 ">
 
@@ -380,7 +380,7 @@
                                                                                 <h6>Total</h6>
                                                                                 <h3 id="trainHarga"
                                                                                     class="fw-bolder text-success">
-                                                                                    Rp. {{ $train->harga }}</h3>
+                                                                                    Rp {{ number_format($train->harga, 0, ',', '.')}}</h3>
                                                                             </div>
                                                                             <div class="col-6">
                                                                                 <button class="btn btn-success w-100 py-3"

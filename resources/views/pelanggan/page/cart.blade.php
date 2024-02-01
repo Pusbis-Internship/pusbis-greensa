@@ -133,7 +133,7 @@
 
                                     {{-- harga --}}
                                     <td>
-                                        <span class="td-color">Rp. {{ $item->train->harga * $item->lama }}</span>
+                                        <span class="td-color">Rp {{ number_format($item->train->harga * $item->lama, 0, ',', '.')}}</span>
                                     </td>
 
                                     {{-- hapus --}}
