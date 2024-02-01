@@ -199,14 +199,23 @@
                                                     <h6 class="fw-semibold text-success mb-3">Rp. {{ $train->harga }}</h6>
                                                 </div>
                                                 <div class="col-12 ">
-                                                    <a href="/"
+
+                                                    @guest('guest')
+                                                        <a href="/"
                                                         class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#modalBook{{ $train->id }}"
-                                                        data-train-id="{{ $train->id }}"
-                                                        data-train-harga="{{ $train->harga }}"
-                                                        data-train-nama="{{ $train->nama }}">
+                                                        data-bs-target="#modalBookLogin">
                                                         Reservasi</a>
+                                                    @endguest
+
+                                                    @auth('guest')
+                                                        <a href="/"
+                                                        class="btn btn-sm btn-success w-100 text-white shadow-none mb-2"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalBook{{ $train->id }}">
+                                                        Reservasi</a>
+                                                    @endauth
+                                                    
                                                     <a href="{{ route('train.detail', $train->id) }}"
                                                         class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
                                                         Detail</a>
@@ -216,7 +225,50 @@
                                     </div>
                                 </div>
 
-                                <!-- Modal -->
+                                {{-- Modal not login --}}
+                                <div class="modal fade" id="modalBookLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <!-- Booking Start -->
+                                                <div class="container-xxl py-5">
+                                                    <div class="container">
+
+                                                        <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
+                                                            <h6 class="section-title text-center text-dark text-uppercase">
+                                                                Sebelum melakukan reservasi, anda harus login dahulu
+                                                            </h6>
+                                                        </div>
+
+                                                        <div class="col-lg-12"> 
+                                                            <div class="row g-3">
+                                                                <div class="col-6">
+                                                                    <button class="btn btn-outline-success w-100 py-3" data-bs-dismiss="modal"
+                                                                    type="button">Kembali</button>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <form action="/login" method="GET">
+                                                                        <button class="btn btn-success w-100 py-3" type="submit">
+                                                                        Login</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal login -->
                                 <div class="modal fade" id="modalBook{{ $train->id }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                     aria-hidden="true">
