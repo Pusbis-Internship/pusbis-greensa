@@ -77,8 +77,8 @@
                             <i class="bi bi-person fs-2 text-white"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <form action="/guestlogout" method="POST"">
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <form action="/guestlogout" method="POST">
                                 @csrf
                                 <li><button class="dropdown-item" type="submit" href="#">Logout</button></li>
                             </form>

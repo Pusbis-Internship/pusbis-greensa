@@ -17,8 +17,59 @@ class GuestController extends Controller
 
     public function showhome()
     {
+        
         return view('pelanggan.page.home', ['title' => 'Home']);
+
     }
+
+    public function showprofile()
+    {
+        // Ambil data pengguna dari database
+        $guest = Guest::find(auth('guest')->id()); // Sesuaikan dengan cara Anda mengambil data pengguna
+
+        // Tampilkan view untuk form edit profil dan teruskan data pengguna
+        return view('pelanggan.page.profile', ['title' => 'Home', 'guest' => $guest]);
+    }
+
+    public function updateprofile(Request $request, $id)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'telp' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'kota' => 'required|string|max:255',
+            'provinsi' => 'required|string|max:255',
+            'negara' => 'required|string|max:255',
+            'tanggallahir' => 'required|date|max:255',
+            // Tambahkan validasi untuk kolom-kolom lainnya sesuai kebutuhan
+        ]);
+
+        // Temukan data pengguna berdasarkan ID yang diberikan
+        $guest = Guest::find($id);
+
+        if (!$guest) {
+            return redirect('/profile')->with('error', 'Data pengguna tidak ditemukan');
+        }
+
+        // Simpan data yang diperbarui ke dalam database
+        $guest->name = $request->input('name');
+        $guest->nik = $request->input('nik');
+        $guest->telp = $request->input('telp');
+        $guest->alamat = $request->input('alamat');
+        $guest->kota = $request->input('kota');
+        $guest->provinsi = $request->input('provinsi');
+        $guest->negara = $request->input('negara');
+        $guest->tanggallahir = $request->input('tanggallahir');
+        // Simpan kolom-kolom lainnya sesuai kebutuhan
+        $guest->save();
+
+        return redirect('/profile')->with('success', 'Data pengguna berhasil diperbarui');
+    }
+
+
+
 
     public function showhotel()
     {

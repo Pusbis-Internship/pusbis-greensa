@@ -42,6 +42,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/reservasi', [GuestController::class, 'showreservasi'])->middleware('guestmustlogin');
     Route::get('/cart', [GuestController::class, 'showcart'])->middleware('guestmustlogin');
 
+    Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');
+    Route::put('/profile/update/{id}', [GuestController::class, 'updateprofile'])->name('profile.update')->middleware('guestmustlogin');
+
     Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
     Route::get('/register', [GuestController::class, 'showregister'])->middleware('guestnotlogin');
 
