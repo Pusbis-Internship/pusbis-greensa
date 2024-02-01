@@ -14,4 +14,9 @@ class CartItem extends Model
     {
         return $this->belongsTo(Cart::class);
     }
+
+    public function train()
+    {
+        return $this->belongsTo(Train::class);
+    }
 }

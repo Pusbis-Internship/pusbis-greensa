@@ -107,13 +107,13 @@
                                     {{-- gambar --}}
                                     <td>
                                         <a href="{{ route('train.detail', $item->train_id) }}">
-                                            <img src="{{ asset('assets/images/convention-hall.jpg') }}" class="blur-up lazyloaded" alt="">
+                                            <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}" class="blur-up lazyloaded" alt="">
                                         </a>
                                     </td>
 
                                     {{-- nama --}}
                                     <td>
-                                        <a href="{{ route('train.detail', $item->train_id) }}">Room ke {{ $item->train_id }}</a>
+                                        <a href="{{ route('train.detail', $item->train_id) }}">{{ $item->train->nama }}</a>
                                     </td>
 
                                     {{-- layout --}}
@@ -133,7 +133,7 @@
 
                                     {{-- harga --}}
                                     <td>
-                                        <span class="td-color">Rp. {{ $item->harga }}</span>
+                                        <span class="td-color">Rp. {{ $item->train->harga * $item->lama }}</span>
                                     </td>
 
                                     {{-- hapus --}}

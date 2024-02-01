@@ -175,7 +175,7 @@ class DatabaseSeeder extends Seeder
             'lantai' => 4,
             'kap_class' => 60,
             'kap_teater' => 90,
-            'harga' => 2000000,
+            'harga' => 3500000,
             'deskripsi' => 'Ini deskripsi dolor...',
             'gambar' => 'room2.jpg',
         ]);
@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
             'lantai' => 5,
             'kap_class' => 130,
             'kap_teater' => 250,
-            'harga' => 2000000,
+            'harga' => 8500000,
             'deskripsi' => 'Ini deskripsi dolor...',
             'gambar' => 'room4.jpg',
         ]);
