@@ -45,6 +45,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');
     Route::put('/profile/update/{id}', [GuestController::class, 'updateprofile'])->name('profile.update')->middleware('guestmustlogin');
 
+    Route::get('/change-password', [GuestController::class, 'showchangepw'])->middleware('guestmustlogin');
+    Route::post('/profile/change-password', [GuestController::class, 'changePassword'])->name('profile.change-password')->middleware('guestmustlogin');
+
     Route::get('/login', [GuestController::class, 'showlogin'])->middleware('guestnotlogin');
     Route::get('/register', [GuestController::class, 'showregister'])->middleware('guestnotlogin');
 

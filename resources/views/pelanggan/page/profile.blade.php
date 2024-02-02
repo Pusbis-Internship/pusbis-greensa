@@ -56,12 +56,25 @@
     input[type="submit"]:hover {
         background-color: #45a049;
     }
+    .success-message {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
 </style>
 </head>
 
 <section id="hotel">
     <div class="container">
         <h2>Edit Profil Pengguna</h2>
+        @if(session('success'))
+        <div class="success-message">
+            {{ session('success') }}
+        </div>
+        @endif
         <form action="{{ route('profile.update', ['id' => $guest->id]) }}" method="POST">
             @csrf
             @method('PUT')
@@ -98,6 +111,8 @@
                 <input type="date" id="tanggallahir" name="tanggallahir" value="{{ $guest->tanggallahir }}" required>
             </div>
             <input type="submit" value="Simpan">
+
+            <a href="/change-password"> change password</a>
         </form>
     </div>
 </section>

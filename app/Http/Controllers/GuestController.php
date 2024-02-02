@@ -12,15 +12,15 @@ use App\Models\TrainFacility;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
 
 class GuestController extends Controller
 {
 
     public function showhome()
     {
-        
-        return view('pelanggan.page.home', ['title' => 'Home']);
 
+        return view('pelanggan.page.home', ['title' => 'Home']);
     }
 
     public function showprofile()
@@ -69,7 +69,37 @@ class GuestController extends Controller
         return redirect('/profile')->with('success', 'Data pengguna berhasil diperbarui');
     }
 
+    public function showchangepw()
+    {
 
+        return view('pelanggan.page.changepw', ['title' => 'change password']);
+    }
+
+
+    public function changePassword(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:1|confirmed',
+        ]);
+
+        $guest = Guest::find(auth('guest')->id());
+
+        // Ambil data pengguna dari database setelah validasi
+        // dd($request->input('current_password'), $guest);
+
+        // Verifikasi kata sandi saat ini
+        if (!Hash::check($request->input('current_password'), $guest->password)) {
+            return redirect('/change-password')->with('error', 'Kata Sandi Saat Ini Salah');
+        }
+
+        // Simpan kata sandi baru ke dalam database
+        $guest->password = Hash::make($request->input('new_password'));
+        $guest->save();
+
+        return redirect('/profile')->with('success', 'Kata Sandi Berhasil Diubah');
+    }
 
 
     public function showhotel()
