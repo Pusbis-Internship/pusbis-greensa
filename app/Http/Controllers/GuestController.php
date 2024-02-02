@@ -6,9 +6,10 @@ use App\Models\Cart;
 use App\Models\Guest;
 use App\Models\Train;
 use App\Models\CartItem;
+use App\Models\LayoutModels;
 use Illuminate\Http\Request;
 use App\Models\TrainFacility;
-use App\Models\LayoutModels;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 
@@ -121,11 +122,13 @@ class GuestController extends Controller
     {
         $trains = Train::with('layout_models')->get();
         $facilities = TrainFacility::all();
+        $currentDate = Carbon::now()->addDay();
 
         return view('pelanggan.page.train', [
-            'title' => 'Training Center',
-            'trains' => $trains,
-            'facilities' => $facilities,
+            'title'        => 'Training Center',
+            'trains'       => $trains,
+            'facilities'   => $facilities,
+            'currentDate'  => $currentDate,
         ]);
     }
 
@@ -133,6 +136,7 @@ class GuestController extends Controller
     {
         $lantai = $request->lantai;
         $peserta = $request->peserta;
+        $currentDate = Carbon::now()->addDay();
 
         $query = Train::query();
 
@@ -150,7 +154,8 @@ class GuestController extends Controller
         return view('pelanggan.page.train', [
             'title' => 'Training Center',
             'trains' => $trains,
-            'facilities' => $facilities
+            'facilities' => $facilities,
+            'currentDate'  => $currentDate,
         ]);
     }
 

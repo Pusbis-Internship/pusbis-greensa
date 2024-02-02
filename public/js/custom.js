@@ -8,19 +8,7 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// GET TOMORROW DATE
-var tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-
-// Format the date as "YYYY-MM-DD"
-var formattedDate = tomorrow.toISOString().split('T')[0];
-
-// Set the value of the input
-document.getElementById("check-in").value = formattedDate;
-document.getElementById("checkin").value = formattedDate;
-document.getElementById("check-in").setAttribute("min", formattedDate);
-
-// LAMA HARI IN MODALBOOK
+// MODAL set Lama Hari
 window.addEventListener('DOMContentLoaded', function () {
     var lamaHariElements = document.getElementsByName("lamaHari");
     var lamaHari = document.getElementsByName("lama")[0].value;
@@ -30,14 +18,18 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// MODAL set Capacity PAX
 window.addEventListener('DOMContentLoaded', function () {
-    var select = document.getElementById('select1');
-    var capacityInput = document.getElementById('capacityPax');
-
-    select.addEventListener('change', function () {
-        var selectedOption = select.options[select.selectedIndex];
-        var kapasitas = selectedOption.getAttribute('data-value');
-        capacityInput.value = kapasitas;
+    var selectElements = document.querySelectorAll('.select-dropdown');
+    
+    selectElements.forEach(function (selectElement) {
+        var capacityInput = document.querySelector(selectElement.getAttribute('data-target'));
+        
+        selectElement.addEventListener('change', function () {
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            var kapasitas = selectedOption.getAttribute('data-value');
+            capacityInput.value = kapasitas;
+        });
     });
 });
 

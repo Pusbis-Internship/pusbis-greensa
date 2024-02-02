@@ -35,8 +35,9 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" name="date" class="form-control" id="check-in"
-                                            placeholder="Check in" data-target="#date1" value="" />
+                                        <input type="date" name="date" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
+                                            value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}"
+                                            min="{{ $currentDate->format('Y-m-d') }}" />
                                         <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
                                 </div>
@@ -141,7 +142,7 @@
 
                         <!-- Awal Card -->
                         <div class="col-lg-9 col-md-12 px-4 catalog-tc">
-                            @foreach ($trains as $train)
+                            @foreach ($trains as $index => $train)
                                 <div class="card mb-4 border-0 shadow">
                                     <div class="row g-0 p-3 align-items-center">
                                         <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
@@ -298,15 +299,9 @@
                                                                         <div class="row g-3 mb-4">
                                                                             <div class="col-md-6">
                                                                                 <fieldset disabled="disabled">
-                                                                                    <div class="form-floating date"
-                                                                                        id="date3"
-                                                                                        data-target-input="nearest">
-                                                                                        <input type="date"
-                                                                                            name="checkin" id="checkin"
-                                                                                            class="form-control datetimepicker-input"
-                                                                                            placeholder="Check In"
-                                                                                            data-target="#date3"
-                                                                                            data-toggle="datetimepicker" />
+                                                                                    <div class="form-floating date" id="date3" data-target-input="nearest">
+                                                                                        <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"
+                                                                                            value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}"/>
                                                                                         <label class="labelBook"
                                                                                             for="checkin">Check In</label>
                                                                                     </div>
@@ -316,10 +311,8 @@
                                                                             <div class="col-md-6">
                                                                                 <fieldset disabled="disabled">
                                                                                     <div class="form-floating input-group">
-                                                                                        <input type="number"
-                                                                                            name="lamaHari" id="lamaHari"
-                                                                                            class="form-control"
-                                                                                            placeholder="Kapasitas">
+                                                                                        <input type="number" name="lamaHari" id="lamaHari" class="form-control" placeholder="Kapasitas"
+                                                                                            value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}">
                                                                                         <div class="input-group-text">HARI</div>
                                                                                         <label class="labelBook" for="jumlahSewa">Lama hari</label>
                                                                                     </div>
@@ -328,7 +321,7 @@
 
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating">
-                                                                                    <select class="form-select" id="select1">
+                                                                                    <select class="form-select select-dropdown" data-target=".capacity-input{{$index}}">
                                                                                         <option value="0" disabled selected>Pilih Layout</option>
                                                                                         @foreach ($train->layout_models as $layouts_model)
                                                                                             <option value="{{ $layouts_model->train_id }}" data-value="{{ $layouts_model->kapasitas }}">
@@ -336,17 +329,16 @@
                                                                                             </option>
                                                                                         @endforeach
                                                                                     </select>
-                                                                                    <label class="labelBook"
-                                                                                        for="select1">Layout Model</label>
+                                                                                    <label class="labelBook" for="select{{$index}}">Layout Model</label>
                                                                                 </div>
                                                                             </div>
-
+                                                                        
                                                                             <div class="col-md-6">
                                                                                 <fieldset disabled="disabled">
                                                                                     <div class="form-floating input-group">
-                                                                                        <input type="number" class="form-control capacity-input" id="capacityPax" placeholder="Kapasitas" value="">
+                                                                                        <input type="number" class="form-control capacity-input capacity-input{{$index}}" placeholder="Kapasitas" value="">
                                                                                         <div class="input-group-text">PAX</div>
-                                                                                        <label class="labelBook" for="capacityPax">Kapasitas</label>
+                                                                                        <label class="labelBook" for="capacityPax{{$index}}">Kapasitas</label>
                                                                                     </div>
                                                                                 </fieldset>
                                                                             </div>
