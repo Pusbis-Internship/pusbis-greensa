@@ -35,8 +35,8 @@
         }
 
         input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
+            /* background-color: #4caf50; */
+            /* color: white; */
             padding: 12px 20px;
             border: none;
             border-radius: 4px;
@@ -44,8 +44,13 @@
             font-size: 16px;
         }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        .btn {
+            /* color: white; */
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         .success-message {
@@ -92,14 +97,6 @@
 
     <div class="container rounded mt-5 mb-5">
         <div class="row">
-            {{-- <div class="col-md-6 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                        width="150px"
-                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-                        class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span>
-                    </span>
-                </div>
-            </div> --}}
             <div class="col-md-12 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-center align-items-center">
@@ -123,42 +120,43 @@
                         <div class="row gy-3">
                             @csrf
                             @method('PUT')
-                            <div class="col-md-6"><label class="labels">Nama</label><input type="text" id="name"
+                            <div class="col-md-6"><label class="labels">Nama <span
+                                class="text-danger">*</span></label><input type="text" id="name"
                                     name="name" class="form-control" value="{{ $guest->name }}" required></div>
-                            <div class="col-md-6"><label class="labels">NIK</label><input type="number" id="nik"
+                            <div class="col-md-6"><label class="labels">NIK <span
+                                class="text-danger">*</span></label><input type="number" id="nik"
                                     name="nik" class="form-control" value="{{ $guest->nik }}" required></div>
-                            <div class="col-md-6"><label class="labels">Nomor Telepon</label><input type="tel"
+                            <div class="col-md-6"><label class="labels">Nomor Telepon <span
+                                class="text-danger">*</span></label><input type="tel"
                                     id="telp" name="telp" class="form-control" value="{{ $guest->telp }}" required>
                             </div>
-                            <div class="col-md-6"><label class="labels">Username</label><input type="text" id="username"
+                            <div class="col-md-6"><label class="labels">Username <span
+                                class="text-danger">*</span></label><input type="text" id="username"
                                     name="username" class="form-control" value="{{ $guest->username }}" required></div>
-                            <div class="col-md-12"><label class="labels">Alamat</label><input type="text" id="alamat"
+                            <div class="col-md-12"><label class="labels">Alamat <span
+                                class="text-danger">*</span></label><input type="text" id="alamat"
                                     name="alamat" class="form-control" value="{{ $guest->alamat }}" required></div>
-                            <div class="col-md-6"><label class="labels">Kota</label><input type="text" id="kota"
+                            <div class="col-md-6"><label class="labels">Kota <span
+                                class="text-danger">*</span></label><input type="text" id="kota"
                                     name="kota" class="form-control" value="{{ $guest->kota }}" required></div>
-                            <div class="col-md-6"><label class="labels">Provinsi</label><input type="text" id="provinsi"
+                            <div class="col-md-6"><label class="labels">Provinsi <span
+                                class="text-danger">*</span></label><input type="text" id="provinsi"
                                     name="provinsi" class="form-control" value="{{ $guest->provinsi }}" required></div>
-                            <div class="col-md-6"><label class="labels">Negara</label><input type="text" id="negara"
+                            <div class="col-md-6"><label class="labels">Negara <span
+                                class="text-danger">*</span></label><input type="text" id="negara"
                                     name="negara" class="form-control" value="{{ $guest->negara }}" required></div>
-                            <div class="col-md-6"><label class="labels">Tanggal Lahir</label><input type="date"
+                            <div class="col-md-6"><label class="labels">Tanggal Lahir <span
+                                class="text-danger">*</span></label><input type="date"
                                     id="tanggallahir" name="tanggallahir" class="form-control"
                                     value="{{ $guest->tanggallahir }}" required></div>
-                            {{-- <div class="col-md-12"><label class="labels">Postcode</label><input type="text"
-                                class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control"
-                                placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control"
-                                placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text"
-                                class="form-control" placeholder="enter email id" value=""></div>
-                        <div class="col-md-12"><label class="labels">Education</label><input type="text"
-                                class="form-control" placeholder="education" value=""></div>
-                        <div class="col-md-6"><label class="labels">Country</label><input type="text"
-                                class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text"
-                                class="form-control" value="" placeholder="state"></div> --}}
-                                <div class="mt-5 text-center"><input class="btn btn-success profile-button" type="submit"
-                                        value="Simpan Profile"></input></div>
+
+                            <div class="mt-5 d-flex justify-content-between">
+                                <input class="btn btn-success profile-button" type="submit" value="Simpan Profile">
+                                
+                                <a href="/change-password" class="btn btn-danger profile-button text-center">
+                                    Ubah Password?
+                                </a>
+                            </div>
                         </div>
                     </form>
 

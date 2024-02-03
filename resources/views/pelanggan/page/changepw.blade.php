@@ -1,11 +1,9 @@
-@extends('pelanggan.layout.index')
+@extends('pelanggan.layout.loginRegis')
 
 @section('content')
 <style>
     #hotel {
         background: #fafafa;
-        /* background: f2f2f2 linear; */
-        /* height: 100vh; */
         width: 100%;
         padding: 100px 0px 100px 0px;
     }
@@ -56,6 +54,15 @@
         font-size: 16px;
     }
 
+    .profile-button{
+        padding: 10px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
     
 
     .error-message {
@@ -76,10 +83,30 @@
         </div>
         @endif
 
-        <form action="{{ route('profile.change-password') }}" method="POST">
+        <form action="{{ route('profile.change-password') }}"  method="POST">
             @csrf
-
-            <div class="form-group">
+            <div class="row gy-3">
+                <div class="col-md-12">
+                    <label for="current_password" class="form-label">Kata Sandi Saat Ini <span
+                            class="text-danger">*</span></label>
+                    <input type="password" id="current_password" name="current_password" class="form-control"
+                        value="" placeholder="Masukkan password" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="current_password" class="form-label">Kata Sandi Baru <span
+                            class="text-danger">*</span></label>
+                    <input type="password" id="new_password" name="new_password" class="form-control"
+                        value="" placeholder="Masukkan password" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="current_password" class="form-label"> Konfirmasi Kata Sandi Baru <span
+                            class="text-danger">*</span></label>
+                    <input type="password" id="new_password_confirmation" name="new_password_confirmation" class="form-control"
+                        value="" placeholder="Masukkan password" required>
+                </div>
+            </div>
+            
+            {{-- <div class="form-group">
                 <label for="current_password">Kata Sandi Saat Ini:</label>
                 <input type="password" id="current_password" name="current_password" autocomplete="off" required>
                 <span class="toggle-password" onclick="togglePasswordVisibility('current_password')">👁️</span>
@@ -93,8 +120,12 @@
                 <label for="new_password_confirmation">Konfirmasi Kata Sandi Baru:</label>
                 <input type="password" id="new_password_confirmation" name="new_password_confirmation" autocomplete="off" required>
                 <span class="toggle-password" onclick="togglePasswordVisibility('new_password_confirmation')">👁️</span>
-            </div>
-            <input type="submit" value="Ganti Kata Sandi">
+            </div> --}}
+
+            <input type="submit" class="mt-4" value="Ganti Kata Sandi">
+            <a href="/profile" class="btn btn-success profile-button text-center mt-3 w-100">
+                Kembali
+            </a>
         </form>
     </div>
 </div>
