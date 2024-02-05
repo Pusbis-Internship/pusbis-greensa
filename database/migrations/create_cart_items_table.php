@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cart_id');
             $table->foreignId('train_id');
+            $table->string('layout');
             $table->date('checkin');
             $table->integer('lama');
             $table->bigInteger('harga');

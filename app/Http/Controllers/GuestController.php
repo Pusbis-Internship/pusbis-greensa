@@ -134,6 +134,11 @@ class GuestController extends Controller
         ]);
     }
 
+    public function addToCart(Request $request)
+    {
+        @dd($request);
+    }
+
     public function showtrain()
     {
         $trains = Train::with('layout_models')->get();

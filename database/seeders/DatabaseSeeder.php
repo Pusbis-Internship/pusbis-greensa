@@ -678,7 +678,8 @@ class DatabaseSeeder extends Seeder
         CartItem::create([
             'cart_id' => 1,
             'train_id' => 1,
-            'checkin' => '2022-12-31',
+            'layout' => 'Classroom',
+            'checkin' => '2022-12-30',
             'lama' => 2,
             'harga' => 0,
             'nama_kegiatan' => 'orkes',
@@ -688,7 +689,8 @@ class DatabaseSeeder extends Seeder
         CartItem::create([
             'cart_id' => 1,
             'train_id' => 15,
-            'checkin' => '2022-12-31',
+            'layout' => 'Teater',
+            'checkin' => '2022-12-30',
             'lama' => 2,
             'harga' => 0,
             'nama_kegiatan' => 'orkes',

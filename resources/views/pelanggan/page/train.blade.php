@@ -294,37 +294,36 @@
                                                         <div class="row g-5">
                                                             <div class="col-lg-12">
                                                                 <div class="wow fadeInUp" data-wow-delay="0.2s">
-                                                                    <form>
+                                                                    <form action="/add-to-cart" method="POST">
+                                                                    @csrf
 
                                                                         <div class="row g-3 mb-4">
+                                                                            {{-- kudune disabled --}}
                                                                             <div class="col-md-6">
-                                                                                <fieldset disabled="disabled">
-                                                                                    <div class="form-floating date" id="date3" data-target-input="nearest">
-                                                                                        <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"
-                                                                                            value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}"/>
-                                                                                        <label class="labelBook"
-                                                                                            for="checkin">Check In</label>
-                                                                                    </div>
-                                                                                </fieldset>
+                                                                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                                                                    <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"
+                                                                                        value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}" readonly style="background-color: #e2e2e2; cursor: not-allowed;"/>
+                                                                                    <label class="labelBook" for="checkin">
+                                                                                        Check In</label>
+                                                                                </div>                                                       
                                                                             </div>
 
+                                                                            {{-- kudune disabled --}}
                                                                             <div class="col-md-6">
-                                                                                <fieldset disabled="disabled">
-                                                                                    <div class="form-floating input-group">
-                                                                                        <input type="number" name="lamaHari" id="lamaHari" class="form-control" placeholder="Kapasitas"
-                                                                                            value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}">
-                                                                                        <div class="input-group-text">HARI</div>
-                                                                                        <label class="labelBook" for="jumlahSewa">Lama hari</label>
-                                                                                    </div>
-                                                                                </fieldset>
+                                                                                <div class="form-floating input-group">
+                                                                                    <input type="number" name="lamaHari" id="lamaHari" class="form-control" placeholder="Kapasitas"
+                                                                                        value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
+                                                                                    <div class="input-group-text">HARI</div>
+                                                                                    <label class="labelBook" for="jumlahSewa">Lama hari</label>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating">
-                                                                                    <select class="form-select select-dropdown" data-target=".capacity-input{{$index}}">
+                                                                                    <select name="layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}">
                                                                                         <option value="0" disabled selected>Pilih Layout</option>
                                                                                         @foreach ($train->layout_models as $layouts_model)
-                                                                                            <option value="{{ $layouts_model->train_id }}" data-value="{{ $layouts_model->kapasitas }}">
+                                                                                            <option value="{{ $layouts_model->nama_layout }}" data-value="{{ $layouts_model->kapasitas }}">
                                                                                                 {{ $layouts_model->nama_layout }}
                                                                                             </option>
                                                                                         @endforeach
@@ -333,54 +332,48 @@
                                                                                 </div>
                                                                             </div>
                                                                         
+                                                                            {{-- kudune disabled --}}
                                                                             <div class="col-md-6">
-                                                                                <fieldset disabled="disabled">
-                                                                                    <div class="form-floating input-group">
-                                                                                        <input type="number" class="form-control capacity-input capacity-input{{$index}}" placeholder="Kapasitas" value="">
-                                                                                        <div class="input-group-text">PAX</div>
-                                                                                        <label class="labelBook" for="capacityPax{{$index}}">Kapasitas</label>
-                                                                                    </div>
-                                                                                </fieldset>
-                                                                            </div>
-
-                                                                            <div class="col-12">
-                                                                                <div class="form-floating">
-                                                                                    <input class="form-control"
-                                                                                        placeholder="Nama Kegiatan"
-                                                                                        id="nameActivity"></input>
-                                                                                    <label class="labelBook"
-                                                                                        for="nameActivity">Nama
-                                                                                        Kegiatan</label>
+                                                                                <div class="form-floating input-group">
+                                                                                    <input name="kapasitas" type="number" class="form-control capacity-input capacity-input{{$index}}" placeholder="Kapasitas" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
+                                                                                    <div class="input-group-text">PAX</div>
+                                                                                    <label class="labelBook" for="capacityPax{{$index}}">Kapasitas</label>
                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="col-12">
                                                                                 <div class="form-floating">
-                                                                                    <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                                                                    <input name="namaKegiatan" class="form-control" placeholder="Nama Kegiatan" id="nameActivity"></input>
                                                                                     <label class="labelBook"
-                                                                                        for="message">Special
-                                                                                        Request</label>
+                                                                                        for="nameActivity">Nama Kegiatan</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12">
+                                                                                <div class="form-floating">
+                                                                                    <textarea name="special" class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                                                                    <label class="labelBook"
+                                                                                        for="message">Special Request</label>
                                                                                 </div>
                                                                             </div>
 
                                                                         </div>
                                                                         <div class="row g-3">
                                                                             <div class="col-12 text-end">
-                                                                                <h6>Total</h6>
-                                                                                <h3 id="trainHarga"
-                                                                                    class="fw-bolder text-success">
-                                                                                    Rp {{ number_format($train->harga, 0, ',', '.')}}</h3>
+                                                                                <h6>Total harga sewa selama {{ isset($_POST['lama']) ? $_POST['lama'] : 1 }} hari</h6>
+                                                                                <h3 id="trainHarga" class="fw-bolder text-success">
+                                                                                    Rp {{ number_format($train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1), 0, ',', '.')}}</h3>
                                                                             </div>
+
                                                                             <div class="col-6">
-                                                                                <button class="btn btn-success w-100 py-3"
-                                                                                    type="submit">Reservasi
-                                                                                    Sekarang</button>
+                                                                                {{-- <button class="btn btn-success w-100 py-3"
+                                                                                    type="submit">Reservasi Sekarang</button> --}}
+                                                                                <a href="" class="btn btn-success w-100 py-3">Reservasi Sekarang</a>
                                                                             </div>
+
                                                                             <div class="col-6">
-                                                                                <button
-                                                                                    class="btn btn-outline-success w-100 py-3"
-                                                                                    type="submit">Tambah
-                                                                                    Keranjang</button>
+                                                                                <button type="submit" class="btn btn-outline-success w-100 py-3">
+                                                                                    Tambah Keranjang</button>
                                                                             </div>
                                                                         </div>
                                                                     </form>

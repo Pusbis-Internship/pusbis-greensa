@@ -51,6 +51,8 @@
 
     <title>Greensa | {{ $title }}</title>
 
+</head>
+
 
 <body>
 
