@@ -296,6 +296,9 @@
                                                                 <div class="wow fadeInUp" data-wow-delay="0.2s">
                                                                     <form action="/add-to-cart" method="POST">
                                                                     @csrf
+                                                                    <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                                                    <input type="hidden" name="train_id" value="{{ $train->id }}">
+                                                                    <input type="hidden" name="harga"value={{ $train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1) }}>
 
                                                                         <div class="row g-3 mb-4">
                                                                             {{-- kudune disabled --}}
@@ -361,8 +364,7 @@
                                                                         <div class="row g-3">
                                                                             <div class="col-12 text-end">
                                                                                 <h6>Total harga sewa selama {{ isset($_POST['lama']) ? $_POST['lama'] : 1 }} hari</h6>
-                                                                                <h3 id="trainHarga" class="fw-bolder text-success">
-                                                                                    Rp {{ number_format($train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1), 0, ',', '.')}}</h3>
+                                                                                <h3 id="trainHarga" class="fw-bolder text-success"> Rp {{ number_format($train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1), 0, ',', '.')}}</h3>
                                                                             </div>
 
                                                                             <div class="col-6">

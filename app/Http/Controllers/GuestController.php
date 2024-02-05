@@ -124,23 +124,47 @@ class GuestController extends Controller
 
     public function showcart()
     {
+        $guest = Guest::find(auth('guest')->id());
         $cart = Cart::all();
         $cartItems = CartItem::all();
 
         return view('pelanggan.page.cart', [
-            'title' => 'Keranjang',
-            'cart' => $cart,
-            'cartItems' => $cartItems
+            'title'     => 'Keranjang',
+            'guest'     => $guest,
+            'cart'      => $cart,
+            'cartItems' => $cartItems,
         ]);
     }
 
     public function addToCart(Request $request)
     {
-        @dd($request);
+        // @dd($request);
+        CartItem::create([
+            'cart_id'       => $request->cart_id,
+            'train_id'      => $request->train_id,
+            'layout'        => $request->layout,
+            'checkin'       => $request->checkin,
+            'lama'          => $request->lamaHari,
+            'kapasitas'     => $request->kapasitas,
+            'harga'         => $request->harga,
+            'nama_kegiatan' => $request->namaKegiatan,
+            'special'       => $request->special,
+        ]);
+
+        return redirect('/training-center')->withErrors(['successAddToCart' => 'Berhasil menambahkan ke cart']);
+    }
+
+    public function cartItemDelete($id)
+    {
+        $item = CartItem::findOrFail($id);
+        $item->delete();
+
+        return redirect('/cart')->withErrors(['successAddToCart' => 'Berhasil menghapus item']);
     }
 
     public function showtrain()
     {
+        $cart = Cart::find(auth('guest')->id());
         $trains = Train::with('layout_models')->get();
         $facilities = TrainFacility::all();
         $currentDate = Carbon::now()->addDay();
@@ -150,11 +174,13 @@ class GuestController extends Controller
             'trains'       => $trains,
             'facilities'   => $facilities,
             'currentDate'  => $currentDate,
+            'cart'         => $cart,
         ]);
     }
 
     public function search(Request $request)
     {
+        $cart = Cart::find(auth('guest')->id());
         $lantai = $request->lantai;
         $peserta = $request->peserta;
         $currentDate = Carbon::now()->addDay();
@@ -173,10 +199,11 @@ class GuestController extends Controller
         $facilities = TrainFacility::all();
 
         return view('pelanggan.page.train', [
-            'title' => 'Training Center',
-            'trains' => $trains,
-            'facilities' => $facilities,
-            'currentDate'  => $currentDate,
+            'title'         => 'Training Center',
+            'trains'        => $trains,
+            'facilities'    => $facilities,
+            'currentDate'   => $currentDate,
+            'cart'          => $cart,
         ]);
     }
 

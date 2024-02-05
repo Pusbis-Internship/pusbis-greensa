@@ -71,10 +71,6 @@
         </div>
     </section>
 
-    @php
-        $guest = session('guest');
-    @endphp
-
     <!-- Cart Section Start -->
     <section class="cart-section section-b-space">
         <div class="container">
@@ -133,14 +129,15 @@
 
                                     {{-- harga --}}
                                     <td>
-                                        <span class="td-color">Rp {{ number_format($item->train->harga * $item->lama, 0, ',', '.')}}</span>
+                                        <span class="td-color">Rp {{ number_format($item->train->harga, 0, ',', '.')}}</span>
                                     </td>
 
                                     {{-- hapus --}}
                                     <td>
-                                        <a href="javascript:void(0)">
-                                            <i class="fas fa-times"></i>
-                                        </a>
+                                        <form action="/cart-item-delete/{{ $item->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                            @csrf
+                                            <button type="submit" class="fas fa-times"></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
