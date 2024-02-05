@@ -59,9 +59,10 @@
     <!-- Carousel End -->
 
     <!-- Booking Start -->
-    <div class="container-fluid booking pb-5 wow animated fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid booking booking-2 pb-5 wow animated fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="bg-white shadow rounded" style="padding: 35px;">
+
                 <form action="/training-center" method="POST">
                     @csrf
 
@@ -71,39 +72,44 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" class="form-control" id="check-in" placeholder="Check in"
-                                            data-target="#date1" value="" />
-                                            <label class="labelBook" for="check-in">Check-in</label>
+                                        <input type="date" name="date" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
+                                            value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}"
+                                            min="{{ $currentDate->format('Y-m-d') }}" />
+                                        <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="hari form-floating " id="hari" data-target-input="nearest">
-                                        <input type="number" class="form-control" id="hari" placeholder="Lama Hari" value=1 data-target="#date2" min="1" max="999" />
+                                        <input type="number" name="lama" class="form-control" id="hari"
+                                            placeholder="Lama Hari" value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}" data-target="#date2" min="1"
+                                            max="999" />
                                         <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-floating">
-                                        <select class="form-select" id="lantaiRuang" name="lantai" >
-                                            <option selected value=0>Semua Lantai</option>
-                                            <option value=1>Lantai 1</option>
-                                            <option value=2>Lantai 2</option>
-                                            <option value=3>Lantai 3</option>
-                                            <option value=4>Lantai 4</option>
-                                            <option value=5>Lantai 5</option>
+                                        <select class="form-select" id="lantaiRuang" name="lantai">
+                                            <option value="Semua Lantai" {{ (isset($_POST['lantai']) && $_POST['lantai'] == 'Semua Lantai') ? 'selected' : '' }}>Semua Lantai</option>
+                                            <option value=1 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 1) ? 'selected' : '' }}>Lantai 1</option>
+                                            <option value=2 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 2) ? 'selected' : '' }}>Lantai 2</option>
+                                            <option value=3 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 3) ? 'selected' : '' }}>Lantai 3</option>
+                                            <option value=4 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 4) ? 'selected' : '' }}>Lantai 4</option>
+                                            <option value=5 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 5) ? 'selected' : '' }}>Lantai 5</option>
                                         </select>
                                         <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih Lantai</label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-3">
-                                    <div class="peserta form-floating" name="peserta" id="peserta" data-target-input="nearest">
+                                    <div class="peserta form-floating" name="peserta" id="peserta"
+                                        data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
-                                            max="999" />
-                                            <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah Peserta</label>
+                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
+                                        <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
+                                            Peserta</label>
                                     </div>
                                 </div>
 
@@ -122,35 +128,6 @@
         </div>
     </div>
     <!-- Booking End -->
-
-    {{-- <section id="hero" class="jumbotron container-fluid ">
-        <div class="container h-100">
-            <div class="row h-100 d-flex align-items-center justify-content-evenly">
-
-                <div class="col-md-7">
-                    <img src="{{ asset('assets/images/greensa.png') }}" alt=""
-                        class="img-hero position-absolute start-0 bottom-0" style="width: 50%;">
-                </div>
-
-                <div class="col-md-5 hero-tagline my-auto">
-                    <div class="pb-2">
-                        <h1>Greensa Inn</h1>
-                        <p> <span class="fw-semibold mb-3 mt-2">Istirahat</span> dan <span
-                                class="fw-semibold">Beraktivitas</span> dengan nyaman
-                            di
-                            GreenSa.</p>
-                    </div>
-
-                    <div class="">
-                        <h4><Span class="fw-bold mb-2">Reservasi Sekarang?</Span></h4>
-                        <button class="btn btn-outline-light w-200 me-3"> Kamar Hotel </button>
-                        <button class="btn btn-outline-light w-200"> Training Center </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section> --}}
 
     {{-- TC Desc --}}
     <section id="tc-content">

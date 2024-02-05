@@ -16,17 +16,35 @@ use Illuminate\Support\Facades\Hash;
 
 class GuestController extends Controller
 {
+    public function showchangepw()
+    {return view('pelanggan.page.changepw', ['title' => 'change password']);}
+
+    public function showhotel()
+    {return view('pelanggan.page.hotel', ['title' => 'Hotel']);}
+
+    public function showabout()
+    {return view('pelanggan.page.about', ['title' => 'About']);}
+
+    public function showlogin()
+    {return view('pelanggan.page.login', ['title' => 'Login']);}
+
+    public function showregister()
+    {return view('pelanggan.page.register', ['title' => 'Register']);}
 
     public function showhome()
     {
+        $currentDate = Carbon::now()->addDay();
 
-        return view('pelanggan.page.home', ['title' => 'Home']);
+        return view('pelanggan.page.home', [
+            'title' => 'Home',
+            'currentDate'  => $currentDate,
+        ]);
     }
 
     public function showprofile()
     {
         // Ambil data pengguna dari database
-        $guest = Guest::find(auth('guest')->id()); // Sesuaikan dengan cara Anda mengambil data pengguna
+        $guest = Guest::find(auth('guest')->id());
 
         // Tampilkan view untuk form edit profil dan teruskan data pengguna
         return view('pelanggan.page.profile', ['title' => 'Home', 'guest' => $guest]);
@@ -44,16 +62,15 @@ class GuestController extends Controller
             'provinsi' => 'required|string|max:255',
             'negara' => 'required|string|max:255',
             'tanggallahir' => 'required|date|max:255',
-            // Tambahkan validasi untuk kolom-kolom lainnya sesuai kebutuhan
         ]);
-
+        
         // Temukan data pengguna berdasarkan ID yang diberikan
         $guest = Guest::find($id);
-
+        
         if (!$guest) {
             return redirect('/profile')->with('error', 'Data pengguna tidak ditemukan');
         }
-
+        
         // Simpan data yang diperbarui ke dalam database
         $guest->name = $request->input('name');
         $guest->nik = $request->input('nik');
@@ -65,16 +82,9 @@ class GuestController extends Controller
         $guest->tanggallahir = $request->input('tanggallahir');
         // Simpan kolom-kolom lainnya sesuai kebutuhan
         $guest->save();
-
+        
         return redirect('/profile')->with('success', 'Data pengguna berhasil diperbarui');
     }
-
-    public function showchangepw()
-    {
-
-        return view('pelanggan.page.changepw', ['title' => 'change password']);
-    }
-
 
     public function changePassword(Request $request)
     {
@@ -86,9 +96,6 @@ class GuestController extends Controller
 
         $guest = Guest::find(auth('guest')->id());
 
-        // Ambil data pengguna dari database setelah validasi
-        // dd($request->input('current_password'), $guest);
-
         // Verifikasi kata sandi saat ini
         if (!Hash::check($request->input('current_password'), $guest->password)) {
             return redirect('/change-password')->with('error', 'Kata Sandi Saat Ini Salah');
@@ -99,27 +106,6 @@ class GuestController extends Controller
         $guest->save();
 
         return redirect('/profile')->with('success', 'Kata Sandi Berhasil Diubah');
-    }
-
-
-    public function showhotel()
-    {
-        return view('pelanggan.page.hotel', ['title' => 'Hotel']);
-    }
-
-    public function showabout()
-    {
-        return view('pelanggan.page.about', ['title' => 'About']);
-    }
-
-    public function showlogin()
-    {
-        return view('pelanggan.page.login', ['title' => 'Login']);
-    }
-
-    public function showregister()
-    {
-        return view('pelanggan.page.register', ['title' => 'Register']);
     }
 
     public function showdetail_tc($id)
