@@ -151,13 +151,13 @@
             <hr>
             {{-- Catalog TC --}}
 
-            <div class="row tc-catalog-main">
+            <div class="row tc-catalog-main d-flex justify-content-center">
                 <div class="col-12 text-center mb-4">
                     <h2 class="fw-bolder">Training Center</h2>
                     <span class="sub-title fs-5">Berkegiatan bersama-sama dengan nyaman</span>
                 </div>
-                <div class="row mb-5 d-flex text-center">
-                    <div class="col-md-4 col-sm-6 mt-3">
+                <div class="row mb-5 d-flex align-items-center text-center">
+                    <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
                             <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body">
@@ -170,7 +170,7 @@
                         </div>
                     </div>
             
-                    <div class="col-md-4 col-sm-6 mt-3">
+                    <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
                             <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body">
@@ -183,7 +183,7 @@
                         </div>
                     </div>
             
-                    <div class="col-md-4 col-sm-6 mt-3">
+                    <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
                             <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body">
@@ -195,69 +195,17 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="row justify-content-center text-center">
                     <div class="col-12">
-                        <a href="#">
-                            <button class="btn btn-outline-success w-50 fs-5">Lihat Selengkapnya</button>
+                        <a href="/training-center">
+                            <button class="btn btn-outline-success w-100 fs-5">Lihat Selengkapnya</button>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="row tc-catalog-main">
-                <div class="col-12 text-center mb-4">
-                    <h2 class="fw-bolder">Training Center</h2>
-                    <span class="sub-title fs-5">Berkegiatan bersama-sama dengan nyaman</span>
-                </div>
-                <div class="row mb-5 d-flex text-center">
-                    <div class="col-md-4 col-12 mt-3">
-                        <div class="card border-0 p-2">
-                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
-                            <div class="card-body ">
-                                <h5 class="card-title fw-semibold">Convention Hall</h5>
-                                <p class="card-text ">
-                                    Ruang pertemuan dengan kapasitas 200 orang.
-                                </p>
-                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-12 mt-3">
-                        <div class="card border-0 p-2">
-                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
-                            <div class="card-body ">
-                                <h5 class="card-title fw-semibold">Convention Hall</h5>
-                                <p class="card-text ">
-                                    Ruang pertemuan dengan kapasitas 200 orang.
-                                </p>
-                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-12 mt-3">
-                        <div class="card border-0 p-2">
-                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
-                            <div class="card-body ">
-                                <h5 class="card-title fw-semibold">Convention Hall</h5>
-                                <p class="card-text ">
-                                    Ruang pertemuan dengan kapasitas 200 orang.
-                                </p>
-                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div class="row justify-content-center text-center">
-                    <div class="col-12">
-                        <a href="#">
-                            <button class="btn btn-outline-success w-50 fs-5">Lihat Selengkapnya</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
     </section>
     {{-- Akhir TC Desc --}}
 

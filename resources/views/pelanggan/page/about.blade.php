@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-
         /* about */
 
         .heading h2 {
@@ -26,20 +25,24 @@
 
 
         /* .social-icons {
-            display: flex;
-            margin-bottom: 5px;
-            margin-top: 15px;
-        } */
+                display: flex;
+                margin-bottom: 5px;
+                margin-top: 15px;
+            } */
 
         /* .social-icon {
-            margin-right: 10px;
-            color: #4caf50;
-            Warna ikon sosial, sesuaikan dengan desain Anda
-            text-decoration: none;
-        } */
+                margin-right: 10px;
+                color: #4caf50;
+                Warna ikon sosial, sesuaikan dengan desain Anda
+                text-decoration: none;
+            } */
+
+        .contact-text{
+            font-size: 14px;
+        }
 
         .icon-contact {
-            margin-right: 5px;
+            /* margin-right: 5px; */
             font-size: 18px;
             color: #4caf50;
         }
@@ -102,14 +105,16 @@
 
                     <div class="row mb-1">
                         <a href="{{ asset('assets/images/convention-hall.jpg') }}" data-toggle="lightbox"
-                            data-gallery="example-gallery" class="col-12 column-img img-fluid  wow zoomIn" data-wow-delay="0.1s">
+                            data-gallery="example-gallery" class="col-12 column-img img-fluid  wow zoomIn"
+                            data-wow-delay="0.1s">
                             <img src="{{ asset('assets/images/grns.jpg') }}" class="img-fluid">
                         </a>
                     </div>
 
                     <div class="row g-1">
-                        <a href="{{ asset('assets/images/grns.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery"
-                            class="col-4 column-img img-fluid wow zoomIn" data-wow-delay="0.3s">
+                        <a href="{{ asset('assets/images/grns.jpg') }}" data-toggle="lightbox"
+                            data-gallery="example-gallery" class="col-4 column-img img-fluid wow zoomIn"
+                            data-wow-delay="0.3s">
                             <img src="{{ asset('assets/images/grns.jpg') }}" class="img-fluid">
                         </a>
                         <a href="{{ asset('assets/images/6.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery"
@@ -126,7 +131,8 @@
 
                 <div class="col-lg-6">
                     {{-- <h6 class="section-title text-start text-success text-uppercase">About Us</h6> --}}
-                    <h2 class="mb-4">Welcome to <br> <span class="text-success text-uppercase fw-bolder">GreenSA & Training Center </span></h2>
+                    <h2 class="mb-4">Welcome to <br> <span class="text-success text-uppercase fw-bolder">GreenSA &
+                            Training Center </span></h2>
                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
                         eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
                     </p>
@@ -173,35 +179,51 @@
             <h2>About us</h2>
         </div>
         <div class="row">
-    
+
             <div class="col-md-6 col-12">
-                <iframe class="w-100" height="250"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d476.7755613007506!2d112.73423118312087!3d-7.322540260898505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb6c094d1b87%3A0xbc3def4f4bd2fa7!2sUniversitas%20Islam%20Negeri%20Sunan%20Ampel!5e0!3m2!1sid!2sid!4v1705291305070!5m2!1sid!2sid"
+                <iframe class="w-100 h-100 shadow-sm" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.7598227117533!2d112.75055607383736!3d-7.380791772647359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e4f0a3856323%3A0x7b3d53e91b5e4e4d!2sGreensa%20Inn%20%26%20Training%20Centre!5e0!3m2!1sid!2sid!4v1707100811557!5m2!1sid!2sid"
                     style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
-            <div class="col-md-6 col-12">
-                <h6>Find Us</h6>
-                <p>
-                    <i class="icon-contact fas fa-map-marker-alt"></i> Jl. Contoh No. 123, Kota Anda
-                </p>
-                <h6>Mail Us</h6>
-                <p>
-                    <i class="icon-contact fas fa-envelope"></i> info@example.com
-                </p>
-                <h6>Call Us</h6>
-                <p>
-                    <i class="icon-contact fas fa-phone"></i> +123 456 789
-                </p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <div class="col-md-6 col-12 text-center">
+                <div class="row gap-2">
+                    <div class="col-12 card border-0 p-3 shadow-sm">
+                        <i class="icon-contact fas fa-map-marker-alt mb-2 fs-3"></i>
+                        <h5>Find Us</h5>
+                        <p class="contact-text m-0 fw-lighter text-success">
+                            Jl. Contoh No. 123, Kota Anda
+                        </p>
+                    </div>
+                    <div class="px-0 d-flex align-items-center gap-2" >
+                        <div class="col-6 card border-0 p-3 shadow-sm">
+                            <i class="icon-contact fas fa-envelope mb-2"></i> 
+                            <h5>Mail Us</h5>
+                            <p class="contact-text m-0 fw-lighter text-success">
+                                info@example.com
+                            </p>
+                        </div>
+                        <div class="col-6 card border-0 p-3 shadow-sm">
+                            <i class="icon-contact fas fa-phone mb-2"></i> 
+                            <h5>Call Us</h5>
+                            <p class="contact-text m-0 fw-lighter text-success">
+                                +123 456 789
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- <div class="col-12 card border-0 p-3 ">
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook fs-5 text-center"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter fs-5"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram fs-5"></i></a>
+                        </div>
+                    </div> --}}
                 </div>
+
             </div>
 
         </div>
     </div>
-
 @endsection
