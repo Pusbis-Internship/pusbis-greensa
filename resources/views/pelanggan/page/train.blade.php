@@ -301,7 +301,6 @@
                                                                     <input type="hidden" name="harga"value={{ $train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1) }}>
 
                                                                         <div class="row g-3 mb-4">
-                                                                            {{-- kudune disabled --}}
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating date" id="date3" data-target-input="nearest">
                                                                                     <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"
@@ -311,7 +310,6 @@
                                                                                 </div>                                                       
                                                                             </div>
 
-                                                                            {{-- kudune disabled --}}
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating input-group">
                                                                                     <input type="number" name="lamaHari" id="lamaHari" class="form-control" placeholder="Kapasitas"
@@ -323,8 +321,8 @@
 
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating">
-                                                                                    <select name="layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}">
-                                                                                        <option value="0" disabled selected>Pilih Layout</option>
+                                                                                    <select name="layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}" required>
+                                                                                        <option value="" disabled selected>Pilih Layout</option>
                                                                                         @foreach ($train->layout_models as $layouts_model)
                                                                                             <option value="{{ $layouts_model->nama_layout }}" data-value="{{ $layouts_model->kapasitas }}">
                                                                                                 {{ $layouts_model->nama_layout }}
@@ -335,7 +333,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         
-                                                                            {{-- kudune disabled --}}
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating input-group">
                                                                                     <input name="kapasitas" type="number" class="form-control capacity-input capacity-input{{$index}}" placeholder="Kapasitas" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
@@ -346,7 +343,7 @@
 
                                                                             <div class="col-12">
                                                                                 <div class="form-floating">
-                                                                                    <input name="namaKegiatan" class="form-control" placeholder="Nama Kegiatan" id="nameActivity"></input>
+                                                                                    <input name="namaKegiatan" class="form-control" placeholder="Nama Kegiatan" id="nameActivity" required></input>
                                                                                     <label class="labelBook"
                                                                                         for="nameActivity">Nama Kegiatan</label>
                                                                                 </div>

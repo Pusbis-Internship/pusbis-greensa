@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('lama');
             $table->bigInteger('harga');
             $table->string('nama_kegiatan');
-            $table->string('special');
+            $table->string('special')->nullable();
             $table->timestamps();
         });
     }

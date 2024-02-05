@@ -129,7 +129,7 @@
 
                                     {{-- harga --}}
                                     <td>
-                                        <span class="td-color">Rp {{ number_format($item->train->harga, 0, ',', '.')}}</span>
+                                        <span class="td-color">Rp {{ number_format($item->harga, 0, ',', '.')}}</span>
                                     </td>
 
                                     {{-- hapus --}}
