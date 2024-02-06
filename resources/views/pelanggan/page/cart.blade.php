@@ -187,11 +187,11 @@
                                             <h3>Cart Totals</h3>
                                             <h6>Sub Total <span>$26.00</span></h6>
                                             <h6>Tax <span>$5.46</span></h6>
-
                                             <h6>Total <span>$31.46</span></h6>
                                         </div>
-                                        <div class="bottom-details">
-                                            <a href="checkout">Process Checkout</a>
+                                            <form action="/checkout">
+                                                <button type="submit" method="GET">Proses Checkout</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -31,6 +31,16 @@ class GuestController extends Controller
     public function showregister()
     {return view('pelanggan.page.register', ['title' => 'Register']);}
 
+    public function showcheckout()
+    {
+        $cart = Cart::find(auth('guest')->id());
+
+        return view('pelanggan.page.checkout', [
+            'title' => 'Checkout',
+            'cart' => $cart,
+        ]);
+    }
+
     public function showhome()
     {
         $currentDate = Carbon::now()->addDay();
@@ -47,7 +57,9 @@ class GuestController extends Controller
         $guest = Guest::find(auth('guest')->id());
 
         // Tampilkan view untuk form edit profil dan teruskan data pengguna
-        return view('pelanggan.page.profile', ['title' => 'Home', 'guest' => $guest]);
+        return view('pelanggan.page.profile', [
+            'title' => 'Home',
+            'guest' => $guest]);
     }
 
     public function updateprofile(Request $request, $id)

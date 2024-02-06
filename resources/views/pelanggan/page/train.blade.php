@@ -216,8 +216,7 @@
                                                     @endauth
                                                     
                                                     <a href="{{ route('train.detail', $train->id) }}"
-                                                        class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat
-                                                        Detail</a>
+                                                        class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat Detail</a>
                                                 </div>
                                             </div>
                                         </div>
