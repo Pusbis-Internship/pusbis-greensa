@@ -675,28 +675,6 @@ class DatabaseSeeder extends Seeder
             'guest_id' => 1,
         ]);
 
-        CartItem::create([
-            'cart_id' => 1,
-            'train_id' => 1,
-            'layout' => 'Classroom',
-            'checkin' => '2022-12-30',
-            'lama' => 2,
-            'harga' => 0,
-            'nama_kegiatan' => 'orkes',
-            'special' => 'ngundang pak jokowi',
-        ]);
-
-        CartItem::create([
-            'cart_id' => 1,
-            'train_id' => 15,
-            'layout' => 'Teater',
-            'checkin' => '2022-12-30',
-            'lama' => 2,
-            'harga' => 0,
-            'nama_kegiatan' => 'orkes',
-            'special' => 'ngundang pak jokowi',
-        ]);
-
         Cart::create([
             'guest_id' => 2,
         ]);

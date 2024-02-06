@@ -35,8 +35,8 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" name="date" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
-                                            value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}"
+                                        <input type="date" name="dateIn" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
+                                            value="{{ isset($_POST['dateIn']) ? $_POST['dateIn'] : $currentDate->format('Y-m-d') }}"
                                             min="{{ $currentDate->format('Y-m-d') }}" />
                                         <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
@@ -296,15 +296,17 @@
                                                                 <div class="wow fadeInUp" data-wow-delay="0.2s">
                                                                     <form action="/add-to-cart" method="POST">
                                                                     @csrf
+                                                                    @auth('guest')
                                                                     <input type="hidden" name="cart_id" value="{{ $cart->id }}">
                                                                     <input type="hidden" name="train_id" value="{{ $train->id }}">
                                                                     <input type="hidden" name="harga"value={{ $train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1) }}>
+                                                                    @endauth                                                                    
 
                                                                         <div class="row g-3 mb-4">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating date" id="date3" data-target-input="nearest">
                                                                                     <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"
-                                                                                        value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}" readonly style="background-color: #e2e2e2; cursor: not-allowed;"/>
+                                                                                        value="{{ isset($_POST['dateIn']) ? $_POST['dateIn'] : $currentDate->format('Y-m-d') }}" readonly style="background-color: #e2e2e2; cursor: not-allowed;"/>
                                                                                     <label class="labelBook" for="checkin">
                                                                                         Check In</label>
                                                                                 </div>                                                       

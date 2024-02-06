@@ -138,12 +138,16 @@ class GuestController extends Controller
 
     public function addToCart(Request $request)
     {
-        // @dd($request);
+        $checkin = $request->checkin;
+        $lamaHari = $request->lamaHari;
+        $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
+        
         CartItem::create([
             'cart_id'       => $request->cart_id,
             'train_id'      => $request->train_id,
             'layout'        => $request->layout,
             'checkin'       => $request->checkin,
+            'checkout'      => $checkout,
             'lama'          => $request->lamaHari,
             'kapasitas'     => $request->kapasitas,
             'harga'         => $request->harga,
@@ -181,9 +185,13 @@ class GuestController extends Controller
     public function search(Request $request)
     {
         $cart = Cart::find(auth('guest')->id());
+        $currentDate = Carbon::now()->addDay();
+
         $lantai = $request->lantai;
         $peserta = $request->peserta;
-        $currentDate = Carbon::now()->addDay();
+        $dateIn = $request->dateIn;
+        $lama = $request->lama;
+        $dateOut = date('Y-m-d', strtotime($dateIn . ' + ' . ($lama - 1) . ' days'));
 
         $query = Train::query();
 
@@ -194,6 +202,29 @@ class GuestController extends Controller
         if ($peserta !== null) {
             $query->where('kap_teater', '>', $peserta);
         }
+
+        if (Auth::guard('guest')->check()){
+            // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
+            $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                      ->where('checkout', '>=', $dateIn)
+                      ->where('cart_id', '=', auth('guest')->id());
+            })
+            ->orWhere(function ($query) use ($dateOut) {
+                $query->where('checkin', '<=', $dateOut)
+                      ->where('checkout', '>=', $dateOut)
+                      ->where('cart_id', '=', auth('guest')->id());
+            })
+            ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                $query->where('checkin', '>=', $dateIn)
+                      ->where('checkout', '<=', $dateOut)
+                      ->where('cart_id', '=', auth('guest')->id());
+            })
+            ->pluck('train_id')
+            ->toArray();
+        }
+
+        $query->whereNotIn('id', $bookedRooms);
 
         $trains = $query->get();
         $facilities = TrainFacility::all();
