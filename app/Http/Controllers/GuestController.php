@@ -351,8 +351,11 @@ class GuestController extends Controller
 
     public function showorder()
     {
+        $orders = Order::where('guest_id', auth('guest')->id())->get();
+
         return view('pelanggan.page.order', [
             'title' => 'Order',
+            'orders' => $orders,
         ]);
     }
 
@@ -390,6 +393,8 @@ class GuestController extends Controller
                 'special'       => $item->special,
             ]);
         }
+
+        CartItem::where('cart_id', $id)->delete();
 
         return redirect('/order');
     }
