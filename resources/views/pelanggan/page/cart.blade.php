@@ -1,43 +1,9 @@
 @extends('pelanggan.layout.index')
 
-<link rel="stylesheet" href="{{ asset('css/user/cart.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/user/cart.css') }}"> --}}
 
 @section('content')
 
-    <div class="mobile-menu d-sm-none">
-        <ul>
-            <li>
-                <a href="demo3.php" class="active">
-                    <i data-feather="home"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i data-feather="align-justify"></i>
-                    <span>Category</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i data-feather="shopping-bag"></i>
-                    <span>Cart</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">
-                    <i data-feather="heart"></i>
-                    <span>Wishlist</span>
-                </a>
-            </li>
-            <li>
-                <a href="user-dashboard.php">
-                    <i data-feather="user"></i>
-                    <span>Account</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 
     <section class="breadcrumb-section section-b-space" style="padding-top: 100px;padding-bottom:100px;">
         <ul class="circles">
@@ -71,136 +37,256 @@
         </div>
     </section>
 
-    <!-- Cart Section Start -->
-    <section class="cart-section section-b-space">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <table class="table cart-table">
-                        <thead>
-                            <tr class="table-head">
-                                <th scope="col">Gambar</th>
-                                <th scope="col">Ruangan</th>
-                                <th scope="col">Layout</th>
-                                <th scope="col">Tanggal Check-In</th>
-                                <th scope="col">Lama Hari</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Hapus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            @if ($guest->cart->items->isEmpty())
-                                <tr>
-                                    <td colspan="7">
-                                        <span>Cart masih kosong</span>
-                                    </td>
-                                </tr>
+    {{-- GPT CART / TEMPLATE --}}
+    <style>
+        .title {
+            margin-bottom: 3vh;
+        }
 
-                            @else
-                                @foreach ($guest->cart->items as $item)
-                                <tr>
-                                    {{-- gambar --}}
-                                    <td>
-                                        <a href="{{ route('train.detail', $item->train_id) }}">
-                                            <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}" class="blur-up lazyloaded" alt="">
-                                        </a>
-                                    </td>
+        .card {
+            margin: auto;
+            width: 95%;
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 1rem;
+            border: transparent;
+        }
 
-                                    {{-- nama --}}
-                                    <td>
-                                        <a href="{{ route('train.detail', $item->train_id) }}">{{ $item->train->nama }}</a>
-                                    </td>
+        @media(max-width:767px) {
+            .card {
+                margin: 3vh auto;
+            }
+        }
 
-                                    {{-- layout --}}
-                                    <td>
-                                        <span>{{ $item->layout }}</span>
-                                    </td>
+        .cart {
+            background-color: #fff;
+            padding: 4vh 5vh;
+            border-bottom-left-radius: 1rem;
+            border-top-left-radius: 1rem;
+        }
 
-                                    {{-- check-in --}}
-                                    <td>
-                                        <span>{{ $item->checkin }}</span>
-                                    </td>
+        @media(max-width:767px) {
+            .cart {
+                padding: 4vh;
+                border-bottom-left-radius: unset;
+                border-top-right-radius: 1rem;
+            }
+        }
 
-                                    {{-- lama hari --}}
-                                    <td>
-                                        <span>{{ $item->lama }}</span>
-                                    </td>
+        .summary {
+            background-color: #ddd;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            padding: 4vh;
+            color: rgb(65, 65, 65);
+        }
 
-                                    {{-- harga --}}
-                                    <td>
-                                        <span class="td-color">Rp {{ number_format($item->harga, 0, ',', '.')}}</span>
-                                    </td>
+        @media(max-width:767px) {
+            .summary {
+                border-top-right-radius: unset;
+                border-bottom-left-radius: 1rem;
+            }
 
-                                    {{-- hapus --}}
-                                    <td>
-                                        <form action="/cart-item-delete/{{ $item->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                            @csrf
-                                            <button type="submit" class="fas fa-times"></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            @endif
+            .hari {
+                font-size: 12px
+            }
+        }
 
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-12 mt-md-5 mt-4">
+        .summary .col-2 {
+            padding: 0;
+        }
+
+        .summary .col-10 {
+            padding: 0;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .title b {
+            font-size: 1.5rem;
+        }
+
+        .main {
+            margin: 0;
+            padding: 2vh 0;
+            width: 100%;
+        }
+
+
+
+        .close {
+            margin-left: auto;
+            font-size: 0.7rem;
+        }
+
+        img {
+            width: 3.5rem;
+        }
+
+        .back-to-shop {
+            margin-top: 4.5rem;
+        }
+
+        .keterangan {
+            font-size: 12px;
+        }
+
+        h5 {
+            margin-top: 4vh;
+        }
+
+        hr {
+            margin-top: 1.25rem;
+        }
+
+
+        select {
+            border: 1px solid rgba(0, 0, 0, 0.137);
+            padding: 1.5vh 1vh;
+            margin-bottom: 4vh;
+            outline: none;
+            width: 100%;
+            background-color: rgb(247, 247, 247);
+        }
+
+        input {
+            border: 1px solid rgba(0, 0, 0, 0.137);
+            padding: 1vh;
+            margin-bottom: 4vh;
+            outline: none;
+            width: 100%;
+            background-color: rgb(247, 247, 247);
+        }
+
+        input:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        #code {
+            background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+            background-repeat: no-repeat;
+            background-position-x: 95%;
+            background-position-y: center;
+        }
+    </style>
+
+    <div class="card my-5">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
                     <div class="row">
-                        <div class="col-sm-7 col-5 order-1">
-                            <div class="left-side-button text-end d-flex d-block justify-content-end">
-                                <a href="javascript:void(0)"
-                                    class="text-decoration-underline theme-color d-block text-capitalize">clear
-                                    all items</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-5 col-7">
-                            <div class="left-side-button float-start">
-                                <a href="/training-center" class="btn btn-success fw-bold mb-0 ms-0">
-                                    <i class="fas fa-arrow-left"></i> Belanja Kembali</a>
-                            </div>
+                        <div class="col">
+                            <h4 class="fw-bold m-0 text-md-start text-center">SHOPPING CART</h4>
                         </div>
                     </div>
                 </div>
-
-                <div class="cart-checkout-section">
-                    <div class="row g-4 justify-content-end">
-                        {{-- <div class="col-lg-4 col-sm-6">
-                            <div class="promo-section">
-                                <form class="row g-3">
-                                    <div class="col-7">
-                                        <input type="text" class="form-control" id="number" placeholder="Coupon Code">
-                                    </div>
-                                    <div class="col-5">
-                                        <button class="btn btn-success">Apply Coupon</button>
-                                    </div>
-                                </form>
+                @if ($guest->cart->items->isEmpty())
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-12 text-center">
+                                <span>Cart masih kosong</span>
                             </div>
-                        </div> --}}
-
-                        <div class="col-lg-4">
-                            <div class="cart-box">
-                                <div class="cart-box-details">
-                                    <div class="total-details">
-                                        <div class="top-details">
-                                            <h3>Cart Totals</h3>
-                                            <h6>Sub Total <span>$26.00</span></h6>
-                                            <h6>Tax <span>$5.46</span></h6>
-                                            <h6>Total <span>$31.46</span></h6>
-                                        </div>
-                                            <form action="/checkout">
-                                                <button type="submit" method="GET">Proses Checkout</button>
-                                            </form>
-                                        </div>
+                        </div>
+                    </div>
+                @else
+                    @foreach ($guest->cart->items as $item)
+                        <div class="row border-top border-bottom w-100 d-flex align-items-center">
+                            <div class="row main align-items-center py-3">
+                                <div class="col-md-2 col-12 gambar">
+                                    <a href="{{ route('train.detail', $item->train_id) }}">
+                                        <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}"
+                                            class="blur-up lazyloaded w-100" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">
+                                    <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase"
+                                        href=": {{ route('train.detail', $item->train_id) }}">
+                                        {{ $item->train->nama }}
+                                    </a>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-md-12 col-6 p-0 text-muted keterangan">{{ $item->layout }}</div>
+                                        <div class="col-md-12 col-6 p-0 text-muted keterangan text-md-start text-end">
+                                            {{ $item->checkin }}</div>
                                     </div>
+
+                                </div>
+                                <div class="col-md-2 col-12 hari text-muted">
+                                    <span>{{ $item->lama }} Hari</span>
+                                </div>
+                                <div class="col-md-3 col-6 d-flex align-items-center harga">
+                                    <p class="m-0 text-md-center text-end text-success fw-bold">
+                                        Rp {{ number_format($item->harga, 0, ',', '.') }}
+                                    </p>
+                                </div>
+
+                                <div class="col-md-2 col-6 hapus">
+                                    <form class="m-0 text-end" action="/cart-item-delete/{{ $item->id }}" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger border-0"><i
+                                                class="bi bi-trash3"></i></button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
+                    <a href="/training-center" class="back-to-shop btn btn-success text-white">
+                        <span href="#" class="text-decoration-none text-white ">&leftarrow;</span>
+                        RESERVASI KEMBALI
+                    </a>
+                @endif
             </div>
+
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>RINGKASAN</b></h5>
+                </div>
+                <hr>
+                <div class="col-12 fw-bold mb-3" style="padding-left:0; text-transform:uppercase">List Ruang</div>
+                @foreach ($guest->cart->items as $item)
+                    <div class="row mb-2">
+                        <div class="col-6 keterangan" style="padding-left:0; text-transform:uppercase">
+                            {{ $item->train->nama }}</div>
+                        <div class="col-6 keterangan text-end price"> Rp {{ number_format($item->harga, 0, ',', '.') }}
+                        </div>
+                    </div>
+                @endforeach
+                <div class="row mt-4 " style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col-6 ps-0">TOTAL HARGA</div>
+                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx</div>
+                </div>
+                <form action="/checkout">
+                    <button type="submit" method="GET" class="btn btn-outline-success w-100 mt-2">CHECKOUT</button>
+                </form>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Calculate the total price dynamically
+                        const prices = document.querySelectorAll('.price');
+                        let totalPrice = 0;
+
+                        prices.forEach(priceElement => {
+                            const priceString = priceElement.innerText.replace('Rp ', '').replace('.', '').replace('.',
+                                '');
+                            const price = parseFloat(priceString);
+                            totalPrice += price;
+                        });
+
+                        // Update the total price element
+                        const totalElement = document.getElementById('totalPrice');
+                        totalElement.innerText = 'Rp ' + numberWithCommas(totalPrice.toFixed());
+                    });
+
+                    function numberWithCommas(x) {
+                        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+                </script>
+            </div>
+
+
         </div>
-    </section>
+    </div>
+
 
 @endsection
