@@ -43,7 +43,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/cart', [GuestController::class, 'showcart'])->middleware('guestmustlogin');
     Route::post('/add-to-cart', [GuestController::class, 'addToCart'])->middleware('guestmustlogin');
     Route::post('/cart-item-delete/{id}', [GuestController::class, 'cartItemDelete'])->middleware('guestmustlogin');
+
     Route::get('/checkout', [GuestController::class, 'showcheckout'])->middleware('guestmustlogin');
+    Route::post('/checkout-komplimen/{id}', [GuestController::class, 'checkoutKomplimen'])->middleware('guestmustlogin');
+    Route::post('/checkout-reguler/{id}', [GuestController::class, 'checkoutReguler'])->middleware('guestmustlogin');
+    Route::get('/order', [GuestController::class, 'showorder'])->middleware('guestmustlogin');
 
     Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');
     Route::put('/profile/update/{id}', [GuestController::class, 'updateprofile'])->name('profile.update')->middleware('guestmustlogin');

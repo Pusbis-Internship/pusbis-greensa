@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Guest;
+use App\Models\Order;
 use App\Models\Train;
 use App\Models\CartItem;
+use App\Models\OrderItem;
 use App\Models\LayoutModels;
 use Illuminate\Http\Request;
 use App\Models\TrainFacility;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class GuestController extends Controller
 {
@@ -30,16 +32,6 @@ class GuestController extends Controller
 
     public function showregister()
     {return view('pelanggan.page.register', ['title' => 'Register']);}
-
-    public function showcheckout()
-    {
-        $cart = Cart::find(auth('guest')->id());
-
-        return view('pelanggan.page.checkout', [
-            'title' => 'Checkout',
-            'cart' => $cart,
-        ]);
-    }
 
     public function showhome()
     {
@@ -181,9 +173,38 @@ class GuestController extends Controller
     public function showtrain()
     {
         $cart = Cart::find(auth('guest')->id());
-        $trains = Train::with('layout_models')->get();
         $facilities = TrainFacility::all();
         $currentDate = Carbon::now()->addDay();
+
+        // Get Trains
+        $query = Train::query();
+        $dateIn = Carbon::tomorrow();
+        $dateOut = Carbon::tomorrow();;
+
+        if (Auth::guard('guest')->check()){
+            // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
+            $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                      ->where('checkout', '>=', $dateIn)
+                      ->where('cart_id', '=', auth('guest')->id());
+            })
+            ->orWhere(function ($query) use ($dateOut) {
+                $query->where('checkin', '<=', $dateOut)
+                      ->where('checkout', '>=', $dateOut)
+                      ->where('cart_id', '=', auth('guest')->id());
+            })
+            ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                $query->where('checkin', '>=', $dateIn)
+                      ->where('checkout', '<=', $dateOut)
+                      ->where('cart_id', '=', auth('guest')->id());
+            })
+            ->pluck('train_id')
+            ->toArray();
+
+            $query->whereNotIn('id', $bookedRooms);
+        }
+
+        $trains = $query->get();
 
         return view('pelanggan.page.train', [
             'title'        => 'Training Center',
@@ -234,9 +255,9 @@ class GuestController extends Controller
             })
             ->pluck('train_id')
             ->toArray();
-        }
 
-        $query->whereNotIn('id', $bookedRooms);
+            $query->whereNotIn('id', $bookedRooms);
+        }
 
         $trains = $query->get();
         $facilities = TrainFacility::all();
@@ -327,4 +348,78 @@ class GuestController extends Controller
 
         return redirect('/');
     }
+
+    public function showorder()
+    {
+        return view('pelanggan.page.order', [
+            'title' => 'Order',
+        ]);
+    }
+
+    public function showcheckout()
+    {
+        $cart = Cart::find(auth('guest')->id());
+
+        return view('pelanggan.page.checkout', [
+            'title' => 'Checkout',
+            'cart' => $cart,
+        ]);
+    }
+
+    public function checkoutKomplimen($id)
+    {
+        $cart = Cart::find($id);
+
+        $order = Order::create([
+            'guest_id'  => $cart->guest->id,
+            'status'    => 'Pending',
+            'surat'     => 'Super Semar',
+        ]);
+
+        foreach ($cart->items as $item) {
+            OrderItem::create ([
+                'order_id'      => $order->id,
+                'train_id'      => $item->train_id,
+                'layout'        => $item->layout,
+                'checkin'       => $item->checkin,
+                'checkout'      => $item->checkout,
+                'lama'          => $item->lama,
+                'kapasitas'     => $item->kapasitas,
+                'harga'         => $item->harga,
+                'nama_kegiatan' => $item->nama_kegiatan,
+                'special'       => $item->special,
+            ]);
+        }
+
+        return redirect('/order');
+    }
+
+    public function checkoutReguler($id)
+    {
+        $cart = Cart::find($id);
+
+        $order = Order::create([
+            'guest_id'          => $cart->guest->id,
+            'status'            => 'Pending',
+            'metode_pembayaran' => 'BCA'
+        ]);
+
+        foreach ($cart->items as $item) {
+            OrderItem::create ([
+                'order_id'      => $order->id,
+                'train_id'      => $item->train_id,
+                'layout'        => $item->layout,
+                'checkin'       => $item->checkin,
+                'checkout'      => $item->checkout,
+                'lama'          => $item->lama,
+                'kapasitas'     => $item->kapasitas,
+                'harga'         => $item->harga,
+                'nama_kegiatan' => $item->nama_kegiatan,
+                'special'       => $item->special,
+            ]);
+        }
+
+        return redirect('/order');
+    }
+
 }

@@ -1,4 +1,4 @@
-<body onload="showForm('komplimen')">
+<body>
 
 <h2>Choose Form Type</h2>
 <form>
@@ -8,22 +8,20 @@
     <label for="reguler">Reguler</label><br><br>
 </form>
 
-<div id="form1" style="display:none;">
+<div id="form1" style="display:block;">
     <h2>Form Komplimen</h2>
-    <form action="/submit_form1" method="post" enctype="multipart/form-data">
-        <label for="nama_kegiatan">Nama Kegiatan:</label><br>
-        <input type="text" id="nama_kegiatan" name="nama_kegiatan" required><br>
-        <label for="surat_komplimen">Surat Komplimen:</label><br>
-        <input type="file" id="surat_komplimen" name="surat_komplimen" required><br><br>
+    <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"> @csrf
+        <label>Surat Komplimen:</label><br>
+        <input type="file" name="surat_komplimen"><br><br>
         <input type="submit" value="Checkout">
     </form>
 </div>
 
 <div id="form2" style="display:none;">
     <h2>Form Reguler</h2>
-    <form action="/submit_form2" method="post">
-        <label for="pilih_pembayaran">Pilih Pembayaran:</label><br>
-        <select id="pilih_pembayaran" name="pilih_pembayaran">
+    <form action="/checkout-reguler/{{ $cart->id }}" method="POST"> @csrf
+        <label>Pilih Pembayaran:</label><br>
+        <select name="pilih_pembayaran">
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -37,7 +35,9 @@
     @foreach ($cart->items as $item)
         <tr>
             <td>{{ $item->train->nama }}</td>
-            <td>:</td>
+            <td>   :   </td>
+            <td>{{ $item->layout }}</td>
+            <td>   :   </td>
             <td>{{ $item->checkin }}</td>
         </tr>
     @endforeach
