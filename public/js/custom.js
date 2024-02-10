@@ -1,12 +1,32 @@
-const navbar = document.getElementsByTagName("nav")[0];
-window.addEventListener("scroll", function () {
-    console.log(window.scrollY);
-    if (window.scrollY > 1) {
-        navbar.classList.replace("bg-transparent", "nav-color");
-    } else if (this.window.scrollY <= 1) {
-        navbar.classList.replace("nav-color", "bg-transparent");
-    }
+// NAVBAR
+document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.getElementsByTagName("nav")[0];
+    const navbarToggler = document.querySelector('.navbar-toggler');
+
+    // Scroll event listener
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 1) {
+            navbar.classList.replace("bg-transparent", "nav-color");
+        } else {
+            navbar.classList.replace("nav-color", "bg-transparent");
+        }
+    });
+
+    // Toggle button click event
+    navbarToggler.addEventListener('click', function () {
+        if (navbar.classList.contains('bg-transparent')) {
+            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('nav-color');
+        } else {
+            navbar.classList.remove('nav-color');
+            navbar.classList.add('bg-transparent');
+        }
+    });
 });
+
+
+
+// AKHIR NAVBAR
 
 // MODAL set Lama Hari
 window.addEventListener('DOMContentLoaded', function () {
