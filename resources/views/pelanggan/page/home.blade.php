@@ -149,8 +149,8 @@
                 </div>
             </div>
             <hr>
-            {{-- Catalog TC --}}
 
+            {{-- Catalog TC --}}
             <div class="row tc-catalog-main d-flex justify-content-center">
                 <div class="col-12 text-center mb-4">
                     <h2 class="fw-bolder">Training Center</h2>
@@ -205,6 +205,7 @@
                     </div>
                 </div>
             </div>
+            {{-- End Catalog TC --}}
 
     </section>
     {{-- Akhir TC Desc --}}

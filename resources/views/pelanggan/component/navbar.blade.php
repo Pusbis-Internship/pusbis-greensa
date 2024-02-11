@@ -38,15 +38,20 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('assets/images/Logo.png') }}" alt="" width="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler h-50" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse ms-md-4 ms-0" id="navbarSupportedContent">
-            <ul class="navbar-nav gap-2 me-4">
+
+        <div class="d-flex align-items-center">    
+            <a class="navbar-brand m-0" href="#">
+                <img src="{{ asset('assets/images/Logo.png') }}" alt="" width="50">
+            </a>
+        </div>
+        
+
+        <div class="collapse navbar-collapse ms-lg-4 ms-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-0 gap-2 me-4">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
                         href="/">Home</a>
@@ -57,6 +62,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'about' ? 'active' : '' }}" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::path() == 'package' ? 'active' : '' }}" href="/package">Package</a>
                 </li>
             </ul>
         </div>
@@ -119,7 +127,7 @@
                 </form> --}}
         @endauth
     </div>
-    
+
 </nav>
 
 {{-- <style>

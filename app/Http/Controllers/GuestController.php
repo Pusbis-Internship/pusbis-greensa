@@ -26,6 +26,9 @@ class GuestController extends Controller
 
     public function showabout()
     {return view('pelanggan.page.about', ['title' => 'About']);}
+    
+    public function showpackage()
+    {return view('pelanggan.page.package', ['title' => 'package']);}
 
     public function showlogin()
     {return view('pelanggan.page.login', ['title' => 'Login']);}

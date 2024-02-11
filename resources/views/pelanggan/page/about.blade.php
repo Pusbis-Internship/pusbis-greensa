@@ -176,7 +176,7 @@
 
     <div class="container content-contacts mb-5">
         <div class="heading mb-5 text-center ">
-            <h2>About us</h2>
+            <h2>Contact Us</h2>
         </div>
         <div class="row">
 

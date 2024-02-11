@@ -78,7 +78,7 @@
     {{-- Akhir Modal --}}
 
     {{-- Loader --}}
-    @include('pelanggan.component.loader')
+    {{-- @include('pelanggan.component.loader') --}}
     {{-- Akhir Loader --}}
 
     {{-- Script Boostrap 5.2 --}}
