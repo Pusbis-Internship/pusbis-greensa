@@ -7,7 +7,6 @@ use App\Models\Guest;
 use App\Models\Order;
 use App\Models\Train;
 use App\Models\CartItem;
-use App\Models\OrderItem;
 use App\Models\LayoutModels;
 use Illuminate\Http\Request;
 use App\Models\TrainFacility;
@@ -25,7 +24,13 @@ class GuestController extends Controller
     {return view('pelanggan.page.hotel', ['title' => 'Hotel']);}
 
     public function showabout()
-    {return view('pelanggan.page.about', ['title' => 'About']);}
+    {
+        // $cartItemCount = $cart->items->count();
+        
+        return view('pelanggan.page.about', [
+            'title' => 'About'
+        ]);
+    }
     
     public function showpackage()
     {return view('pelanggan.page.package', ['title' => 'package']);}
@@ -39,10 +44,13 @@ class GuestController extends Controller
     public function showhome()
     {
         $currentDate = Carbon::now()->addDay();
+        // $cart = Cart::where('guest_id', auth('guest')->id())->first();
+        // $cartItemCount = $cart->items->count();
 
         return view('pelanggan.page.home', [
-            'title' => 'Home',
-            'currentDate'  => $currentDate,
+            'title'         => 'Home',  
+            'currentDate'   => $currentDate,
+            // 'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -376,15 +384,9 @@ class GuestController extends Controller
     {
         $cart = Cart::find($id);
 
-        $order = Order::create([
-            'guest_id'  => $cart->guest->id,
-            'status'    => 'Pending',
-            'surat'     => 'Super Semar',
-        ]);
-
         foreach ($cart->items as $item) {
-            OrderItem::create ([
-                'order_id'      => $order->id,
+            Order::create ([
+                'guest_id'      => $cart->guest->id,
                 'train_id'      => $item->train_id,
                 'layout'        => $item->layout,
                 'checkin'       => $item->checkin,
@@ -394,6 +396,8 @@ class GuestController extends Controller
                 'harga'         => $item->harga,
                 'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
+                'status'        => 'Pending',
+                'surat'         => 'SuperSemar.pdf',
             ]);
         }
 
@@ -406,15 +410,9 @@ class GuestController extends Controller
     {
         $cart = Cart::find($id);
 
-        $order = Order::create([
-            'guest_id'          => $cart->guest->id,
-            'status'            => 'Pending',
-            'metode_pembayaran' => 'BCA'
-        ]);
-
         foreach ($cart->items as $item) {
-            OrderItem::create ([
-                'order_id'      => $order->id,
+            Order::create ([
+                'guest_id'      => $cart->guest->id,
                 'train_id'      => $item->train_id,
                 'layout'        => $item->layout,
                 'checkin'       => $item->checkin,
@@ -424,8 +422,12 @@ class GuestController extends Controller
                 'harga'         => $item->harga,
                 'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
+                'status'        => 'Pending',
+                'surat'         => 'SuperSemar.pdf',
             ]);
         }
+
+        CartItem::where('cart_id', $id)->delete();
 
         return redirect('/order');
     }

@@ -99,7 +99,9 @@
                             <a href="/cart" class="nav-link icon-cart">
                                 <i class="bi bi-cart icon-nav fs-3 text-white m-auto "></i>
                             </a>
-                            <div class="circle badge bg-danger rounded-pill">1</div>
+                            {{-- @if ($cartItemCount != 0)
+                                <div class="circle badge bg-danger rounded-pill">{{ $cartItemCount }}</div>
+                            @endif --}}
                         </div>
                     </li>
 

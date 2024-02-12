@@ -15,8 +15,8 @@ class Order extends Model
         return $this->belongsTo(Guest::class);
     }
 
-    public function items()
+    public function train()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(Train::class);
     }
 }

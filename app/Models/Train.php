@@ -24,4 +24,9 @@ class Train extends Model
     {
         return $this->hasMany(CartItem::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

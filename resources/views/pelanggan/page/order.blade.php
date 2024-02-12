@@ -237,18 +237,18 @@
                     <th>Checkin</th>
                     <th>Item</th>
                     <th>Status</th>
+                    <th>Invoice</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $index => $order)
-                    @foreach ($order->items as $item)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $item->checkin }}</td>
-                            <td>{{ $item->train->nama }}</td>
-                            <td>{{ $order->status }}</td>
-                        </tr>
-                    @endforeach
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $order->checkin }}</td>
+                        <td>{{ $order->train->nama }}</td>
+                        <td>{{ $order->status }}</td>
+                        <td><a href="">Get</a></td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
