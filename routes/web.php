@@ -63,6 +63,13 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::post('/guestlogin', [GuestController::class, 'login']);
     Route::post('/guestregister', [GuestController::class, 'register']);
     Route::post('/guestlogout', [GuestController::class, 'logout']);
+
+
+    Route::get('/forgot-password', [GuestController::class, 'showforgotpw']);
+    Route::post('/forgot-password', [GuestController::class, 'forgetpassword'])->name('forget.password.post');
+    Route::get('/Reset-password/{token}', [GuestController::class, 'showResetPW'])->name('reset.password');
+    Route::post('/Reset-password', [GuestController::class, 'resetpassword'])->name('reset.password.post');
+    
 // Guest
 
 // Email Verification

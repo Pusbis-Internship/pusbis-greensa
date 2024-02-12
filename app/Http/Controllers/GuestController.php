@@ -14,32 +14,130 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Db;
+use Illuminate\Support\Str;
 
 class GuestController extends Controller
 {
     public function showchangepw()
-    {return view('pelanggan.page.changepw', ['title' => 'change password']);}
+    {
+        return view('pelanggan.page.changepw', ['title' => 'change password']);
+    }
 
     public function showhotel()
-    {return view('pelanggan.page.hotel', ['title' => 'Hotel']);}
+    {
+        return view('pelanggan.page.hotel', ['title' => 'Hotel']);
+    }
 
     public function showabout()
     {
         // $cartItemCount = $cart->items->count();
-        
+
         return view('pelanggan.page.about', [
             'title' => 'About'
         ]);
     }
-    
+
     public function showpackage()
-    {return view('pelanggan.page.package', ['title' => 'package']);}
+    {
+        return view('pelanggan.page.package', ['title' => 'package']);
+    }
 
     public function showlogin()
-    {return view('pelanggan.page.login', ['title' => 'Login']);}
+    {
+        return view('pelanggan.page.login', ['title' => 'Login']);
+    }
 
     public function showregister()
-    {return view('pelanggan.page.register', ['title' => 'Register']);}
+    {
+        return view('pelanggan.page.register', ['title' => 'Register']);
+    }
+
+    public function showforgotpw()
+    {
+
+        return view('pelanggan.page.forgotpw', ['title' => 'forgot password']);
+    }
+
+    public function showResetPW($token)
+    {
+        // Anda dapat menambahkan logika verifikasi tautan reset password di sini
+        $title = 'Reset Password'; // Judul untuk halaman reset password
+        return view('pelanggan.page.resetpassword', compact('token', 'title'));
+    }
+
+
+
+    public function forgetpassword(Request $request)
+    {
+        // Lakukan validasi terlebih dahulu
+        $request->validate(['email' => 'required|email']);
+
+        // Generate token baru
+        $token = Str::random(64);
+
+        // Cek apakah ada token lama untuk pengguna dengan email yang sama
+        $existingToken = DB::table('password_reset_tokens')
+            ->where('email', $request->email)
+            ->first();
+
+        // Jika ada, perbarui token yang ada dengan token baru
+        if ($existingToken) {
+            DB::table('password_reset_tokens')
+                ->where('email', $request->email)
+                ->update([
+                    'token' => $token,
+                    'created_at' => Carbon::now()
+                ]);
+        } else {
+            // Jika tidak ada, tambahkan token baru ke database
+            DB::table('password_reset_tokens')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+        }
+
+        // Kirim email dengan token reset password
+        Mail::send('pelanggan.auth.resetpassword', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject("Reset Password");
+        });
+
+        // Setelah email terkirim, redirect kembali ke halaman forgot password dengan pesan sukses
+        return redirect('/forgot-password')->with('status', 'send email success');
+    }
+
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:1|confirmed', // tambahkan aturan 'confirmed' untuk memastikan password cocok dengan konfirmasi password
+            'token' => 'required'
+        ]);
+
+        $updatePassword = Db::table('password_reset_tokens')
+            ->where('token', $request->token)
+            ->first();
+
+        if (!$updatePassword || Carbon::parse($updatePassword->created_at)->addMinutes(1)->isPast()) {
+            // Redirect kembali ke halaman reset password dengan pesan error
+            return redirect("/forgot-password")->with('error', 'Token kadaluarsa, mohon kirim ulang email anda');
+        }
+
+        Db::table('guests')
+            ->where('email', $updatePassword->email)
+            ->update(['password' => Hash::make($request->password)]);
+
+
+        Db::table('password_reset_tokens')
+            ->where('email', $updatePassword->email)
+            ->delete();
+
+        // Umpan balik kepada pengguna
+        return redirect('/login')->with('status', 'Password successfully reset!');
+    }
 
     public function showhome()
     {
@@ -48,7 +146,7 @@ class GuestController extends Controller
         // $cartItemCount = $cart->items->count();
 
         return view('pelanggan.page.home', [
-            'title'         => 'Home',  
+            'title'         => 'Home',
             'currentDate'   => $currentDate,
             // 'cartItemCount' => $cartItemCount,
         ]);
@@ -62,7 +160,8 @@ class GuestController extends Controller
         // Tampilkan view untuk form edit profil dan teruskan data pengguna
         return view('pelanggan.page.profile', [
             'title' => 'Home',
-            'guest' => $guest]);
+            'guest' => $guest
+        ]);
     }
 
     public function updateprofile(Request $request, $id)
@@ -78,14 +177,14 @@ class GuestController extends Controller
             'negara' => 'required|string|max:255',
             'tanggallahir' => 'required|date|max:255',
         ]);
-        
+
         // Temukan data pengguna berdasarkan ID yang diberikan
         $guest = Guest::find($id);
-        
+
         if (!$guest) {
             return redirect('/profile')->with('error', 'Data pengguna tidak ditemukan');
         }
-        
+
         // Simpan data yang diperbarui ke dalam database
         $guest->name = $request->input('name');
         $guest->nik = $request->input('nik');
@@ -97,7 +196,7 @@ class GuestController extends Controller
         $guest->tanggallahir = $request->input('tanggallahir');
         // Simpan kolom-kolom lainnya sesuai kebutuhan
         $guest->save();
-        
+
         return redirect('/profile')->with('success', 'Data pengguna berhasil diperbarui');
     }
 
@@ -156,7 +255,7 @@ class GuestController extends Controller
         $checkin = $request->checkin;
         $lamaHari = $request->lamaHari;
         $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
-        
+
         CartItem::create([
             'cart_id'       => $request->cart_id,
             'train_id'      => $request->train_id,
@@ -192,25 +291,25 @@ class GuestController extends Controller
         $dateIn = Carbon::tomorrow();
         $dateOut = Carbon::tomorrow();;
 
-        if (Auth::guard('guest')->check()){
+        if (Auth::guard('guest')->check()) {
             // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
             $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
-                      ->where('checkout', '>=', $dateIn)
-                      ->where('cart_id', '=', auth('guest')->id());
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('cart_id', '=', auth('guest')->id());
             })
-            ->orWhere(function ($query) use ($dateOut) {
-                $query->where('checkin', '<=', $dateOut)
-                      ->where('checkout', '>=', $dateOut)
-                      ->where('cart_id', '=', auth('guest')->id());
-            })
-            ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                $query->where('checkin', '>=', $dateIn)
-                      ->where('checkout', '<=', $dateOut)
-                      ->where('cart_id', '=', auth('guest')->id());
-            })
-            ->pluck('train_id')
-            ->toArray();
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->pluck('train_id')
+                ->toArray();
 
             $query->whereNotIn('id', $bookedRooms);
         }
@@ -247,25 +346,25 @@ class GuestController extends Controller
             $query->where('kap_teater', '>', $peserta);
         }
 
-        if (Auth::guard('guest')->check()){
+        if (Auth::guard('guest')->check()) {
             // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
             $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
-                      ->where('checkout', '>=', $dateIn)
-                      ->where('cart_id', '=', auth('guest')->id());
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('cart_id', '=', auth('guest')->id());
             })
-            ->orWhere(function ($query) use ($dateOut) {
-                $query->where('checkin', '<=', $dateOut)
-                      ->where('checkout', '>=', $dateOut)
-                      ->where('cart_id', '=', auth('guest')->id());
-            })
-            ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                $query->where('checkin', '>=', $dateIn)
-                      ->where('checkout', '<=', $dateOut)
-                      ->where('cart_id', '=', auth('guest')->id());
-            })
-            ->pluck('train_id')
-            ->toArray();
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->pluck('train_id')
+                ->toArray();
 
             $query->whereNotIn('id', $bookedRooms);
         }
@@ -385,7 +484,7 @@ class GuestController extends Controller
         $cart = Cart::find($id);
 
         foreach ($cart->items as $item) {
-            Order::create ([
+            Order::create([
                 'guest_id'      => $cart->guest->id,
                 'train_id'      => $item->train_id,
                 'layout'        => $item->layout,
@@ -411,7 +510,7 @@ class GuestController extends Controller
         $cart = Cart::find($id);
 
         foreach ($cart->items as $item) {
-            Order::create ([
+            Order::create([
                 'guest_id'      => $cart->guest->id,
                 'train_id'      => $item->train_id,
                 'layout'        => $item->layout,
@@ -431,5 +530,4 @@ class GuestController extends Controller
 
         return redirect('/order');
     }
-
 }
