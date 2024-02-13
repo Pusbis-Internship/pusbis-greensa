@@ -61,7 +61,7 @@
         @media(max-width:767px) {
             .cart {
                 padding: 4vh;
-                
+
             }
         }
 
@@ -156,7 +156,7 @@
                 </div>
                 {{-- @if ($guest->cart->items->isEmpty()) --}}
 
-                    {{-- <div class="row border-top border-bottom">
+                {{-- <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
                             <div class="col-12 text-center">
                                 <span>Tidak ada pesanan</span>
@@ -165,66 +165,96 @@
                     </div> --}}
 
                 {{-- @else --}}
-                    {{-- @foreach ($guest->cart->items as $item) --}}
-                        <div class="row header-table border-top border-bottom w-100 d-flex align-items-center d-none d-md-flex">
-                            <div class="row main align-items-center py-3">
-                                <div class="col-md-2 col-12 gambar">
-                                    <p class="fw-bold m-0 text-center">GAMBAR</p>
-                                </div>
-                                <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">
-                                    <p class="fw-bold m-0 text-center">RUANG</p>
-                                </div>
+                <div class="row header-table border-top border-bottom w-100 d-flex align-items-center d-none d-md-flex">
+                    <div class="row main align-items-center py-3">
+                        <div class="col-md-2 col-12 gambar">
+                            <p class="fw-bold m-0 text-center">GAMBAR</p>
+                        </div>
+                        <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">
+                            <p class="fw-bold m-0 text-center">RUANG</p>
+                        </div>
 
-                                <div class="col-md-4 col-6  harga text-md-center text-start">
-                                    <p class="fw-bold m-0 text-center">HARGA</p>
-                                </div>
+                        <div class="col-md-3 col-6  harga text-md-center text-start">
+                            <p class="fw-bold m-0 text-center">HARGA</p>
+                        </div>
 
-                                <div class="col-md-3 col-6 text-end">
-                                    <p class="fw-bold m-0 text-center">STATUS</p>
-                                </div>
+                        <div class="col-md-2 col-6 text-end">
+                            <p class="fw-bold m-0 text-center">STATUS</p>
+                        </div>
+                        <div class="col-md-2 col-6 text-end">
+                            <p class="fw-bold m-0 text-center">INVOICE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom w-100 d-flex align-items-center">
+                    {{-- @foreach ($orders as $index => $order) --}}
+                    <div class="row main align-items-center py-3">
+                        <div class="col-md-2 col-12 gambar">
+                            <a href="#">
+                                <img src="{{ asset('assets/images/tcmain.jpg') }}" class="blur-up lazyloaded w-100"
+                                    alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
+                            <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase"
+                                href="#">
+                                Convention Hall
+                            </a>
+                            <div class="row d-flex align-items-center mb-md-0 mb-2">
+                                <div class="col-12 p-0 text-muted keterangan">Classroom</div>
+                                <div class="col-12 p-0 text-muted keterangan ">25-04-2024</div>
+                                <div class="col-12 p-0 text-muted keterangan ">2 Hari</div>
                             </div>
                         </div>
-                        <div class="row border-top border-bottom w-100 d-flex align-items-center">
-                            <div class="row main align-items-center py-3">
-                                <div class="col-md-2 col-12 gambar">
-                                    <a href="#">
-                                        <img src="{{ asset('assets/images/tcmain.jpg') }}"
-                                            class="blur-up lazyloaded w-100" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
-                                    <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase"
-                                        href="#">
-                                        Convention Hall
-                                    </a>
-                                    <div class="row d-flex align-items-center mb-md-0 mb-2">
-                                        <div class="col-12 p-0 text-muted keterangan">Classroom</div>
-                                        <div class="col-12 p-0 text-muted keterangan ">25-04-2024</div>
-                                        <div class="col-12 p-0 text-muted keterangan ">2 Hari</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 col-6  harga text-md-center text-start">
-                                    <p class="m-0 text-success fw-bold">
-                                        Rp 000.000
-                                    </p>
-                                </div>
-
-                                <div class="col-md-3 col-6 text-muted text-md-center text-end">
-                                    <span>Pending</span>
-                                </div>
+                        <div class="col-md-3 col-6  harga text-md-center text-start">
+                            <p class="m-0 text-success fw-bold">
+                                Rp 000.000
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-6 text-muted text-md-center text-end">
+                            <span>Success</span>
+                        </div>
+                        <div class="col-md-2 col-12 text-muted text-md-center text-end">
+                            <a href="#">Get</a>
+                        </div>
+                    </div>
+                    <div class="row main align-items-center py-3">
+                        <div class="col-md-2 col-12 gambar">
+                            <a href="#">
+                                <img src="{{ asset('assets/images/tcmain.jpg') }}" class="blur-up lazyloaded w-100"
+                                    alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
+                            <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase"
+                                href="#">
+                                Convention Hall
+                            </a>
+                            <div class="row d-flex align-items-center mb-md-0 mb-2">
+                                <div class="col-12 p-0 text-muted keterangan">Classroom</div>
+                                <div class="col-12 p-0 text-muted keterangan ">25-04-2024</div>
+                                <div class="col-12 p-0 text-muted keterangan ">2 Hari</div>
                             </div>
                         </div>
+                        <div class="col-md-3 col-6  harga text-md-center text-start">
+                            <p class="m-0 text-success fw-bold">
+                                Rp 000.000
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-6 text-muted text-md-center text-end">
+                            <span>Pending</span>
+                        </div>
+                        <div class="col-md-2 col-12 text-muted text-md-center text-end">
+                            <a>None</a>
+                        </div>
+                    </div>
                     {{-- @endforeach --}}
-                    <a href="/training-center" class="back-to-shop btn btn-success text-white">
-                        <span href="#" class="text-decoration-none text-white ">&leftarrow;</span>
-                        RESERVASI KEMBALI
-                    </a>
-                {{-- @endif --}}
+                </div>
+                <a href="/training-center" class="back-to-shop btn btn-success text-white">
+                    <span href="#" class="text-decoration-none text-white ">&leftarrow;</span>
+                    RESERVASI KEMBALI
+                </a>
             </div>
-
-
         </div>
     </div>
 

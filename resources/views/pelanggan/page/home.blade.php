@@ -14,8 +14,8 @@
                             </h6>
                             <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Berkegiatan Dan Istirahat Dengan Nyaman.
                             </h1>
-                            <a href="" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">RESERVASI</a>
+                            <a href="/training-center" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
+                            <a href="/package" class="btn btn-light py-md-3 px-md-5 animated slideInRight">PACKAGE</a>
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                             </h6>
                             <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Berkegiatan Dan Istirahat Dengan Nyaman.
                             </h1>
-                            <a href="" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">RESERVASI</a>
+                            <a href="/training-center" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
+                            <a href="/package" class="btn btn-light py-md-3 px-md-5 animated slideInRight">PACKAGE</a>
                         </div>
                     </div>
                 </div>
@@ -40,8 +40,8 @@
                             </h6>
                             <h1 class="display-5 text-white mb-4 animated slideInDown fw-bold">Berkegiatan Dan Istirahat Dengan Nyaman.
                             </h1>
-                            <a href="" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">RESERVASI</a>
+                            <a href="/training-center" class="btn btn-success py-md-3 px-md-5 me-3 animated slideInLeft">OUR ROOMS</a>
+                            <a href="/package" class="btn btn-light py-md-3 px-md-5 animated slideInRight">PACKAGE</a>
                         </div>
                     </div>
                 </div>

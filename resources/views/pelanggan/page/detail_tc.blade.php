@@ -74,22 +74,22 @@
 
                 <div class="col-md-6">
                     <div class="row mb-1">
-                        <a href="{{ asset('assets/images/convention-hall.jpg') }}" data-toggle="lightbox"
+                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox"
                             data-gallery="example-gallery" class="col-12 column-img img-fluid">
                             <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
                         </a>
                     </div>
 
                     <div class="row g-1">
-                        <a href="{{ asset('assets/images/5.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
                             <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
                         </a>
-                        <a href="{{ asset('assets/images/6.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
                             <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
                         </a>
-                        <a href="{{ asset('assets/images/11.jpg') }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
                             <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
                         </a>

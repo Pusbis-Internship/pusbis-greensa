@@ -3,6 +3,6 @@
 @section('content')
 <!-- content -->
 <div class="container">
-    <h1>ini Order Training</h1>
+    <h1>BLANK</h1>
 </div>
 @endsection
