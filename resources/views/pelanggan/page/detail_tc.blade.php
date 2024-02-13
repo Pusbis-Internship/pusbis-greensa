@@ -177,7 +177,7 @@
 
                     @guest('guest')
                     <div class="d-flex">
-                        <button class="btn btn-outline-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal" data-bs-target="#modalBookNotLogin">
+                        <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal" data-bs-target="#modalBookNotLogin">
                             <i class="bi-cart-fill me-1"></i>
                             Reservasi
                         </button>
@@ -186,7 +186,7 @@
 
                     @auth('guest')
                     <div class="d-flex">
-                        <button class="btn btn-outline-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal" data-bs-target="#modalBookLogin">
+                        <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal" data-bs-target="#modalBookLogin">
                             <i class="bi-cart-fill me-1"></i>
                             Reservasi
                         </button>

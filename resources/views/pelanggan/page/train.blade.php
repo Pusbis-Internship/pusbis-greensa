@@ -293,7 +293,7 @@
                                                         <div class="row g-5">
                                                             <div class="col-lg-12">
                                                                 <div class="wow fadeInUp" data-wow-delay="0.2s">
-                                                                    <form action="/add-to-cart" method="POST">
+                                                                    <form method="POST">
                                                                     @csrf
                                                                     @auth('guest')
                                                                     <input type="hidden" name="cart_id" value="{{ $cart->id }}">
@@ -368,11 +368,12 @@
                                                                             <div class="col-6">
                                                                                 {{-- <button class="btn btn-success w-100 py-3"
                                                                                     type="submit">Reservasi Sekarang</button> --}}
-                                                                                <a href="" class="btn btn-success w-100 py-3">Reservasi Sekarang</a>
+                                                                                <button type="submit" name="reservasi" formaction="/reservasi" class="btn btn-success w-100 py-3">
+                                                                                    Reservasi Sekarang</button>
                                                                             </div>
 
                                                                             <div class="col-6">
-                                                                                <button type="submit" class="btn btn-outline-success w-100 py-3">
+                                                                                <button type="submit" name="cart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3">
                                                                                     Tambah Keranjang</button>
                                                                             </div>
                                                                         </div>
