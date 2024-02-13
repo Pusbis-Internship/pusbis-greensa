@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Db;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isTrue;
+
 class GuestController extends Controller
 {
 
@@ -398,6 +400,80 @@ class GuestController extends Controller
         return redirect('/training-center')->withErrors(['successAddToCart' => 'Berhasil menambahkan ke cart']);
     }
 
+    public function reservasiLangsung(Request $request)
+    {
+        $fromCart = False;
+        $train = Train::find($request->train_id);
+
+        $checkin = $request->checkin;
+        $lamaHari = $request->lamaHari;
+        $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
+
+        $item = [
+            'guest_id'      => auth('guest')->id(),
+            'train_id'      => $request->train_id,
+            'layout'        => $request->layout,
+            'checkin'       => $request->checkin,
+            'checkout'      => $checkout,
+            'lama'          => $request->lamaHari,
+            'kapasitas'     => $request->kapasitas,
+            'harga'         => $request->harga,
+            'nama_kegiatan' => $request->namaKegiatan,
+            'special'       => $request->special,
+        ];
+
+        return view('pelanggan.page.checkout', [
+            'title'     => 'Checkout',
+            'item'      => $item,
+            'train'     => $train,
+            'fromCart'  => $fromCart,
+        ]);
+    }
+
+    public function checkoutKomplimenLangsung(Request $request)
+    {
+        $item = json_decode($request->input('item'), true);
+
+        Order::create([
+            'guest_id'      => $item['guest_id'],
+            'train_id'      => $item['train_id'],
+            'layout'        => $item['layout'],
+            'checkin'       => $item['checkin'],
+            'checkout'      => $item['checkout'],
+            'lama'          => $item['lama'],
+            'kapasitas'     => $item['kapasitas'],
+            'harga'         => $item['harga'],
+            'nama_kegiatan' => $item['nama_kegiatan'],
+            'special'       => $item['special'],
+            'status'        => 'Pending',
+            'surat'         => 'SuperSemar.pdf',
+        ]);
+
+        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
+    }
+
+    public function checkoutRegulerLangsung(Request $request)
+    {
+        $item = json_decode($request->input('item'), true);
+
+        Order::create([
+            'guest_id'      => $item['guest_id'],
+            'train_id'      => $item['train_id'],
+            'layout'        => $item['layout'],
+            'checkin'       => $item['checkin'],
+            'checkout'      => $item['checkout'],
+            'lama'          => $item['lama'],
+            'kapasitas'     => $item['kapasitas'],
+            'harga'         => $item['harga'],
+            'nama_kegiatan' => $item['nama_kegiatan'],
+            'special'       => $item['special'],
+            'status'        => 'Pending',
+            'surat'         => 'SuperSemar.pdf',
+        ]);
+
+        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
+    }
+
     public function cartItemDelete($id)
     {
         $item = CartItem::findOrFail($id);
@@ -411,6 +487,18 @@ class GuestController extends Controller
 
     //////////////////////////////////////////  C H E C K O U T   ///////////////////////////////////////////////
 
+    public function showcheckout()
+    {
+        $cart = Cart::find(auth('guest')->id());
+        $fromCart = True;
+
+        return view('pelanggan.page.checkout', [
+            'title'     => 'Checkout',
+            'cart'      => $cart,
+            'fromCart'  => $fromCart,
+        ]);
+    }
+
     public function showorder()
     {
         $orders = Order::where('guest_id', auth('guest')->id())->get();
@@ -418,16 +506,6 @@ class GuestController extends Controller
         return view('pelanggan.page.order', [
             'title' => 'Order',
             'orders' => $orders,
-        ]);
-    }
-
-    public function showcheckout()
-    {
-        $cart = Cart::find(auth('guest')->id());
-
-        return view('pelanggan.page.checkout', [
-            'title' => 'Checkout',
-            'cart' => $cart,
         ]);
     }
 

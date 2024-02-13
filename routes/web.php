@@ -43,11 +43,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
     Route::get('/cart', [GuestController::class, 'showcart'])->middleware('guestmustlogin');
     Route::post('/add-to-cart', [GuestController::class, 'addToCart'])->middleware('guestmustlogin');
+    Route::post('/reservasi', [GuestController::class, 'reservasiLangsung'])->middleware('guestmustlogin');
     Route::post('/cart-item-delete/{id}', [GuestController::class, 'cartItemDelete'])->middleware('guestmustlogin');
 
-    Route::get('/checkout', [GuestController::class, 'showcheckout'])->middleware('guestmustlogin');
+    Route::post('/checkout', [GuestController::class, 'showcheckout'])->middleware('guestmustlogin');
     Route::post('/checkout-komplimen/{id}', [GuestController::class, 'checkoutKomplimen'])->middleware('guestmustlogin');
     Route::post('/checkout-reguler/{id}', [GuestController::class, 'checkoutReguler'])->middleware('guestmustlogin');
+    Route::post('/checkout-komplimen-langsung', [GuestController::class, 'checkoutKomplimenLangsung'])->middleware('guestmustlogin');
+    Route::post('/checkout-reguler-langsung', [GuestController::class, 'checkoutRegulerLangsung'])->middleware('guestmustlogin');
     Route::get('/order', [GuestController::class, 'showorder'])->middleware('guestmustlogin');
 
     Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');

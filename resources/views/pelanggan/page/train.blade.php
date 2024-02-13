@@ -366,16 +366,15 @@
                                                                             </div>
 
                                                                             <div class="col-6">
-                                                                                {{-- <button class="btn btn-success w-100 py-3"
-                                                                                    type="submit">Reservasi Sekarang</button> --}}
+                                                                                <button type="submit" name="cart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3">
+                                                                                    Tambah Keranjang</button>
+                                                                            </div>
+
+                                                                            <div class="col-6">
                                                                                 <button type="submit" name="reservasi" formaction="/reservasi" class="btn btn-success w-100 py-3">
                                                                                     Reservasi Sekarang</button>
                                                                             </div>
 
-                                                                            <div class="col-6">
-                                                                                <button type="submit" name="cart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3">
-                                                                                    Tambah Keranjang</button>
-                                                                            </div>
                                                                         </div>
                                                                     </form>
                                                                 </div>

@@ -256,8 +256,8 @@
                     <div class="col-6 ps-0">TOTAL HARGA</div>
                     <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx</div>
                 </div>
-                <form action="/checkout">
-                    <button type="submit" method="GET" class="btn btn-outline-success w-100 mt-2">CHECKOUT</button>
+                <form action="/checkout" method="POST"> @csrf
+                    <button type="submit" class="btn btn-outline-success w-100 mt-2">CHECKOUT</button>
                 </form>
 
                 <script>

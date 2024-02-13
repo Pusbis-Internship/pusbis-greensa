@@ -10,7 +10,12 @@
 
 <div id="form1" style="display:block;">
     <h2>Form Komplimen</h2>
-    <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"> @csrf
+    @if ($fromCart == True)
+        <form action="/checkout-komplimen{{ $cart->id }}" method="POST"> @csrf
+    @else
+        <form action="/checkout-komplimen-langsung" method="POST"> @csrf
+        <input type="hidden" name="item" value="{{ json_encode($item) }}">
+    @endif
         <label>Surat Komplimen:</label><br>
         <input type="file" name="surat_komplimen"><br><br>
         <input type="submit" value="Checkout">
@@ -19,7 +24,12 @@
 
 <div id="form2" style="display:none;">
     <h2>Form Reguler</h2>
-    <form action="/checkout-reguler/{{ $cart->id }}" method="POST"> @csrf
+    @if ($fromCart == True)
+        <form action="/checkout-reguler{{ $cart->id }}" method="POST"> @csrf
+    @else
+        <form action="/checkout-reguler-langsung" method="POST"> @csrf
+        <input type="hidden" name="item" value="{{ json_encode($item) }}">
+    @endif
         <label>Pilih Pembayaran:</label><br>
         <select name="pilih_pembayaran">
             <option value="option1">Option 1</option>
@@ -32,7 +42,9 @@
 
 <span>Item yang akan di-checkout</span>
 <table style="border: 1px solid black;">
-    @foreach ($cart->items as $item)
+
+    @if ($fromCart == True)
+        @foreach ($cart->items as $item)
         <tr>
             <td>{{ $item->train->nama }}</td>
             <td>   :   </td>
@@ -40,7 +52,18 @@
             <td>   :   </td>
             <td>{{ $item->checkin }}</td>
         </tr>
-    @endforeach
+        @endforeach
+    
+    @else
+    <tr>
+        <td>{{ $train->nama }}</td>
+        <td>   :   </td>
+        <td>{{ $item['layout'] }}</td>
+        <td>   :   </td>
+        <td>{{ $item['checkin'] }}</td>
+    </tr>
+    @endif
+    
 </table>
 
 <script>
