@@ -256,10 +256,19 @@
                     <div class="col-6 ps-0">TOTAL HARGA</div>
                     <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx</div>
                 </div>
-                <form action="/checkout" method="POST"> @csrf
-                    <button type="submit" class="btn btn-outline-success w-100 mt-2">CHECKOUT</button>
-                </form>
+                
+                @if ($guest->cart->items->isEmpty())
+                    <form action="/checkout" method="POST"> @csrf
+                        <button type="submit" class="btn btn-success w-100 mt-2" disabled>CHECKOUT</button>
+                    </form>
+                @else
+                    <form action="/checkout" method="POST"> @csrf
+                        <button type="submit" class="btn btn-success w-100 mt-2">CHECKOUT</button>
+                    </form>
+                @endif
+                
 
+                {{-- Javascript --}}
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         // Calculate the total price dynamically

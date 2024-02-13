@@ -147,29 +147,31 @@
     <div class=" my-5">
         <div class="row">
             <div class="col-md-12 cart">
-                <div class="title">
+                {{-- <div class="title">
                     <div class="row">
                         <div class="col-12 ">
-                            <h4 class="fw-bold m-0 text-center">ORDER STATUS</h4>
+                            <h4 class="fw-bold m-0 text-center">ORDER</h4>
+                        </div>
+                    </div>
+                </div> --}}
+
+                @if ($orders->isEmpty())
+
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col-12 text-center">
+                            <span>Tidak ada pesanan</span>
                         </div>
                     </div>
                 </div>
-                {{-- @if ($guest->cart->items->isEmpty()) --}}
 
-                {{-- <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-12 text-center">
-                                <span>Tidak ada pesanan</span>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                {{-- @else --}}
+                @else
                 <div class="row header-table border-top border-bottom w-100 d-flex align-items-center d-none d-md-flex">
                     <div class="row main align-items-center py-3">
                         <div class="col-md-2 col-12 gambar">
                             <p class="fw-bold m-0 text-center">GAMBAR</p>
                         </div>
+
                         <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">
                             <p class="fw-bold m-0 text-center">RUANG</p>
                         </div>
@@ -187,101 +189,42 @@
                     </div>
                 </div>
                 <div class="row border-top border-bottom w-100 d-flex align-items-center">
-                    {{-- @foreach ($orders as $index => $order) --}}
-                    <div class="row main align-items-center py-3">
-                        <div class="col-md-2 col-12 gambar">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/tcmain.jpg') }}" class="blur-up lazyloaded w-100"
-                                    alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
-                            <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase"
-                                href="#">
-                                Convention Hall
-                            </a>
-                            <div class="row d-flex align-items-center mb-md-0 mb-2">
-                                <div class="col-12 p-0 text-muted keterangan">Classroom</div>
-                                <div class="col-12 p-0 text-muted keterangan ">25-04-2024</div>
-                                <div class="col-12 p-0 text-muted keterangan ">2 Hari</div>
+                    @foreach ($orders as $index => $order)
+                        <div class="row main align-items-center py-3">
+                            <div class="col-md-2 col-12 gambar">
+                                <img src="{{ asset('/storage/posts/' . $order->train->gambar) }}" class="blur-up lazyloaded w-100"alt="">
+                            </div>
+                            <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
+                                <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase" href="#">
+                                    {{ $order->train->nama }}
+                                </a>
+                                <div class="row d-flex align-items-center mb-md-0 mb-2">
+                                    <div class="col-12 p-0 text-muted keterangan">{{ $order->layout }}</div>
+                                    <div class="col-12 p-0 text-muted keterangan ">{{ $order->checkin }}</div>
+                                    <div class="col-12 p-0 text-muted keterangan ">{{ $order->lama }} hari</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6  harga text-md-center text-start">
+                                <p class="m-0 text-success fw-bold">
+                                    Rp {{ number_format($order->harga, 0, ',', '.')}}
+                                </p>
+                            </div>
+                            <div class="col-md-2 col-6 text-muted text-md-center text-end">
+                                <span>{{ $order->status }}</span>
+                            </div>
+                            <div class="col-md-2 col-12 text-muted text-md-center text-end">
+                                <a href="#">Get</a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6  harga text-md-center text-start">
-                            <p class="m-0 text-success fw-bold">
-                                Rp 000.000
-                            </p>
-                        </div>
-                        <div class="col-md-2 col-6 text-muted text-md-center text-end">
-                            <span>Success</span>
-                        </div>
-                        <div class="col-md-2 col-12 text-muted text-md-center text-end">
-                            <a href="#">Get</a>
-                        </div>
-                    </div>
-                    <div class="row main align-items-center py-3">
-                        <div class="col-md-2 col-12 gambar">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/tcmain.jpg') }}" class="blur-up lazyloaded w-100"
-                                    alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
-                            <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase"
-                                href="#">
-                                Convention Hall
-                            </a>
-                            <div class="row d-flex align-items-center mb-md-0 mb-2">
-                                <div class="col-12 p-0 text-muted keterangan">Classroom</div>
-                                <div class="col-12 p-0 text-muted keterangan ">25-04-2024</div>
-                                <div class="col-12 p-0 text-muted keterangan ">2 Hari</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6  harga text-md-center text-start">
-                            <p class="m-0 text-success fw-bold">
-                                Rp 000.000
-                            </p>
-                        </div>
-                        <div class="col-md-2 col-6 text-muted text-md-center text-end">
-                            <span>Pending</span>
-                        </div>
-                        <div class="col-md-2 col-12 text-muted text-md-center text-end">
-                            <a>None</a>
-                        </div>
-                    </div>
-                    {{-- @endforeach --}}
+                    @endforeach
                 </div>
+                @endif
+
                 <a href="/training-center" class="back-to-shop btn btn-success text-white">
                     <span href="#" class="text-decoration-none text-white ">&leftarrow;</span>
                     RESERVASI KEMBALI
                 </a>
             </div>
         </div>
-    </div>
-
-    <div class="h-100">
-
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Checkin</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Invoice</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($orders as $index => $order)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $order->checkin }}</td>
-                        <td>{{ $order->train->nama }}</td>
-                        <td>{{ $order->status }}</td>
-                        <td><a href="">Get</a></td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
     </div>
 @endsection
