@@ -21,7 +21,7 @@
     </div>
     <!-- Banner End -->
 
-    <!-- Booking Start -->
+    <!-- Search Start -->
     <div class="container-fluid booking booking-2 pb-5 wow animated fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="bg-white shadow rounded" style="padding: 35px;">
@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <!-- Booking End -->
+    <!-- Searc End -->
 
     <!-- Catalog List -->
     <section class="my-3">

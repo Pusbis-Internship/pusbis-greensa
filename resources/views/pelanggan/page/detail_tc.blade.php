@@ -21,7 +21,7 @@
     </div>
     <!-- Banner End -->
 
-    <!-- Booking Start -->
+    <!-- Search Start -->
     <div class="container-fluid booking booking-2 pb-5 wow animated fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="bg-white shadow rounded" style="padding: 35px;">
@@ -35,8 +35,8 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" name="date" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
-                                            value="{{ isset($_POST['date']) ? $_POST['date'] : $currentDate->format('Y-m-d') }}"
+                                        <input type="date" name="dateIn" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
+                                            value="{{ isset($_POST['dateIn']) ? $_POST['dateIn'] : $currentDate->format('Y-m-d') }}"
                                             min="{{ $currentDate->format('Y-m-d') }}" />
                                         <label class="labelBook" for="check-in">Check-in</label>
                                     </div>
@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <!-- Booking End -->
+    <!-- Searc End -->
 
     <!-- Product section-->
     <section class="">

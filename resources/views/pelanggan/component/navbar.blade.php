@@ -81,14 +81,13 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false"> Halo {{ $guest->name }}
                             <i class="bi bi-person fs-2 text-white"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="/profile">Profile</a></li>
                             <li><a class="dropdown-item" href="/order">Order</a></li>
-                            <form action="/guestlogout" method="POST">
-                                @csrf
+                            <form action="/guestlogout" method="POST"> @csrf
                                 <li><button class="dropdown-item" type="submit" href="#">Logout</button></li>
                             </form>
                         </ul>
