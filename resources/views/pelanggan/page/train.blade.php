@@ -273,17 +273,14 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Booking Start -->
-                                                <div class="container-xxl py-5">
+                                                <div class="container-xxl py-1">
                                                     <div class="container">
                                                         <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
-                                                            <h6 class="section-title text-center text-dark text-uppercase">
-                                                                Reservasi Ruangan</h6>
                                                             <h1 class="fw-bolder text-success text-uppercase">{{ $train->nama }}</h1>
                                                             <span class="badge bg-light text-dark text-wrap lh-base">
                                                                 Note : Harga sewa terhitung per 8 jam dalam sehari, apabila
@@ -352,7 +349,7 @@
 
                                                                             <div class="col-12">
                                                                                 <div class="form-floating">
-                                                                                    <textarea name="special" class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                                                                    <textarea name="special" class="form-control" placeholder="Special Request" id="message"></textarea>
                                                                                     <label class="labelBook"
                                                                                         for="message">Special Request</label>
                                                                                 </div>
