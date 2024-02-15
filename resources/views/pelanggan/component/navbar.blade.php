@@ -73,7 +73,7 @@
             @guest('guest')
                 <div class="d-flex align-items-center gap-2">
                     <a href="/login" class="btn btn-outline-light">Masuk</a>
-                    <a href="register" class="btn btn-light">Daftar</a>
+                    <a href="/register" class="btn btn-light">Daftar</a>
                 </div>
             @endguest
 
