@@ -123,7 +123,7 @@
 
                 <div class="col-md-6">
                     <div class="small mb-1">SKU: BST-498</div>
-                    <h1 class="display-5 fw-bolder">{{ $train->nama }}</h1>
+                    <h1 class="display-5 fw-bolder" style="text-transform:uppercase" >{{ $train->nama }}</h1>
                     <div class="facilities mb-3">
                         <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i>
                             Sound</span>
@@ -244,6 +244,8 @@
                 </div>
             </div>
         </div>
+
+
     </section>
 
 

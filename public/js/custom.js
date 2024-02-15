@@ -53,4 +53,21 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// CAPACITY IN DETAIL
+document.addEventListener('DOMContentLoaded', function () {
+    // Ambil elemen-elemen yang diperlukan
+    var selectLayout = document.getElementById('select1');
+    var capacityInput = document.getElementById('capacityPax');
+
+    // Tambahkan event listener untuk perubahan pada dropdown layout
+    selectLayout.addEventListener('change', function () {
+        // Ambil nilai kapasitas dari atribut data-value
+        var selectedOption = selectLayout.options[selectLayout.selectedIndex];
+        var kapasitas = selectedOption.getAttribute('data-value');
+
+        // Setel nilai input kapasitas sesuai dengan layout yang dipilih
+        capacityInput.value = kapasitas;
+    });
+});
+
 

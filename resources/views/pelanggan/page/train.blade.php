@@ -119,7 +119,7 @@
                                                 <label class="form-check-label" for="f1">Reguler</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f3"
+                                                <input type="checkbox" id="f2"
                                                     class="form-check-input shadow-none me-1">
                                                 <label class="form-check-label" for="f3">Ujian Terbuka</label>
                                             </div>
@@ -129,7 +129,7 @@
                                                 <label class="form-check-label" for="f3">Aljabar</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f3"
+                                                <input type="checkbox" id="f4"
                                                     class="form-check-input shadow-none me-1">
                                                 <label class="form-check-label" for="f3">Hall</label>
                                             </div>
@@ -150,7 +150,7 @@
                                                 class="img-fluid rounded" alt="training-center">
                                         </div>
                                         <div class="col-md-6 px-lg-4 px-md-4 px-0">
-                                            <h4 class="mb-1 fw-medium">{{ $train->nama }}</h4>
+                                            <h4 class="mb-1 fw-semibold">{{ $train->nama }}</h4>
                                             <div class="row">
                                                 <div class="features mb-3 me-1">
 
@@ -281,7 +281,7 @@
                                                 <div class="container-xxl py-1">
                                                     <div class="container">
                                                         <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
-                                                            <h1 class="fw-bolder text-success text-uppercase">{{ $train->nama }}</h1>
+                                                            <h2 class="fw-bolder text-success text-uppercase">{{ $train->nama }}</h2>
                                                             <span class="badge bg-light text-dark text-wrap lh-base">
                                                                 Note : Harga sewa terhitung per 8 jam dalam sehari, apabila
                                                                 check-out melebihi jam sewa akan dikenakan charge per jam.
@@ -304,7 +304,7 @@
                                                                                     <input type="date" name="checkin" id="checkin" class="form-control datetimepicker-input" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker"
                                                                                         value="{{ isset($_POST['dateIn']) ? $_POST['dateIn'] : $currentDate->format('Y-m-d') }}" readonly style="background-color: #e2e2e2; cursor: not-allowed;"/>
                                                                                     <label class="labelBook" for="checkin">
-                                                                                        Check In</label>
+                                                                                        Check In <span class="text-danger">*</span> </label>
                                                                                 </div>                                                       
                                                                             </div>
 
@@ -313,7 +313,7 @@
                                                                                     <input type="number" name="lamaHari" id="lamaHari" class="form-control" placeholder="Kapasitas"
                                                                                         value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
                                                                                     <div class="input-group-text">HARI</div>
-                                                                                    <label class="labelBook" for="jumlahSewa">Lama hari</label>
+                                                                                    <label class="labelBook" for="jumlahSewa">Lama hari <span class="text-danger">*</span></label>
                                                                                 </div>
                                                                             </div>
 
@@ -327,7 +327,7 @@
                                                                                             </option>
                                                                                         @endforeach
                                                                                     </select>
-                                                                                    <label class="labelBook" for="select{{$index}}">Layout Model</label>
+                                                                                    <label class="labelBook" for="select{{$index}}">Layout Model <span class="text-danger">*</span></label>
                                                                                 </div>
                                                                             </div>
                                                                         
@@ -339,15 +339,15 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="col-12">
+                                                                            <div class="col-md-6 col-12">
                                                                                 <div class="form-floating">
                                                                                     <input name="namaKegiatan" class="form-control" placeholder="Nama Kegiatan" id="nameActivity" required></input>
                                                                                     <label class="labelBook"
-                                                                                        for="nameActivity">Nama Kegiatan</label>
+                                                                                        for="nameActivity">Nama Kegiatan <span class="text-danger">*</span> </label>
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="col-12">
+                                                                            <div class="col-md-6 col-12">
                                                                                 <div class="form-floating">
                                                                                     <textarea name="special" class="form-control" placeholder="Special Request" id="message"></textarea>
                                                                                     <label class="labelBook"
@@ -358,7 +358,7 @@
                                                                         </div>
                                                                         <div class="row g-3">
                                                                             <div class="col-12 text-end">
-                                                                                <h6>Total harga sewa selama {{ isset($_POST['lama']) ? $_POST['lama'] : 1 }} hari</h6>
+                                                                                <p class="mb-0">Total harga sewa selama {{ isset($_POST['lama']) ? $_POST['lama'] : 1 }} hari</p>
                                                                                 <h3 id="trainHarga" class="fw-bolder text-success"> Rp {{ number_format($train->harga * (isset($_POST['lama']) ? $_POST['lama'] : 1), 0, ',', '.')}}</h3>
                                                                             </div>
 

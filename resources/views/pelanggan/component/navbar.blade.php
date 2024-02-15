@@ -44,7 +44,7 @@
         </button>
 
         <div class="d-flex align-items-center">    
-            <a class="navbar-brand m-0" href="#">
+            <a class="navbar-brand m-0" href="/">
                 <img src="{{ asset('assets/images/Logo.png') }}" alt="" width="50">
             </a>
         </div>
@@ -80,9 +80,9 @@
             @auth('guest')
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false"> Halo {{ $guest->name }}
-                            <i class="bi bi-person fs-2 text-white"></i>
+                            <i class="bi bi-person fs-2 text-white ms-2"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="/profile">Profile</a></li>
@@ -93,7 +93,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item text-end">
                         <div class="notif">
                             <a href="/cart" class="nav-link icon-cart">
                                 <i class="bi bi-cart icon-nav fs-3 text-white m-auto "></i>

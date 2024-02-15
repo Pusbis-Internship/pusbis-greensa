@@ -18,12 +18,127 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Db;
 use Illuminate\Support\Str;
 
-use function PHPUnit\Framework\isTrue;
-
 class GuestController extends Controller
 {
+    public function showchangepw()
+    {
+        return view('pelanggan.page.changepw', ['title' => 'change password']);
+    }
 
-    ///////////////////////////////////////////////   H O M E   ///////////////////////////////////////////////
+    public function showhotel()
+    {
+        return view('pelanggan.page.hotel', ['title' => 'Hotel']);
+    }
+
+    public function showabout()
+    {
+        // $cartItemCount = $cart->items->count();
+
+        return view('pelanggan.page.about', [
+            'title' => 'About'
+        ]);
+    }
+
+    public function showpackage()
+    {
+        return view('pelanggan.page.package', ['title' => 'package']);
+    }
+
+    public function showlogin()
+    {
+        return view('pelanggan.page.login', ['title' => 'Login']);
+    }
+
+    public function showregister()
+    {
+        return view('pelanggan.page.register', ['title' => 'Register']);
+    }
+
+    public function showforgotpw()
+    {
+
+        return view('pelanggan.page.forgotpw', ['title' => 'forgot password']);
+    }
+
+    public function showResetPW($token)
+    {
+        // Anda dapat menambahkan logika verifikasi tautan reset password di sini
+        $title = 'Reset Password'; // Judul untuk halaman reset password
+        return view('pelanggan.page.resetpassword', compact('token', 'title'));
+    }
+
+
+
+    public function forgetpassword(Request $request)
+    {
+        // Lakukan validasi terlebih dahulu
+        $request->validate(['email' => 'required|email']);
+
+        // Generate token baru
+        $token = Str::random(64);
+
+        // Cek apakah ada token lama untuk pengguna dengan email yang sama
+        $existingToken = DB::table('password_reset_tokens')
+            ->where('email', $request->email)
+            ->first();
+
+        // Jika ada, perbarui token yang ada dengan token baru
+        if ($existingToken) {
+            DB::table('password_reset_tokens')
+                ->where('email', $request->email)
+                ->update([
+                    'token' => $token,
+                    'created_at' => Carbon::now()
+                ]);
+        } else {
+            // Jika tidak ada, tambahkan token baru ke database
+            DB::table('password_reset_tokens')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+        }
+
+        // Kirim email dengan token reset password
+        Mail::send('pelanggan.auth.resetpassword', ['token' => $token], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject("Reset Password");
+        });
+
+        // Setelah email terkirim, redirect kembali ke halaman forgot password dengan pesan sukses
+        return redirect('/forgot-password')->with('status', 'send email success');
+    }
+
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:1|confirmed', // tambahkan aturan 'confirmed' untuk memastikan password cocok dengan konfirmasi password
+            'token' => 'required'
+        ]);
+
+        $updatePassword = Db::table('password_reset_tokens')
+            ->where('token', $request->token)
+            ->first();
+
+        if (!$updatePassword || Carbon::parse($updatePassword->created_at)->addMinutes(1)->isPast()) {
+            // Redirect kembali ke halaman reset password dengan pesan error
+            return redirect("/forgot-password")->with('error', 'Token kadaluarsa, mohon kirim ulang email anda');
+        }
+
+        Db::table('guests')
+            ->where('email', $updatePassword->email)
+            ->update(['password' => Hash::make($request->password)]);
+
+
+        Db::table('password_reset_tokens')
+            ->where('email', $updatePassword->email)
+            ->delete();
+
+        // Umpan balik kepada pengguna
+        return redirect('/login')->with('status', 'Password successfully reset!');
+    }
+
     public function showhome()
     {
         $currentDate = Carbon::now()->addDay();
@@ -36,10 +151,6 @@ class GuestController extends Controller
             // 'cartItemCount' => $cartItemCount,
         ]);
     }
-    ///////////////////////////////////////////////   H O M E   ///////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////   P R O F I L E   ///////////////////////////////////////////////
 
     public function showprofile()
     {
@@ -52,9 +163,6 @@ class GuestController extends Controller
             'guest' => $guest
         ]);
     }
-
-    public function showchangepw()
-    {return view('pelanggan.page.changepw', ['title' => 'change password']);}
 
     public function updateprofile(Request $request, $id)
     {
@@ -114,30 +222,164 @@ class GuestController extends Controller
         return redirect('/profile')->with('success', 'Kata Sandi Berhasil Diubah');
     }
 
-    ////////////////////////////////////////////   P R O F I L E   ///////////////////////////////////////////////
-
-
-    //////////////////////////////////////////////   A B O U T   ///////////////////////////////////////////////
-
-    public function showabout()
+    public function showdetail_tc($id)
     {
-        // $cartItemCount = $cart->items->count();
+        $train = Train::findOrFail($id);
+        $facilities = TrainFacility::all();  // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
+        $layout_models = LayoutModels::where('train_id', $id)->get(); // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
 
-        return view('pelanggan.page.about', [
-            'title' => 'About'
+        return view('pelanggan.page.detail_tc', [
+            'title' => 'Detail Training Center',
+            'train' => $train,
+            'facilities' => $facilities,
+            'layout_models' => $layout_models
         ]);
     }
 
-    //////////////////////////////////////////////   A B O U T   ///////////////////////////////////////////////
+    public function showcart()
+    {
+        $guest = Guest::find(auth('guest')->id());
+        $cart = Cart::all();
+        $cartItems = CartItem::all();
 
+        return view('pelanggan.page.cart', [
+            'title'     => 'Keranjang',
+            'guest'     => $guest,
+            'cart'      => $cart,
+            'cartItems' => $cartItems,
+        ]);
+    }
 
-    //////////////////////////////////////////////   L O G I N   ///////////////////////////////////////////////
+    public function addToCart(Request $request)
+    {
+        $checkin = $request->checkin;
+        $lamaHari = $request->lamaHari;
+        $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
 
-    public function showlogin()
-    {return view('pelanggan.page.login', ['title' => 'Login']);}
+        CartItem::create([
+            'cart_id'       => $request->cart_id,
+            'train_id'      => $request->train_id,
+            'layout'        => $request->layout,
+            'checkin'       => $request->checkin,
+            'checkout'      => $checkout,
+            'lama'          => $request->lamaHari,
+            'kapasitas'     => $request->kapasitas,
+            'harga'         => $request->harga,
+            'nama_kegiatan' => $request->namaKegiatan,
+            'special'       => $request->special,
+        ]);
 
-    public function showregister()
-    {return view('pelanggan.page.register', ['title' => 'Register']);}
+        return redirect('/training-center')->withErrors(['successAddToCart' => 'Berhasil menambahkan ke cart']);
+    }
+
+    public function cartItemDelete($id)
+    {
+        $item = CartItem::findOrFail($id);
+        $item->delete();
+
+        return redirect('/cart')->withErrors(['successAddToCart' => 'Berhasil menghapus item']);
+    }
+
+    public function showtrain()
+    {
+        $cart = Cart::find(auth('guest')->id());
+        $facilities = TrainFacility::all();
+        $currentDate = Carbon::now()->addDay();
+
+        // Get Trains
+        $query = Train::query();
+        $dateIn = Carbon::tomorrow();
+        $dateOut = Carbon::tomorrow();;
+
+        if (Auth::guard('guest')->check()) {
+            // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
+            $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('cart_id', '=', auth('guest')->id());
+            })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            $query->whereNotIn('id', $bookedRooms);
+        }
+
+        $trains = $query->get();
+
+        return view('pelanggan.page.train', [
+            'title'        => 'Training Center',
+            'trains'       => $trains,
+            'facilities'   => $facilities,
+            'currentDate'  => $currentDate,
+            'cart'         => $cart,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $cart = Cart::find(auth('guest')->id());
+        $currentDate = Carbon::now()->addDay();
+
+        $lantai = $request->lantai;
+        $peserta = $request->peserta;
+        $dateIn = $request->dateIn;
+        $lama = $request->lama;
+        $dateOut = date('Y-m-d', strtotime($dateIn . ' + ' . ($lama - 1) . ' days'));
+
+        $query = Train::query();
+
+        if ($lantai !== "Semua Lantai") {
+            $query->where('lantai', $lantai);
+        }
+
+        if ($peserta !== null) {
+            $query->where('kap_teater', '>', $peserta);
+        }
+
+        if (Auth::guard('guest')->check()) {
+            // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
+            $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('cart_id', '=', auth('guest')->id());
+            })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('cart_id', '=', auth('guest')->id());
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            $query->whereNotIn('id', $bookedRooms);
+        }
+
+        $trains = $query->get();
+        $facilities = TrainFacility::all();
+
+        return view('pelanggan.page.train', [
+            'title'         => 'Training Center',
+            'trains'        => $trains,
+            'facilities'    => $facilities,
+            'currentDate'   => $currentDate,
+            'cart'          => $cart,
+        ]);
+    }
 
     public function register(Request $request)
     {
@@ -217,328 +459,6 @@ class GuestController extends Controller
         return redirect('/');
     }
 
-    //////////////////////////////////////////////   L O G I N   ///////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////   P A C K A G E   ///////////////////////////////////////////////
-
-    public function showpackage()
-    {return view('pelanggan.page.package', ['title' => 'package']);}
-
-    ////////////////////////////////////////////   P A C K A G E   ///////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////   F O R G O T   ///////////////////////////////////////////////
-
-    public function showforgotpw()
-    {return view('pelanggan.page.forgotpw', ['title' => 'forgot password']);}
-
-    public function showResetPW($token)
-    {
-        // Anda dapat menambahkan logika verifikasi tautan reset password di sini
-        $title = 'Reset Password'; // Judul untuk halaman reset password
-        return view('pelanggan.page.resetpassword', compact('token', 'title'));
-    }
-
-    public function forgetpassword(Request $request)
-    {
-        // Lakukan validasi terlebih dahulu
-        $request->validate(['email' => 'required|email']);
-
-        // Generate token baru
-        $token = Str::random(64);
-
-        // Cek apakah ada token lama untuk pengguna dengan email yang sama
-        $existingToken = DB::table('password_reset_tokens')
-            ->where('email', $request->email)
-            ->first();
-
-        // Jika ada, perbarui token yang ada dengan token baru
-        if ($existingToken) {
-            DB::table('password_reset_tokens')
-                ->where('email', $request->email)
-                ->update([
-                    'token' => $token,
-                    'created_at' => Carbon::now()
-                ]);
-        } else {
-            // Jika tidak ada, tambahkan token baru ke database
-            DB::table('password_reset_tokens')->insert([
-                'email' => $request->email,
-                'token' => $token,
-                'created_at' => Carbon::now()
-            ]);
-        }
-
-        // Kirim email dengan token reset password
-        Mail::send('pelanggan.auth.resetpassword', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject("Reset Password");
-        });
-
-        // Setelah email terkirim, redirect kembali ke halaman forgot password dengan pesan sukses
-        return redirect('/forgot-password')->with('status', 'send email success');
-    }
-
-    public function resetPassword(Request $request)
-    {
-        $request->validate([
-            'password' => 'required|min:1|confirmed', // tambahkan aturan 'confirmed' untuk memastikan password cocok dengan konfirmasi password
-            'token' => 'required'
-        ]);
-
-        $updatePassword = Db::table('password_reset_tokens')
-            ->where('token', $request->token)
-            ->first();
-
-        if (!$updatePassword || Carbon::parse($updatePassword->created_at)->addMinutes(1)->isPast()) {
-            // Redirect kembali ke halaman reset password dengan pesan error
-            return redirect("/forgot-password")->with('error', 'Token kadaluarsa, mohon kirim ulang email anda');
-        }
-
-        Db::table('guests')
-            ->where('email', $updatePassword->email)
-            ->update(['password' => Hash::make($request->password)]);
-
-
-        Db::table('password_reset_tokens')
-            ->where('email', $updatePassword->email)
-            ->delete();
-
-        // Umpan balik kepada pengguna
-        return redirect('/login')->with('status', 'Password successfully reset!');
-    }
-
-    ////////////////////////////////////////////   F O R G O T   ///////////////////////////////////////////////
-
-
-    ////////////////////////////////////////////   T R A I N   ///////////////////////////////////////////////
-
-    public function showtrain()
-    {
-        $cart = Cart::find(auth('guest')->id());
-        $facilities = TrainFacility::all();
-        $currentDate = Carbon::now()->addDay();
-
-        // Get Trains
-        $query = Train::query();
-        $dateIn = Carbon::tomorrow();
-        $dateOut = Carbon::tomorrow();;
-
-        if (Auth::guard('guest')->check()) {
-            // Get train_id from self cart
-            $roomInCart = CartItem::where(function ($query) use ($dateIn) {
-                $query->where('checkin', '<=', $dateIn)
-                    ->where('checkout', '>=', $dateIn)
-                    ->where('cart_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateOut) {
-                    $query->where('checkin', '<=', $dateOut)
-                        ->where('checkout', '>=', $dateOut)
-                        ->where('cart_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                    $query->where('checkin', '>=', $dateIn)
-                        ->where('checkout', '<=', $dateOut)
-                        ->where('cart_id', '=', auth('guest')->id());
-                })
-                ->pluck('train_id')
-                ->toArray();
-            
-            // Get train_id from self order
-            $roomInOrderSelf = Order::where(function ($query) use ($dateIn) {
-                $query->where('checkin', '<=', $dateIn)
-                    ->where('checkout', '>=', $dateIn)
-                    ->where('guest_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateOut) {
-                    $query->where('checkin', '<=', $dateOut)
-                        ->where('checkout', '>=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                    $query->where('checkin', '>=', $dateIn)
-                        ->where('checkout', '<=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
-                })
-                ->pluck('train_id')
-                ->toArray();
-
-            // Get train_id from all ACC'ed order
-            $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
-                $query->where('checkin', '<=', $dateIn)
-                    ->where('checkout', '>=', $dateIn)
-                    ->where('status', '=', 'Acc');
-                })
-                ->orWhere(function ($query) use ($dateOut) {
-                    $query->where('checkin', '<=', $dateOut)
-                        ->where('checkout', '>=', $dateOut)
-                        ->where('status', '=', 'Acc');
-                })
-                ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                    $query->where('checkin', '>=', $dateIn)
-                        ->where('checkout', '<=', $dateOut)
-                        ->where('status', '=', 'Acc');
-                })
-                ->pluck('train_id')
-                ->toArray();
-
-            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);            
-
-            $query->whereNotIn('id', $roomBooked);
-        }
-
-        $trains = $query->get();
-
-        return view('pelanggan.page.train', [
-            'title'        => 'Training Center',
-            'trains'       => $trains,
-            'facilities'   => $facilities,
-            'currentDate'  => $currentDate,
-            'cart'         => $cart,
-        ]);
-    }
-
-    ////////////////////////////////////////////   T R A I N   ///////////////////////////////////////////////
-
-
-    //////////////////////////////////////////////  C A R T   ///////////////////////////////////////////////
-
-    public function showcart()
-    {
-        $guest = Guest::find(auth('guest')->id());
-        $cart = Cart::all();
-        $cartItems = CartItem::all();
-
-        return view('pelanggan.page.cart', [
-            'title'     => 'Keranjang',
-            'guest'     => $guest,
-            'cart'      => $cart,
-            'cartItems' => $cartItems,
-        ]);
-    }
-
-    public function addToCart(Request $request)
-    {
-        $checkin = $request->checkin;
-        $lamaHari = $request->lamaHari;
-        $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
-
-        CartItem::create([
-            'cart_id'       => $request->cart_id,
-            'train_id'      => $request->train_id,
-            'layout'        => $request->layout,
-            'checkin'       => $request->checkin,
-            'checkout'      => $checkout,
-            'lama'          => $request->lamaHari,
-            'kapasitas'     => $request->kapasitas,
-            'harga'         => $request->harga,
-            'nama_kegiatan' => $request->namaKegiatan,
-            'special'       => $request->special,
-        ]);
-
-        return redirect('/training-center')->withErrors(['successAddToCart' => 'Berhasil menambahkan ke cart']);
-    }
-
-    public function reservasiLangsung(Request $request)
-    {
-        $fromCart = False;
-        $train = Train::find($request->train_id);
-
-        $checkin = $request->checkin;
-        $lamaHari = $request->lamaHari;
-        $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
-
-        $item = [
-            'guest_id'      => auth('guest')->id(),
-            'train_id'      => $request->train_id,
-            'layout'        => $request->layout,
-            'checkin'       => $request->checkin,
-            'checkout'      => $checkout,
-            'lama'          => $request->lamaHari,
-            'kapasitas'     => $request->kapasitas,
-            'harga'         => $request->harga,
-            'nama_kegiatan' => $request->namaKegiatan,
-            'special'       => $request->special,
-        ];
-
-        return view('pelanggan.page.checkout', [
-            'title'     => 'Checkout',
-            'item'      => $item,
-            'train'     => $train,
-            'fromCart'  => $fromCart,
-        ]);
-    }
-
-    public function checkoutKomplimenLangsung(Request $request)
-    {
-        $item = json_decode($request->input('item'), true);
-
-        Order::create([
-            'guest_id'      => $item['guest_id'],
-            'train_id'      => $item['train_id'],
-            'layout'        => $item['layout'],
-            'checkin'       => $item['checkin'],
-            'checkout'      => $item['checkout'],
-            'lama'          => $item['lama'],
-            'kapasitas'     => $item['kapasitas'],
-            'harga'         => $item['harga'],
-            'nama_kegiatan' => $item['nama_kegiatan'],
-            'special'       => $item['special'],
-            'status'        => 'Acc',
-            'surat'         => 'SuperSemar.pdf',
-        ]);
-
-        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
-    }
-
-    public function checkoutRegulerLangsung(Request $request)
-    {
-        $item = json_decode($request->input('item'), true);
-
-        Order::create([
-            'guest_id'      => $item['guest_id'],
-            'train_id'      => $item['train_id'],
-            'layout'        => $item['layout'],
-            'checkin'       => $item['checkin'],
-            'checkout'      => $item['checkout'],
-            'lama'          => $item['lama'],
-            'kapasitas'     => $item['kapasitas'],
-            'harga'         => $item['harga'],
-            'nama_kegiatan' => $item['nama_kegiatan'],
-            'special'       => $item['special'],
-            'status'        => 'Acc',
-            'surat'         => 'SuperSemar.pdf',
-        ]);
-
-        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
-    }
-
-    public function cartItemDelete($id)
-    {
-        $item = CartItem::findOrFail($id);
-        $item->delete();
-
-        return redirect('/cart')->withErrors(['successAddToCart' => 'Berhasil menghapus item']);
-    }
-
-    //////////////////////////////////////////////  C A R T   ///////////////////////////////////////////////
-
-
-    //////////////////////////////////////////  C H E C K O U T   ///////////////////////////////////////////////
-
-    public function showcheckout()
-    {
-        $cart = Cart::find(auth('guest')->id());
-        $fromCart = True;
-
-        return view('pelanggan.page.checkout', [
-            'title'     => 'Checkout',
-            'cart'      => $cart,
-            'fromCart'  => $fromCart,
-        ]);
-    }
-
     public function showorder()
     {
         $orders = Order::where('guest_id', auth('guest')->id())->get();
@@ -546,6 +466,16 @@ class GuestController extends Controller
         return view('pelanggan.page.order', [
             'title' => 'Order',
             'orders' => $orders,
+        ]);
+    }
+
+    public function showcheckout()
+    {
+        $cart = Cart::find(auth('guest')->id());
+
+        return view('pelanggan.page.checkout', [
+            'title' => 'Checkout',
+            'cart' => $cart,
         ]);
     }
 
@@ -565,7 +495,7 @@ class GuestController extends Controller
                 'harga'         => $item->harga,
                 'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
-                'status'        => 'Acc',
+                'status'        => 'Pending',
                 'surat'         => 'SuperSemar.pdf',
             ]);
         }
@@ -591,7 +521,7 @@ class GuestController extends Controller
                 'harga'         => $item->harga,
                 'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
-                'status'        => 'Acc',
+                'status'        => 'Pending',
                 'surat'         => 'SuperSemar.pdf',
             ]);
         }
@@ -599,121 +529,5 @@ class GuestController extends Controller
         CartItem::where('cart_id', $id)->delete();
 
         return redirect('/order');
-    }
-
-    //////////////////////////////////////////  C H E C K O U T   ///////////////////////////////////////////////
-
-    public function showdetail_tc($id)
-    {
-        $cart = Cart::find(auth('guest')->id());
-        $currentDate = Carbon::now()->addDay();
-        $train = Train::findOrFail($id);
-        $facilities = TrainFacility::all();  // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
-        $layout_models = LayoutModels::where('train_id', $id)->get(); // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
-
-        return view('pelanggan.page.detail_tc', [
-            'title'         => 'Detail Training Center',
-            'train'         => $train,
-            'facilities'    => $facilities,
-            'layout_models' => $layout_models,
-            'currentDate'   => $currentDate,
-            'cart'          => $cart,
-        ]);
-    }
-
-    public function search(Request $request)
-    {
-        $cart = Cart::find(auth('guest')->id());
-        $currentDate = Carbon::now()->addDay();
-
-        $lantai = $request->lantai;
-        $peserta = $request->peserta;
-        $dateIn = $request->dateIn;
-        $lama = $request->lama;
-        $dateOut = date('Y-m-d', strtotime($dateIn . ' + ' . ($lama - 1) . ' days'));
-
-        $query = Train::query();
-
-        if ($lantai !== "Semua Lantai") {
-            $query->where('lantai', $lantai);
-        }
-
-        if ($peserta !== null) {
-            $query->where('kap_teater', '>', $peserta);
-        }
-
-        if (Auth::guard('guest')->check()) {
-            // Get train_id from self cart
-            $roomInCart = CartItem::where(function ($query) use ($dateIn) {
-                $query->where('checkin', '<=', $dateIn)
-                    ->where('checkout', '>=', $dateIn)
-                    ->where('cart_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateOut) {
-                    $query->where('checkin', '<=', $dateOut)
-                        ->where('checkout', '>=', $dateOut)
-                        ->where('cart_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                    $query->where('checkin', '>=', $dateIn)
-                        ->where('checkout', '<=', $dateOut)
-                        ->where('cart_id', '=', auth('guest')->id());
-                })
-                ->pluck('train_id')
-                ->toArray();
-            
-            // Get train_id from self order
-            $roomInOrderSelf = Order::where(function ($query) use ($dateIn) {
-                $query->where('checkin', '<=', $dateIn)
-                    ->where('checkout', '>=', $dateIn)
-                    ->where('guest_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateOut) {
-                    $query->where('checkin', '<=', $dateOut)
-                        ->where('checkout', '>=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
-                })
-                ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                    $query->where('checkin', '>=', $dateIn)
-                        ->where('checkout', '<=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
-                })
-                ->pluck('train_id')
-                ->toArray();
-
-            // Get train_id from all ACC'ed order
-            $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
-                $query->where('checkin', '<=', $dateIn)
-                    ->where('checkout', '>=', $dateIn)
-                    ->where('status', '=', 'Acc');
-                })
-                ->orWhere(function ($query) use ($dateOut) {
-                    $query->where('checkin', '<=', $dateOut)
-                        ->where('checkout', '>=', $dateOut)
-                        ->where('status', '=', 'Acc');
-                })
-                ->orWhere(function ($query) use ($dateIn, $dateOut) {
-                    $query->where('checkin', '>=', $dateIn)
-                        ->where('checkout', '<=', $dateOut)
-                        ->where('status', '=', 'Acc');
-                })
-                ->pluck('train_id')
-                ->toArray();
-
-            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);            
-
-            $query->whereNotIn('id', $roomBooked);
-        }
-
-        $trains = $query->get();
-        $facilities = TrainFacility::all();
-
-        return view('pelanggan.page.train', [
-            'title'         => 'Training Center',
-            'trains'        => $trains,
-            'facilities'    => $facilities,
-            'currentDate'   => $currentDate,
-            'cart'          => $cart,
-        ]);
     }
 }
