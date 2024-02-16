@@ -296,8 +296,8 @@ class GuestController extends Controller
         $dateOut = Carbon::tomorrow();;
 
         if (Auth::guard('guest')->check()) {
-            // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
-            $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
+            // Get train_id from self cart
+            $roomInCart = CartItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('cart_id', '=', auth('guest')->id());
@@ -315,7 +315,47 @@ class GuestController extends Controller
                 ->pluck('train_id')
                 ->toArray();
 
-            $query->whereNotIn('id', $bookedRooms);
+                // Get train_id from self order
+            $roomInOrderSelf = Order::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('guest_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('guest_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('guest_id', '=', auth('guest')->id());
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            // Get train_id from all ACC'ed order
+            $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('status', '=', 'Acc');
+                })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('status', '=', 'Acc');
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('status', '=', 'Acc');
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);   
+
+            $query->whereNotIn('id', $roomBooked);
         }
 
         $trains = $query->get();
@@ -351,8 +391,8 @@ class GuestController extends Controller
         }
 
         if (Auth::guard('guest')->check()) {
-            // function to get from CartItem where 'checkin' and 'checkout' is not overlapping with $date and $dateOut
-            $bookedRooms = CartItem::where(function ($query) use ($dateIn) {
+            // Get train_id from self cart
+            $roomInCart = CartItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('cart_id', '=', auth('guest')->id());
@@ -370,7 +410,47 @@ class GuestController extends Controller
                 ->pluck('train_id')
                 ->toArray();
 
-            $query->whereNotIn('id', $bookedRooms);
+            // Get train_id from self order
+            $roomInOrderSelf = Order::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('guest_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('guest_id', '=', auth('guest')->id());
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('guest_id', '=', auth('guest')->id());
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            // Get train_id from all ACC'ed order
+            $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('status', '=', 'Acc');
+                })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('status', '=', 'Acc');
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('status', '=', 'Acc');
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);  
+
+            $query->whereNotIn('id', $roomBooked);
         }
 
         $trains = $query->get();
@@ -537,7 +617,7 @@ class GuestController extends Controller
                 'harga'         => $item->harga,
                 'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
-                'status'        => 'Pending',
+                'status'        => 'Acc',
                 'surat'         => 'SuperSemar.pdf',
             ]);
         }
