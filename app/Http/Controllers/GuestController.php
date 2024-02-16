@@ -477,6 +477,7 @@ class GuestController extends Controller
     {
         // Ambil semua data dari tabel cart_items
         $cartItems = CartItem::all();
+        $fromCart = True;
 
         // Variabel untuk menyimpan total harga
         $totalPrice = 0;
@@ -515,8 +516,8 @@ class GuestController extends Controller
         return view('pelanggan.page.checkout', [
             'title' => 'Checkout',
             'snapToken' => $snapToken,
-            'cart' => $cart
-
+            'cart' => $cart,
+            'fromCart' => $fromCart,
         ]);
     }
 
@@ -570,6 +571,80 @@ class GuestController extends Controller
         CartItem::where('cart_id', $id)->delete();
 
         return redirect('/order');
+    }
+
+    public function reservasiLangsung(Request $request)
+    {
+        $fromCart = False;
+        $train = Train::find($request->train_id);
+
+        $checkin = $request->checkin;
+        $lamaHari = $request->lamaHari;
+        $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
+
+        $item = [
+            'guest_id'      => auth('guest')->id(),
+            'train_id'      => $request->train_id,
+            'layout'        => $request->layout,
+            'checkin'       => $request->checkin,
+            'checkout'      => $checkout,
+            'lama'          => $request->lamaHari,
+            'kapasitas'     => $request->kapasitas,
+            'harga'         => $request->harga,
+            'nama_kegiatan' => $request->namaKegiatan,
+            'special'       => $request->special,
+        ];
+
+        return view('pelanggan.page.checkout', [
+            'title'     => 'Checkout',
+            'item'      => $item,
+            'train'     => $train,
+            'fromCart'  => $fromCart,
+        ]);
+    }
+
+    public function checkoutKomplimenLangsung(Request $request)
+    {
+        $item = json_decode($request->input('item'), true);
+
+        Order::create([
+            'guest_id'      => $item['guest_id'],
+            'train_id'      => $item['train_id'],
+            'layout'        => $item['layout'],
+            'checkin'       => $item['checkin'],
+            'checkout'      => $item['checkout'],
+            'lama'          => $item['lama'],
+            'kapasitas'     => $item['kapasitas'],
+            'harga'         => $item['harga'],
+            'nama_kegiatan' => $item['nama_kegiatan'],
+            'special'       => $item['special'],
+            'status'        => 'Pending',
+            'surat'         => 'SuperSemar.pdf',
+        ]);
+
+        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
+    }
+
+    public function checkoutRegulerLangsung(Request $request)
+    {
+        $item = json_decode($request->input('item'), true);
+
+        Order::create([
+            'guest_id'      => $item['guest_id'],
+            'train_id'      => $item['train_id'],
+            'layout'        => $item['layout'],
+            'checkin'       => $item['checkin'],
+            'checkout'      => $item['checkout'],
+            'lama'          => $item['lama'],
+            'kapasitas'     => $item['kapasitas'],
+            'harga'         => $item['harga'],
+            'nama_kegiatan' => $item['nama_kegiatan'],
+            'special'       => $item['special'],
+            'status'        => 'Pending',
+            'surat'         => 'SuperSemar.pdf',
+        ]);
+
+        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
     }
 
     public function invoiceShow($id)
