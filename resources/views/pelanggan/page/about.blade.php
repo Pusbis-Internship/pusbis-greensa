@@ -25,19 +25,19 @@
 
 
         /* .social-icons {
-                display: flex;
-                margin-bottom: 5px;
-                margin-top: 15px;
-            } */
+                    display: flex;
+                    margin-bottom: 5px;
+                    margin-top: 15px;
+                } */
 
         /* .social-icon {
-                margin-right: 10px;
-                color: #4caf50;
-                Warna ikon sosial, sesuaikan dengan desain Anda
-                text-decoration: none;
-            } */
+                    margin-right: 10px;
+                    color: #4caf50;
+                    Warna ikon sosial, sesuaikan dengan desain Anda
+                    text-decoration: none;
+                } */
 
-        .contact-text{
+        .contact-text {
             font-size: 14px;
         }
 
@@ -181,7 +181,7 @@
         <div class="row">
 
             <div class="col-md-6 col-12">
-                <iframe class="w-100 h-100 shadow-sm" 
+                <iframe class="w-100 h-100 shadow-sm"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.7598227117533!2d112.75055607383736!3d-7.380791772647359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e4f0a3856323%3A0x7b3d53e91b5e4e4d!2sGreensa%20Inn%20%26%20Training%20Centre!5e0!3m2!1sid!2sid!4v1707100811557!5m2!1sid!2sid"
                     style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -196,16 +196,16 @@
                             Jl. Contoh No. 123, Kota Anda
                         </p>
                     </div>
-                    <div class="px-0 d-flex align-items-center gap-2" >
+                    <div class="px-0 d-flex align-items-center gap-2">
                         <div class="col-6 card border-0 p-3 shadow-sm">
-                            <i class="icon-contact fas fa-envelope mb-2"></i> 
+                            <i class="icon-contact fas fa-envelope mb-2"></i>
                             <h5>Mail Us</h5>
                             <p class="contact-text m-0 fw-lighter text-success">
                                 info@example.com
                             </p>
                         </div>
                         <div class="col-6 card border-0 p-3 shadow-sm">
-                            <i class="icon-contact fas fa-phone mb-2"></i> 
+                            <i class="icon-contact fas fa-phone mb-2"></i>
                             <h5>Call Us</h5>
                             <p class="contact-text m-0 fw-lighter text-success">
                                 +123 456 789
@@ -226,4 +226,12 @@
 
         </div>
     </div>
+
+    <!-- WOW JS -->
+    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
+
+    <script src="{{ asset('js/pelanggan/about.js') }}"></script>
 @endsection

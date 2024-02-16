@@ -228,11 +228,13 @@ class GuestController extends Controller
         $train = Train::findOrFail($id);
         $facilities = TrainFacility::all();  // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
         $layout_models = LayoutModels::where('train_id', $id)->get(); // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
+        $currentDate = Carbon::now()->addDay();
 
         return view('pelanggan.page.detail_tc', [
             'title' => 'Detail Training Center',
             'train' => $train,
             'facilities' => $facilities,
+            'currentDate'  => $currentDate,
             'layout_models' => $layout_models
         ]);
     }
