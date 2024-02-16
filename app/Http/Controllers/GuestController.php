@@ -17,6 +17,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Db;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GuestController extends Controller
 {
@@ -529,5 +530,29 @@ class GuestController extends Controller
         CartItem::where('cart_id', $id)->delete();
 
         return redirect('/order');
+    }
+
+    public function invoiceShow($id)
+    {
+        $orders = Order::where('id', $id)->get();
+        $namaKegiatan = Order::where('id', $id)->value('nama_kegiatan');
+        $totalHarga = Order::where('id', $id)
+                      ->where('status', 'Acc')
+                      ->sum('harga');
+
+        return view('pelanggan.layout.invoice', [
+            'orders' => $orders,
+            'namaKegiatan' => $namaKegiatan,
+            'totalHarga' => $totalHarga,
+        ]);
+    }
+
+    public function invoiceDownload($id)
+    {
+        $orders = Order::where('id', $id)->get();
+        $namaKegiatan = Order::where('id', $id)->value('nama_kegiatan');
+
+        $pdf = PDF::loadView('pelanggan.layout.invoice', compact('orders'));
+        $pdf->setPaper('A4','landscape');
     }
 }

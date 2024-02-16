@@ -213,7 +213,54 @@
                                 <span>{{ $order->status }}</span>
                             </div>
                             <div class="col-md-2 col-12 text-muted text-md-center text-end">
-                                <a href="#">Get</a>
+                                @if ($order->status == 'Acc')
+                                    <a href="/invoice-show/{{ $order->id }}" target="_blank">
+                                        <button class="btn btn-success">Get</button>
+                                    </a>
+                                @else
+                                    <a href="/" class="btn btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalPending">
+                                        Get
+                                    </a>
+                                @endif
+
+                                <div class="modal fade" id="modalPending" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <!-- Booking Start -->
+                                                <div class="container-xxl py-5">
+                                                    <div class="container">
+
+                                                        <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
+                                                            <h6 class="section-title text-center text-dark text-uppercase">
+                                                                Pesanan ini masih diproses oleh Admin
+                                                            </h6>
+                                                        </div>
+
+                                                        <div class="col-lg-12"> 
+                                                            <div class="row g-3">
+                                                                <div class="col-12">
+                                                                    <button class="btn btn-success w-100 py-3" data-bs-dismiss="modal"
+                                                                    type="button">Kembali</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     @endforeach
