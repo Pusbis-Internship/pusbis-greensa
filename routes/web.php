@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\checkout;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
@@ -48,7 +49,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
     Route::post('/checkout', [GuestController::class, 'showcheckout'])->middleware('guestmustlogin');
     Route::post('/checkout-komplimen/{id}', [GuestController::class, 'checkoutKomplimen'])->middleware('guestmustlogin');
-    Route::post('/checkout-reguler/{id}', [GuestController::class, 'checkoutReguler'])->middleware('guestmustlogin');
+    Route::post('/checkout-reguler/{id}', [checkout::class, 'checkoutReguler'])->middleware('guestmustlogin');
     Route::post('/checkout-komplimen-langsung', [GuestController::class, 'checkoutKomplimenLangsung'])->middleware('guestmustlogin');
     Route::post('/checkout-reguler-langsung', [GuestController::class, 'checkoutRegulerLangsung'])->middleware('guestmustlogin');
     
