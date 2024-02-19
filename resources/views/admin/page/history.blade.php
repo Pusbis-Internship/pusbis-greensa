@@ -54,6 +54,7 @@
                     <th>Price</th>
                     <th>Activity</th>
                     <th>Status</th>
+                    <th>Received</th>
                 </tr>
             </thead>
             <tbody id="orderTableBody">

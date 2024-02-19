@@ -123,7 +123,7 @@
                 </tr>
             </thead>
             <tbody id="orderTableBody">
-                @foreach($orders->where('status', 'Pending') as $order)
+                @foreach($orders->where('status', 'pending') as $order)
                 <tr>
                     <td><input type="checkbox" name="order_ids[]" value="{{$order->id}}"></td>
                     <td>{{$order->id}}</td>
@@ -136,18 +136,11 @@
                     <td>{{$order->created_at}}</td>
                     <td>{{$order->status}}</td>
 
+
                     <td>
-                        <!-- <form action="{{ route('admin.order.updateStatus', $order->id) }}" method="POST" style="display: inline;">
+                        <form action="">
                             @csrf
-                            <select name="status">
-                                <option value="Acc">Acc</option>
-                                <option value="Reject">Reject</option>
-                            </select>
-                            <button type="submit">Submit</button>
-                        </form> -->
-                        ................
-                    </td>
-                    <td>
+                        </form>
                         <form action="{{ route('admin.order.acc', $order->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="action-button"><i class="fas fa-check"></i></button>

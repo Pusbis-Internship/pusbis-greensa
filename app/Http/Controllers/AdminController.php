@@ -79,7 +79,7 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Status updated successfully.');
     }
-    
+
     public function deleteSelectedOrders(Request $request)
     {
         // Validasi bahwa ada order yang dipilih untuk dihapus
