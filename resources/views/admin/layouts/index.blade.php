@@ -16,6 +16,7 @@
     <title>Admin | Dashboard</title>
     <!-- Main styles for this application-->
     <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
       th, td {

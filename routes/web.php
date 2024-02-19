@@ -18,9 +18,16 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
     Route::get('/admin-login', [AdminController::class, 'showlogin']);
     Route::get('/admin', [AdminController::class, 'showadmin'])->middleware('adminmustlogin');
-    Route::get('/admin-training-center-order', [AdminController::class, 'showtrorder'])->middleware('adminmustlogin');
+   
     Route::get('/admin-training-center-list', [AdminController::class, 'showtrlist'])->name('train.showlist')->middleware('adminmustlogin');
     Route::get('/admin-user-list', [AdminController::class, 'showuserlist'])->middleware('adminmustlogin');
+    
+    Route::get('/admin-training-center-history-order', [AdminController::class, 'showhistory'])->middleware('adminmustlogin');
+    Route::get('/admin-training-center-order-spj', [AdminController::class, 'showorderspj'])->middleware('adminmustlogin');
+    Route::post('/admin/order/{orderId}/acc', [AdminController::class, 'accOrder'])->name('admin.order.acc');
+    Route::post('/admin/order/{orderId}/reject', [AdminController::class, 'rejectOrder'])->name('admin.order.reject');
+    Route::post('/admin/orders/delete', [AdminController::class, 'deleteSelectedOrders'])->name('admin.orders.delete');
+    Route::post('/admin/order/{orderId}/update-status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.updateStatus');
 
     // user list
     Route::post('/admin-user-list-delete/{id}', [AdminController::class, 'userdelete'])->name('user.delete')->middleware('adminmustlogin');

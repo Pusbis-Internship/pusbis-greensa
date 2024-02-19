@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Guest;
 use App\Models\Train;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -22,13 +23,78 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        
+
         return redirect('/admin-login');
     }
 
-    public function showtrorder()
+    public function showorderspj()
     {
-        return view('admin.page.trainorder');
+        $orders = Order::whereNotNull('surat')->get();
+        // dd($orders);
+
+        return view('admin.page.orderspj', ['orders' => $orders]);
+    }
+
+    public function showhistory()
+    {
+        // Mengambil semua order yang memiliki status 'Accepted' atau 'Rejected' 
+        // dan 'surat' tidak null
+        $orders = Order::whereIn('status', ['Accepted', 'Rejected'])
+            ->whereNotNull('surat')
+            ->get();
+
+        return view('admin.page.history', ['orders' => $orders]);
+    }
+
+    public function accOrder($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        $order->status = 'Accepted'; // Mengubah status order menjadi 'Acc' atau 'Accepted'
+        $order->save();
+
+        // Pindahkan order ke history jika diperlukan
+
+
+        return redirect()->back()->with('success', 'Order has been accepted.');
+    }
+
+    public function rejectOrder($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        $order->status = 'Rejected'; // Mengubah status order menjadi 'Rejected'
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order has been rejected.');
+    }
+
+    public function updateOrderStatus(Request $request, $orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        $status = $request->input('status');
+
+        if ($status == 'Acc' || $status == 'Reject') {
+            $order->status = $status;
+            $order->save();
+        }
+
+        return redirect()->back()->with('success', 'Status updated successfully.');
+    }
+    
+    public function deleteSelectedOrders(Request $request)
+    {
+        // Validasi bahwa ada order yang dipilih untuk dihapus
+        $request->validate([
+            'order_ids' => 'required|array',
+            'order_ids.*' => 'exists:orders,id',
+        ]);
+
+        // Ambil ID order yang dipilih dari form
+        $orderIds = $request->input('order_ids');
+
+        // Hapus order yang dipilih
+        Order::whereIn('id', $orderIds)->delete();
+
+        return redirect()->back()->with('success', 'Selected orders have been deleted.');
     }
 
     public function showtcstore()
