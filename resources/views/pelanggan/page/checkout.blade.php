@@ -24,7 +24,7 @@
     <div id="form1" style="display:block;">
         <h2>Form Komplimen</h2>
         @if ($fromCart == True)
-            <form action="/checkout-komplimen{{ $cart->id }}" method="POST"> @csrf
+            <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"> @csrf
         @else
             <form action="/checkout-komplimen-langsung" method="POST"> @csrf
             <input type="hidden" name="item" value="{{ json_encode($item) }}">

@@ -617,7 +617,7 @@ class GuestController extends Controller
                 'harga'         => $item->harga,
                 'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
-                'status'        => 'Acc',
+                'status'        => 'pending',
                 'surat'         => 'SuperSemar.pdf',
             ]);
         }
@@ -732,7 +732,7 @@ class GuestController extends Controller
         $orders = Order::where('id', $id)->get();
         $namaKegiatan = Order::where('id', $id)->value('nama_kegiatan');
         $totalHarga = Order::where('id', $id)
-            ->where('status', 'Acc')
+            ->where('status', 'Accepted')
             ->sum('harga');
 
         return view('pelanggan.layout.invoice', [
