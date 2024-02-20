@@ -338,17 +338,17 @@ class GuestController extends Controller
             $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
-                    ->where('status', '=', 'Acc');
+                    ->where('status', '=', 'Accepted');
                 })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
-                        ->where('status', '=', 'Acc');
+                        ->where('status', '=', 'Accepted');
                 })
                 ->orWhere(function ($query) use ($dateIn, $dateOut) {
                     $query->where('checkin', '>=', $dateIn)
                         ->where('checkout', '<=', $dateOut)
-                        ->where('status', '=', 'Acc');
+                        ->where('status', '=', 'Accepted');
                 })
                 ->pluck('train_id')
                 ->toArray();
@@ -433,17 +433,17 @@ class GuestController extends Controller
             $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
-                    ->where('status', '=', 'Acc');
+                    ->where('status', '=', 'Accepted');
                 })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
-                        ->where('status', '=', 'Acc');
+                        ->where('status', '=', 'Accepted');
                 })
                 ->orWhere(function ($query) use ($dateIn, $dateOut) {
                     $query->where('checkin', '>=', $dateIn)
                         ->where('checkout', '<=', $dateOut)
-                        ->where('status', '=', 'Acc');
+                        ->where('status', '=', 'Accepted');
                 })
                 ->pluck('train_id')
                 ->toArray();

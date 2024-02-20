@@ -213,7 +213,7 @@
                                 <span>{{ $order->status }}</span>
                             </div>
                             <div class="col-md-2 col-12 text-muted text-md-center text-end">
-                                @if ($order->status == 'Acc')
+                                @if ($order->status == 'Accepted')
                                     <a href="/invoice-show/{{ $order->id }}" target="_blank">
                                         <button class="btn btn-success">Get</button>
                                     </a>
