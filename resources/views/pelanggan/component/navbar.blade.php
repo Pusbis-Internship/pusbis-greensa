@@ -79,9 +79,12 @@
 
             @auth('guest')
                 <ul class="navbar-nav">
+                    <li class="nav-item d-md-flex d-none align-self-center">
+                        <p class="nav-item text-white m-0">Halo {{ $guest->name }}</p>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> Halo {{ $guest->name }}
+                            data-bs-toggle="dropdown" aria-expanded="false"> 
                             <i class="bi bi-person fs-2 text-white ms-2"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -93,7 +96,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item text-end">
+                    <li class="nav-item text-center">
                         <div class="notif">
                             <a href="/cart" class="nav-link icon-cart">
                                 <i class="bi bi-cart icon-nav fs-3 text-white m-auto "></i>
