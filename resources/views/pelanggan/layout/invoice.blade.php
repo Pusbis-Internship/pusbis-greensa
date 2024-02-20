@@ -87,15 +87,17 @@
                                 </thead>
                                 <tbody class="table-group-divider">
                                     @foreach ($orders as $index => $order)
+                                    @foreach ($order->items as $item)
                                         <tr>
                                             <th class="text-center" scope="row">{{ $index + 1 }}</th>
-                                            <td style="white-space: nowrap;">{{ $order->train->nama }}</td>
-                                            <td style="white-space: nowrap;">{{ $order->layout }}</td>
-                                            <td>{{ $order->checkin }}</td>
-                                            <td>{{ $order->checkout }}</td>
-                                            <td class="text-end">{{ $order->status }}</td>
-                                            <td class="text-end">{{ $order->harga }}</td>
+                                            <td style="white-space: nowrap;">{{ $item->train->nama }}</td>
+                                            <td style="white-space: nowrap;">{{ $item->layout }}</td>
+                                            <td>{{ $item->checkin }}</td>
+                                            <td>{{ $item->checkout }}</td>
+                                            <td class="text-end">{{ $item->status }}</td>
+                                            <td class="text-end">{{ $item->harga }}</td>
                                         </tr>
+                                    @endforeach
                                     @endforeach
                                     {{-- <tr>
                                         <td colspan="3" class="text-end">Subtotal</td>

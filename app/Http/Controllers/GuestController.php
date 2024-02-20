@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use Midtrans\Config;
 use App\Models\Guest;
 use App\Models\Order;
 use App\Models\Train;
 use App\Models\CartItem;
-use Midtrans\Config;
+use App\Models\OrderItem;
+use Illuminate\Support\Str;
 use App\Models\LayoutModels;
 use Illuminate\Http\Request;
 use App\Models\TrainFacility;
 use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Db;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Db;
-use Illuminate\Support\Str;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Auth\Events\Registered;
 
 class GuestController extends Controller
 {
@@ -267,7 +268,6 @@ class GuestController extends Controller
             'checkin'       => $request->checkin,
             'checkout'      => $checkout,
             'lama'          => $request->lamaHari,
-            'kapasitas'     => $request->kapasitas,
             'harga'         => $request->harga,
             'nama_kegiatan' => $request->namaKegiatan,
             'special'       => $request->special,
@@ -316,26 +316,32 @@ class GuestController extends Controller
                 ->toArray();
 
                 // Get train_id from self order
-            $roomInOrderSelf = Order::where(function ($query) use ($dateIn) {
+            $roomInOrderSelf = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
-                    ->where('guest_id', '=', auth('guest')->id());
+                    ->whereHas('order', function ($query) {
+                        $query->where('guest_id', auth('guest')->id());
+                    });
                 })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
+                        ->whereHas('order', function ($query) {
+                            $query->where('guest_id', auth('guest')->id());
+                        });
                 })
                 ->orWhere(function ($query) use ($dateIn, $dateOut) {
                     $query->where('checkin', '>=', $dateIn)
                         ->where('checkout', '<=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
+                        ->whereHas('order', function ($query) {
+                            $query->where('guest_id', auth('guest')->id());
+                        });
                 })
                 ->pluck('train_id')
                 ->toArray();
 
             // Get train_id from all ACC'ed order
-            $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
+            $roomInOrderAll = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('status', '=', 'Accepted');
@@ -411,26 +417,32 @@ class GuestController extends Controller
                 ->toArray();
 
             // Get train_id from self order
-            $roomInOrderSelf = Order::where(function ($query) use ($dateIn) {
+            $roomInOrderSelf = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
-                    ->where('guest_id', '=', auth('guest')->id());
+                    ->whereHas('order', function ($query) {
+                        $query->where('guest_id', auth('guest')->id());
+                    });
                 })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
+                        ->whereHas('order', function ($query) {
+                            $query->where('guest_id', auth('guest')->id());
+                        });
                 })
                 ->orWhere(function ($query) use ($dateIn, $dateOut) {
                     $query->where('checkin', '>=', $dateIn)
                         ->where('checkout', '<=', $dateOut)
-                        ->where('guest_id', '=', auth('guest')->id());
+                        ->whereHas('order', function ($query) {
+                            $query->where('guest_id', auth('guest')->id());
+                        });
                 })
                 ->pluck('train_id')
                 ->toArray();
 
             // Get train_id from all ACC'ed order
-            $roomInOrderAll = Order::where(function ($query) use ($dateIn) {
+            $roomInOrderAll = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('status', '=', 'Accepted');
@@ -605,20 +617,23 @@ class GuestController extends Controller
     {
         $cart = Cart::find($id);
 
+        $order = Order::create([
+            'guest_id'      => $cart->guest->id,
+            'nama_kegiatan' => 'ps-an',
+            'surat'         => 'Surat Perintah.pdf',
+        ]);
+        
         foreach ($cart->items as $item) {
-            Order::create([
-                'guest_id'      => $cart->guest->id,
+            OrderItem::create([
+                'order_id'      => $order->id,
                 'train_id'      => $item->train_id,
                 'layout'        => $item->layout,
                 'checkin'       => $item->checkin,
                 'checkout'      => $item->checkout,
                 'lama'          => $item->lama,
-                'kapasitas'     => $item->kapasitas,
                 'harga'         => $item->harga,
-                'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
-                'status'        => 'pending',
-                'surat'         => 'SuperSemar.pdf',
+                'status'        => 'Pending',
             ]);
         }
 
@@ -631,20 +646,22 @@ class GuestController extends Controller
     {
         $cart = Cart::find($id);
 
+        $order = Order::create([
+            'guest_id'      => $cart->guest->id,
+            'nama_kegiatan' => 'ps-an',
+        ]);
+
         foreach ($cart->items as $item) {
-            Order::create([
-                'guest_id'      => $cart->guest->id,
+            OrderItem::create([
+                'order_id'      => $order->id,
                 'train_id'      => $item->train_id,
                 'layout'        => $item->layout,
                 'checkin'       => $item->checkin,
                 'checkout'      => $item->checkout,
                 'lama'          => $item->lama,
-                'kapasitas'     => $item->kapasitas,
                 'harga'         => $item->harga,
-                'nama_kegiatan' => $item->nama_kegiatan,
                 'special'       => $item->special,
                 'status'        => 'Pending',
-                'surat'         => 'SuperSemar.pdf',
             ]);
         }
 
@@ -669,9 +686,7 @@ class GuestController extends Controller
             'checkin'       => $request->checkin,
             'checkout'      => $checkout,
             'lama'          => $request->lamaHari,
-            'kapasitas'     => $request->kapasitas,
             'harga'         => $request->harga,
-            'nama_kegiatan' => $request->namaKegiatan,
             'special'       => $request->special,
         ];
 
@@ -687,19 +702,23 @@ class GuestController extends Controller
     {
         $item = json_decode($request->input('item'), true);
 
-        Order::create([
+        $order = Order::create([
             'guest_id'      => $item['guest_id'],
+            'nama_kegiatan' => 'ps-an',
+            'surat'         => 'Surat Perintah.pdf'
+        ]);
+
+        OrderItem::create([
+            'order_id'      => $order->id,
             'train_id'      => $item['train_id'],
             'layout'        => $item['layout'],
             'checkin'       => $item['checkin'],
             'checkout'      => $item['checkout'],
             'lama'          => $item['lama'],
-            'kapasitas'     => $item['kapasitas'],
             'harga'         => $item['harga'],
             'nama_kegiatan' => $item['nama_kegiatan'],
             'special'       => $item['special'],
             'status'        => 'Pending',
-            'surat'         => 'SuperSemar.pdf',
         ]);
 
         return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
@@ -709,29 +728,32 @@ class GuestController extends Controller
     {
         $item = json_decode($request->input('item'), true);
 
-        Order::create([
+        $order = Order::create([
             'guest_id'      => $item['guest_id'],
+            'nama_kegiatan' => 'ps-an',
+        ]);
+
+        OrderItem::create([
+            'order_id'      => $order->id,
             'train_id'      => $item['train_id'],
             'layout'        => $item['layout'],
             'checkin'       => $item['checkin'],
             'checkout'      => $item['checkout'],
             'lama'          => $item['lama'],
-            'kapasitas'     => $item['kapasitas'],
             'harga'         => $item['harga'],
             'nama_kegiatan' => $item['nama_kegiatan'],
             'special'       => $item['special'],
             'status'        => 'Pending',
-            'surat'         => 'SuperSemar.pdf',
         ]);
 
         return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
     }
 
-    public function invoiceShow($id)
+    public function invoiceShow($orderId)
     {
-        $orders = Order::where('id', $id)->get();
-        $namaKegiatan = Order::where('id', $id)->value('nama_kegiatan');
-        $totalHarga = Order::where('id', $id)
+        $orders = Order::where('id', $orderId)->get();
+        $namaKegiatan = Order::where('id', $orderId)->value('nama_kegiatan');
+        $totalHarga = OrderItem::where('id', $orderId)
             ->where('status', 'Accepted')
             ->sum('harga');
 

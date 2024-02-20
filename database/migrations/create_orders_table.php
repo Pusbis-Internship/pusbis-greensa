@@ -14,15 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('guest_id');
-            $table->foreignId('train_id');
-            $table->string('layout');
-            $table->date('checkin');
-            $table->date('checkout');
-            $table->integer('lama');
-            $table->bigInteger('harga');
             $table->string('nama_kegiatan');
-            $table->string('status');
-            $table->string('special')->nullable();
             $table->string('surat')->nullable();
             $table->string('metode_pembayaran')->nullable();
             $table->timestamps();

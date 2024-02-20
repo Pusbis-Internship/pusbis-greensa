@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Guest;
-use App\Models\Train;
 use App\Models\Order;
+use App\Models\Train;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +31,6 @@ class AdminController extends Controller
     public function showorderspj()
     {
         $orders = Order::whereNotNull('surat')->get();
-        // dd($orders);
 
         return view('admin.page.orderspj', ['orders' => $orders]);
     }
@@ -46,23 +46,20 @@ class AdminController extends Controller
         return view('admin.page.history', ['orders' => $orders]);
     }
 
-    public function accOrder($orderId)
+    public function accOrder($itemId)
     {
-        $order = Order::findOrFail($orderId);
-        $order->status = 'Accepted'; // Mengubah status order menjadi 'Acc' atau 'Accepted'
-        $order->save();
-
-        // Pindahkan order ke history jika diperlukan
-
+        $item = OrderItem::findOrFail($itemId);
+        $item->status = 'Accepted';
+        $item->save();
 
         return redirect()->back()->with('success', 'Order has been accepted.');
     }
 
-    public function rejectOrder($orderId)
+    public function rejectOrder($itemId)
     {
-        $order = Order::findOrFail($orderId);
-        $order->status = 'Rejected'; // Mengubah status order menjadi 'Rejected'
-        $order->save();
+        $item = OrderItem::findOrFail($itemId);
+        $item->status = 'Rejected';
+        $item->save();
 
         return redirect()->back()->with('success', 'Order has been rejected.');
     }

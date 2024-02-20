@@ -190,30 +190,32 @@
                 </div>
                 <div class="row border-top border-bottom w-100 d-flex align-items-center">
                     @foreach ($orders as $index => $order)
+                    @foreach ($order->items as $item)
                         <div class="row main align-items-center py-3">
                             <div class="col-md-2 col-12 gambar">
-                                <img src="{{ asset('/storage/posts/' . $order->train->gambar) }}" class="blur-up lazyloaded w-100"alt="">
+                                <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}" class="blur-up lazyloaded w-100"alt="">
+                                <p>{{ $index + 1}}</p>
                             </div>
                             <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-md-center text-start">
                                 <a class=" text-decoration-none text-success fw-bold" style="text-transform:uppercase" href="#">
-                                    {{ $order->train->nama }}
+                                    {{ $item->train->nama }}
                                 </a>
                                 <div class="row d-flex align-items-center mb-md-0 mb-2">
-                                    <div class="col-12 p-0 text-muted keterangan">{{ $order->layout }}</div>
-                                    <div class="col-12 p-0 text-muted keterangan ">{{ $order->checkin }}</div>
-                                    <div class="col-12 p-0 text-muted keterangan ">{{ $order->lama }} hari</div>
+                                    <div class="col-12 p-0 text-muted keterangan">{{ $item->layout }}</div>
+                                    <div class="col-12 p-0 text-muted keterangan ">{{ $item->checkin }}</div>
+                                    <div class="col-12 p-0 text-muted keterangan ">{{ $item->lama }} hari</div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-6  harga text-md-center text-start">
                                 <p class="m-0 text-success fw-bold">
-                                    Rp {{ number_format($order->harga, 0, ',', '.')}}
+                                    Rp {{ number_format($item->harga, 0, ',', '.')}}
                                 </p>
                             </div>
                             <div class="col-md-2 col-6 text-muted text-md-center text-end">
-                                <span>{{ $order->status }}</span>
+                                <span>{{ $item->status }}</span>
                             </div>
                             <div class="col-md-2 col-12 text-muted text-md-center text-end">
-                                @if ($order->status == 'Accepted')
+                                @if ($item->status != 'Pending')
                                     <a href="/invoice-show/{{ $order->id }}" target="_blank">
                                         <button class="btn btn-success">Get</button>
                                     </a>
@@ -263,6 +265,7 @@
 
                             </div>
                         </div>
+                    @endforeach
                     @endforeach
                 </div>
                 @endif

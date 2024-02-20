@@ -123,35 +123,36 @@
                 </tr>
             </thead>
             <tbody id="orderTableBody">
-                @foreach($orders->where('status', 'pending') as $order)
+                @foreach($orders as $order)
+                @foreach($order->items->where('status', 'Pending') as $item)
                 <tr>
-                    <td><input type="checkbox" name="order_ids[]" value="{{$order->id}}"></td>
+                    <td><input type="checkbox" name="order_ids[]" value="{{$item->id}}"></td>
                     <td>{{$order->id}}</td>
                     <td>{{$order->guest->name}}</td>
-                    <td>{{$order->train->nama}}</td>
-                    <td>{{$order->checkin}}</td>
-                    <td>{{$order->checkout}}</td>
-                    <td>{{$order->harga}}</td>
-                    <td>{{$order->nama_kegiatan}}</td>
-                    <td>{{$order->created_at}}</td>
-                    <td>{{$order->status}}</td>
-
+                    <td>{{$item->train->nama}}</td>
+                    <td>{{$item->checkin}}</td>
+                    <td>{{$item->checkout}}</td>
+                    <td>{{$item->harga}}</td>
+                    <td>{{$item->nama_kegiatan}}</td>
+                    <td>{{$item->created_at}}</td>
+                    <td>{{$item->status}}</td>
 
                     <td>
                         <form action="">
                             @csrf
                         </form>
-                        <form action="{{ route('admin.order.acc', $order->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('admin.order.acc', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="action-button"><i class="fas fa-check"></i></button>
                         </form>
-                        <form action="{{ route('admin.order.reject', $order->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('admin.order.reject', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="action-button"><i class="fas fa-times"></i></button>
                         </form>
                     </td>
 
                 </tr>
+                @endforeach
                 @endforeach
             </tbody>
         </table>
