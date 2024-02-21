@@ -751,25 +751,25 @@ class GuestController extends Controller
 
     public function invoiceShow($orderId)
     {
-        $orders = Order::where('id', $orderId)->get();
+        $order = Order::where('id', $orderId)->first();
         $namaKegiatan = Order::where('id', $orderId)->value('nama_kegiatan');
-        $totalHarga = OrderItem::where('id', $orderId)
+        $totalHarga = OrderItem::where('order_id', $orderId)
             ->where('status', 'Accepted')
             ->sum('harga');
 
         return view('pelanggan.layout.invoice', [
-            'orders' => $orders,
+            'order' => $order,
             'namaKegiatan' => $namaKegiatan,
             'totalHarga' => $totalHarga,
         ]);
     }
 
-    public function invoiceDownload($id)
+    public function invoiceDownload($orderId)
     {
-        $orders = Order::where('id', $id)->get();
-        $namaKegiatan = Order::where('id', $id)->value('nama_kegiatan');
+        $order = Order::where('id', $orderId)->first();
+        $namaKegiatan = Order::where('id', $orderId)->value('nama_kegiatan');
 
-        $pdf = PDF::loadView('pelanggan.layout.invoice', compact('orders'));
+        $pdf = PDF::loadView('pelanggan.layout.invoice', compact('order'));
         $pdf->setPaper('A4', 'landscape');
     }
 }

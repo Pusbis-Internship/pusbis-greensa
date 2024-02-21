@@ -86,8 +86,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
-                                    @foreach ($orders as $index => $order)
-                                    @foreach ($order->items as $item)
+                                    @foreach ($order->items as $index => $item)
                                         <tr>
                                             <th class="text-center" scope="row">{{ $index + 1 }}</th>
                                             <td style="white-space: nowrap;">{{ $item->train->nama }}</td>
@@ -97,7 +96,6 @@
                                             <td class="text-end">{{ $item->status }}</td>
                                             <td class="text-end">{{ $item->harga }}</td>
                                         </tr>
-                                    @endforeach
                                     @endforeach
                                     {{-- <tr>
                                         <td colspan="3" class="text-end">Subtotal</td>
