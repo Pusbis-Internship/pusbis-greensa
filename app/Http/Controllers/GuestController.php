@@ -613,13 +613,13 @@ class GuestController extends Controller
         ]);
     }
 
-    public function checkoutKomplimen($id)
+    public function checkoutKomplimen(Request $request, $cart_id)
     {
-        $cart = Cart::find($id);
+        $cart = Cart::find($cart_id);
 
         $order = Order::create([
             'guest_id'      => $cart->guest->id,
-            'nama_kegiatan' => 'ps-an',
+            'nama_kegiatan' => $request->nama_kegiatan,
             'surat'         => 'Surat Perintah.pdf',
         ]);
         
@@ -637,18 +637,18 @@ class GuestController extends Controller
             ]);
         }
 
-        CartItem::where('cart_id', $id)->delete();
+        CartItem::where('cart_id', $cart_id)->delete();
 
         return redirect('/order');
     }
 
-    public function checkoutReguler($id)
+    public function checkoutReguler(Request $request, $cart_id)
     {
-        $cart = Cart::find($id);
+        $cart = Cart::find($cart_id);
 
         $order = Order::create([
             'guest_id'      => $cart->guest->id,
-            'nama_kegiatan' => 'ps-an',
+            'nama_kegiatan' => $request->nama_kegiatan,
         ]);
 
         foreach ($cart->items as $item) {
@@ -665,7 +665,7 @@ class GuestController extends Controller
             ]);
         }
 
-        CartItem::where('cart_id', $id)->delete();
+        CartItem::where('cart_id', $cart_id)->delete();
 
         return redirect('/order');
     }
@@ -704,7 +704,7 @@ class GuestController extends Controller
 
         $order = Order::create([
             'guest_id'      => $item['guest_id'],
-            'nama_kegiatan' => 'ps-an',
+            'nama_kegiatan' => $request->nama_kegiatan,
             'surat'         => 'Surat Perintah.pdf'
         ]);
 
@@ -730,7 +730,7 @@ class GuestController extends Controller
 
         $order = Order::create([
             'guest_id'      => $item['guest_id'],
-            'nama_kegiatan' => 'ps-an',
+            'nama_kegiatan' => $request->nama_kegiatan,
         ]);
 
         OrderItem::create([

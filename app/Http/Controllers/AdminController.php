@@ -37,11 +37,9 @@ class AdminController extends Controller
 
     public function showhistory()
     {
-        // Mengambil semua order yang memiliki status 'Accepted' atau 'Rejected' 
-        // dan 'surat' tidak null
-        $orders = Order::whereIn('status', ['Accepted', 'Rejected'])
-            ->whereNotNull('surat')
-            ->get();
+        $orders = Order::whereHas('items', function ($query) {
+            $query->where('status', '!=', 'Pending');
+        })->get();
 
         return view('admin.page.history', ['orders' => $orders]);
     }

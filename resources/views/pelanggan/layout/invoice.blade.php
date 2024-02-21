@@ -94,7 +94,11 @@
                                             <td>{{ $item->checkin }}</td>
                                             <td>{{ $item->checkout }}</td>
                                             <td class="text-end">{{ $item->status }}</td>
-                                            <td class="text-end">{{ $item->harga }}</td>
+                                            @if ($item->status == 'Rejected')
+                                                <td class="text-end">0</td>
+                                            @else
+                                                <td class="text-end">{{ $item->harga }}</td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     {{-- <tr>

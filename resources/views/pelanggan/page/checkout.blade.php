@@ -29,6 +29,8 @@
             <form action="/checkout-komplimen-langsung" method="POST"> @csrf
             <input type="hidden" name="item" value="{{ json_encode($item) }}">
         @endif
+            <label>Nama Kegiatan:</label><br>
+            <input type="text" name="nama_kegiatan" required><br><br>
             <label>Surat Komplimen:</label><br>
             <input type="file" name="surat_komplimen"><br><br>
             <input type="submit" value="Checkout">
@@ -43,6 +45,8 @@
             <form action="/checkout-reguler-langsung" method="POST"> @csrf
             <input type="hidden" name="item" value="{{ json_encode($item) }}">
         @endif
+            <label>Nama Kegiatan:</label><br>
+            <input type="text" name="nama_kegiatan" required><br><br>
             <input type="button" id="pay-button" value="Checkout">
         </form>
     </div>

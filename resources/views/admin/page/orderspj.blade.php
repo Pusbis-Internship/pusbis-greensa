@@ -98,8 +98,11 @@
 <div class="container">
     <h1>Admin - Show Order</h1>
     <div style="position:relative;">
-        <input type="text" id="searchInput" placeholder="Search...">
-        <button id="searchIcon" onclick="submitSearch()"><i class="fas fa-search"></i></button>
+        <input type="text" id="searchUser" placeholder="Nama user">
+        <input type="text" id="searchRuangan" placeholder="Ruangan">
+        <input type="date" id="searchTanggalAwal" placeholder="Tanggal awal">
+        <input type="date" id="searchTanggalAkhir" placeholder="Tanggal akhir">
+        <input type="text" id="searchKegiatan" placeholder="Nama kegiatan">
     </div>
     <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
         @csrf
@@ -107,17 +110,12 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"></th>
-                    <th>Order ID</th>
                     <th>Customer Name</th>
                     <th>Room</th>
-                    <th>
-                        Check In
-                    </th>
+                    <th>Check In</th>
                     <th>Check Out</th>
                     <th>Price</th>
                     <th>Activity</th>
-                    <th>Received</th>
-                    <th>Status</th>
                     <th>action</th>
                     <!-- <th>Action</th> -->
                 </tr>
@@ -127,15 +125,12 @@
                 @foreach($order->items->where('status', 'Pending') as $item)
                 <tr>
                     <td><input type="checkbox" name="order_ids[]" value="{{$item->id}}"></td>
-                    <td>{{$order->id}}</td>
-                    <td>{{$order->guest->name}}</td>
-                    <td>{{$item->train->nama}}</td>
-                    <td>{{$item->checkin}}</td>
-                    <td>{{$item->checkout}}</td>
-                    <td>{{$item->harga}}</td>
-                    <td>{{$item->nama_kegiatan}}</td>
-                    <td>{{$item->created_at}}</td>
-                    <td>{{$item->status}}</td>
+                    <td id="namaUser">{{$order->guest->name}}</td>
+                    <td id="namaRuangan">{{$item->train->nama}}</td>
+                    <td id="tanggalAwal">{{$item->checkin}}</td>
+                    <td id="tanggalAkhir">{{$item->checkout}}</td>
+                    <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                    <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
 
                     <td>
                         <form action="">
@@ -160,22 +155,46 @@
     </form>
 </div>
 <script>
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        const searchValue = this.value.toLowerCase();
+    // Search by namaUser
+    document.getElementById('searchUser').addEventListener('keyup', searchTable);
+
+    // Search by namaRuangan
+    document.getElementById('searchRuangan').addEventListener('keyup', searchTable);
+
+    // Search by namaKegiatan
+    document.getElementById('searchKegiatan').addEventListener('keyup', searchTable);
+
+    // Search by checkin date
+    document.getElementById('searchTanggalAwal').addEventListener('change', searchTable);
+
+    // Search by checkin date
+    document.getElementById('searchTanggalAkhir').addEventListener('change', searchTable);
+
+    function searchTable() {
+        const searchValueUser = document.getElementById('searchUser').value.toLowerCase();
+        const searchValueRuangan = document.getElementById('searchRuangan').value.toLowerCase();
+        const searchValueKegiatan = document.getElementById('searchKegiatan').value.toLowerCase();
+        const searchValueTanggalAwal = new Date(document.getElementById('searchTanggalAwal').value);
+        const searchValueTanggalAkhir = new Date(document.getElementById('searchTanggalAkhir').value);
         const rows = document.querySelectorAll('#orderTableBody tr');
 
         rows.forEach(row => {
-            const columns = row.querySelectorAll('td');
-            let found = false;
-            columns.forEach(column => {
-                const text = column.textContent.toLowerCase();
-                if (text.includes(searchValue)) {
-                    found = true;
-                }
-            });
-            row.style.display = found ? '' : 'none';
+            const namaUser = row.querySelector('td#namaUser').textContent.toLowerCase();
+            const namaRuangan = row.querySelector('td#namaRuangan').textContent.toLowerCase();
+            const namaKegiatan = row.querySelector('td#namaKegiatan').textContent.toLowerCase();
+            const tanggalAwal = new Date(row.querySelector('td#tanggalAwal').textContent);
+            const tanggalAkhir = new Date(row.querySelector('td#tanggalAkhir').textContent);
+
+            const foundUser = namaUser.includes(searchValueUser);
+            const foundRuangan = namaRuangan.includes(searchValueRuangan);
+            const foundKegiatan = namaKegiatan.includes(searchValueKegiatan);
+            const isAfterTanggalAwal = tanggalAwal >= searchValueTanggalAwal;
+            const isBeforeTanggalAkhir = tanggalAkhir <= searchValueTanggalAkhir;
+
+            row.style.display = foundUser && foundRuangan && foundKegiatan && isAfterTanggalAwal && isBeforeTanggalAkhir ? '' : 'none';
+
         });
-    });
+    }
 
     // Function to check/uncheck all checkboxes
     document.getElementById('checkAll').addEventListener('change', function() {
@@ -188,5 +207,19 @@
     setInterval(function() {
         location.reload();
     }, 60000);
+
+    // Get current date
+    const currentDate = new Date();
+
+    // Default tanggalAwal
+    const firstDateOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 2);
+    const formattedFirstDateOfMonth = firstDateOfMonth.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    document.getElementById('searchTanggalAwal').value = formattedFirstDateOfMonth;
+
+    // Default tanggalAkhir
+    const lastDateOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0); // Get the last day of the next month, then subtract 1
+    const formattedLastDateOfMonth = lastDateOfMonth.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    document.getElementById('searchTanggalAkhir').value = formattedLastDateOfMonth;
+
 </script>
 @endsection
