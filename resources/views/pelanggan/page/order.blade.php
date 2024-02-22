@@ -33,7 +33,158 @@
         </div>
     </section>
 
-    <style>
+    <div class="container my-5" >
+        <div class="row header-table border-top border-bottom d-md-flex d-none align-items-center py-3">
+
+            <div class="col-9 ">
+                <p class="fw-bold m-0 ">PESANAN</p>
+            </div>
+            <div class="col-3 text-center">
+                <p class="fw-bold m-0 text-center">INVOICE</p>
+            </div>
+
+        </div>
+        @if ($orders->isEmpty())
+            <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col-12 text-center">
+                        <span>Tidak ada pesanan</span>
+                    </div>
+                </div>
+            </div>
+        @else
+            @foreach ($orders as $index => $order)
+                <div class="row border-bottom bg-white">
+                    <div class="col-md-9 col-12 p-0">
+                        <div class="accordion border border-0 border-radius-0" id="accordionPanelsStayOpenExample{{$index}}">
+                            <div
+                                class="accordion-item border border-0 bg-transparent>
+                                <h2 class="accordion-header">
+                                <button class="accordion-button border border-0 border-radius-0 text-uppercase fw-bolder"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne{{$index}}"
+                                    aria-expanded="true" aria-controls="panelsStayOpen-collapseOne{{$index}}">
+                                    {{ $order->nama_kegiatan }}
+                                </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne{{$index}}" class="accordion-collapse collapse show">
+                                    <div class="accordion-body border border-0 ">
+                                        <div
+                                            class="row header-table border-top border-bottom d-md-flex d-none align-items-center py-3">
+                                            <div class="col-md-3 col-12 gambar">
+                                                <p class="fw-bold m-0 text-center">GAMBAR</p>
+                                            </div>
+
+                                            <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">
+                                                <p class="fw-bold m-0 text-center">RUANG</p>
+                                            </div>
+
+                                            <div class="col-md-3 col-12  harga text-md-center text-start">
+                                                <p class="fw-bold m-0 text-center">HARGA</p>
+                                            </div>
+
+                                            <div class="col-md-3 col-12 text-end">
+                                                <p class="fw-bold m-0 text-center">STATUS</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="w-100">
+                                            @foreach ($order->items as $item)
+                                                <div class="row d-flex align-items-center p-0 py-md-4 py-2">
+                                                    <div class="col-md-3 col-12 gambar text-center">
+                                                        <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}"
+                                                            class="blur-up lazyloaded w-100"alt="">
+                                                        {{-- <p>{{ $index + 1 }}</p> --}}
+                                                    </div>
+                                                    <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-center ">
+                                                        <a class=" text-decoration-none text-success fw-bold"
+                                                            style="text-transform:uppercase" href="#">
+                                                            {{ $item->train->nama }}
+                                                        </a>
+                                                        <div class="row d-flex align-items-center mb-md-0 mb-2">
+                                                            <div class="col-12 p-md-0 text-muted keterangan">
+                                                                {{ $item->layout }}</div>
+                                                            <div class="col-12 p-md-0 text-muted keterangan ">
+                                                                {{ $item->checkin }}</div>
+                                                            <div class="col-12 p-md-0 text-muted keterangan ">
+                                                                {{ $item->lama }} hari</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12 harga text-center ">
+                                                        <p class="m-0 text-success fw-bold">
+                                                            Rp {{ number_format($item->harga, 0, ',', '.') }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-3 col-12 text-muted text-center m-0">
+                                                        <span>{{ $item->status }}</span>
+                                                    </div>
+
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12 d-flex align-items-center justify-content-md-center bg-white m-md-0 m-2 ">
+                        <a class=" text-decoration-none text-success fw-bold d-md-none d-flex me-md-0 me-3" style="text-transform:uppercase"
+                            href="#">print invoice :
+                        </a>
+                        @if ($item->status != 'Pending')
+                            <a href="/invoice-show/{{ $order->id }}" target="_blank">
+                                <button class="btn btn-success">Get</button>
+                            </a>
+                        @else
+                            <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">
+                                Get
+                            </a>
+                        @endif
+                        <div class="modal fade" id="modalPending" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <!-- Booking Start -->
+                                        <div class="container-xxl py-5">
+                                            <div class="container">
+
+                                                <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
+                                                    <h6 class="section-title text-center text-dark text-uppercase">
+                                                        Pesanan ini masih diproses oleh
+                                                        Admin
+                                                    </h6>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="row g-3">
+                                                        <div class="col-12">
+                                                            <button class="btn btn-success w-100 py-3"
+                                                                data-bs-dismiss="modal" type="button">Kembali</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    </div>
+
+    {{-- ORDER PAGE OLD --}}
+    {{-- <style>
         .title {
             margin-bottom: 3vh;
         }
@@ -53,9 +204,7 @@
         }
 
         .cart {
-            /* background-color: #fff; */
             padding: 4vh 5vh;
-            /* border-radius: 1rem; */
         }
 
         @media(max-width:767px) {
@@ -147,13 +296,7 @@
     <div class=" my-5">
         <div class="row">
             <div class="col-md-12 cart">
-                {{-- <div class="title">
-                    <div class="row">
-                        <div class="col-12 ">
-                            <h4 class="fw-bold m-0 text-center">ORDER</h4>
-                        </div>
-                    </div>
-                </div> --}}
+
 
                 @if ($orders->isEmpty())
 
@@ -232,12 +375,10 @@
                                         <div class="modal-content">
 
                                             <div class="modal-header">
-                                                <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
 
                                             <div class="modal-body">
-                                                <!-- Booking Start -->
                                                 <div class="container-xxl py-5">
                                                     <div class="container">
 
@@ -276,5 +417,5 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

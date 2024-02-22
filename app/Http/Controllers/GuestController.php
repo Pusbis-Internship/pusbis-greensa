@@ -557,7 +557,7 @@ class GuestController extends Controller
 
     public function showorder()
     {
-        $orders = Order::where('guest_id', auth('guest')->id())->get();
+        $orders = Order::where('guest_id', auth('guest')->id())->orderByDesc('created_at')->get();
 
         return view('pelanggan.page.order', [
             'title' => 'Order',
