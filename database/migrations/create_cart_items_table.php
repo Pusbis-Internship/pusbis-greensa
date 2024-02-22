@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('lama');
             $table->date('checkout');
             $table->bigInteger('harga');
-            $table->string('nama_kegiatan');
             $table->string('special')->nullable();
             $table->timestamps();
         });

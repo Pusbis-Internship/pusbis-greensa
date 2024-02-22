@@ -269,7 +269,6 @@ class GuestController extends Controller
             'checkout'      => $checkout,
             'lama'          => $request->lamaHari,
             'harga'         => $request->harga,
-            'nama_kegiatan' => $request->namaKegiatan,
             'special'       => $request->special,
         ]);
 

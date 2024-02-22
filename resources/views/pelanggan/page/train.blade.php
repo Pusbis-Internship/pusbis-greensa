@@ -339,15 +339,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="col-md-6 col-12">
-                                                                                <div class="form-floating">
-                                                                                    <input name="namaKegiatan" class="form-control" placeholder="Nama Kegiatan" id="nameActivity" required></input>
-                                                                                    <label class="labelBook"
-                                                                                        for="nameActivity">Nama Kegiatan <span class="text-danger">*</span> </label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-md-6 col-12">
+                                                                            <div class="col-12">
                                                                                 <div class="form-floating">
                                                                                     <textarea name="special" class="form-control" placeholder="Special Request" id="message"></textarea>
                                                                                     <label class="labelBook"
