@@ -30,12 +30,11 @@
                     <div class="col-12">
                         <h4>From</h4>
                         <address>
-                            <strong>BootstrapBrain</strong><br>
-                            875 N Coast Hwybr<br>
-                            Laguna Beach, California, 92651<br>
-                            United States<br>
-                            Phone: (949) 494-7695<br>
-                            Email: email@domain.com
+                            <strong>{{ $order->guest->name }}</strong><br>
+                            {{ $order->guest->alamat }}, {{ $order->guest->kota }}<br>
+                            {{ $order->guest->provinsi }}<br>
+                            Phone: {{ $order->guest->telp }}<br>
+                            Email: {{ $order->guest->username }}
                         </address>
                     </div>
                 </div>
@@ -60,7 +59,7 @@
                             <span class="col-6">Account</span>
                             <span class="col-6 text-sm-end">786-54984</span>
                             <span class="col-6">Kegiatan</span>
-                            <span class="col-6 text-sm-end">{{ $namaKegiatan }}</span>
+                            <span class="col-6 text-sm-end"><strong>{{ $namaKegiatan }}</strong></span>
                             <span class="col-6">Order ID</span>
                             <span class="col-6 text-sm-end">#9742</span>
                             <span class="col-6">Invoice Date</span>
@@ -97,7 +96,7 @@
                                             @if ($item->status == 'Rejected')
                                                 <td class="text-end">0</td>
                                             @else
-                                                <td class="text-end">{{ $item->harga }}</td>
+                                                <td class="text-end">Rp {{ number_format($item->harga, 0, ',', '.')}}</td>
                                             @endif
                                         </tr>
                                     @endforeach
@@ -115,7 +114,7 @@
                                     </tr> --}}
                                     <tr>
                                         <th scope="row" colspan="6" class="text-uppercase text-end">Total</th>
-                                        <td class="text-end">{{ $totalHarga }}</td>
+                                        <td class="text-end">Rp {{ number_format($totalHarga, 0, ',', '.')}}</td>
                                     </tr>
                                 </tbody>
                             </table>
