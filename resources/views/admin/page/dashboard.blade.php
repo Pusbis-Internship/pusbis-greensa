@@ -2,10 +2,11 @@
 
 @section('content')
 
+{{-- Card highlight --}}
 <div class="row">
     {{-- Order pending --}}
     <div class="col-sm-6 col-lg-3">
-      <div class="card mb-4 text-white bg-primary">
+      <div class="card mb-4 text-white bg-dark">
         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
           <div>
             <div class="fs-4 fw-semibold">{{ $order_pending }} <span class="fs-6 fw-normal">(-12.4%
@@ -83,7 +84,7 @@
 
     {{-- Income --}}
     <div class="col-sm-6 col-lg-3">
-      <div class="card mb-4 text-white bg-warning">
+      <div class="card mb-4 text-white bg-success">
         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
           <div>
             <div class="fs-4 fw-semibold">Rp {{ number_format($pendapatan, 0, ',', '.')}} <span class="fs-6 fw-normal">(-23.6%
@@ -107,5 +108,22 @@
       </div>
     </div>
   </div>
+
+  <hr>
+
+{{-- Chart --}}
+<div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h4 class="card-title mb-0">Traffic</h4>
+        <div class="small text-medium-emphasis">January - July 2022</div>
+      </div>
+    </div>
+    <div class="c-chart-wrapper" style="height:400px;margin-top:40px;">
+      <canvas class="chart" id="main-chart" height="300" width="1262" style="display: block; box-sizing: border-box; height: 300px; width: 1262px;"></canvas>
+    </div>
+</div>
+
+  <hr>
 
 @endsection
