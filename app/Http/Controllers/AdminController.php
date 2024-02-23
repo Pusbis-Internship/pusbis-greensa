@@ -123,8 +123,19 @@ class AdminController extends Controller
 
     public function showadmin()
     {
-        $trains = Train::all();
-        return view('admin.page.dashboard', ['trains' => $trains]);
+        $orders = Order::all();
+        $order_pending = OrderItem::where('status', 'Pending')->count();
+        $order_acc = OrderItem::where('status', 'Accepted')->count();
+        $order_rej = OrderItem::where('status', 'Rejected')->count();
+        $pendapatan = OrderItem::where('status', 'Accepted')->sum('harga');
+
+        return view('admin.page.dashboard',[
+            'orders' => $orders,
+            'order_pending' => $order_pending,
+            'order_acc' => $order_acc,
+            'order_rej' => $order_rej,
+            'pendapatan' => $pendapatan,
+        ]);
     }
 
     public function showtrlist()
