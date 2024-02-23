@@ -8,10 +8,6 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\checkout;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
-
-
-
-
 // Admin
     Route::post('/admin-logout', [AdminController::class, 'logout']);
     Route::post('/admin-login', [AdminController::class, 'login']);

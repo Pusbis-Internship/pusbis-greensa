@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <!-- Searc End -->
+    <!-- Search End -->
 
     <!-- Catalog List -->
     <section class="my-3">
@@ -114,24 +114,20 @@
                                         <div class="border bg-light p-3 rounded mb-3">
                                             <h6 class="mb-3" style="font-size: 18px;">Ruangan</h6>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f1"
-                                                    class="form-check-input shadow-none me-1">
+                                                <input type="checkbox" id="f1" class="form-check-input shadow-none me-1" value="Reguler">
                                                 <label class="form-check-label" for="f1">Reguler</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f2"
-                                                    class="form-check-input shadow-none me-1">
-                                                <label class="form-check-label" for="f3">Ujian Terbuka</label>
+                                                <input type="checkbox" id="f2" class="form-check-input shadow-none me-1" value="Ujian Terbuka">
+                                                <label class="form-check-label" for="f2">Ujian Terbuka</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f3"
-                                                    class="form-check-input shadow-none me-1">
+                                                <input type="checkbox" id="f3" class="form-check-input shadow-none me-1" value="Aljabar">
                                                 <label class="form-check-label" for="f3">Aljabar</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f4"
-                                                    class="form-check-input shadow-none me-1">
-                                                <label class="form-check-label" for="f3">Hall</label>
+                                                <input type="checkbox" id="f4" class="form-check-input shadow-none me-1" value="Convention Hall">
+                                                <label class="form-check-label" for="f4">Convention Hall</label>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +139,7 @@
                         <!-- Awal Card -->
                         <div class="col-lg-9 col-md-12 px-4 catalog-tc">
                             @foreach ($trains as $index => $train)
-                                <div class="card mb-4 border-0 shadow">
+                                <div class="card mb-4 border-0 shadow train-card" data-train="{{ $train->nama }}">
                                     <div class="row g-0 p-3 align-items-center">
                                         <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
                                             <img src="{{ asset('/storage/posts/' . $train->gambar) }}"
@@ -385,5 +381,32 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                // Function to filter cards based on selected checkboxes
+                function filterCards() {
+                    var selectedOptions = [];
+                    $('.form-check-input:checked').each(function() {
+                        selectedOptions.push($(this).val());
+                    });
+                    
+                    if (selectedOptions.length === 0) {
+                        $('.train-card').show(); // Show all cards if no checkbox is checked
+                    } else {
+                        $('.train-card').hide(); // Hide all cards
+                        
+                        // Show cards that contain the selected options at the beginning of the string
+                        selectedOptions.forEach(function(option) {
+                            $('.train-card[data-train^="' + option + '"]').show();
+                        });
+                    }
+                }
+        
+                // Add change event listener to checkboxes
+                $('.form-check-input').change(filterCards);
+            });
+        </script>
+
     </section>
 @endsection
