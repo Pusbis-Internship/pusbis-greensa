@@ -25,30 +25,40 @@
         <h2>Form Komplimen</h2>
         @if ($fromCart == True)
             <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"> @csrf
+                <label>Nama Kegiatan:</label><br>
+                <input type="text" name="nama_kegiatan" required><br><br>
+                <label>Surat Komplimen:</label><br>
+                <input type="file" name="surat_komplimen"><br><br>
+                <input type="submit" value="Checkout">
+            </form>
         @else
             <form action="/checkout-komplimen-langsung" method="POST"> @csrf
             <input type="hidden" name="item" value="{{ json_encode($item) }}">
+                <label>Nama Kegiatan:</label><br>
+                <input type="text" name="nama_kegiatan" required><br><br>
+                <label>Surat Komplimen:</label><br>
+                <input type="file" name="surat_komplimen"><br><br>
+                <input type="submit" value="Checkout">
+            </form>
         @endif
-            <label>Nama Kegiatan:</label><br>
-            <input type="text" name="nama_kegiatan" required><br><br>
-            <label>Surat Komplimen:</label><br>
-            <input type="file" name="surat_komplimen"><br><br>
-            <input type="submit" value="Checkout">
-        </form>
     </div>
 
     <div id="form2" style="display:none;">
         <h2>Form Reguler</h2>
         @if ($fromCart == True)
             <form action="/checkout-reguler{{ $cart->id }}" method="POST"> @csrf
+                <label>Nama Kegiatan:</label><br>
+                <input type="text" name="nama_kegiatan" required><br><br>
+                <input type="button" id="pay-button" value="Checkout">
+            </form>
         @else
             <form action="/checkout-reguler-langsung" method="POST"> @csrf
-            <input type="hidden" name="item" value="{{ json_encode($item) }}">
+                <input type="hidden" name="item" value="{{ json_encode($item) }}">
+                <label>Nama Kegiatan:</label><br>
+                <input type="text" name="nama_kegiatan" required><br><br>
+                <input type="button" id="pay-button" value="Checkout">
+            </form>
         @endif
-            <label>Nama Kegiatan:</label><br>
-            <input type="text" name="nama_kegiatan" required><br><br>
-            <input type="button" id="pay-button" value="Checkout">
-        </form>
     </div>
 
     <span>Item yang akan di-checkout</span>
