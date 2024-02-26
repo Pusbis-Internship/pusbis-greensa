@@ -244,14 +244,16 @@ class GuestController extends Controller
     public function showcart()
     {
         $guest = Guest::find(auth('guest')->id());
-        $cart = Cart::all();
-        $cartItems = CartItem::all();
+        $currentDate = Carbon::now()->toDateString();
+
+        // Delete item yang tanggalnya <= hari ini
+        CartItem::where('cart_id', $guest->id)
+        ->where('checkin', '<=', $currentDate)
+        ->delete();
 
         return view('pelanggan.page.cart', [
             'title'     => 'Keranjang',
             'guest'     => $guest,
-            'cart'      => $cart,
-            'cartItems' => $cartItems,
         ]);
     }
 
@@ -314,10 +316,11 @@ class GuestController extends Controller
                 ->pluck('train_id')
                 ->toArray();
 
-                // Get train_id from self order
+            // Get train_id from self order
             $roomInOrderSelf = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
+                    ->where('status', '!=', 'Rejected')
                     ->whereHas('order', function ($query) {
                         $query->where('guest_id', auth('guest')->id());
                     });
@@ -325,6 +328,7 @@ class GuestController extends Controller
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
+                        ->where('status', '!=', 'Rejected')
                         ->whereHas('order', function ($query) {
                             $query->where('guest_id', auth('guest')->id());
                         });
@@ -332,6 +336,7 @@ class GuestController extends Controller
                 ->orWhere(function ($query) use ($dateIn, $dateOut) {
                     $query->where('checkin', '>=', $dateIn)
                         ->where('checkout', '<=', $dateOut)
+                        ->where('status', '!=', 'Rejected')
                         ->whereHas('order', function ($query) {
                             $query->where('guest_id', auth('guest')->id());
                         });
@@ -359,6 +364,32 @@ class GuestController extends Controller
                 ->toArray();
 
             $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);   
+
+            $query->whereNotIn('id', $roomBooked);
+        }
+        
+        else
+        {
+            // Get train_id from all ACC'ed order
+            $roomInOrderAll = OrderItem::where(function ($query) use ($dateIn) {
+                $query->where('checkin', '<=', $dateIn)
+                    ->where('checkout', '>=', $dateIn)
+                    ->where('status', '=', 'Accepted');
+                })
+                ->orWhere(function ($query) use ($dateOut) {
+                    $query->where('checkin', '<=', $dateOut)
+                        ->where('checkout', '>=', $dateOut)
+                        ->where('status', '=', 'Accepted');
+                })
+                ->orWhere(function ($query) use ($dateIn, $dateOut) {
+                    $query->where('checkin', '>=', $dateIn)
+                        ->where('checkout', '<=', $dateOut)
+                        ->where('status', '=', 'Accepted');
+                })
+                ->pluck('train_id')
+                ->toArray();
+
+            $roomBooked = $roomInOrderAll;
 
             $query->whereNotIn('id', $roomBooked);
         }

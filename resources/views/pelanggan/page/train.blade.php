@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            <button class="btn btn-success w-100 h-100" type="submit">Submit</button>
+                            <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
                         </div>
 
                     </div>
