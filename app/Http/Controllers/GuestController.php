@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\notifOrderMasuk;
 use App\Models\Cart;
 use Midtrans\Config;
 use App\Models\Guest;
@@ -667,6 +668,9 @@ class GuestController extends Controller
             ]);
         }
 
+        // Kirim email
+        Mail::to("muhammadramzy65@gmail.com")->send(new notifOrderMasuk());
+
         CartItem::where('cart_id', $cart_id)->delete();
 
         return redirect('/order');
@@ -694,6 +698,9 @@ class GuestController extends Controller
                 'status'        => 'Pending',
             ]);
         }
+
+        // Kirim email
+        Mail::to("muhammadramzy65@gmail.com")->send(new notifOrderMasuk());
 
         CartItem::where('cart_id', $cart_id)->delete();
 
