@@ -1,131 +1,468 @@
-<!doctype html>
-<html lang="en">
+@extends('pelanggan.layout.index')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
-    <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
-</head>
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="{{ config('midtrans.client_key') }}"></script>
 
-<body>
+@section('content')
+    <section class="breadcrumb-section section-b-space" style="padding-top: 100px;padding-bottom:100px;">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-white">Orders Status</h1>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="../index.htm">
+                                    <i class="fas fa-home text-white"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Orders Status</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>Choose Form Type</h2>
-    <form>
-        <input type="radio" id="komplimen" name="formType" value="komplimen" onclick="showForm('komplimen')" checked>
-        <label for="komplimen">Komplimen</label><br>
-        <input type="radio" id="reguler" name="formType" value="reguler" onclick="showForm('reguler')">
-        <label for="reguler">Reguler</label><br><br>
-    </form>
+    <style>
+        .keterangan {
+            font-size: 12px
+        }
 
-    <div id="form1" style="display:block;">
-        <h2>Form Komplimen</h2>
-        @if ($fromCart == True)
-            <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"> @csrf
-                <label>Nama Kegiatan:</label><br>
-                <input type="text" name="nama_kegiatan" required><br><br>
-                <label>Surat Komplimen:</label><br>
-                <input type="file" name="surat_komplimen"><br><br>
-                <input type="submit" value="Checkout">
-            </form>
-        @else
-            <form action="/checkout-komplimen-langsung" method="POST"> @csrf
-            <input type="hidden" name="item" value="{{ json_encode($item) }}">
-                <label>Nama Kegiatan:</label><br>
-                <input type="text" name="nama_kegiatan" required><br><br>
-                <label>Surat Komplimen:</label><br>
-                <input type="file" name="surat_komplimen"><br><br>
-                <input type="submit" value="Checkout">
-            </form>
-        @endif
+        /*common styling end*/
+        .member_card_style {
+            position: relative;
+            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 5px;
+            background: #fff;
+            transition: 0.5s;
+            margin: 20px 0;
+        }
+
+        .member_card_style img {
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .member_card_style:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-info {
+            padding-left: 30px;
+            display: inline-block;
+        }
+
+        .member-info h4 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #fcc101;
+            text-transform: uppercase;
+        }
+
+        .member-info .social {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .member-info .social a {
+            transition: ease-in-out 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            width: 32px;
+            height: 32px;
+            background: #fff3d5;
+            color: #ffb700;
+            text-decoration: none;
+        }
+
+        .member-info .social a i {
+            font-size: 16px;
+            margin: 0 2px;
+        }
+
+        .member-info .social a:hover {
+            background: #ffb700;
+            color: #fff;
+        }
+
+        .member-info .social a+a {
+            margin-left: 8px;
+        }
+
+        .member-info span {
+            display: block;
+            font-size: 15px;
+            padding-bottom: 10px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .member-info span::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 50px;
+            height: 1px;
+            background: #bfe0fd;
+            bottom: 0;
+            left: 0;
+        }
+
+        /*custom tab style 3*/
+        .custom_tab_style3.nav-tabs {
+            border-bottom: 1px solid transparent;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .custom_tab_style3.nav-tabs .nav-link {
+            padding: 5px 20px;
+            margin: 0 10px;
+            border-radius: 0.25rem;
+            color: #198754
+        }
+
+        .custom_tab_style3 .nav-item.show .nav-link,
+        .custom_tab_style3 .nav-link.active {
+            color: #fff;
+            background-color: #198754;
+            border-color: transparent;
+        }
+
+        .custom_tab_style3 .nav-link:focus,
+        .custom_tab_style3 .nav-link:hover {
+            color: #fff;
+            background-color: #198754;
+            border-color: transparent;
+        }
+    </style>
+
+    <div class="container py-5 custom_tab_style1_outer">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs custom_tab_style3" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-medium d-flex align-items-center gap-2 justify-content-center"
+                            style="width: 10rem" id="home-tab" data-bs-toggle="tab" data-bs-target="#Profile3"
+                            type="button" role="tab" aria-controls="home" aria-selected="true"><i
+                                class="fa-regular fa-id-badge"></i> Compliment</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-medium d-flex align-items-center gap-2 justify-content-center"
+                            style="width: 10rem" id="profile-tab" data-bs-toggle="tab" data-bs-target="#Gallery3"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false"><i
+                                class="fa-regular fa-user"></i> Reguler</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    {{-- TAB COMPLIMENT --}}
+                    <div class="tab-pane fade show active" id="Profile3" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="member_card_style">
+                            <div class="compliment">
+                                <h2 class="text-center fw-bold text-uppercase">Form Komplimen</h2>
+                                <div class="row gy-4 mt-5 ">
+                                    @if ($fromCart == true)
+                                        <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"
+                                            class="row m-0 p-0 gap-2"> @csrf
+                                            <div class="col-md-6">
+                                                <div class="col-12 mb-3">
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" id="namaKegiatan" name="item"
+                                                        class="form-control" placeholder="Masukkan nama kegiatan" required>
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label class="labels">SK Kegiatan/Undangan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="file" id="surat_komplimen" name="surat_komplimen"
+                                                        class="form-control" placeholder="Upload file SPJ" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-5 summary">
+                                                <div>
+                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                </div>
+                                                <hr class="my-0 mt-2 mb-3">
+                                                <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
+
+                                                @foreach ($cart->items as $item)
+                                                    <div class="row mb-2">
+                                                        <div class="col-6" text-transform:uppercase">
+                                                            {{ $item->train->nama }}<br>
+                                                            <span class="keterangan">{{ $item->layout }}</span><br>
+                                                            <span class="keterangan">{{ $item->checkin }}</span>
+                                                        </div>
+                                                        <div class="col-6 text-end price"> Rp
+                                                            {{ number_format($item->harga, 0, ',', '.') }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                <div class="row mt-4 "
+                                                    style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                                    <div class="col-6">TOTAL HARGA</div>
+                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 text-center">
+                                                    <input class="btn btn-success text-center w-100" type="submit"
+                                                        value="Checkout">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @else
+                                        <form action="/checkout-komplimen-langsung" method="POST"
+                                            class="row m-0 p-0 gap-2">
+                                            @csrf
+                                            <input type="hidden" name="item" value="{{ json_encode($item) }}">
+                                            <div class="col-md-6">
+                                                <div class="col-12 mb-3">
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" id="namaKegiatan" name="item"
+                                                        class="form-control" placeholder="Masukkan nama kegiatan"
+                                                        required>
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label class="labels">SK Kegiatan/Undangan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="file" id="surat_komplimen" name="surat_komplimen"
+                                                        class="form-control" placeholder="Upload file SPJ" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-5 summary">
+                                                <div>
+                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                </div>
+                                                <hr class="my-0 mt-1 mb-3">
+                                                <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
+
+                                                @foreach ($cart->items as $item)
+                                                    <div class="row mb-2">
+                                                        <div class="col-6" text-transform:uppercase">
+                                                            {{ $item->train->nama }}<br>
+                                                            <span class="keterangan">{{ $item->layout }}</span><br>
+                                                            <span class="keterangan">{{ $item->checkin }}</span>
+                                                        </div>
+                                                        <div class="col-6 text-end price"> Rp
+                                                            {{ number_format($item->harga, 0, ',', '.') }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                <div class="row mt-4 "
+                                                    style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                                    <div class="col-6">TOTAL HARGA</div>
+                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 text-center">
+                                                    <input class="btn btn-success text-center w-100" type="submit"
+                                                        value="Checkout">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @endif
+
+                                </div>
+
+                                {{-- <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-4 left_img">
+                                                <img class="img-fluid" src="https://picsum.photos/id/20/400/450"
+                                                    alt="" />
+                                            </div>
+                                            <div class="col-md-8 d-flex align-items-center">
+                                                <div class="member-info">
+                                                    <h4>Lorem ipsum dolor</h4>
+                                                    <span>Chief Executive Officer</span>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                                                        reiciendis
+                                                        ipsa nulla magnam eligendi odit laudantium in voluptatum
+                                                        reprehenderit
+                                                        qui adipisci aliquam, doloribus quisquam facere dolore soluta,
+                                                        dolorem,
+                                                        illum quis.
+                                                    </p>
+                                                    <div class="social">
+                                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                                        <a href=""> <i class="fab fa-twitter"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"><img class="img-fluid" src="https://picsum.photos/id/1068/400/300"
+                                            alt="" /></div>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- TAB GUEST --}}
+                    <div class="tab-pane fade show" id="Gallery3" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="member_card_style">
+                            <div class="reguler">
+                                <h2 class="text-center fw-bold text-uppercase">Reguler</h2>
+                                <div class="row gy-4 mt-5 ">
+                                    @if ($fromCart == true)
+                                        <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"
+                                            class="row m-0 p-0 gap-2"> @csrf
+                                            <div class="col-md-6">
+                                                <div class="col-12 mb-3">
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" id="namaKegiatan" name="item"
+                                                        class="form-control" placeholder="Masukkan nama kegiatan"
+                                                        required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-5 summary">
+                                                <div>
+                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                </div>
+                                                <hr class="my-0 mt-2 mb-3">
+                                                <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
+
+                                                @foreach ($cart->items as $item)
+                                                    <div class="row mb-2">
+                                                        <div class="col-6" text-transform:uppercase">
+                                                            {{ $item->train->nama }}<br>
+                                                            <span class="keterangan">{{ $item->layout }}</span><br>
+                                                            <span class="keterangan">{{ $item->checkin }}</span>
+                                                        </div>
+                                                        <div class="col-6 text-end price"> Rp
+                                                            {{ number_format($item->harga, 0, ',', '.') }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                <div class="row mt-4 "
+                                                    style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                                    <div class="col-6">TOTAL HARGA</div>
+                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 text-center">
+                                                    <input class="btn btn-success text-center w-100" id="pay-button"
+                                                        type="submit" value="Checkout">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @else
+                                        <form action="/checkout-reguler-langsung" method="POST"
+                                            class="row m-0 p-0 gap-2">
+                                            @csrf
+                                            <input type="hidden" name="item" value="{{ json_encode($item) }}">
+                                            <div class="col-md-6">
+                                                <div class="col-12 mb-3">
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" id="namaKegiatan" name="item"
+                                                        class="form-control" placeholder="Masukkan nama kegiatan"
+                                                        required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-5 summary">
+                                                <div>
+                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                </div>
+                                                <hr class="my-0 mt-2 mb-3">
+                                                <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
+
+                                                @foreach ($cart->items as $item)
+                                                    <div class="row mb-2">
+                                                        <div class="col-6" text-transform:uppercase">
+                                                            {{ $item->train->nama }}<br>
+                                                            <span class="keterangan">{{ $item->layout }}</span><br>
+                                                            <span class="keterangan">{{ $item->checkin }}</span>
+                                                        </div>
+                                                        <div class="col-6 text-end price"> Rp
+                                                            {{ number_format($item->harga, 0, ',', '.') }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                <div class="row mt-4 "
+                                                    style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                                    <div class="col-6">TOTAL HARGA</div>
+                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 text-center">
+                                                    <input class="btn btn-success text-center w-100" id="pay-button"
+                                                        type="submit" value="Checkout">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {{-- END CHECK-OUT 1 --}}
     </div>
 
-    <div id="form2" style="display:none;">
-        <h2>Form Reguler</h2>
-        @if ($fromCart == True)
-            <form action="/checkout-reguler{{ $cart->id }}" method="POST"> @csrf
-                <label>Nama Kegiatan:</label><br>
-                <input type="text" name="nama_kegiatan" required><br><br>
-                <input type="button" id="pay-button" value="Checkout">
-            </form>
-        @else
-            <form action="/checkout-reguler-langsung" method="POST"> @csrf
-                <input type="hidden" name="item" value="{{ json_encode($item) }}">
-                <label>Nama Kegiatan:</label><br>
-                <input type="text" name="nama_kegiatan" required><br><br>
-                <input type="button" id="pay-button" value="Checkout">
-            </form>
-        @endif
-    </div>
-
-    <span>Item yang akan di-checkout</span>
-    <table style="border: 1px solid black;">
-
-        @if ($fromCart == True)
-            @foreach ($cart->items as $item)
-            <tr>
-                <td>{{ $item->train->nama }}</td>
-                <td> : </td>
-                <td>{{ $item->layout }}</td>
-                <td> : </td>
-                <td>{{ $item->checkin }}</td>
-            </tr>
-            @endforeach
-
-        @else
-            <tr>
-                <td>{{ $train->nama }}</td>
-                <td>   :   </td>
-                <td>{{ $item['layout'] }}</td>
-                <td>   :   </td>
-                <td>{{ $item['checkin'] }}</td>
-            </tr>
-        @endif
-    </table>
-
+    {{-- TOTAL HARGA --}}
     <script>
-        function showForm(formType) {
-            if (formType === 'komplimen') {
-                document.getElementById('form1').style.display = 'block';
-                document.getElementById('form2').style.display = 'none';
-            } else {
-                document.getElementById('form1').style.display = 'none';
-                document.getElementById('form2').style.display = 'block';
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Calculate the total price dynamically for both tabs
+            calculateTotalPrice('Profile3');
+            calculateTotalPrice('Gallery3');
+        });
+    
+        function calculateTotalPrice(tabId) {
+            const tab = document.getElementById(tabId);
+            const prices = tab.querySelectorAll('.price');
+            let totalPrice = 0;
+    
+            prices.forEach(priceElement => {
+                const priceString = priceElement.innerText.replace('Rp ', '').replace('.', '').replace('.', '').replace('xxx.xxx.xxx', '0');
+                const price = parseFloat(priceString) || 0; // Use 0 if parsing fails
+                totalPrice += price;
+            });
+    
+            // Update the total price element
+            const totalElement = tab.querySelector('.total-price');
+            totalElement.innerText = 'Rp ' + numberWithCommas(totalPrice.toFixed());
+        }
+    
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function() {
-            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
-            // Also, use the embedId that you defined in the div above, here.
-            window.snap.pay('{{ $snapToken }}', {
-                onSuccess: function(result) {
-                    /* You may add your own implementation here */
-                    alert("payment success!");
-                    console.log(result);
-                },
-                onPending: function(result) {
-                    /* You may add your own implementation here */
-                    alert("waiting for your payment!");
-                    console.log(result);
-                },
-                onError: function(result) {
-                    /* You may add your own implementation here */
-                    alert("payment failed!");
-                    console.log(result);
-                },
-                onClose: function() {
-                    /* You may add your own implementation here */
-                    alert('you closed the popup without finishing the payment');
-                }
-            });
-        });
-    </script>
-
-</body>
+    {{-- END TOTAL HARGA --}}
+    
+@endsection
