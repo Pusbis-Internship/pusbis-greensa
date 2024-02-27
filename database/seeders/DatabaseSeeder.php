@@ -511,6 +511,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 40
         ]);
+        LayoutModels::create([
+            'train_id' => 1,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 1,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 2,
@@ -521,6 +531,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 2,
             'nama_layout' => 'Teater',
             'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 2,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 2,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -533,6 +553,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 40
         ]);
+        LayoutModels::create([
+            'train_id' => 3,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 3,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 4,
@@ -543,6 +573,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 4,
             'nama_layout' => 'Teater',
             'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 4,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 4,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -555,6 +595,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 40
         ]);
+        LayoutModels::create([
+            'train_id' => 5,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 5,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 6,
@@ -565,6 +615,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 6,
             'nama_layout' => 'Teater',
             'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 6,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 6,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -577,6 +637,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 40
         ]);
+        LayoutModels::create([
+            'train_id' => 7,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 7,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 8,
@@ -587,6 +657,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 8,
             'nama_layout' => 'Teater',
             'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 8,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 8,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -599,6 +679,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 40
         ]);
+        LayoutModels::create([
+            'train_id' => 9,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 9,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 10,
@@ -609,6 +699,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 10,
             'nama_layout' => 'Teater',
             'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 10,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 10,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -621,6 +721,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 40
         ]);
+        LayoutModels::create([
+            'train_id' => 11,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 11,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 12,
@@ -631,6 +741,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 12,
             'nama_layout' => 'Teater',
             'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 12,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 12,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -643,6 +763,16 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Teater',
             'kapasitas' => 90
         ]);
+        LayoutModels::create([
+            'train_id' => 13,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 13,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 30
+        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 14,
@@ -653,6 +783,16 @@ class DatabaseSeeder extends Seeder
             'train_id' => 14,
             'nama_layout' => 'Teater',
             'kapasitas' => 60
+        ]);
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 20
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -669,6 +809,11 @@ class DatabaseSeeder extends Seeder
             'train_id' => 15,
             'nama_layout' => 'Round Table',
             'kapasitas' => 45
+        ]);
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'U-Shape',
+            'kapasitas' => 30
         ]);
 
         Cart::create([
