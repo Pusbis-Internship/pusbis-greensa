@@ -165,7 +165,7 @@
                         <button class="nav-link active fw-medium d-flex align-items-center gap-2 justify-content-center"
                             style="width: 10rem" id="home-tab" data-bs-toggle="tab" data-bs-target="#Profile3"
                             type="button" role="tab" aria-controls="home" aria-selected="true"><i
-                                class="fa-regular fa-id-badge"></i> Compliment</button>
+                                class="fa-regular fa-id-badge"></i> Komplimen</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link fw-medium d-flex align-items-center gap-2 justify-content-center"
@@ -175,33 +175,28 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    {{-- TAB COMPLIMENT --}}
+                    {{-- TAB KOMPLIMEN --}}
                     <div class="tab-pane fade show active" id="Profile3" role="tabpanel" aria-labelledby="home-tab">
                         <div class="member_card_style">
                             <div class="compliment">
                                 <h2 class="text-center fw-bold text-uppercase">Form Komplimen</h2>
                                 <div class="row gy-4 mt-5 ">
                                     @if ($fromCart == true)
-                                        <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"
-                                            class="row m-0 p-0 gap-2"> @csrf
+                                        <form action="/checkout-komplimen/{{ $cart->id }}" method="POST" class="row m-0 p-0 gap-2" enctype="multipart/form-data"> @csrf
                                             <div class="col-md-6">
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">Nama Kegiatan <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="text" id="namaKegiatan" name="item"
-                                                        class="form-control" placeholder="Masukkan nama kegiatan" required>
+                                                    <label class="labels">Nama Kegiatan <span class="text-danger">*</span></label>
+                                                    <input type="text" name="nama_kegiatan" class="form-control" placeholder="Masukkan nama kegiatan" required>
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">SK Kegiatan/Undangan <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="file" id="surat_komplimen" name="surat_komplimen"
-                                                        class="form-control" placeholder="Upload file SPJ" required>
+                                                    <label class="labels">SK Kegiatan/Undangan <span class="text-danger">*</span></label>
+                                                    <input type="file" name="surat" accept=".pdf" class="form-control" placeholder="Upload file SPJ">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-5 summary">
                                                 <div>
-                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                    <h5 class="fw-bold mb-0">DETAIL PEMESANAN</h5>
                                                 </div>
                                                 <hr class="my-0 mt-2 mb-3">
                                                 <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
@@ -218,69 +213,60 @@
                                                         </div>
                                                     </div>
                                                 @endforeach
+
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    <div class="col-6 text-end">Rp  {{ number_format($totalHarga, 0, ',', '.') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12 text-center">
-                                                    <input class="btn btn-success text-center w-100" type="submit"
-                                                        value="Checkout">
+                                                    <input class="btn btn-success text-center w-100" type="submit" value="Checkout">
                                                 </div>
                                             </div>
                                         </form>
                                     @else
-                                        <form action="/checkout-komplimen-langsung" method="POST"
-                                            class="row m-0 p-0 gap-2">
-                                            @csrf
+                                        <form action="/checkout-komplimen-langsung" method="POST" class="row m-0 p-0 gap-2" enctype="multipart/form-data"> @csrf
                                             <input type="hidden" name="item" value="{{ json_encode($item) }}">
                                             <div class="col-md-6">
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">Nama Kegiatan <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="text" id="namaKegiatan" name="item"
-                                                        class="form-control" placeholder="Masukkan nama kegiatan"
-                                                        required>
+                                                    <label class="labels">Nama Kegiatan <span class="text-danger">*</span></label>
+                                                    <input type="text" name="nama_kegiatan" class="form-control" placeholder="Masukkan nama kegiatan" required>
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">SK Kegiatan/Undangan <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="file" id="surat_komplimen" name="surat_komplimen"
-                                                        class="form-control" placeholder="Upload file SPJ" required>
+                                                    <label class="labels">SK Kegiatan/Undangan <span class="text-danger">*</span></label>
+                                                    <input type="file" name="surat" accept=".pdf" class="form-control" placeholder="Upload file SPJ" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-5 summary">
                                                 <div>
-                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                    <h5 class="fw-bold mb-0">DETAIL PEMESANAN</h5>
                                                 </div>
                                                 <hr class="my-0 mt-1 mb-3">
                                                 <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
 
-                                                @foreach ($cart->items as $item)
-                                                    <div class="row mb-2">
-                                                        <div class="col-6" text-transform:uppercase">
-                                                            {{ $item->train->nama }}<br>
-                                                            <span class="keterangan">{{ $item->layout }}</span><br>
-                                                            <span class="keterangan">{{ $item->checkin }}</span>
-                                                        </div>
-                                                        <div class="col-6 text-end price"> Rp
-                                                            {{ number_format($item->harga, 0, ',', '.') }}
-                                                        </div>
+                                                <div class="row mb-2">
+                                                    <div class="col-6" text-transform:uppercase">
+                                                        {{ $train->nama }}<br>
+                                                        <span class="keterangan">{{ $item['layout'] }}</span><br>
+                                                        <span class="keterangan">{{ $item['checkin'] }}</span>
                                                     </div>
-                                                @endforeach
+                                                    <div class="col-6 text-end price"> Rp
+                                                        {{ number_format($item['harga'], 0, ',', '.') }}
+                                                    </div>
+                                                </div>
+
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    <div class="col-6 text-end">Rp  {{ number_format($item['harga'], 0, ',', '.') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12 text-center">
-                                                    <input class="btn btn-success text-center w-100" type="submit"
-                                                        value="Checkout">
+                                                    <input class="btn btn-success text-center w-100" type="submit" value="Checkout">
                                                 </div>
                                             </div>
                                         </form>
@@ -325,28 +311,25 @@
                         </div>
                     </div>
 
-                    {{-- TAB GUEST --}}
+                    {{-- TAB REGULER --}}
                     <div class="tab-pane fade show" id="Gallery3" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="member_card_style">
                             <div class="reguler">
-                                <h2 class="text-center fw-bold text-uppercase">Reguler</h2>
+                                <h2 class="text-center fw-bold text-uppercase">FORM REGULER</h2>
                                 <div class="row gy-4 mt-5 ">
                                     @if ($fromCart == true)
                                         <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"
                                             class="row m-0 p-0 gap-2"> @csrf
                                             <div class="col-md-6">
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">Nama Kegiatan <span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="text" id="namaKegiatan" name="item"
-                                                        class="form-control" placeholder="Masukkan nama kegiatan"
-                                                        required>
+                                                    <label class="labels">Nama Kegiatan <span class="text-danger">*</span></label>
+                                                    <input type="text" id="namaKegiatan" name="item" class="form-control" placeholder="Masukkan nama kegiatan" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-5 summary">
                                                 <div>
-                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                    <h5 class="fw-bold mb-0">DETAIL PEMESANAN</h5>
                                                 </div>
                                                 <hr class="my-0 mt-2 mb-3">
                                                 <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
@@ -366,7 +349,7 @@
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
+                                                    <div class="col-6 text-end">Rp  {{ number_format($totalHarga, 0, ',', '.') }}
                                                     </div>
                                                 </div>
 
@@ -393,28 +376,26 @@
 
                                             <div class="col-md-5 summary">
                                                 <div>
-                                                    <h5 class="fw-bold mb-0">RINGKASAN</h5>
+                                                    <h5 class="fw-bold mb-0">DETAIL PEMESANAN</h5>
                                                 </div>
                                                 <hr class="my-0 mt-2 mb-3">
                                                 <div class="col-12 fw-semi-bold mb-3 text-uppercase">List Ruang</div>
 
-                                                @foreach ($cart->items as $item)
-                                                    <div class="row mb-2">
-                                                        <div class="col-6" text-transform:uppercase">
-                                                            {{ $item->train->nama }}<br>
-                                                            <span class="keterangan">{{ $item->layout }}</span><br>
-                                                            <span class="keterangan">{{ $item->checkin }}</span>
-                                                        </div>
-                                                        <div class="col-6 text-end price"> Rp
-                                                            {{ number_format($item->harga, 0, ',', '.') }}
-                                                        </div>
+                                                <div class="row mb-2">
+                                                    <div class="col-6" text-transform:uppercase">
+                                                        {{ $train->nama }}<br>
+                                                        <span class="keterangan">{{ $item['layout'] }}</span><br>
+                                                        <span class="keterangan">{{ $item['checkin'] }}</span>
                                                     </div>
-                                                @endforeach
+                                                    <div class="col-6 text-end price"> Rp
+                                                        {{ number_format($item['harga'], 0, ',', '.') }}
+                                                    </div>
+                                                </div>
+
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end total-price" id="totalPrice">Rp xxx.xxx.xxx
-                                                    </div>
+                                                    <div class="col-6 text-end" id="totalPrice">Rp  {{ number_format($item['harga'], 0, ',', '.') }}</div>
                                                 </div>
 
                                                 <div class="col-12 text-center">
@@ -435,34 +416,4 @@
         {{-- END CHECK-OUT 1 --}}
     </div>
 
-    {{-- TOTAL HARGA --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Calculate the total price dynamically for both tabs
-            calculateTotalPrice('Profile3');
-            calculateTotalPrice('Gallery3');
-        });
-    
-        function calculateTotalPrice(tabId) {
-            const tab = document.getElementById(tabId);
-            const prices = tab.querySelectorAll('.price');
-            let totalPrice = 0;
-    
-            prices.forEach(priceElement => {
-                const priceString = priceElement.innerText.replace('Rp ', '').replace('.', '').replace('.', '').replace('xxx.xxx.xxx', '0');
-                const price = parseFloat(priceString) || 0; // Use 0 if parsing fails
-                totalPrice += price;
-            });
-    
-            // Update the total price element
-            const totalElement = tab.querySelector('.total-price');
-            totalElement.innerText = 'Rp ' + numberWithCommas(totalPrice.toFixed());
-        }
-    
-        function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-    </script>
-    {{-- END TOTAL HARGA --}}
-    
 @endsection

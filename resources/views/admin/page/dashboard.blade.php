@@ -115,7 +115,7 @@
 <div class="card-body">
     <div class="d-flex justify-content-between">
       <div>
-        <h4 class="card-title mb-0">Traffic</h4>
+        <h4 class="card-title mb-0">Trafficoo</h4>
         <div class="small text-medium-emphasis">January - July 2022</div>
       </div>
     </div>

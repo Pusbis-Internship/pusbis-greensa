@@ -219,28 +219,28 @@ const cardChart4 = new Chart(document.getElementById('card-chart4'), {
 const mainChart = new Chart(document.getElementById('main-chart'), {
   type: 'line',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
     datasets: [{
       label: 'My First dataset',
       backgroundColor: coreui.Utils.hexToRgba(coreui.Utils.getStyle('--cui-info'), 10),
       borderColor: coreui.Utils.getStyle('--cui-info'),
       pointHoverBackgroundColor: '#fff',
       borderWidth: 2,
-      data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)],
+      data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)],
       fill: true
     }, {
       label: 'My Second dataset',
       borderColor: coreui.Utils.getStyle('--cui-success'),
       pointHoverBackgroundColor: '#fff',
       borderWidth: 2,
-      data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)]
+      data: [random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200), random(50, 200)]
     }, {
       label: 'My Third dataset',
       borderColor: coreui.Utils.getStyle('--cui-danger'),
       pointHoverBackgroundColor: '#fff',
       borderWidth: 1,
       borderDash: [8, 5],
-      data: [65, 65, 65, 65, 65, 65, 65]
+      data: [65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65]
     }]
   },
   options: {

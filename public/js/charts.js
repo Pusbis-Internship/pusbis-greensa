@@ -14,7 +14,7 @@ const random = () => Math.round(Math.random() * 100);
 const lineChart = new Chart(document.getElementById('canvas-1'), {
   type: 'line',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
     datasets: [{
       label: 'My First dataset',
       backgroundColor: 'rgba(220, 220, 220, 0.2)',

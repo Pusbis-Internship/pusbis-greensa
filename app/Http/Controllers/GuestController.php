@@ -641,6 +641,7 @@ class GuestController extends Controller
             'snapToken' => $snapToken,
             'cart' => $cart,
             'fromCart' => $fromCart,
+            'totalHarga' => $totalPrice,
         ]);
     }
 
@@ -648,12 +649,19 @@ class GuestController extends Controller
     {
         $cart = Cart::find($cart_id);
 
+        // store surat komplimen
+        $surat = $request->file('surat');
+        $namaSurat = time().'.'.$surat->getClientOriginalExtension();
+        $surat->storeAs('public/posts/surat', $namaSurat);
+
+        // create order
         $order = Order::create([
             'guest_id'      => $cart->guest->id,
             'nama_kegiatan' => $request->nama_kegiatan,
-            'surat'         => 'Surat Perintah.pdf',
+            'surat'         => $namaSurat,
         ]);
         
+        // create order item
         foreach ($cart->items as $item) {
             OrderItem::create([
                 'order_id'      => $order->id,
@@ -739,12 +747,19 @@ class GuestController extends Controller
     {
         $item = json_decode($request->input('item'), true);
 
+        // store surat komplimen
+        $surat = $request->file('surat');
+        $namaSurat = time().'.'.$surat->getClientOriginalExtension();
+        $surat->storeAs('public/posts/surat', $namaSurat);
+
+        // create order
         $order = Order::create([
             'guest_id'      => $item['guest_id'],
             'nama_kegiatan' => $request->nama_kegiatan,
-            'surat'         => 'Surat Perintah.pdf'
+            'surat'         => $namaSurat,
         ]);
 
+        // create order item
         OrderItem::create([
             'order_id'      => $order->id,
             'train_id'      => $item['train_id'],
@@ -753,7 +768,6 @@ class GuestController extends Controller
             'checkout'      => $item['checkout'],
             'lama'          => $item['lama'],
             'harga'         => $item['harga'],
-            'nama_kegiatan' => $item['nama_kegiatan'],
             'special'       => $item['special'],
             'status'        => 'Pending',
         ]);
