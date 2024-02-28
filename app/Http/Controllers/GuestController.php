@@ -36,16 +36,30 @@ class GuestController extends Controller
 
     public function showabout()
     {
-        // $cartItemCount = $cart->items->count();
-
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+          
         return view('pelanggan.page.about', [
-            'title' => 'About'
+            'title'         => 'About',
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
     public function showpackage()
     {
-        return view('pelanggan.page.package', ['title' => 'package']);
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
+        return view('pelanggan.page.package', [
+            'title'         => 'package',
+            'cartItemCount' => $cartItemCount,
+        ]);
     }
 
     public function showlogin()
@@ -146,13 +160,17 @@ class GuestController extends Controller
     public function showhome()
     {
         $currentDate = Carbon::now()->addDay();
-        // $cart = Cart::where('guest_id', auth('guest')->id())->first();
-        // $cartItemCount = $cart->items->count();
+        
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
 
         return view('pelanggan.page.home', [
             'title'         => 'Home',
             'currentDate'   => $currentDate,
-            // 'cartItemCount' => $cartItemCount,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -161,10 +179,17 @@ class GuestController extends Controller
         // Ambil data pengguna dari database
         $guest = Guest::find(auth('guest')->id());
 
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
         // Tampilkan view untuk form edit profil dan teruskan data pengguna
         return view('pelanggan.page.profile', [
             'title' => 'Home',
-            'guest' => $guest
+            'guest' => $guest,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -247,6 +272,12 @@ class GuestController extends Controller
         $guest = Guest::find(auth('guest')->id());
         $currentDate = Carbon::now()->toDateString();
 
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
         // Delete item yang tanggalnya <= hari ini
         CartItem::where('cart_id', $guest->id)
         ->where('checkin', '<=', $currentDate)
@@ -255,6 +286,7 @@ class GuestController extends Controller
         return view('pelanggan.page.cart', [
             'title'     => 'Keranjang',
             'guest'     => $guest,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -291,6 +323,12 @@ class GuestController extends Controller
         $cart = Cart::find(auth('guest')->id());
         $facilities = TrainFacility::all();
         $currentDate = Carbon::now()->addDay();
+
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
 
         // Get Trains
         $query = Train::query();
@@ -403,6 +441,7 @@ class GuestController extends Controller
             'facilities'   => $facilities,
             'currentDate'  => $currentDate,
             'cart'         => $cart,
+            'cartItemCount'=> $cartItemCount,
         ]);
     }
 
@@ -590,9 +629,16 @@ class GuestController extends Controller
     {
         $orders = Order::where('guest_id', auth('guest')->id())->orderByDesc('created_at')->get();
 
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
         return view('pelanggan.page.order', [
             'title' => 'Order',
             'orders' => $orders,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 

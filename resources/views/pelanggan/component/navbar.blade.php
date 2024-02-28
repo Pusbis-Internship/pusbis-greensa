@@ -102,8 +102,10 @@
                             <div class="notif">
                                 <a href="/cart" class="nav-link icon-cart">
                                     <i class="bi bi-cart icon-nav fs-3 text-white m-auto "></i>
-                                    <div class="circle badge bg-danger rounded-pill">0</div>
                                 </a>
+                                @if ($cartItemCount != 0)
+                                    <div class="circle badge bg-danger rounded-pill">{{ $cartItemCount }}</div>
+                                @endif
                             </div>
                         </li>
                     </div>
