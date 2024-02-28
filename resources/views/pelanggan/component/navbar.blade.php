@@ -38,17 +38,18 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
     <div class="container">
-        <button class="navbar-toggler h-50" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler h-50" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="d-flex align-items-center">    
+        <div class="d-lg-flex d-none align-items-center">
             <a class="navbar-brand m-0" href="/">
                 <img src="{{ asset('assets/images/Logo.png') }}" alt="" width="50">
             </a>
         </div>
-        
+
 
         <div class="collapse navbar-collapse ms-lg-4 ms-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-0 gap-2 me-4">
@@ -69,7 +70,7 @@
             </ul>
         </div>
 
-        <div class="d-flex">
+        <div class="d-flex align-items-center button-kiri">
             @guest('guest')
                 <div class="d-flex align-items-center gap-2">
                     <a href="/login" class="btn btn-outline-light">Masuk</a>
@@ -79,59 +80,37 @@
 
             @auth('guest')
                 <ul class="navbar-nav">
-                    <li class="nav-item d-md-flex d-none align-self-center">
-                        <p class="nav-item text-white m-0">Halo {{ $guest->name }}</p>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> 
-                            <i class="bi bi-person fs-2 text-white ms-2"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="/order">Order</a></li>
-                            <form action="/guestlogout" method="POST"> @csrf
-                                <li><button class="dropdown-item" type="submit" href="#">Logout</button></li>
-                            </form>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item text-center">
-                        <div class="notif">
-                            <a href="/cart" class="nav-link icon-cart">
-                                <i class="bi bi-cart icon-nav fs-3 text-white m-auto "></i>
+                    <div class="d-flex justify-content-center align-items-center gap-lg-0 gap-4">
+                        <li class="nav-item d-lg-flex d-md-none d-none align-self-center">
+                            <p class="nav-item text-white m-0">Halo {{ $guest->name }}</p>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person fs-2 text-white ms-2"></i>
                             </a>
-                            {{-- @if ($cartItemCount != 0)
-                                <div class="circle badge bg-danger rounded-pill">{{ $cartItemCount }}</div>
-                            @endif --}}
-                        </div>
-                    </li>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/order">Order</a></li>
+                                <form action="/guestlogout" method="POST"> @csrf
+                                    <li><button class="dropdown-item" type="submit" href="#">Logout</button></li>
+                                </form>
+                            </ul>
+                        </li>
 
-                </ul>
-            </div>
-            {{-- <form action="/guestlogout" method="POST"">
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="d-flex align-items-center gap-3">
-
-                            <a class="nav-link text-white">Hi! {{ $guest->name }}
-                                <i class="fa-solid fa-user text-white fs-5 ms-1"></i>
-                            </a>
+                        <li class="nav-item text-center">
                             <div class="notif">
-                                <a href="/cart">
-                                    <i class="fa-solid fa-cart-shopping icon-nav fs-5 text-white m-auto "></i>
+                                <a href="/cart" class="nav-link icon-cart">
+                                    <i class="bi bi-cart icon-nav fs-3 text-white m-auto "></i>
+                                    <div class="circle badge bg-danger rounded-pill">0</div>
                                 </a>
-                                <div class="circle">3</div>
                             </div>
-
-                        </div>
-
-                        @csrf
-                        <button type="submit" class="btn btn-outline-light">Logout</button>
+                        </li>
                     </div>
-                </form> --}}
-        @endauth
+                </ul>
+            @endauth
+        </div>
     </div>
-
 </nav>
 
 {{-- <style>
