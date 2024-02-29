@@ -52,20 +52,6 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="lantaiRuang" name="lantai">
-                                            <option value="Semua Lantai" {{ (isset($_POST['lantai']) && $_POST['lantai'] == 'Semua Lantai') ? 'selected' : '' }}>Semua Lantai</option>
-                                            <option value=1 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 1) ? 'selected' : '' }}>Lantai 1</option>
-                                            <option value=2 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 2) ? 'selected' : '' }}>Lantai 2</option>
-                                            <option value=3 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 3) ? 'selected' : '' }}>Lantai 3</option>
-                                            <option value=4 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 4) ? 'selected' : '' }}>Lantai 4</option>
-                                            <option value=5 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 5) ? 'selected' : '' }}>Lantai 5</option>
-                                        </select>
-                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih Lantai</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
                                     <div class="peserta form-floating" name="peserta" id="peserta"
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"

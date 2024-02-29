@@ -52,20 +52,6 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="lantaiRuang" name="lantai">
-                                            <option value="Semua Lantai" {{ (isset($_POST['lantai']) && $_POST['lantai'] == 'Semua Lantai') ? 'selected' : '' }}>Semua Lantai</option>
-                                            <option value=1 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 1) ? 'selected' : '' }}>Lantai 1</option>
-                                            <option value=2 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 2) ? 'selected' : '' }}>Lantai 2</option>
-                                            <option value=3 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 3) ? 'selected' : '' }}>Lantai 3</option>
-                                            <option value=4 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 4) ? 'selected' : '' }}>Lantai 4</option>
-                                            <option value=5 {{ (isset($_POST['lantai']) && $_POST['lantai'] == 5) ? 'selected' : '' }}>Lantai 5</option>
-                                        </select>
-                                        <label class="labelBook" for="lantaiRuang" style="color: #6c757d;">Pilih Lantai</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
                                     <div class="peserta form-floating" name="peserta" id="peserta"
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
@@ -100,6 +86,8 @@
                     <div class="row">
 
                         <!-- Filter -->
+                        
+                        
                         <div class="col-lg-3 col-md-12 mb-lg-0 px-lg-0 mb-4">
                             <nav class="navbar navbar-filterDropdown navbar-expand-lg navbar-light bg-white rounded shadow">
                                 <div class="container-fluid flex-lg-column align-items-stretch">
@@ -109,37 +97,68 @@
                                         aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
-                                    <div class="collapse navbar-collapse flex-column align-items-stretch mt-2"
-                                        id="filterDropdown">
+                                    <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="filterDropdown">
+
+                                        {{-- filter lantai --}}
+                                        <div class="border bg-light p-3 rounded mb-3">
+                                            <h6 class="mb-3" style="font-size: 18px;">Lantai</h6>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="l1" class="form-check-lantai shadow-none me-1" value="1">
+                                                <label class="form-check-label" for="l1">Lantai 1</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="l2" class="form-check-lantai shadow-none me-1" value="2">
+                                                <label class="form-check-label" for="l2">Lantai 2</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="l3" class="form-check-lantai shadow-none me-1" value="3">
+                                                <label class="form-check-label" for="l3">Lantai 3</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="l4" class="form-check-lantai shadow-none me-1" value="4">
+                                                <label class="form-check-label" for="l4">Lantai 4</label>
+                                            </div>
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="l5" class="form-check-lantai shadow-none me-1" value="5">
+                                                <label class="form-check-label" for="l5">Lantai 5</label>
+                                            </div>
+                                        </div>
+                                        {{-- end filter lantai --}}
+
+                                        {{-- filter tipe --}}
                                         <div class="border bg-light p-3 rounded mb-3">
                                             <h6 class="mb-3" style="font-size: 18px;">Ruangan</h6>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f1" class="form-check-input shadow-none me-1" value="Reguler">
+                                                <input type="checkbox" id="f1" class="form-check-tipe shadow-none me-1" value="Reguler">
                                                 <label class="form-check-label" for="f1">Reguler</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f2" class="form-check-input shadow-none me-1" value="Ujian Terbuka">
+                                                <input type="checkbox" id="f2" class="form-check-tipe shadow-none me-1" value="Ujian Terbuka">
                                                 <label class="form-check-label" for="f2">Ujian Terbuka</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f3" class="form-check-input shadow-none me-1" value="Aljabar">
+                                                <input type="checkbox" id="f3" class="form-check-tipe shadow-none me-1" value="Aljabar">
                                                 <label class="form-check-label" for="f3">Aljabar</label>
                                             </div>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f4" class="form-check-input shadow-none me-1" value="Convention Hall">
+                                                <input type="checkbox" id="f4" class="form-check-tipe shadow-none me-1" value="Convention Hall">
                                                 <label class="form-check-label" for="f4">Convention Hall</label>
                                             </div>
                                         </div>
+                                        {{-- end filter tipe --}}
+
                                     </div>
                                 </div>
                             </nav>
                         </div>
+                        
+
                         <!-- Akhir Filter -->
 
                         <!-- Awal Card -->
                         <div class="col-lg-9 col-md-12 px-4 catalog-tc">
                             @foreach ($trains as $index => $train)
-                                <div class="card mb-4 border-0 shadow train-card" data-train="{{ $train->nama }}">
+                                <div class="card mb-4 border-0 shadow train-card" data-train="{{ $train->nama }}" data-floor="{{ $train->lantai }}">
                                     <div class="row g-0 p-3 align-items-center">
                                         <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
                                             <img src="{{ asset('/storage/posts/' . $train->gambar) }}"
@@ -383,29 +402,54 @@
         </div>
 
         <script>
+
             $(document).ready(function() {
-                // Function to filter cards based on selected checkboxes
-                function filterCards() {
-                    var selectedOptions = [];
-                    $('.form-check-input:checked').each(function() {
-                        selectedOptions.push($(this).val());
+                // Function to filter train cards based on selected floor and room type
+                function filterTrainCards() {
+                    var selectedFloors = [];
+                    $('.form-check-lantai:checked').each(function() {
+                        selectedFloors.push($(this).val());
                     });
-                    
-                    if (selectedOptions.length === 0) {
-                        $('.train-card').show(); // Show all cards if no checkbox is checked
-                    } else {
-                        $('.train-card').hide(); // Hide all cards
-                        
-                        // Show cards that contain the selected options at the beginning of the string
-                        selectedOptions.forEach(function(option) {
-                            $('.train-card[data-train^="' + option + '"]').show();
-                        });
+
+                    var selectedTypes = [];
+                    $('.form-check-tipe:checked').each(function() {
+                        selectedTypes.push($(this).val().toLowerCase());
+                    });
+
+                    // Show all train cards if no checkboxes are checked
+                    if (selectedFloors.length === 0 && selectedTypes.length === 0) {
+                        $('.train-card').show();
+                        return;
                     }
+
+                    // Hide all train cards
+                    $('.train-card').hide();
+
+                    // Filter cards based on selected floor and room type
+                    $('.train-card').each(function() {
+                        var floor = $(this).data('floor').toString(); // Convert to string for consistent comparison
+                        var type = $(this).data('train').toLowerCase();
+
+                        var floorMatch = selectedFloors.length === 0 || selectedFloors.includes(floor);
+                        var typeMatch = selectedTypes.length === 0 || selectedTypes.some(function(selectedType) {
+                            return type.includes(selectedType);
+                        });
+
+                        // Show the card if it matches the selected floor and/or room type
+                        if (floorMatch && typeMatch) {
+                            $(this).show();
+                        } else if (typeMatch && selectedFloors.length === 0) { // Show if only type is selected
+                            $(this).show();
+                        }
+                    });
                 }
-        
-                // Add change event listener to checkboxes
-                $('.form-check-input').change(filterCards);
+
+                // Add change event listeners to checkboxes
+                $('.form-check-lantai').change(filterTrainCards);
+                $('.form-check-tipe').change(filterTrainCards);
             });
+
+
         </script>
 
     </section>

@@ -258,12 +258,19 @@ class GuestController extends Controller
         $layout_models = LayoutModels::where('train_id', $id)->get(); // Misalnya, Anda dapat mengganti ini sesuai dengan kebutuhan
         $currentDate = Carbon::now()->addDay();
 
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
         return view('pelanggan.page.detail_tc', [
             'title' => 'Detail Training Center',
             'train' => $train,
             'facilities' => $facilities,
             'currentDate'  => $currentDate,
-            'layout_models' => $layout_models
+            'layout_models' => $layout_models,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -450,7 +457,12 @@ class GuestController extends Controller
         $cart = Cart::find(auth('guest')->id());
         $currentDate = Carbon::now()->addDay();
 
-        $lantai = $request->lantai;
+        // get jumlah item dalam cart
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
         $peserta = $request->peserta;
         $dateIn = $request->dateIn;
         $lama = $request->lama;
@@ -458,12 +470,9 @@ class GuestController extends Controller
 
         $query = Train::query();
 
-        if ($lantai !== "Semua Lantai") {
-            $query->where('lantai', $lantai);
-        }
-
         if ($peserta !== null) {
-            $query->where('kap_teater', '>', $peserta);
+            $queryLayout = LayoutModels::where('kapasitas', '>=', $peserta)->pluck('train_id')->unique()->toArray();
+            $query->whereIn('id', $queryLayout);
         }
 
         if (Auth::guard('guest')->check()) {
@@ -544,6 +553,7 @@ class GuestController extends Controller
             'facilities'    => $facilities,
             'currentDate'   => $currentDate,
             'cart'          => $cart,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
