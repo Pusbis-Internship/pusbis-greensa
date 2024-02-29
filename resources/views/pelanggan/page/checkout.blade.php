@@ -182,15 +182,20 @@
                                 <h2 class="text-center fw-bold text-uppercase">Form Komplimen</h2>
                                 <div class="row gy-4 mt-5 ">
                                     @if ($fromCart == true)
-                                        <form action="/checkout-komplimen/{{ $cart->id }}" method="POST" class="row m-0 p-0 gap-2" enctype="multipart/form-data"> @csrf
+                                        <form action="/checkout-komplimen/{{ $cart->id }}" method="POST"
+                                            class="row m-0 p-0 gap-2" enctype="multipart/form-data"> @csrf
                                             <div class="col-md-6">
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">Nama Kegiatan <span class="text-danger">*</span></label>
-                                                    <input type="text" name="nama_kegiatan" class="form-control" placeholder="Masukkan nama kegiatan" required>
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" name="nama_kegiatan" class="form-control"
+                                                        placeholder="Masukkan nama kegiatan" required>
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">SK Kegiatan/Undangan <span class="text-danger">*</span></label>
-                                                    <input type="file" name="surat" accept=".pdf" class="form-control" placeholder="Upload file SPJ">
+                                                    <label class="labels">SK Kegiatan/Undangan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="file" name="surat" accept=".pdf" class="form-control"
+                                                        placeholder="Upload file SPJ">
                                                 </div>
                                             </div>
 
@@ -217,26 +222,33 @@
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end">Rp  {{ number_format($totalHarga, 0, ',', '.') }}
+                                                    <div class="col-6 text-end">Rp
+                                                        {{ number_format($totalHarga, 0, ',', '.') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12 text-center">
-                                                    <input class="btn btn-success text-center w-100" type="submit" value="Checkout">
+                                                    <input class="btn btn-success text-center w-100" type="submit"
+                                                        value="Checkout">
                                                 </div>
                                             </div>
                                         </form>
                                     @else
-                                        <form action="/checkout-komplimen-langsung" method="POST" class="row m-0 p-0 gap-2" enctype="multipart/form-data"> @csrf
+                                        <form action="/checkout-komplimen-langsung" method="POST" class="row m-0 p-0 gap-2"
+                                            enctype="multipart/form-data"> @csrf
                                             <input type="hidden" name="item" value="{{ json_encode($item) }}">
                                             <div class="col-md-6">
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">Nama Kegiatan <span class="text-danger">*</span></label>
-                                                    <input type="text" name="nama_kegiatan" class="form-control" placeholder="Masukkan nama kegiatan" required>
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" name="nama_kegiatan" class="form-control"
+                                                        placeholder="Masukkan nama kegiatan" required>
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">SK Kegiatan/Undangan <span class="text-danger">*</span></label>
-                                                    <input type="file" name="surat" accept=".pdf" class="form-control" placeholder="Upload file SPJ" required>
+                                                    <label class="labels">SK Kegiatan/Undangan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="file" name="surat" accept=".pdf"
+                                                        class="form-control" placeholder="Upload file SPJ" required>
                                                 </div>
                                             </div>
 
@@ -261,12 +273,14 @@
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end">Rp  {{ number_format($item['harga'], 0, ',', '.') }}
+                                                    <div class="col-6 text-end">Rp
+                                                        {{ number_format($item['harga'], 0, ',', '.') }}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12 text-center">
-                                                    <input class="btn btn-success text-center w-100" type="submit" value="Checkout">
+                                                    <input class="btn btn-success text-center w-100" type="submit"
+                                                        value="Checkout">
                                                 </div>
                                             </div>
                                         </form>
@@ -322,8 +336,11 @@
                                             class="row m-0 p-0 gap-2"> @csrf
                                             <div class="col-md-6">
                                                 <div class="col-12 mb-3">
-                                                    <label class="labels">Nama Kegiatan <span class="text-danger">*</span></label>
-                                                    <input type="text" id="namaKegiatan" name="item" class="form-control" placeholder="Masukkan nama kegiatan" required>
+                                                    <label class="labels">Nama Kegiatan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" id="namaKegiatan" name="item"
+                                                        class="form-control" placeholder="Masukkan nama kegiatan"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -349,7 +366,31 @@
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end">Rp  {{ number_format($totalHarga, 0, ',', '.') }}
+                                                    <div class="col-6 text-end">Rp
+                                                        {{ number_format($totalHarga, 0, ',', '.') }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row"
+                                                    style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                                    <div class="col-12">PILIH REKENING</div>
+                                                    <div class="col-12 mt-3">
+                                                        <div class="form-check ms-3 mb-4 bank-bsi">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="flexRadioDefault" id="flexRadioDefault1">
+                                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                                <img src="{{ asset('assets/images/BSI.png') }}"
+                                                                    alt="BSI Logo" style="width: 23%; margin-top:-0.2rem">
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-3 mb-4 bank-btn">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                                <img src="{{ asset('assets/images/BTN.png') }}"
+                                                                    alt="BTN Logo" style="width: 30%;">
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -395,7 +436,31 @@
                                                 <div class="row mt-4 "
                                                     style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                                                     <div class="col-6">TOTAL HARGA</div>
-                                                    <div class="col-6 text-end" id="totalPrice">Rp  {{ number_format($item['harga'], 0, ',', '.') }}</div>
+                                                    <div class="col-6 text-end" id="totalPrice">Rp
+                                                        {{ number_format($item['harga'], 0, ',', '.') }}</div>
+                                                </div>
+
+                                                <div class="row"
+                                                    style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                                    <div class="col-12">PILIH REKENING</div>
+                                                    <div class="col-12 mt-3">
+                                                        <div class="form-check ms-3 mb-4 bank-bsi">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="flexRadioDefault" id="flexRadioDefault1">
+                                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                                <img src="{{ asset('assets/images/BSI.png') }}"
+                                                                    alt="BSI Logo" style="width: 23%; margin-top:-0.2rem">
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check ms-3 mb-4 bank-btn">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                                <img src="{{ asset('assets/images/BTN.png') }}"
+                                                                    alt="BTN Logo" style="width: 30%;">
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-12 text-center">

@@ -654,6 +654,12 @@ class GuestController extends Controller
 
     public function showcheckout()
     {
+         // get jumlah item dalam cart
+         if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+        
         // Ambil semua data dari tabel cart_items
         $cartItems = CartItem::all();
         $fromCart = True;
@@ -698,6 +704,7 @@ class GuestController extends Controller
             'cart' => $cart,
             'fromCart' => $fromCart,
             'totalHarga' => $totalPrice,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
