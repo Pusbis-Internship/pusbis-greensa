@@ -37,6 +37,7 @@ class GuestController extends Controller
     public function showabout()
     {
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -51,6 +52,7 @@ class GuestController extends Controller
     public function showpackage()
     {
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -162,6 +164,7 @@ class GuestController extends Controller
         $currentDate = Carbon::now()->addDay();
         
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -180,6 +183,7 @@ class GuestController extends Controller
         $guest = Guest::find(auth('guest')->id());
 
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -259,6 +263,7 @@ class GuestController extends Controller
         $currentDate = Carbon::now()->addDay();
 
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -280,6 +285,7 @@ class GuestController extends Controller
         $currentDate = Carbon::now()->toDateString();
 
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -332,6 +338,7 @@ class GuestController extends Controller
         $currentDate = Carbon::now()->addDay();
 
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -458,6 +465,7 @@ class GuestController extends Controller
         $currentDate = Carbon::now()->addDay();
 
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -640,6 +648,7 @@ class GuestController extends Controller
         $orders = Order::where('guest_id', auth('guest')->id())->orderByDesc('created_at')->get();
 
         // get jumlah item dalam cart
+        $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -655,6 +664,7 @@ class GuestController extends Controller
     public function showcheckout()
     {
          // get jumlah item dalam cart
+         $cartItemCount = null;
          if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
             $cartItemCount = $cartCount->items->count();   
@@ -783,6 +793,13 @@ class GuestController extends Controller
         $fromCart = False;
         $train = Train::find($request->train_id);
 
+        // get jumlah item dalam cart
+        $cartItemCount = null;
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
         $checkin = $request->checkin;
         $lamaHari = $request->lamaHari;
         $checkout = date('Y-m-d', strtotime($checkin . ' + ' . ($lamaHari - 1) . ' days'));
@@ -803,6 +820,7 @@ class GuestController extends Controller
             'item'      => $item,
             'train'     => $train,
             'fromCart'  => $fromCart,
+            'cartItemCount'=> $cartItemCount,
         ]);
     }
 
