@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LayoutModels extends Model
+class TrainImage extends Model
 {
     use HasFactory;
-    protected $fillable = ['train_id', 'nama_layout', 'kapasitas'];
+    protected $fillable = ['train_id', 'gambar'];
 
     public function train()
     {

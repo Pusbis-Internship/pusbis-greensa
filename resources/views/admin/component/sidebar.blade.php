@@ -14,9 +14,9 @@
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-school"></use>
         </svg> Training Center</a>
       <ul class="nav-group-items">
-        <li class="nav-item"><a class="nav-link" href="/admin-training-center-order-spj"><span class="nav-icon"></span> Order spj</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin-training-center-history-order"><span class="nav-icon"></span> History Order</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin-training-center-list"><span class="nav-icon"></span> List Rooms</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin-training-center-order-spj"><span class="nav-icon"></span> Order SPJ</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin-training-center-history-order"><span class="nav-icon"></span> Order History</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin-training-center-list"><span class="nav-icon"></span> List Ruangan</a></li>
       </ul>
     </li>
     <li class="nav-item"><a class="nav-link" href="/admin-user-list">

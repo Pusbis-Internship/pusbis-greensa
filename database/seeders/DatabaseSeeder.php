@@ -10,6 +10,7 @@ use App\Models\Train;
 use App\Models\CartItem;
 use App\Models\TrainFacility;
 use App\Models\LayoutModels;
+use App\Models\TrainImage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -53,151 +54,106 @@ class DatabaseSeeder extends Seeder
         Train::create([
             'nama' => 'Reguler 101',
             'lantai' => 1,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 102',
             'lantai' => 1,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 201',
             'lantai' => 2,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 202',
             'lantai' => 2,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 203',
             'lantai' => 2,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 204',
             'lantai' => 2,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 301',
             'lantai' => 3,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 302',
             'lantai' => 3,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 303',
             'lantai' => 3,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 304',
             'lantai' => 3,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 401',
             'lantai' => 4,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Reguler 402',
             'lantai' => 4,
-            'kap_class' => 30,
-            'kap_teater' => 40,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room1.jpg',
         ]);
 
         Train::create([
             'nama' => 'Ujian Terbuka',
             'lantai' => 4,
-            'kap_class' => 60,
-            'kap_teater' => 90,
             'harga' => 3500000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room2.jpg',
         ]);
 
         Train::create([
             'nama' => 'Aljabar',
             'lantai' => 5,
-            'kap_class' => 40,
-            'kap_teater' => 60,
             'harga' => 3000000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room3.jpg',
         ]);
 
         Train::create([
             'nama' => 'Convention Hall',
             'lantai' => 5,
-            'kap_class' => 130,
-            'kap_teater' => 250,
             'harga' => 8500000,
             'deskripsi' => 'Ini deskripsi dolor...',
-            'gambar' => 'room4.jpg',
         ]);
 
         TrainFacility::create([
@@ -814,6 +770,81 @@ class DatabaseSeeder extends Seeder
             'train_id' => 15,
             'nama_layout' => 'U-Shape',
             'kapasitas' => 30
+        ]);
+
+        TrainImage::create([
+            'train_id' => 1,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 2,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 3,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 4,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 5,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 6,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 7,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 8,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 9,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 10,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 11,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 12,
+            'gambar' => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 13,
+            'gambar' => 'room2.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 14,
+            'gambar' => 'room3.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id' => 15,
+            'gambar' => 'room4.jpg',
         ]);
 
         Cart::create([

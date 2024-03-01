@@ -86,8 +86,6 @@
                     <div class="row">
 
                         <!-- Filter -->
-                        
-                        
                         <div class="col-lg-3 col-md-12 mb-lg-0 px-lg-0 mb-4">
                             <nav class="navbar navbar-filterDropdown navbar-expand-lg navbar-light bg-white rounded shadow">
                                 <div class="container-fluid flex-lg-column align-items-stretch">
@@ -151,8 +149,6 @@
                                 </div>
                             </nav>
                         </div>
-                        
-
                         <!-- Akhir Filter -->
 
                         <!-- Awal Card -->
@@ -161,8 +157,11 @@
                                 <div class="card mb-4 border-0 shadow train-card" data-train="{{ $train->nama }}" data-floor="{{ $train->lantai }}">
                                     <div class="row g-0 p-3 align-items-center">
                                         <div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-                                            <img src="{{ asset('/storage/posts/' . $train->gambar) }}"
+                                            @foreach ($train->images as $image)
+                                                <img src="{{ asset('/storage/posts/' . $image->gambar) }}"
                                                 class="img-fluid rounded" alt="training-center">
+                                                @break
+                                            @endforeach
                                         </div>
                                         <div class="col-md-6 px-lg-4 px-md-4 px-0">
                                             <h4 class="mb-1 fw-semibold">{{ $train->nama }}</h4>

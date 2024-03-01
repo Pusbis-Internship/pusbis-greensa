@@ -20,6 +20,11 @@ class Train extends Model
         return $this->hasMany(LayoutModels::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(TrainImage::class);
+    }
+
     public function on_cart_items()
     {
         return $this->hasMany(CartItem::class);

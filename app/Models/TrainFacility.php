@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TrainFacility extends Model
 {
     use HasFactory;
+    protected $fillable = ['train_id', 'fasilitas'];
 
     public function train()
     {
