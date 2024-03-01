@@ -30,7 +30,7 @@
                     @csrf
 
                     <div class="row g-2">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="row g-2">
 
                                 <div class="col-md-3">
@@ -62,12 +62,12 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-3">
+                                    <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-2">
-                            <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
-                        </div>
 
                     </div>
 
@@ -107,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="small mb-1">SKU: BST-498</div>
                     <h1 class="display-5 fw-bolder" style="text-transform:uppercase" >{{ $train->nama }}</h1>
                     <div class="facilities mb-3">
@@ -178,6 +178,10 @@
                         </button>
                     </div>
                     @endauth
+                    
+                    <a href="#denah" class="btn btn-primary flex-shrink-0 w-100 my-3"> 
+                        <i class="bi bi-geo-fill me-1"></i>Lihat Denah Ruangan
+                    </a>
 
                     {{-- Modal not login --}}
                     <div class="modal fade" id="modalBookNotLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -228,11 +232,16 @@
                     {{-- Modal login --}}
 
                 </div>
+
+                <div class="col-12 text-center mt-5 denah" id="denah">
+                    <h2 class="fw-bold mb-4">DENAH RUANGAN</h2>
+                    <img src="{{ asset('assets/images/lantai1.png') }}" alt="" class="w-100">
+                </div>
+                
             </div>
         </div>
 
 
     </section>
-
 
 @endsection

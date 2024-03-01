@@ -67,12 +67,13 @@
                     @csrf
 
                     <div class="row g-2">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="row g-2">
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" name="dateIn" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
+                                        <input type="date" name="dateIn" class="form-control" id="check-in"
+                                            placeholder="Check in" data-target="#date1"
                                             value="{{ isset($_POST['dateIn']) ? $_POST['dateIn'] : $currentDate->format('Y-m-d') }}"
                                             min="{{ $currentDate->format('Y-m-d') }}" />
                                         <label class="labelBook" for="check-in">Check-in</label>
@@ -82,8 +83,8 @@
                                 <div class="col-md-3">
                                     <div class="hari form-floating " id="hari" data-target-input="nearest">
                                         <input type="number" name="lama" class="form-control" id="hari"
-                                            placeholder="Lama Hari" value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}" data-target="#date2" min="1"
-                                            max="999" />
+                                            placeholder="Lama Hari" value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}"
+                                            data-target="#date2" min="1" max="999" />
                                         <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
                                 </div>
@@ -93,17 +94,18 @@
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
-                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
+                                            max="999"
+                                            value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
+                                </div>
 
-                        <div class="col-md-2">
-                            <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
+                            </div>
                         </div>
 
                     </div>

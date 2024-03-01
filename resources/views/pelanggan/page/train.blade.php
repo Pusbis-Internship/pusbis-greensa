@@ -30,7 +30,7 @@
                     @csrf
 
                     <div class="row g-2">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="row g-2">
 
                                 <div class="col-md-3">
@@ -62,11 +62,11 @@
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
+                                </div>
 
-                        <div class="col-md-2">
-                            <button class="btn btn-success w-100 h-100" type="submit">Cek Ketersediaan</button>
+                            </div>
                         </div>
 
                     </div>
