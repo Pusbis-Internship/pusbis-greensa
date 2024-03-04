@@ -91,9 +91,11 @@
                                             @foreach ($order->items as $item)
                                                 <div class="row d-flex align-items-center p-0 py-md-4 py-2">
                                                     <div class="col-md-3 col-12 gambar text-center">
-                                                        <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}"
-                                                            class="blur-up lazyloaded w-100"alt="">
-                                                        {{-- <p>{{ $index + 1 }}</p> --}}
+                                                        @foreach ($item->train->images as $image)
+                                                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}"
+                                                            class="img-fluid rounded" alt="training-center">
+                                                            @break
+                                                        @endforeach
                                                     </div>
                                                     <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-center ">
                                                         <a class=" text-decoration-none text-success fw-bold"
@@ -119,6 +121,7 @@
                                                     </div>
 
                                                 </div>
+                                                
                                             @endforeach
                                         </div>
                                     </div>
@@ -130,15 +133,29 @@
                         <a class=" text-decoration-none text-success fw-bold d-md-none d-flex me-md-0 me-3" style="text-transform:uppercase"
                             href="#">print invoice :
                         </a>
-                        @if ($item->status != 'Pending')
+
+                        {{-- Check if any item has 'Pending' status --}}
+                        @php
+                            $hasPendingStatus = $order->items->contains('status', 'Pending');
+                        @endphp
+
+                        @if (!$hasPendingStatus)
                             <a href="/invoice-show/{{ $order->id }}" target="_blank">
                                 <button class="btn btn-success">Get</button>
-                            </a>
+                            </a>    
                         @else
                             <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">
                                 Get
                             </a>
                         @endif
+
+                        {{-- Check if order is reguler --}}
+                        @if ($order->surat === null)
+                            <a href="/payment/{{ $order->id }}">
+                                <button class="btn btn-success">Cek pembayaran</button>
+                            </a>   
+                        @endif
+                        
                         <div class="modal fade" id="modalPending" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -157,8 +174,7 @@
 
                                                 <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                                                     <h6 class="section-title text-center text-dark text-uppercase">
-                                                        Pesanan ini masih diproses oleh
-                                                        Admin
+                                                        Pesanan ini masih diproses oleh Admin
                                                     </h6>
                                                 </div>
 

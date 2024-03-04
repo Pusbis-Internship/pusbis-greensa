@@ -52,13 +52,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
     Route::post('/checkout', [GuestController::class, 'showcheckout'])->middleware('guestmustlogin');
     Route::post('/checkout-komplimen/{id}', [GuestController::class, 'checkoutKomplimen'])->middleware('guestmustlogin');
-    Route::post('/checkout-reguler/{id}', [checkout::class, 'checkoutReguler'])->middleware('guestmustlogin');
+    Route::post('/checkout-reguler/{id}', [GuestController::class, 'checkoutReguler'])->middleware('guestmustlogin');
     Route::post('/checkout-komplimen-langsung', [GuestController::class, 'checkoutKomplimenLangsung'])->middleware('guestmustlogin');
     Route::post('/checkout-reguler-langsung', [GuestController::class, 'checkoutRegulerLangsung'])->middleware('guestmustlogin');
     
     Route::get('/order', [GuestController::class, 'showorder'])->middleware('guestmustlogin');
     Route::get('/invoice-show/{id}', [GuestController::class, 'invoiceShow'])->middleware('guestmustlogin');
     Route::get('/invoice-download/{id}', [GuestController::class, 'invoiceDownload'])->middleware('guestmustlogin');
+    Route::get('/payment/{id}', [GuestController::class, 'showPayment'])->middleware('guestmustlogin')->name('showPayment');
 
     Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');
     Route::put('/profile/update/{id}', [GuestController::class, 'updateprofile'])->name('profile.update')->middleware('guestmustlogin');

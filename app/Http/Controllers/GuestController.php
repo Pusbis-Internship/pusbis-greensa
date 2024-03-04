@@ -761,11 +761,13 @@ class GuestController extends Controller
     {
         $cart = Cart::find($cart_id);
 
+        // create order
         $order = Order::create([
             'guest_id'      => $cart->guest->id,
             'nama_kegiatan' => $request->nama_kegiatan,
         ]);
 
+        // create order item
         foreach ($cart->items as $item) {
             OrderItem::create([
                 'order_id'      => $order->id,
@@ -785,7 +787,8 @@ class GuestController extends Controller
 
         CartItem::where('cart_id', $cart_id)->delete();
 
-        return redirect('/order');
+        // Redirect to showPayment route with order ID parameter
+        return redirect()->route('showPayment', ['id' => $order->id]);
     }
 
     public function reservasiLangsung(Request $request)
@@ -873,7 +876,7 @@ class GuestController extends Controller
             'checkout'      => $item['checkout'],
             'lama'          => $item['lama'],
             'harga'         => $item['harga'],
-            'nama_kegiatan' => $item['nama_kegiatan'],
+            'nama_kegiatan' => $request->nama_kegiatan,
             'special'       => $item['special'],
             'status'        => 'Pending',
         ]);
@@ -903,5 +906,29 @@ class GuestController extends Controller
 
         $pdf = PDF::loadView('pelanggan.layout.invoice', compact('order'));
         $pdf->setPaper('A4', 'landscape');
+    }
+
+    public function showPayment($orderId)
+    {
+        $order = Order::where('id', $orderId)->first();
+        $namaKegiatan = Order::where('id', $orderId)->value('nama_kegiatan');
+        $totalHarga = OrderItem::where('order_id', $orderId)
+            ->where('status', 'Accepted')
+            ->sum('harga');
+
+        // get jumlah item dalam cart
+        $cartItemCount = null;
+        if (auth('guest')->check()) {
+            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
+            $cartItemCount = $cartCount->items->count();   
+        }
+
+        return view('pelanggan.page.payment', [
+            'title' => 'payment',
+            'order' => $order,
+            'namaKegiatan' => $namaKegiatan,
+            'totalHarga' => $totalHarga,
+            'cartItemCount' => $cartItemCount,
+        ]);
     }
 }
