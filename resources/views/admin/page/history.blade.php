@@ -49,6 +49,11 @@
         <option value="Accepted">Accepted</option>
         <option value="Rejected">Rejected</option>
     </select>
+    <select id="searchTipe">
+        <option value="All">All</option>
+        <option value="Komplimen">Komplimen</option>
+        <option value="Reguler">Reguler</option>
+    </select>
     
     <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
         @csrf
@@ -56,13 +61,14 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"></th>
-                    <th>Customer Name</th>
-                    <th>Room</th>
-                    <th>Check In</th>
-                    <th>Check Out</th>
-                    <th>Price</th>
-                    <th>Activity</th>
+                    <th>Pemesan</th>
+                    <th>Ruangan</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Harga</th>
+                    <th>Kegiatan</th>
                     <th>Status</th>
+                    <th>Tipe</th>
                 </tr>
             </thead>
             <tbody id="orderTableBody">
@@ -77,6 +83,11 @@
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
                     <td id="status">{{$item->status}}</td>
+                    @if ($order->surat === null)
+                        <td id="tipe">Reguler</td>                        
+                    @else
+                        <td id="tipe"><a href="">Komplimen</a></td> 
+                    @endif
                 </tr>
                 @endforeach
                 @endforeach
@@ -105,6 +116,9 @@
     // Search by status
     document.getElementById('searchStatus').addEventListener('change', searchTable);
 
+    // Search by type
+    document.getElementById('searchTipe').addEventListener('change', searchTable);
+
     function searchTable() {
         const searchValueUser = document.getElementById('searchUser').value.toLowerCase();
         const searchValueRuangan = document.getElementById('searchRuangan').value.toLowerCase();
@@ -112,6 +126,7 @@
         const searchValueTanggalAwal = new Date(document.getElementById('searchTanggalAwal').value);
         const searchValueTanggalAkhir = new Date(document.getElementById('searchTanggalAkhir').value);
         const searchValueStatus = document.getElementById('searchStatus').value.toLowerCase();
+        const searchValueTipe = document.getElementById('searchTipe').value.toLowerCase();
         const rows = document.querySelectorAll('#orderTableBody tr');
 
         rows.forEach(row => {
@@ -121,6 +136,7 @@
             const tanggalAwal = new Date(row.querySelector('td#tanggalAwal').textContent);
             const tanggalAkhir = new Date(row.querySelector('td#tanggalAkhir').textContent);
             const status = row.querySelector('td#status').textContent.toLowerCase();
+            const tipe = row.querySelector('td#tipe').textContent.toLowerCase();
 
             const foundUser = namaUser.includes(searchValueUser);
             const foundRuangan = namaRuangan.includes(searchValueRuangan);
@@ -128,11 +144,13 @@
             const isAfterTanggalAwal = tanggalAwal >= searchValueTanggalAwal;
             const isBeforeTanggalAkhir = tanggalAkhir <= searchValueTanggalAkhir;
             const foundStatus = status === searchValueStatus;
+            const foundTipe = tipe === searchValueTipe;
 
-            if (searchValueStatus === 'all') {
+            if (searchValueTipe === 'all') {
                 row.style.display = foundUser && foundRuangan && foundKegiatan && isAfterTanggalAwal && isBeforeTanggalAkhir ? '' : 'none';
-            } else {
-                row.style.display = foundUser && foundRuangan && foundKegiatan && isAfterTanggalAwal && isBeforeTanggalAkhir && foundStatus ? '' : 'none';
+            }
+            else {
+                row.style.display = foundUser && foundRuangan && foundKegiatan && isAfterTanggalAwal && isBeforeTanggalAkhir && foundTipe ? '' : 'none';
             }
 
         });

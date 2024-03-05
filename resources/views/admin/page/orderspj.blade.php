@@ -110,14 +110,14 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"></th>
-                    <th>Customer Name</th>
-                    <th>Room</th>
-                    <th>Check In</th>
-                    <th>Check Out</th>
-                    <th>Price</th>
-                    <th>Activity</th>
-                    <th>action</th>
-                    <!-- <th>Action</th> -->
+                    <th>Pemesan</th>
+                    <th>Ruangan</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Harga</th>
+                    <th>Kegiatan</th>
+                    <th>SPJ</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody id="orderTableBody">
@@ -131,6 +131,8 @@
                     <td id="tanggalAkhir">{{$item->checkout}}</td>
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
+
+                    <td><button>Lihat</button></td>
 
                     <td>
                         <form action="">

@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Train;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,6 +32,14 @@ class AdminController extends Controller
     public function showorderspj()
     {
         $orders = Order::whereNotNull('surat')->get();
+
+        // cek order yang kadaluarsa
+        $now = Carbon::now();
+        $now = $now->format('Y-m-d');
+
+        OrderItem::whereDate('checkin', '<=', $now)
+        ->where('status', 'Pending')
+        ->update(['status' => 'Rejected']);
 
         return view('admin.page.orderspj', ['orders' => $orders]);
     }
