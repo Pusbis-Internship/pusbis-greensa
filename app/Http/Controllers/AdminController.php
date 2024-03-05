@@ -50,6 +50,14 @@ class AdminController extends Controller
             $query->where('status', '!=', 'Pending');
         })->get();
 
+        // cek order yang kadaluarsa
+        $now = Carbon::now();
+        $now = $now->format('Y-m-d');
+
+        OrderItem::whereDate('checkin', '<=', $now)
+        ->where('status', 'Pending')
+        ->update(['status' => 'Rejected']);
+
         return view('admin.page.history', ['orders' => $orders]);
     }
 
