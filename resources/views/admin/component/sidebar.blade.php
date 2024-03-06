@@ -15,6 +15,7 @@
         </svg> Training Center</a>
       <ul class="nav-group-items">
         <li class="nav-item"><a class="nav-link" href="/admin-training-center-order-spj"><span class="nav-icon"></span> Order SPJ</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin-training-center-order-reguler"><span class="nav-icon"></span> Order Reguler</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin-training-center-history-order"><span class="nav-icon"></span> Order History</a></li>
         <li class="nav-item"><a class="nav-link" href="/admin-training-center-list"><span class="nav-icon"></span> List Ruangan</a></li>
       </ul>

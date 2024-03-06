@@ -44,6 +44,21 @@ class AdminController extends Controller
         return view('admin.page.orderspj', ['orders' => $orders]);
     }
 
+    public function showorderreguler()
+    {
+        $orders = Order::whereNull('surat')->get();
+
+        // cek order yang kadaluarsa
+        $now = Carbon::now();
+        $now = $now->format('Y-m-d');
+
+        OrderItem::whereDate('checkin', '<=', $now)
+        ->where('status', 'Pending')
+        ->update(['status' => 'Rejected']);
+
+        return view('admin.page.orderreguler', ['orders' => $orders]);
+    }
+
     public function showhistory()
     {
         $orders = Order::whereHas('items', function ($query) {

@@ -839,9 +839,9 @@ class GuestController extends Controller
 
         // create order
         $order = Order::create([
-            'guest_id'      => $item['guest_id'],
-            'nama_kegiatan' => $request->nama_kegiatan,
-            'surat'         => $namaSurat,
+            'guest_id'       => $item['guest_id'],
+            'nama_kegiatan'  => $request->nama_kegiatan,
+            'surat'          => $namaSurat,
         ]);
 
         // create order item
@@ -867,6 +867,7 @@ class GuestController extends Controller
         $order = Order::create([
             'guest_id'      => $item['guest_id'],
             'nama_kegiatan' => $request->nama_kegiatan,
+            'metode_pembayaran' => $request->metode_pembayaran,
         ]);
 
         OrderItem::create([

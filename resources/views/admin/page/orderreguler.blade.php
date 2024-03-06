@@ -96,7 +96,7 @@
 </style>
 
 <div class="container">
-    <h1>Admin - Show Order Komplimen</h1>
+    <h1>Admin - Show Order Reguler</h1>
     <div style="position:relative;">
         <input type="text" id="searchUser" placeholder="Nama user">
         <input type="text" id="searchRuangan" placeholder="Ruangan">
@@ -116,7 +116,7 @@
                     <th>Check-Out</th>
                     <th>Harga</th>
                     <th>Kegiatan</th>
-                    <th>SPJ</th>
+                    <th>Pembayaran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -132,7 +132,7 @@
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
 
-                    <td><button>Lihat</button></td>
+                    <td>{{ $order->metode_pembayaran }}</td>
 
                     <td>
                         <form action="">

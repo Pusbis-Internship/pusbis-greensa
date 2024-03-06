@@ -356,13 +356,13 @@
                                                     <div class="col-12">PILIH REKENING</div>
                                                     <div class="col-12 mt-3">
                                                         <div class="form-check ms-3 mb-4 bank-bsi">
-                                                            <input type="radio" class="form-check-input" name="metode_pembayaran" id="flexRadioDefault1" value="BSI">
+                                                            <input type="radio" class="form-check-input" name="metode_pembayaran" id="flexRadioDefault1" value="BSI" checked>
                                                             <label class="form-check-label" for="flexRadioDefault1">
                                                                 <img src="{{ asset('assets/images/BSI.png') }}" alt="BSI Logo" style="width: 23%; margin-top:-0.2rem">
                                                             </label>
                                                         </div>
                                                         <div class="form-check ms-3 mb-4 bank-btn">
-                                                            <input type="radio" class="form-check-input" name="metode_pembayaran" id="flexRadioDefault2" value="BTN" checked>
+                                                            <input type="radio" class="form-check-input" name="metode_pembayaran" id="flexRadioDefault2" value="BTN">
                                                             <label class="form-check-label" for="flexRadioDefault2">
                                                                 <img src="{{ asset('assets/images/BTN.png') }}" alt="BTN Logo" style="width: 30%;">
                                                             </label>
@@ -414,13 +414,13 @@
                                                     <div class="col-12">PILIH REKENING</div>
                                                     <div class="col-12 mt-3">
                                                         <div class="form-check ms-3 mb-4 bank-bsi">
-                                                            <input class="form-check-input" type="radio" name="metode_pembayaran" id="flexRadioDefault1">
+                                                            <input class="form-check-input" type="radio" name="metode_pembayaran" id="flexRadioDefault1" value="BSI" checked>
                                                             <label class="form-check-label" for="flexRadioDefault1">
                                                                 <img src="{{ asset('assets/images/BSI.png') }}" alt="BSI Logo" style="width: 23%; margin-top:-0.2rem">
                                                             </label>
                                                         </div>
                                                         <div class="form-check ms-3 mb-4 bank-btn">
-                                                            <input class="form-check-input" type="radio" name="metode_pembayaran" id="flexRadioDefault2" checked>
+                                                            <input class="form-check-input" type="radio" name="metode_pembayaran" id="flexRadioDefault2" value="BTN">
                                                             <label class="form-check-label" for="flexRadioDefault2">
                                                                 <img src="{{ asset('assets/images/BTN.png') }}" alt="BTN Logo" style="width: 30%;">
                                                             </label>
