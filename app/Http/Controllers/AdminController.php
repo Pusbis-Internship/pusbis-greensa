@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\HistoryExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -75,6 +77,12 @@ class AdminController extends Controller
 
         return view('admin.page.history', ['orders' => $orders]);
     }
+
+    public function export() 
+    {
+        return Excel::download(new HistoryExport, 'users.xlsx');
+    }
+
 
     public function accOrder($itemId)
     {

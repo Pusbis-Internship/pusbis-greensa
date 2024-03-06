@@ -186,7 +186,7 @@
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <label class="labels">SK Kegiatan/Undangan <span class="text-danger">*</span></label>
-                                                    <input type="file" name="surat" accept=".pdf" class="form-control" placeholder="Upload file SPJ">
+                                                    <input type="file" name="surat" accept=".pdf" class="form-control" placeholder="Upload file SPJ" required>
                                                 </div>
                                             </div>
 

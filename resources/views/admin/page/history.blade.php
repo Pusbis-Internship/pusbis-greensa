@@ -95,6 +95,9 @@
         </table>
         <button type="submit">Delete Selected Orders</button>
     </form>
+    @if ($orders->isNotEmpty())
+    <a href="{{ route('admin.export') }}" class="btn btn-primary">Export Excel</a>
+    @endif
 </div>
 
 <script>
