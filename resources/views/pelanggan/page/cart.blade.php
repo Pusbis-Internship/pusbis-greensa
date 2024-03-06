@@ -195,8 +195,11 @@
                             <div class="row main align-items-center py-3">
                                 <div class="col-md-2 col-12 gambar">
                                     <a href="{{ route('train.detail', $item->train_id) }}">
-                                        <img src="{{ asset('/storage/posts/' . $item->train->gambar) }}"
-                                            class="blur-up lazyloaded w-100" alt="">
+                                        @foreach ($item->train->images as $image)
+                                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}"
+                                            class="blur-up lazyloaded w-100 rounded" alt="training-center">
+                                            @break
+                                        @endforeach
                                     </a>
                                 </div>
                                 <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">

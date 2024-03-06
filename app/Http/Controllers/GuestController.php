@@ -765,6 +765,7 @@ class GuestController extends Controller
         $order = Order::create([
             'guest_id'      => $cart->guest->id,
             'nama_kegiatan' => $request->nama_kegiatan,
+            'metode_pembayaran'=> $request->metode_pembayaran,
         ]);
 
         // create order item
@@ -913,7 +914,6 @@ class GuestController extends Controller
         $order = Order::where('id', $orderId)->first();
         $namaKegiatan = Order::where('id', $orderId)->value('nama_kegiatan');
         $totalHarga = OrderItem::where('order_id', $orderId)
-            ->where('status', 'Accepted')
             ->sum('harga');
 
         // get jumlah item dalam cart
