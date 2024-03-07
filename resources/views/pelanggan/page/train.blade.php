@@ -463,4 +463,8 @@
         </script>
 
     </section>
+    <x-notify::notify class="notify-container" />
+
+<!-- Load the necessary JavaScript for notifications -->
+@notifyJs
 @endsection

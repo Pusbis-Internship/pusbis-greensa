@@ -271,5 +271,7 @@
             </div>
     </section> --}}
     {{-- Akhir Hotel Desc --}}
+<x-notify::notify />
+@notifyJs
     
 @endsection

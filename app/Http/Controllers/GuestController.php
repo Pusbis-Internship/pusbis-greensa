@@ -40,9 +40,9 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
-          
+
         return view('pelanggan.page.about', [
             'title'         => 'About',
             'cartItemCount' => $cartItemCount,
@@ -55,7 +55,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         return view('pelanggan.page.package', [
@@ -162,12 +162,12 @@ class GuestController extends Controller
     public function showhome()
     {
         $currentDate = Carbon::now()->addDay();
-        
+
         // get jumlah item dalam cart
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         return view('pelanggan.page.home', [
@@ -186,7 +186,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         // Tampilkan view untuk form edit profil dan teruskan data pengguna
@@ -266,7 +266,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         return view('pelanggan.page.detail_tc', [
@@ -288,13 +288,13 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         // Delete item yang tanggalnya <= hari ini
         CartItem::where('cart_id', $guest->id)
-        ->where('checkin', '<=', $currentDate)
-        ->delete();
+            ->where('checkin', '<=', $currentDate)
+            ->delete();
 
         return view('pelanggan.page.cart', [
             'title'     => 'Keranjang',
@@ -320,7 +320,9 @@ class GuestController extends Controller
             'special'       => $request->special,
         ]);
 
-        return redirect('/training-center')->withErrors(['successAddToCart' => 'Berhasil menambahkan ke cart']);
+        notify()->success('Berhasil menambahkan ke cart');
+
+        return redirect('/training-center');
     }
 
     public function cartItemDelete($id)
@@ -341,7 +343,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         // Get Trains
@@ -377,7 +379,7 @@ class GuestController extends Controller
                     ->whereHas('order', function ($query) {
                         $query->where('guest_id', auth('guest')->id());
                     });
-                })
+            })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
@@ -402,7 +404,7 @@ class GuestController extends Controller
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('status', '=', 'Accepted');
-                })
+            })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
@@ -416,19 +418,16 @@ class GuestController extends Controller
                 ->pluck('train_id')
                 ->toArray();
 
-            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);   
+            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);
 
             $query->whereNotIn('id', $roomBooked);
-        }
-        
-        else
-        {
+        } else {
             // Get train_id from all ACC'ed order
             $roomInOrderAll = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('status', '=', 'Accepted');
-                })
+            })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
@@ -455,7 +454,7 @@ class GuestController extends Controller
             'facilities'   => $facilities,
             'currentDate'  => $currentDate,
             'cart'         => $cart,
-            'cartItemCount'=> $cartItemCount,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -468,7 +467,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         $peserta = $request->peserta;
@@ -510,7 +509,7 @@ class GuestController extends Controller
                     ->whereHas('order', function ($query) {
                         $query->where('guest_id', auth('guest')->id());
                     });
-                })
+            })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
@@ -533,7 +532,7 @@ class GuestController extends Controller
                 $query->where('checkin', '<=', $dateIn)
                     ->where('checkout', '>=', $dateIn)
                     ->where('status', '=', 'Accepted');
-                })
+            })
                 ->orWhere(function ($query) use ($dateOut) {
                     $query->where('checkin', '<=', $dateOut)
                         ->where('checkout', '>=', $dateOut)
@@ -547,7 +546,7 @@ class GuestController extends Controller
                 ->pluck('train_id')
                 ->toArray();
 
-            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);  
+            $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);
 
             $query->whereNotIn('id', $roomBooked);
         }
@@ -622,14 +621,24 @@ class GuestController extends Controller
         $guest = Guest::where('username', $credentials['username'])->first();
 
         if (!$guest) {
+            // Notifikasi untuk email belum terdaftar
+            notify()->error('Email belum terdaftar.');
+
             return redirect()->back()->withErrors(['username' => 'Email belum terdaftar']);
         }
 
         if (Auth::guard('guest')->attempt($credentials)) {
             $request->session()->regenerate();
             $request->session()->put('guest', $guest);
-            return redirect()->intended('/')->withErrors('Sudah Login !!!');
+
+            // Notifikasi untuk login berhasil
+            notify()->success('Anda telah berhasil login!');
+
+            return redirect()->intended('/');
         }
+
+        // Notifikasi untuk password salah
+        drakify('success');
 
         return redirect()->back()->withErrors(['password' => 'Password salah']);
     }
@@ -651,7 +660,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         return view('pelanggan.page.order', [
@@ -663,13 +672,13 @@ class GuestController extends Controller
 
     public function showcheckout()
     {
-         // get jumlah item dalam cart
-         $cartItemCount = null;
-         if (auth('guest')->check()) {
+        // get jumlah item dalam cart
+        $cartItemCount = null;
+        if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
-        
+
         // Ambil semua data dari tabel cart_items
         $cartItems = CartItem::all();
         $fromCart = True;
@@ -724,7 +733,7 @@ class GuestController extends Controller
 
         // store surat komplimen
         $surat = $request->file('surat');
-        $namaSurat = time().'.'.$surat->getClientOriginalExtension();
+        $namaSurat = time() . '.' . $surat->getClientOriginalExtension();
         $surat->storeAs('public/posts/surat', $namaSurat);
 
         // create order
@@ -733,7 +742,7 @@ class GuestController extends Controller
             'nama_kegiatan' => $request->nama_kegiatan,
             'surat'         => $namaSurat,
         ]);
-        
+
         // create order item
         foreach ($cart->items as $item) {
             OrderItem::create([
@@ -765,7 +774,7 @@ class GuestController extends Controller
         $order = Order::create([
             'guest_id'      => $cart->guest->id,
             'nama_kegiatan' => $request->nama_kegiatan,
-            'metode_pembayaran'=> $request->metode_pembayaran,
+            'metode_pembayaran' => $request->metode_pembayaran,
         ]);
 
         // create order item
@@ -801,7 +810,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         $checkin = $request->checkin;
@@ -824,7 +833,7 @@ class GuestController extends Controller
             'item'      => $item,
             'train'     => $train,
             'fromCart'  => $fromCart,
-            'cartItemCount'=> $cartItemCount,
+            'cartItemCount' => $cartItemCount,
         ]);
     }
 
@@ -834,7 +843,7 @@ class GuestController extends Controller
 
         // store surat komplimen
         $surat = $request->file('surat');
-        $namaSurat = time().'.'.$surat->getClientOriginalExtension();
+        $namaSurat = time() . '.' . $surat->getClientOriginalExtension();
         $surat->storeAs('public/posts/surat', $namaSurat);
 
         // create order
@@ -921,7 +930,7 @@ class GuestController extends Controller
         $cartItemCount = null;
         if (auth('guest')->check()) {
             $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();   
+            $cartItemCount = $cartCount->items->count();
         }
 
         return view('pelanggan.page.payment', [
