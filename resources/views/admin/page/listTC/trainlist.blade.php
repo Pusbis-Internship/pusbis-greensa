@@ -12,8 +12,10 @@
             <tr>
                 <th>Nama</th>
                 <th>Lantai</th>
-                <th>Kapasitas Class</th>
-                <th>Kapasitas Teater</th>
+                <th>Classroom</th>
+                <th>Teater</th>
+                <th>Round Table</th>
+                <th>U-Shape</th>
                 <th>Harga</th>
                 <th>Deskripsi</th>
                 <th>Gambar</th>
@@ -25,17 +27,21 @@
             <tr>
                 <td>{{ $train->nama }}</td>
                 <td>{{ $train->lantai }}</td>
-                <td>{{ $train->kap_class }}</td>
-                <td>{{ $train->kap_teater }}</td>
+
+                @foreach ($train->layout_models as $layout)
+                <td>{{ $layout->kapasitas }}</td>
+                @endforeach
+
                 <td>Rp {{ number_format($train->harga, 0, ',', '.')}}</td>
                 <td>{{ $train->deskripsi }}</td>
+
+                @foreach ($train->images as $image)
                 <td>
-                    @foreach ($train->images as $image)
-                        <img src="{{ asset('/storage/posts/' . $image->gambar) }}"
-                        class="img-fluid rounded" alt="Train Image" width="100">
-                    @break
-                    @endforeach
+                    <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid rounded" alt="Train Image" width="100">
                 </td>
+                @break
+                @endforeach
+
                 <td>
                     <form action="/admin-training-center-delete/{{ $train->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                         @csrf

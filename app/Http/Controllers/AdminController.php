@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\HistoryExport;
+use App\Models\LayoutModels;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -200,52 +201,67 @@ class AdminController extends Controller
 
 
 
-    public function tcedit(Request $request, $id, Train $train)
+    public function tcedit(Request $request, $id)
     {
-        $train = Train::findOrFail($id);
-
-        $train->update([
-            'nama'     => $request->nama,
-            'lantai'   => $request->lantai,
-            'kap_class'   => $request->kap_class,
-            'kap_teater'   => $request->kap_teater,
-            'harga'   => $request->harga,
-            'deskripsi'   => $request->deskripsi,
-            'gambar'   => $request->gambar,
+        // update train
+        Train::findOrFail($id)
+        ->update([
+            'nama'      => $request->nama,
+            'lantai'    => $request->lantai,
+            'harga'     => $request->harga,
+            'deskripsi' => $request->deskripsi,
         ]);
 
-        //check if image is uploaded
-        if ($request->hasFile('gambar')) {
+        // update kapsitas
+        LayoutModels::where('train_id', $id)
+        ->where('nama_layout', 'Classroom')
+        ->update(['kapasitas' => $request->kap_Classroom]);
 
-            //upload new image
-            $gambarPath = $request->file('gambar');
-            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+        LayoutModels::where('train_id', $id)
+        ->where('nama_layout', 'Teater')
+        ->update(['kapasitas' => $request->kap_Teater]);
 
-            //delete old image
-            Storage::delete('public/posts/' . $train->gambar);
+        LayoutModels::where('train_id', $id)
+        ->where('nama_layout', 'Round Table')
+        ->update(['kapasitas' => $request->kap_Round_Table]);
 
-            //update train with new image
-            $train->update([
-                'nama' => $request->nama,
-                'lantai' => $request->lantai,
-                'kap_class' => $request->kap_class,
-                'kap_teater' => $request->kap_teater,
-                'harga' => $request->harga,
-                'deskripsi' => $request->deskripsi,
-                'gambar' => $gambarPath->hashName(),
-            ]);
-        } else {
+        LayoutModels::where('train_id', $id)
+        ->where('nama_layout', 'U Shape')
+        ->update(['kapasitas' => $request->kap_U_Shape]);
 
-            //update train without image
-            $train->update([
-                'nama' => $request->nama,
-                'lantai' => $request->lantai,
-                'kap_class' => $request->kap_class,
-                'kap_teater' => $request->kap_teater,
-                'harga' => $request->harga,
-                'deskripsi' => $request->deskripsi,
-            ]);
-        }
+
+        // //check if image is uploaded
+        // if ($request->hasFile('gambar')) {
+
+        //     //upload new image
+        //     $gambarPath = $request->file('gambar');
+        //     $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+        //     //delete old image
+        //     Storage::delete('public/posts/' . $train->gambar);
+
+        //     //update train with new image
+        //     $train->update([
+        //         'nama' => $request->nama,
+        //         'lantai' => $request->lantai,
+        //         'kap_class' => $request->kap_class,
+        //         'kap_teater' => $request->kap_teater,
+        //         'harga' => $request->harga,
+        //         'deskripsi' => $request->deskripsi,
+        //         'gambar' => $gambarPath->hashName(),
+        //     ]);
+        // } else {
+
+        //     //update train without image
+        //     $train->update([
+        //         'nama' => $request->nama,
+        //         'lantai' => $request->lantai,
+        //         'kap_class' => $request->kap_class,
+        //         'kap_teater' => $request->kap_teater,
+        //         'harga' => $request->harga,
+        //         'deskripsi' => $request->deskripsi,
+        //     ]);
+        // }
 
         return redirect()->route('train.showlist')->with(['success' => 'Data Berhasil Diubah!']);
     }

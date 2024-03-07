@@ -474,7 +474,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 1,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -495,7 +495,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 2,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -516,7 +516,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 3,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -537,7 +537,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 4,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -558,7 +558,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 5,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -579,7 +579,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 6,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -600,7 +600,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 7,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -621,7 +621,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 8,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -642,7 +642,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 9,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -663,7 +663,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 10,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -684,7 +684,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 11,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -705,7 +705,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 12,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
@@ -726,7 +726,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 13,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 30
         ]);
         // LAYOUTS MODEL
@@ -747,7 +747,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 14,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 20
         ]);
         // LAYOUTS MODEL
@@ -768,7 +768,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LayoutModels::create([
             'train_id' => 15,
-            'nama_layout' => 'U-Shape',
+            'nama_layout' => 'U Shape',
             'kapasitas' => 30
         ]);
 
