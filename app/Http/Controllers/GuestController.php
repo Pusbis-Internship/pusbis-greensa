@@ -789,7 +789,7 @@ class GuestController extends Controller
         CartItem::where('cart_id', $cart_id)->delete();
 
         // Redirect to showPayment route with order ID parameter
-        return redirect()->route('showPayment', ['id' => $order->id]);
+        return redirect('/payment/' . $order->id)->withErrors(['successAddToCart' => 'Order berhasil']);
     }
 
     public function reservasiLangsung(Request $request)
@@ -857,7 +857,7 @@ class GuestController extends Controller
             'status'        => 'Pending',
         ]);
 
-        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
+        return redirect('/order');
     }
 
     public function checkoutRegulerLangsung(Request $request)
@@ -883,7 +883,7 @@ class GuestController extends Controller
             'status'        => 'Pending',
         ]);
 
-        return redirect('/order')->withErrors(['successAddToCart' => 'Order berhasil']);
+        return redirect('/payment/' . $order->id)->withErrors(['successAddToCart' => 'Order berhasil']);
     }
 
     public function invoiceShow($orderId)

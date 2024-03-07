@@ -278,27 +278,54 @@ class AdminController extends Controller
 
     public function tcstore(Request $request)
     {
+        // validasi
         $request->validate([
-            'nama' => 'required',
-            'lantai' => 'required',
-            'kap_class' => 'required|numeric',
-            'kap_teater' => 'required|numeric',
-            'harga' => 'required|numeric',
-            'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama'          => 'required',
+            'lantai'        => 'required',
+            'kap_class'     => 'required|numeric',
+            'kap_teater'    => 'required|numeric',
+            'kap_roundtable'=> 'required|numeric',
+            'kap_ushape'    => 'required|numeric',
+            'harga'         => 'required|numeric',
+            'deskripsi'     => 'required',
+            // 'gambar'        => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $gambarPath = $request->file('gambar');
-        $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+        // $gambarPath = $request->file('gambar');
+        // $gambarPath->storeAs('public/posts', $gambarPath->hashName());
 
-        Train::create([
-            'nama' => $request->nama,
-            'lantai' => $request->lantai,
-            'kap_class' => $request->kap_class,
-            'kap_teater' => $request->kap_teater,
-            'harga' => $request->harga,
+        // create train
+        $train = Train::create([
+            'nama'      => $request->nama,
+            'lantai'    => $request->lantai,
+            'harga'     => $request->harga,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $gambarPath->hashName(),
+            // 'gambar' => $gambarPath->hashName(),
+        ]);
+
+        // create layout
+        LayoutModels::create([
+            'train_id'     => $train->id,
+            'nama_layout'  => 'Classroom',
+            'kapasitas'    => $request->kap_class,
+        ]);
+
+        LayoutModels::create([
+            'train_id'     => $train->id,
+            'nama_layout'  => 'Teater',
+            'kapasitas'    => $request->kap_teater,
+        ]);
+
+        LayoutModels::create([
+            'train_id'     => $train->id,
+            'nama_layout'  => 'Round Table',
+            'kapasitas'    => $request->kap_roundtable,
+        ]);
+
+        LayoutModels::create([
+            'train_id'     => $train->id,
+            'nama_layout'  => 'U Shape',
+            'kapasitas'    => $request->kap_ushape,
         ]);
 
         return redirect('/admin-training-center-list')->with('success', 'Data pelatihan berhasil ditambahkan.');

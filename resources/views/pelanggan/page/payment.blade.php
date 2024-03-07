@@ -49,11 +49,58 @@
                 </div>
             @endif
 
+            <label id="countdown">00:00</label>
+
         </div>
     </div>
 
-    {{-- Di bagian bawah file blade --}}
     <script>
+        // Set the target time to 11:00 AM
+        var targetTime = new Date();
+        targetTime.setHours(11, 15, 0, 0);
+      
+        // Get the current time
+        var currentTime = new Date();
+      
+        // Calculate the difference in milliseconds between the current time and the target time
+        var difference = targetTime.getTime() - currentTime.getTime();
+      
+        // Calculate the remaining time in minutes
+        var remainingMinutes = Math.floor((difference / (1000 * 60)) % 60);
+      
+        // Calculate the remaining time in seconds
+        var remainingSeconds = Math.floor((difference / 1000) % 60);
+      
+        // Update the countdown label
+        var countdownLabel = document.getElementById("countdown");
+        countdownLabel.textContent = remainingMinutes.toString().padStart(2, '0') + ":" + remainingSeconds.toString().padStart(2, '0');
+      
+        // Function to update the countdown label every second
+        function updateCountdown() {
+          // Decrement remaining seconds
+          remainingSeconds--;
+      
+          // If remaining seconds become negative, decrement remaining minutes and reset remaining seconds to 59
+          if (remainingSeconds < 0) {
+            remainingMinutes--;
+            remainingSeconds = 59;
+          }
+      
+          // Update the countdown label
+          countdownLabel.textContent = remainingMinutes.toString().padStart(2, '0') + ":" + remainingSeconds.toString().padStart(2, '0');
+      
+          // If remaining time becomes 0, stop the countdown
+          if (remainingMinutes === 0 && remainingSeconds === 0) {
+            clearInterval(interval);
+          }
+        }
+      
+        // Update the countdown label every second
+        var interval = setInterval(updateCountdown, 1000);
+    </script>
+
+    {{-- Di bagian bawah file blade --}}
+    {{-- <script>
         // Fungsi untuk menginisialisasi dan memulai countdown
         function startCountdown(duration, displayElement) {
             var timer = duration,
@@ -88,5 +135,5 @@
 
             startCountdown(countdownTime, countdownElement);
         });
-    </script>
+    </script> --}}
 @endsection
