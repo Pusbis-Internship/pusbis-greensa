@@ -54,43 +54,43 @@
 
     <script>
         // Get the timestamp from Laravel's created_at column
-        var createdAtTimestamp = "{{$order->created_at}}"; // Replace with the timestamp from Laravel's created_at column
-      
+        var createdAtTimestamp = "{{ $order->created_at }}"; // Replace with the timestamp from Laravel's created_at column
+
         // Convert the timestamp to a JavaScript Date object
         var createdAtDate = new Date(createdAtTimestamp);
-      
+
         // Add 1 hour to the created_at time
         var targetTime = new Date(createdAtDate.getTime() + (1 * 60 * 60 * 1000)); // 1 hour in milliseconds
-      
+
         // Function to update the countdown label every second
         function updateCountdown() {
-          // Get the current time
-          var currentTime = new Date();
-      
-          // Calculate the difference in milliseconds between the current time and the target time
-          var difference = targetTime.getTime() - currentTime.getTime();
-      
-          // Calculate remaining hours, minutes, and seconds
-          var remainingHours = Math.floor(difference / (1000 * 60 * 60));
-          var remainingMinutes = Math.floor((difference / (1000 * 60)) % 60);
-          var remainingSeconds = Math.floor((difference / 1000) % 60);
-      
-          // Update the countdown label
-          var countdownLabel = document.getElementById("countdown");
-          countdownLabel.textContent = remainingHours.toString().padStart(2, '0') + ":" +
-                                        remainingMinutes.toString().padStart(2, '0') + ":" +
-                                        remainingSeconds.toString().padStart(2, '0');
-      
-          // If remaining time becomes negative, stop the countdown
-          if (difference <= 0) {
-            clearInterval(interval);
-            countdownLabel.textContent = "00:00:00";
-          }
+            // Get the current time
+            var currentTime = new Date();
+
+            // Calculate the difference in milliseconds between the current time and the target time
+            var difference = targetTime.getTime() - currentTime.getTime();
+
+            // Calculate remaining hours, minutes, and seconds
+            var remainingHours = Math.floor(difference / (1000 * 60 * 60));
+            var remainingMinutes = Math.floor((difference / (1000 * 60)) % 60);
+            var remainingSeconds = Math.floor((difference / 1000) % 60);
+
+            // Update the countdown label
+            var countdownLabel = document.getElementById("countdown");
+            countdownLabel.textContent = remainingHours.toString().padStart(2, '0') + ":" +
+                remainingMinutes.toString().padStart(2, '0') + ":" +
+                remainingSeconds.toString().padStart(2, '0');
+
+            // If remaining time becomes negative, stop the countdown
+            if (difference <= 0) {
+                clearInterval(interval);
+                countdownLabel.textContent = "00:00:00";
+            }
         }
-      
+
         // Update the countdown label every second
         var interval = setInterval(updateCountdown, 1000);
-      </script>
+    </script>
 
     {{-- Di bagian bawah file blade --}}
     {{-- <script>

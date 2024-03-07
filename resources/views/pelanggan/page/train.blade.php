@@ -189,13 +189,24 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="lantai  d-flex align-items-center ">
-                                                    <div class="col-6">
+                                                    <div class="col-5">
                                                         <p class="mb-1">Lantai </p>
                                                     </div>
-                                                    <div class="col-6  align-items-center">
+                                                    <div class="col-7 align-items-center">
                                                         <span>:</span>
                                                         <span
                                                             class="badge bg-light text-dark text-wrap">{{ $train->lantai }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="lantai  d-flex align-items-center ">
+                                                    <div class="col-5">
+                                                        <p class="mb-1">Kapasitas </p>
+                                                    </div>
+                                                    <div class="col-7 align-items-center">
+                                                        <span>:</span>
+                                                        @foreach ($train->layout_models as $layout)
+                                                        <span class="badge bg-light text-dark text-wrap">{{ $layout->kapasitas }}</span>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
