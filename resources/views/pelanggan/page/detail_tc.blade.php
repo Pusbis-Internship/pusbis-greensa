@@ -85,25 +85,41 @@
 
                 <div class="col-md-6">
                     <div class="row mb-1">
-                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox"
+                        @foreach ($train->images as $image)
+                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox"
                             data-gallery="example-gallery" class="col-12 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
                         </a>
+                        @break
+                        @endforeach
                     </div>
 
                     <div class="row g-1">
-                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        
+                        @foreach ($train->images as $image)
+                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
                         </a>
-                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        @break
+                        @endforeach
+
+                        @foreach ($train->images as $image)
+                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
                         </a>
-                        <a href="{{ asset('/storage/posts/' . $train->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        @break
+                        @endforeach
+
+                        @foreach ($train->images as $image)
+                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
                         </a>
+                        @break
+                        @endforeach
+                        
                     </div>
                 </div>
 
