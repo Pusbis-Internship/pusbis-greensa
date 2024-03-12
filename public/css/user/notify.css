@@ -1,0 +1,10 @@
+.notify {
+    /* align-items: flex-end !important; */
+    z-index: 9999 !important;
+}
+
+/* 
+.notify {
+    justify-content: center;
+    z-index: 9999 !important;
+} */

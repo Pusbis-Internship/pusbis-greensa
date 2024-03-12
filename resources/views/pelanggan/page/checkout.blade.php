@@ -1,7 +1,7 @@
 @extends('pelanggan.layout.index')
 
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="{{ config('midtrans.client_key') }}"></script>
+{{-- <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="{{ config('midtrans.client_key') }}"></script> --}}
 
 @section('content')
     <section class="breadcrumb-section section-b-space" style="padding-top: 100px;padding-bottom:100px;">
