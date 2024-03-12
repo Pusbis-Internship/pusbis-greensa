@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('train_images', function (Blueprint $table) {
             $table->foreignId('train_id');
+            $table->string('konten');
             $table->string('gambar');
             $table->timestamps();
         });

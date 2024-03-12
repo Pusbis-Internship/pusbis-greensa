@@ -147,39 +147,39 @@
                 <div class="row mb-5 d-flex align-items-center text-center">
                     <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
-                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
+                            <img src="{{ asset('/storage/posts/room1.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body">
-                                <h5 class="card-title fw-semibold">Convention Hall</h5>
+                                <h5 class="card-title fw-semibold">Ruang Reguler</h5>
                                 <p class="card-text">
-                                    Ruang pertemuan dengan kapasitas 200 orang.
+                                    Ruang pertemuan dengan kapasitas 40 orang.
                                 </p>
-                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
+                                <a href="/detail/1" class="btn btn-success w-100">Lihat Detail</a>
                             </div>
                         </div>
                     </div>
             
                     <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
-                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
+                            <img src="{{ asset('/storage/posts/room2.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body">
-                                <h5 class="card-title fw-semibold">Convention Hall</h5>
+                                <h5 class="card-title fw-semibold">Ujian Terbuka</h5>
                                 <p class="card-text">
-                                    Ruang pertemuan dengan kapasitas 200 orang.
+                                    Ruang pertemuan dengan kapasitas 60 orang.
                                 </p>
-                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
+                                <a href="/detail/13" class="btn btn-success w-100">Lihat Detail</a>
                             </div>
                         </div>
                     </div>
             
                     <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
-                            <img src="{{ asset('assets/images/tcmain.jpg') }}" class="card-img" alt="card1" />
+                            <img src="{{ asset('/storage/posts/room4.jpg') }}" class="card-img" alt="card1" />
                             <div class="card-body">
                                 <h5 class="card-title fw-semibold">Convention Hall</h5>
                                 <p class="card-text">
                                     Ruang pertemuan dengan kapasitas 200 orang.
                                 </p>
-                                <a href="#" class="btn btn-success w-100">Lihat Detail</a>
+                                <a href="/detail/15" class="btn btn-success w-100">Lihat Detail</a>
                             </div>
                         </div>
                     </div>

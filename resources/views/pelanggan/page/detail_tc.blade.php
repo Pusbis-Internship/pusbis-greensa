@@ -85,40 +85,28 @@
 
                 <div class="col-md-6">
                     <div class="row mb-1">
-                        @foreach ($train->images as $image)
-                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox"
-                            data-gallery="example-gallery" class="col-12 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}"
+                            data-toggle="lightbox" data-gallery="example-gallery" class="col-12 column-img img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}" class="img-fluid">
                         </a>
-                        @break
-                        @endforeach
                     </div>
 
                     <div class="row g-1">
                         
-                        @foreach ($train->images as $image)
-                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" class="img-fluid">
                         </a>
-                        @break
-                        @endforeach
 
-                        @foreach ($train->images as $image)
-                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" class="img-fluid">
                         </a>
-                        @break
-                        @endforeach
 
-                        @foreach ($train->images as $image)
-                        <a href="{{ asset('/storage/posts/' . $image->gambar) }}" data-toggle="lightbox" data-gallery="example-gallery"
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" data-toggle="lightbox" data-gallery="example-gallery"
                             class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" class="img-fluid">
                         </a>
-                        @break
-                        @endforeach
                         
                     </div>
                 </div>
@@ -251,7 +239,7 @@
 
                 <div class="col-12 text-center mt-5 denah" id="denah">
                     <h2 class="fw-bold mb-4">DENAH RUANGAN</h2>
-                    <img src="{{ asset('assets/images/lantai1.png') }}" alt="" class="w-100">
+                    <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}" alt="" class="w-100">
                 </div>
                 
             </div>

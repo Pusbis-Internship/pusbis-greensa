@@ -173,6 +173,7 @@
 
     <div class="card my-5">
         <div class="row">
+            {{-- title --}}
             <div class="col-md-8 cart">
                 <div class="title">
                     <div class="row">
@@ -195,11 +196,8 @@
                             <div class="row main align-items-center py-3">
                                 <div class="col-md-2 col-12 gambar">
                                     <a href="{{ route('train.detail', $item->train_id) }}">
-                                        @foreach ($item->train->images as $image)
-                                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}"
-                                            class="blur-up lazyloaded w-100 rounded" alt="training-center">
-                                            @break
-                                        @endforeach
+                                        <img src="{{ asset('/storage/posts/' . $item->train->images()->where('konten', 'utama')->value('gambar')) }}"
+                                        class="blur-up lazyloaded w-100 rounded" alt="training-center">
                                     </a>
                                 </div>
                                 <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3">

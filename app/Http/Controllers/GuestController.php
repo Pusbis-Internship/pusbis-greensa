@@ -346,7 +346,7 @@ class GuestController extends Controller
             $cartItemCount = $cartCount->items->count();
         }
 
-        // Get Trains
+        // get trains
         $query = Train::query();
         $dateIn = Carbon::tomorrow();
         $dateOut = Carbon::tomorrow();;
@@ -421,7 +421,9 @@ class GuestController extends Controller
             $roomBooked = array_merge($roomInCart, $roomInOrderSelf, $roomInOrderAll);
 
             $query->whereNotIn('id', $roomBooked);
-        } else {
+        }
+        
+        else {
             // Get train_id from all ACC'ed order
             $roomInOrderAll = OrderItem::where(function ($query) use ($dateIn) {
                 $query->where('checkin', '<=', $dateIn)

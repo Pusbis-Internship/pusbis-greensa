@@ -91,11 +91,8 @@
                                             @foreach ($order->items as $item)
                                                 <div class="row d-flex align-items-center p-0 py-md-4 py-2">
                                                     <div class="col-md-3 col-12 gambar text-center">
-                                                        @foreach ($item->train->images as $image)
-                                                            <img src="{{ asset('/storage/posts/' . $image->gambar) }}"
-                                                            class="img-fluid rounded" alt="training-center">
-                                                            @break
-                                                        @endforeach
+                                                        <img src="{{ asset('/storage/posts/' . $item->train->images()->where('konten', 'utama')->value('gambar')) }}"
+                                                        class="img-fluid rounded" alt="training-center">
                                                     </div>
                                                     <div class="col-md-3 col-12 keterangan-ruang mt-md-0 mt-3 text-center ">
                                                         <a class=" text-decoration-none text-success fw-bold"
