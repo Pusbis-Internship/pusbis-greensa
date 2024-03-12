@@ -52,7 +52,7 @@
                         </form>
                         <div class="row">
                             <div class="col-12">
-                                <hr class="mt-5 mb-4 border-secondary-subtle">
+                                <hr class=" mb-4 border-secondary-subtle">
                                 <div class="d-flex px-0 gap-2 gap-md-5 flex-column flex-md-row justify-content-md-evenly">
                                     <a href="/register" method="GET" class="link-secondary text-decoration-none">Create new
                                         account</a>
