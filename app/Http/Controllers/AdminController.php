@@ -211,13 +211,13 @@ class AdminController extends Controller
     public function tcedit(Request $request, $id)
     {
         // update train
-        Train::findOrFail($id)
-            ->update([
-                'nama'      => $request->nama,
-                'lantai'    => $request->lantai,
-                'harga'     => $request->harga,
-                'deskripsi' => $request->deskripsi,
-            ]);
+        $train = Train::findOrFail($id);
+        $train->update([
+            'nama'      => $request->nama,
+            'lantai'    => $request->lantai,
+            'harga'     => $request->harga,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
         // update kapsitas
         LayoutModels::where('train_id', $id)
@@ -235,6 +235,76 @@ class AdminController extends Controller
         LayoutModels::where('train_id', $id)
             ->where('nama_layout', 'U Shape')
             ->update(['kapasitas' => $request->kap_U_Shape]);
+
+        // update gambar utama
+        if ($request->hasFile('gambar_utama')) {
+            //upload new image
+            $gambarPath = $request->file('gambar_utama');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            //delete old image
+            Storage::delete('public/posts/' . $train->images()->where('konten', 'utama')->value('gambar'));
+
+            //update train with new image
+            $train->images()->where('konten', 'utama')
+            ->update(['gambar' => $gambarPath->hashName(),]);
+        }
+
+        // update gambar biasa1
+        if ($request->hasFile('gambar_biasa1')) {
+            //upload new image
+            $gambarPath = $request->file('gambar_biasa1');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            //delete old image
+            Storage::delete('public/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar'));
+
+            //update train with new image
+            $train->images()->where('konten', 'biasa1')
+            ->update(['gambar' => $gambarPath->hashName(),]);
+        }
+
+        // update gambar biasa2
+        if ($request->hasFile('gambar_biasa2')) {
+            //upload new image
+            $gambarPath = $request->file('gambar_biasa2');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            //delete old image
+            Storage::delete('public/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar'));
+
+            //update train with new image
+            $train->images()->where('konten', 'biasa2')
+            ->update(['gambar' => $gambarPath->hashName(),]);
+        }
+
+        // update gambar biasa3
+        if ($request->hasFile('gambar_biasa3')) {
+            //upload new image
+            $gambarPath = $request->file('gambar_biasa3');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            //delete old image
+            Storage::delete('public/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar'));
+
+            //update train with new image
+            $train->images()->where('konten', 'biasa3')
+            ->update(['gambar' => $gambarPath->hashName(),]);
+        }
+
+        // update gambar denah
+        if ($request->hasFile('gambar_denah')) {
+            //upload new image
+            $gambarPath = $request->file('gambar_denah');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            //delete old image
+            Storage::delete('public/posts/' . $train->images()->where('konten', 'denah')->value('gambar'));
+
+            //update train with new image
+            $train->images()->where('konten', 'denah')
+            ->update(['gambar' => $gambarPath->hashName(),]);
+        }
 
 
         // //check if image is uploaded

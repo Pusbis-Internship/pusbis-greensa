@@ -34,13 +34,7 @@
 
                 <td>Rp {{ number_format($train->harga, 0, ',', '.')}}</td>
                 <td>{{ $train->deskripsi }}</td>
-
-                @foreach ($train->images as $image)
-                <td>
-                    <img src="{{ asset('/storage/posts/' . $image->gambar) }}" class="img-fluid rounded" alt="Train Image" width="100">
-                </td>
-                @break
-                @endforeach
+                <td><img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}" class="img-fluid rounded" alt="Train Image" width="100"></td>
 
                 <td>
                     <form action="/admin-training-center-delete/{{ $train->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">

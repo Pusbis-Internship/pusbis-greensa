@@ -40,8 +40,33 @@
         </div>
 
         <div class="mb-3">
-            <label for="gambar" class="form-label">Gambar</label>
-            <input type="file" class="form-control" name="gambar" value="{{ $train->gambar }}" accept="image/*">
+            <label>Gambar Utama</label>
+            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}" class="img-fluid rounded" width="200">
+            <input type="file" class="form-control" name="gambar_utama" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Display 1</label>
+            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" class="img-fluid rounded" width="200">
+            <input type="file" class="form-control" name="gambar_biasa1" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Display 2</label>
+            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" class="img-fluid rounded" width="200">
+            <input type="file" class="form-control" name="gambar_biasa2" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar DIsplay 3</label>
+            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" class="img-fluid rounded" width="200">
+            <input type="file" class="form-control" name="gambar_biasa3" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Denah</label>
+            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}" class="img-fluid rounded" width="200">
+            <input type="file" class="form-control" name="gambar_denah" accept="image/*">
         </div>
 
         <!-- Tambahkan input untuk kolom lainnya sesuai kebutuhan -->
