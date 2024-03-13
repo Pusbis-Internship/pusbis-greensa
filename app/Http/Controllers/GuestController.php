@@ -926,8 +926,18 @@ class GuestController extends Controller
         $order = Order::where('id', $orderId)->first();
         $namaKegiatan = Order::where('id', $orderId)->value('nama_kegiatan');
         $totalHarga = OrderItem::where('order_id', $orderId)
-            ->sum('harga');
+                      ->sum('harga');
 
+        // cek status semua pesanan
+        $pending    = $order->items->every(function ($row) {return $row->status === 'Pending';});
+        $accepted   = $order->items->every(function ($row) {return $row->status === 'Accepted';});
+        $rejected   = $order->items->every(function ($row) {return $row->status === 'Rejected';});
+
+        // ubah variable $status
+        if ($pending)  {$status = 'Pending';}
+        if ($accepted) {$status = 'Accepted';}
+        if ($rejected) {$status = 'Rejected';}
+        
         // get jumlah item dalam cart
         $cartItemCount = null;
         if (auth('guest')->check()) {
@@ -936,10 +946,11 @@ class GuestController extends Controller
         }
 
         return view('pelanggan.page.payment', [
-            'title' => 'payment',
-            'order' => $order,
-            'namaKegiatan' => $namaKegiatan,
-            'totalHarga' => $totalHarga,
+            'title'         => 'payment',
+            'order'         => $order,
+            'status'        => $status,
+            'namaKegiatan'  => $namaKegiatan,
+            'totalHarga'    => $totalHarga,
             'cartItemCount' => $cartItemCount,
         ]);
     }

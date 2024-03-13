@@ -144,7 +144,7 @@
                                 <button class="btn btn-success">Get</button>
                             </a>
                         @else
-                            <a href="{{ asset('storage/posts/surat/1710302767.pdf') }}" class="btn btn-primary" view>Lihat SPJ 1</a>
+                            <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat SPJ 1</a>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPdf">Lihat SPJ 2</button>
                             <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">
                                 Get
