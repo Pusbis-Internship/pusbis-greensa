@@ -137,25 +137,26 @@
                             $hasPendingStatus = $order->items->contains('status', 'Pending');
                         @endphp
 
-                        @if (!$hasPendingStatus)
-                            <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat SPJ 1</a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPdf">Lihat SPJ 2</button>
-                            <a href="/invoice-show/{{ $order->id }}" target="_blank">
-                                <button class="btn btn-success">Get</button>
-                            </a>
+                        {{-- jika order reguler, show button cek pembayaran --}}
+                        @if ($order->surat === null)
+                            <a href="/payment/{{ $order->id }}">
+                                <button class="btn btn-primary">Cek pembayaran</button>
+                            </a>   
+                        {{-- else, show button view surat (SPJ) --}}
                         @else
                             <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat SPJ 1</a>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPdf">Lihat SPJ 2</button>
-                            <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">
-                                Get
-                            </a>
                         @endif
 
-                        {{-- Check if order is reguler --}}
-                        @if ($order->surat === null)
-                            <a href="/payment/{{ $order->id }}">
-                                <button class="btn btn-success">Cek pembayaran</button>
-                            </a>   
+                        {{-- jika tidak pending, show invoice--}}
+                        @if (!$hasPendingStatus)
+                            <a href="/invoice-show/{{ $order->id }}" target="_blank">
+                                <button class="btn btn-success">Get</button>
+                            </a>
+
+                        {{-- else, show 'Pesanan masih diproses oleh admin' --}}
+                        @else           
+                            <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">Get</a>
                         @endif
                         
                         {{-- modal jika order pending --}}
