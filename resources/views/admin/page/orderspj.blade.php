@@ -93,6 +93,15 @@
         font-size: 16px;
         /* Perkecil ukuran ikon */
     }
+
+    .success-message {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
 </style>
 
 <div class="container">
@@ -104,6 +113,11 @@
         <input type="date" id="searchTanggalAkhir" placeholder="Tanggal akhir">
         <input type="text" id="searchKegiatan" placeholder="Nama kegiatan">
     </div>
+    @if(session('success'))
+    <div class="success-message">
+        {{ session('success') }}
+    </div>
+    @endif
     <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
         @csrf
         <table>
@@ -123,7 +137,7 @@
             <tbody id="orderTableBody">
                 @foreach($orders as $order)
                 @foreach($order->items->where('status', 'Pending') as $item)
-                <tr>
+                <tr id="orderRow{{$item->id}}">
                     <td><input type="checkbox" name="order_ids[]" value="{{$item->id}}"></td>
                     <td id="namaUser">{{$order->guest->name}}</td>
                     <td id="namaRuangan">{{$item->train->nama}}</td>
@@ -138,13 +152,13 @@
                         <form action="">
                             @csrf
                         </form>
-                        <form action="{{ route('admin.order.acc', $item->id) }}" method="POST" style="display: inline;">
+                        <form id="acceptForm{{$item->id}}" action="{{ route('admin.order.acc', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
-                            <button type="submit" class="action-button"><i class="fas fa-check"></i></button>
+                            <button type="button" onclick="confirmAction('acceptForm{{$item->id}}', 'accept')" class="action-button"><i class="fas fa-check"></i></button>
                         </form>
-                        <form action="{{ route('admin.order.reject', $item->id) }}" method="POST" style="display: inline;">
+                        <form id="rejectForm{{$item->id}}" action="{{ route('admin.order.reject', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
-                            <button type="submit" class="action-button"><i class="fas fa-times"></i></button>
+                            <button type="button" onclick="confirmAction('rejectForm{{$item->id}}', 'reject')" class="action-button"><i class="fas fa-times"></i></button>
                         </form>
                     </td>
 
@@ -153,9 +167,10 @@
                 @endforeach
             </tbody>
         </table>
-        <button type="submit" onclick="submitForm(document.getElementById('deleteForm'))" class="delete-button"><i class="fas fa-trash"></i> </button>
+        <button type="submit" onclick="return submitForm(document.getElementById('deleteForm'))" class="delete-button"><i class="fas fa-trash"></i> </button>
     </form>
 </div>
+
 <script>
     // Search by namaUser
     document.getElementById('searchUser').addEventListener('keyup', searchTable);
@@ -222,6 +237,36 @@
     const lastDateOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0); // Get the last day of the next month, then subtract 1
     const formattedLastDateOfMonth = lastDateOfMonth.toISOString().split('T')[0]; // Format as YYYY-MM-DD
     document.getElementById('searchTanggalAkhir').value = formattedLastDateOfMonth;
-
 </script>
+
+<script>
+    function submitForm(form) {
+        var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxes.length > 0) {
+            if (confirm("Apakah Anda yakin ingin menghapus pesanan yang dipilih?")) {
+                form.submit();
+                return true; // Menambahkan ini agar form tetap di-submit setelah konfirmasi
+            }
+        } else {
+            alert("Pilih setidaknya satu pesanan untuk dihapus.");
+        }
+        return false; // Mengembalikan false jika tidak ada checkbox yang dipilih atau konfirmasi dibatalkan
+    }
+</script>
+
+<script>
+    function confirmAction(formId, actionType) {
+        var message = "";
+        if (actionType === "accept") {
+            message = "Apakah Anda yakin ingin menerima pesanan ini?";
+        } else if (actionType === "reject") {
+            message = "Apakah Anda yakin ingin menolak pesanan ini?";
+        }
+
+        if (confirm(message)) {
+            document.getElementById(formId).submit();
+        }
+    }
+</script>
+
 @endsection

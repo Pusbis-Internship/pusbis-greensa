@@ -41,8 +41,8 @@ class AdminController extends Controller
         $now = $now->format('Y-m-d');
 
         OrderItem::whereDate('checkin', '<=', $now)
-        ->where('status', 'Pending')
-        ->update(['status' => 'Rejected']);
+            ->where('status', 'Pending')
+            ->update(['status' => 'Rejected']);
 
         return view('admin.page.orderspj', ['orders' => $orders]);
     }
@@ -56,8 +56,8 @@ class AdminController extends Controller
         $now = $now->format('Y-m-d');
 
         OrderItem::whereDate('checkin', '<=', $now)
-        ->where('status', 'Pending')
-        ->update(['status' => 'Rejected']);
+            ->where('status', 'Pending')
+            ->update(['status' => 'Rejected']);
 
         return view('admin.page.orderreguler', ['orders' => $orders]);
     }
@@ -73,13 +73,13 @@ class AdminController extends Controller
         $now = $now->format('Y-m-d');
 
         OrderItem::whereDate('checkin', '<=', $now)
-        ->where('status', 'Pending')
-        ->update(['status' => 'Rejected']);
+            ->where('status', 'Pending')
+            ->update(['status' => 'Rejected']);
 
         return view('admin.page.history', ['orders' => $orders]);
     }
 
-    public function export() 
+    public function export()
     {
         return Excel::download(new HistoryExport, 'users.xlsx');
     }
@@ -118,19 +118,26 @@ class AdminController extends Controller
 
     public function deleteSelectedOrders(Request $request)
     {
-        // Validasi bahwa ada order yang dipilih untuk dihapus
+        // Validasi request
         $request->validate([
-            'order_ids' => 'required|array',
-            'order_ids.*' => 'exists:orders,id',
+            'order_ids' => 'required|array', // order_ids harus berupa array
+            'order_ids.*' => 'exists:orders,id', // Setiap id dalam order_ids harus valid dan ada di dalam tabel orders
         ]);
 
-        // Ambil ID order yang dipilih dari form
+        // Ambil order_ids yang dikirimkan melalui form
         $orderIds = $request->input('order_ids');
 
-        // Hapus order yang dipilih
-        Order::whereIn('id', $orderIds)->delete();
+        // Loop melalui setiap order_id dan hapus order serta order items yang terkait
+        foreach ($orderIds as $orderId) {
+            // Menggunakan Eloquent ORM untuk menghapus order
+            Order::findOrFail($orderId)->delete();
 
-        return redirect()->back()->with('success', 'Selected orders have been deleted.');
+            // Menghapus order items yang terkait dengan order yang dihapus
+            OrderItem::where('order_id', $orderId)->delete();
+        }
+
+        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Pesanan berhasil dihapus beserta item-itemnya.');
     }
 
     public function showtcstore()
@@ -170,7 +177,7 @@ class AdminController extends Controller
         $order_rej = OrderItem::where('status', 'Rejected')->count();
         $pendapatan = OrderItem::where('status', 'Accepted')->sum('harga');
 
-        return view('admin.page.dashboard',[
+        return view('admin.page.dashboard', [
             'orders' => $orders,
             'order_pending' => $order_pending,
             'order_acc' => $order_acc,
@@ -205,29 +212,29 @@ class AdminController extends Controller
     {
         // update train
         Train::findOrFail($id)
-        ->update([
-            'nama'      => $request->nama,
-            'lantai'    => $request->lantai,
-            'harga'     => $request->harga,
-            'deskripsi' => $request->deskripsi,
-        ]);
+            ->update([
+                'nama'      => $request->nama,
+                'lantai'    => $request->lantai,
+                'harga'     => $request->harga,
+                'deskripsi' => $request->deskripsi,
+            ]);
 
         // update kapsitas
         LayoutModels::where('train_id', $id)
-        ->where('nama_layout', 'Classroom')
-        ->update(['kapasitas' => $request->kap_Classroom]);
+            ->where('nama_layout', 'Classroom')
+            ->update(['kapasitas' => $request->kap_Classroom]);
 
         LayoutModels::where('train_id', $id)
-        ->where('nama_layout', 'Teater')
-        ->update(['kapasitas' => $request->kap_Teater]);
+            ->where('nama_layout', 'Teater')
+            ->update(['kapasitas' => $request->kap_Teater]);
 
         LayoutModels::where('train_id', $id)
-        ->where('nama_layout', 'Round Table')
-        ->update(['kapasitas' => $request->kap_Round_Table]);
+            ->where('nama_layout', 'Round Table')
+            ->update(['kapasitas' => $request->kap_Round_Table]);
 
         LayoutModels::where('train_id', $id)
-        ->where('nama_layout', 'U Shape')
-        ->update(['kapasitas' => $request->kap_U_Shape]);
+            ->where('nama_layout', 'U Shape')
+            ->update(['kapasitas' => $request->kap_U_Shape]);
 
 
         // //check if image is uploaded
@@ -284,7 +291,7 @@ class AdminController extends Controller
             'lantai'        => 'required',
             'kap_class'     => 'required|numeric',
             'kap_teater'    => 'required|numeric',
-            'kap_roundtable'=> 'required|numeric',
+            'kap_roundtable' => 'required|numeric',
             'kap_ushape'    => 'required|numeric',
             'harga'         => 'required|numeric',
             'deskripsi'     => 'required',
