@@ -146,7 +146,7 @@
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
 
-                    <td><button>Lihat</button></td>
+                    <td><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat</a></td>
 
                     <td>
                         <form action="">

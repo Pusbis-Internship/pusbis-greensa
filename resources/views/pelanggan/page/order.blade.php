@@ -1,6 +1,7 @@
 @extends('pelanggan.layout.index')
 
 @section('content')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     <section class="breadcrumb-section section-b-space" style="padding-top: 100px;padding-bottom:100px;">
         <ul class="circles">
             <li></li>
@@ -137,10 +138,14 @@
                         @endphp
 
                         @if (!$hasPendingStatus)
+                            <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat SPJ 1</a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPdf">Lihat SPJ 2</button>
                             <a href="/invoice-show/{{ $order->id }}" target="_blank">
                                 <button class="btn btn-success">Get</button>
-                            </a>    
+                            </a>
                         @else
+                            <a href="{{ asset('storage/posts/surat/1710302767.pdf') }}" class="btn btn-primary" view>Lihat SPJ 1</a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPdf">Lihat SPJ 2</button>
                             <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">
                                 Get
                             </a>
@@ -153,6 +158,7 @@
                             </a>   
                         @endif
                         
+                        {{-- modal jika order pending --}}
                         <div class="modal fade" id="modalPending" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -190,6 +196,27 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{-- modal view spj --}}
+                        <div class="modal fade" id="modalPdf" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    {{-- modal close --}}
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    {{-- modal body --}}
+                                    <div class="modal-body">
+                                        <div id="pdfContainer" style="height: 450px;"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             @endforeach
