@@ -1,7 +1,7 @@
 .notify {
-    /* align-items: flex-end !important; */
+    align-items: flex-end !important;
     z-index: 9999 !important;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 
 }
 
