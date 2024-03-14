@@ -37,11 +37,14 @@
     <div class="container my-5" >
         <div class="row header-table border-top border-bottom d-md-flex d-none align-items-center py-3">
 
-            <div class="col-9 ">
+            <div class="col-8 ">
                 <p class="fw-bold m-0 ">PESANAN</p>
             </div>
-            <div class="col-3 text-center">
+            <div class="col-2 text-center">
                 <p class="fw-bold m-0 text-center">INVOICE</p>
+            </div>
+            <div class="col-2 text-center">
+                <p class="fw-bold m-0 text-center">LAINNYA</p>
             </div>
 
         </div>
@@ -55,8 +58,13 @@
             </div>
         @else
             @foreach ($orders as $index => $order)
-                <div class="row border-bottom bg-white">
-                    <div class="col-md-9 col-12 p-0">
+            <style>
+                .accordion-button{
+                    z-index: 0 !important;
+                }
+            </style>
+                <div class="row border-bottom bg-white" >
+                    <div class="col-md-8 col-12 p-0">
                         <div class="accordion border border-0 border-radius-0" id="accordionPanelsStayOpenExample{{$index}}">
                             <div
                                 class="accordion-item border border-0 bg-transparent>
@@ -127,36 +135,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-12 d-flex align-items-center justify-content-md-center bg-white m-md-0 m-2 ">
-                        <a class=" text-decoration-none text-success fw-bold d-md-none d-flex me-md-0 me-3" style="text-transform:uppercase"
+                    <div class="col-md-2 col-12 d-flex align-items-center justify-content-center bg-white m-md-0 m-2 ">
+                        {{-- <a class="text-decoration-none text-success fw-bold d-md-none d-flex me-md-0 me-3" style="text-transform:uppercase"
                             href="#">print invoice :
-                        </a>
+                        </a> --}}
 
                         {{-- Check if any item has 'Pending' status --}}
                         @php
                             $hasPendingStatus = $order->items->contains('status', 'Pending');
                         @endphp
 
-                        {{-- jika order reguler, show button cek pembayaran --}}
-                        @if ($order->surat === null)
-                            <a href="/payment/{{ $order->id }}">
-                                <button class="btn btn-primary">Cek pembayaran</button>
-                            </a>   
-                        {{-- else, show button view surat (SPJ) --}}
-                        @else
-                            <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat SPJ 1</a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPdf">Lihat SPJ 2</button>
-                        @endif
-
                         {{-- jika tidak pending, show invoice--}}
                         @if (!$hasPendingStatus)
-                            <a href="/invoice-show/{{ $order->id }}" target="_blank">
-                                <button class="btn btn-success">Get</button>
+                            <a href="/invoice-show/{{ $order->id }}" target="_blank" class="btn btn-success w-75">Invoice
+                                {{-- <button class="btn btn-success w-75">Invoice</button> --}}
                             </a>
 
                         {{-- else, show 'Pesanan masih diproses oleh admin' --}}
                         @else           
-                            <a href="/" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPending">Get</a>
+                            <a href="/" class="btn btn-success w-75" data-bs-toggle="modal" data-bs-target="#modalPending">Invoice</a>
                         @endif
                         
                         {{-- modal jika order pending --}}
@@ -198,25 +195,18 @@
                             </div>
                         </div>
 
-                        {{-- modal view spj --}}
-                        <div class="modal fade" id="modalPdf" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
+                    </div>
 
-                                    {{-- modal close --}}
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
+                    <div class="col-md-2 col-12 d-flex align-items-center justify-content-center bg-white m-md-0 m-2 ">
 
-                                    {{-- modal body --}}
-                                    <div class="modal-body">
-                                        <div id="pdfContainer" style="height: 450px;"></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                        {{-- jika order reguler, show button cek pembayaran --}}
+                        @if ($order->surat === null)
+                            <a href="/payment/{{ $order->id }}" class="btn btn-primary w-75">Bayar
+                            </a>   
+                        {{-- else, show button view surat (SPJ) --}}
+                        @else
+                            <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary w-75" view>Lihat PDF</a>
+                        @endif
 
                     </div>
                 </div>
