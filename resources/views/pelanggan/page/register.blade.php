@@ -191,25 +191,4 @@
         });
     </script>
 
-    {{-- js buat cek repeat password --}}
-    {{-- <script>
-        var password1Input = document.getElementById("password");
-        var password2Input = document.getElementById("password_repeat");
-        var passwordMatchError = document.getElementById("password-match-error");
-        var submitButton = document.getElementById("button-submit");
-
-        function checkPasswordMatch() {
-            if (password1Input.value === password2Input.value) {
-                passwordMatchError.style.display = "none";
-                submitButton.disabled = false;                
-            } else {
-                passwordMatchError.style.display = "block";
-                submitButton.disabled = true;
-            }
-        }
-
-        password1Input.addEventListener("input", checkPasswordMatch);
-        password2Input.addEventListener("input", checkPasswordMatch);
-    </script> --}}
-
 @endsection
