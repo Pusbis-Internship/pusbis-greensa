@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
+use Exception;
 
 class GuestController extends Controller
 {
@@ -568,38 +569,47 @@ class GuestController extends Controller
 
     public function register(Request $request)
     {
-        // create data guest baru
-        $guest = Guest::create([
-            'username'  => $request->username,
-            'email'     => $request->username,
-            'password'  => bcrypt($request->password),
-            'name'      => $request->name,
-            'nik'       => $request->nik,
-            'telp'      => $request->telp,
-            'alamat'    => $request->alamat,
-            'kota'      => $request->kota,
-            'provinsi'  => $request->provinsi,
-            'negara'    => $request->negara,
-            'tanggallahir' => $request->tanggallahir,
-        ]);
+        try {
+            // create data guest baru
+            $guest = Guest::create([
+                'username'  => $request->username,
+                'email'     => $request->username,
+                'password'  => bcrypt($request->password),
+                'name'      => $request->name,
+                'nik'       => $request->nik,
+                'telp'      => $request->telp,
+                'alamat'    => $request->alamat,
+                'kota'      => $request->kota,
+                'provinsi'  => $request->provinsi,
+                'negara'    => $request->negara,
+                'tanggallahir' => $request->tanggallahir,
+            ]);
 
-        // create cart for this user
-        Cart::create([
-            'guest_id' => $guest->id,
-        ]);
+            // create cart for this user
+            Cart::create([
+                'guest_id' => $guest->id,
+            ]);
 
-        // kirim email
-        event(new Registered($guest));
+            // kirim email
+            event(new Registered($guest));
 
-        // login
-        Auth::guard('guest')->login($guest);
+            // login
+            Auth::guard('guest')->login($guest);
 
-        // redirect
-        $request->session()->regenerate();
-        $request->session()->put('guest', $guest);
-        return redirect('/email/verify');
+            // redirect
+            $request->session()->regenerate();
+            $request->session()->put('guest', $guest);
+            return redirect('/email/verify');
 
-        // return redirect('/login')->withErrors('Akun berhasil dibuat !!!');
+            // return redirect('/login')->withErrors('Akun berhasil dibuat !!!');
+        }
+        
+        catch (Exception $e)
+        {
+            notify()->error('Email sudah terdaftar.');
+            return redirect('/register');
+        }
+
     }
 
     public function login(Request $request)

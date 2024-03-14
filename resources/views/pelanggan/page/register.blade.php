@@ -120,6 +120,8 @@
                 </div>
             </div>
         </div>
+        <x-notify::notify />
+        @notifyJs
     </section>
 
     @error('username')
@@ -134,14 +136,6 @@
         var nikError = document.getElementById("nik-error");
         var telpInput = document.getElementById("telp");
         var telpError = document.getElementById("telp-error");
-    
-        function checkPasswordMatch() {
-            if (passwordInput.value !== passwordRepeatInput.value) {
-                passwordMatchError.style.display = "block";
-            } else {
-                passwordMatchError.style.display = "none";
-            }
-        }
     
         function checkNikLength() {
             var nik = nikInput.value;
@@ -161,7 +155,6 @@
             }
         }
     
-        passwordRepeatInput.addEventListener("input", checkPasswordMatch);
         nikInput.addEventListener("input", checkNikLength);
         telpInput.addEventListener("input", checkTelpLength);
     
