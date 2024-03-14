@@ -568,33 +568,22 @@ class GuestController extends Controller
 
     public function register(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => 'required|min:4|max:255|email',
-            'password' => 'required|min:8|max:255',
-            'name' => 'required',
-            'nik' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
-            'kota' => 'required',
-            'provinsi' => 'required',
-            'negara' => 'required',
-            'tanggallahir' => 'required'
-        ]);
-
+        // create data guest baru
         $guest = Guest::create([
-            'username' => $credentials['username'],
-            'email' => $credentials['username'],
-            'password' => bcrypt($credentials['password']),
-            'name' => $credentials['name'],
-            'nik' => $credentials['nik'],
-            'telp' => $credentials['telp'],
-            'alamat' => $credentials['alamat'],
-            'kota' => $credentials['kota'],
-            'provinsi' => $credentials['provinsi'],
-            'negara' => $credentials['negara'],
-            'tanggallahir' => $credentials['tanggallahir'],
+            'username'  => $request->username,
+            'email'     => $request->username,
+            'password'  => bcrypt($request->password),
+            'name'      => $request->name,
+            'nik'       => $request->nik,
+            'telp'      => $request->telp,
+            'alamat'    => $request->alamat,
+            'kota'      => $request->kota,
+            'provinsi'  => $request->provinsi,
+            'negara'    => $request->negara,
+            'tanggallahir' => $request->tanggallahir,
         ]);
 
+        // create cart for this user
         Cart::create([
             'guest_id' => $guest->id,
         ]);
