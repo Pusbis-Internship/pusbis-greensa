@@ -14,12 +14,12 @@
                 <div class="row gy-3 mb-2">
                     <div class="col-12 d-flex align-items-center justify-content-end text-right ">
 
-                        <h3 class="text-uppercase text-endx align-self-center mr-3">
+                        <h4 class="text-uppercase text-endx align-self-center mr-3">
                             GREENSA INN & <br>
                             TRAINING CENTER
-                        </h3>
-                        <img src="{{ asset('assets/images/logo-invoice.png') }}" class="img-fluid text-success me-2"
-                            alt="Greensa Logo" width="70">
+                        </h4>
+                        <img src="{{ asset('assets/images/logo-invoice.svg') }}" class="img-fluid text-success me-2"
+                            alt="Greensa Logo" width="85">
                     </div>
                     {{-- <div class="col-6">
                         <a class="d-block text-end" href="#!">
