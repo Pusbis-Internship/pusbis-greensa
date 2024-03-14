@@ -46,7 +46,7 @@
 
         <div class="d-lg-flex d-none align-items-center">
             <a class="navbar-brand m-0" href="/">
-                <img src="{{ asset('assets/images/Logo.png') }}" alt="" width="50">
+                <img src="{{ asset('assets/images/LOGO GREENSA.png') }}" alt="" width="65">
             </a>
         </div>
 
