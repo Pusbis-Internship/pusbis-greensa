@@ -298,5 +298,6 @@
         </div>
     </div>
 
-
+    <x-notify::notify />
+    @notifyJs
 @endsection

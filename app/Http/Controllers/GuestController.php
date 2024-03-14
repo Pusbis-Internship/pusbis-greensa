@@ -331,7 +331,8 @@ class GuestController extends Controller
         $item = CartItem::findOrFail($id);
         $item->delete();
 
-        return redirect('/cart')->withErrors(['successAddToCart' => 'Berhasil menghapus item']);
+        notify()->error('Berhasil menghapus item.');
+        return redirect('/cart');
     }
 
     public function showtrain()
