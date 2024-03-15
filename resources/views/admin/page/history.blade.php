@@ -35,6 +35,31 @@
     tr:hover td {
         background-color: #f2f2f2;
     }
+
+    .delete-button {
+        padding: 8px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #d32f2f;
+    }
+
+    .delete-button i {
+        font-size: 18px;
+    }
+    .success-message {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
 </style>
 
 <div class="container">
@@ -54,7 +79,11 @@
         <option value="Komplimen">Komplimen</option>
         <option value="Reguler">Reguler</option>
     </select>
-    
+    @if(session('success'))
+    <div class="success-message">
+        {{ session('success') }}
+    </div>
+    @endif
     <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
         @csrf
         <table>
@@ -84,19 +113,22 @@
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
                     <td id="status">{{$item->status}}</td>
                     @if ($order->surat === null)
-                        <td id="tipe"><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" target="_blank">Reguler</a></td>                        
+                    <td id="tipe">Reguler</td>
                     @else
-                        <td id="tipe"><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" target="_blank">Komplimen</a></td> 
+                    <td id="tipe"><a href="">Komplimen</a></td>
                     @endif
                 </tr>
                 @endforeach
                 @endforeach
             </tbody>
         </table>
-        <button type="submit">Delete Selected Orders</button>
+
+        @if ($orders->isNotEmpty())
+        <button type="submit" onclick="validateAndDelete()" class="delete-button"><i class="fas fa-trash"></i></button>
+
     </form>
-    @if ($orders->isNotEmpty())
-    <a href="{{ route('admin.export') }}" class="btn btn-primary">Export Excel</a>
+
+        <a href="{{ route('admin.export') }}" class="btn btn-primary">Export Excel</a>
     @endif
 </div>
 
@@ -151,8 +183,7 @@
 
             if (searchValueTipe === 'all') {
                 row.style.display = foundUser && foundRuangan && foundKegiatan && isAfterTanggalAwal && isBeforeTanggalAkhir ? '' : 'none';
-            }
-            else {
+            } else {
                 row.style.display = foundUser && foundRuangan && foundKegiatan && isAfterTanggalAwal && isBeforeTanggalAkhir && foundTipe ? '' : 'none';
             }
 
@@ -179,6 +210,34 @@
     const lastDateOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0); // Get the last day of the next month, then subtract 1
     const formattedLastDateOfMonth = lastDateOfMonth.toISOString().split('T')[0]; // Format as YYYY-MM-DD
     document.getElementById('searchTanggalAkhir').value = formattedLastDateOfMonth;
-    
 </script>
+<script>
+    function validateAndDelete() {
+        // Memeriksa apakah setidaknya satu checkbox terpilih
+        const checkboxes = document.querySelectorAll('#orderTableBody input[type="checkbox"]');
+        let isAnyChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isAnyChecked = true;
+            }
+        });
+
+        // Jika tidak ada yang dipilih, tampilkan pesan kesalahan
+        if (!isAnyChecked) {
+            alert("pilih salah satu order.");
+            return false;
+        }
+
+        // Jika ada yang dipilih, tampilkan konfirmasi penghapusan
+        if (confirm("apakah anda yakin?")) {
+            // Jika pengguna mengonfirmasi, kirimkan formulir penghapusan
+            document.getElementById('deleteForm').submit();
+        } else {
+            // Jika pengguna membatalkan, tidak melakukan apa-apa
+            return false;
+        }
+    }
+</script>
+
+
 @endsection

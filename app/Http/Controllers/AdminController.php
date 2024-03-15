@@ -120,24 +120,25 @@ class AdminController extends Controller
     {
         // Validasi request
         $request->validate([
-            'order_ids' => 'required|array', // order_ids harus berupa array
-            'order_ids.*' => 'exists:orders,id', // Setiap id dalam order_ids harus valid dan ada di dalam tabel orders
+            'order_ids' => 'required|array', // Memastikan order_ids ada dan bertipe array
+            'order_ids.*' => 'exists:order_items,id', // Memastikan setiap order_id ada di database
         ]);
 
-        // Ambil order_ids yang dikirimkan melalui form
-        $orderIds = $request->input('order_ids');
+        // Mendapatkan order_ids dari request
+        $orderIds = $request->order_ids;
 
-        // Loop melalui setiap order_id dan hapus order serta order items yang terkait
-        foreach ($orderIds as $orderId) {
-            // Menggunakan Eloquent ORM untuk menghapus order
-            Order::findOrFail($orderId)->delete();
+        // Menghapus order_items yang sesuai dengan order_ids
+        OrderItem::whereIn('id', $orderIds)->delete();
 
-            // Menghapus order items yang terkait dengan order yang dihapus
-            OrderItem::where('order_id', $orderId)->delete();
-        }
+        // Menghapus order yang memiliki order_id yang sama dengan order_ids
+        Order::whereIn('id', function ($query) use ($orderIds) {
+            $query->select('order_id')
+                ->from('order_items')
+                ->whereIn('id', $orderIds);
+        })->delete();
 
-        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
-        return redirect()->back()->with('success', 'Pesanan berhasil dihapus beserta item-itemnya.');
+        // Redirect atau kembali ke halaman yang sesuai setelah penghapusan berhasil
+        return redirect()->back()->with('success', 'data berhasil dihapus.');
     }
 
     public function showtcstore()
@@ -247,7 +248,7 @@ class AdminController extends Controller
 
             //update train with new image
             $train->images()->where('konten', 'utama')
-            ->update(['gambar' => $gambarPath->hashName(),]);
+                ->update(['gambar' => $gambarPath->hashName(),]);
         }
 
         // update gambar biasa1
@@ -261,7 +262,7 @@ class AdminController extends Controller
 
             //update train with new image
             $train->images()->where('konten', 'biasa1')
-            ->update(['gambar' => $gambarPath->hashName(),]);
+                ->update(['gambar' => $gambarPath->hashName(),]);
         }
 
         // update gambar biasa2
@@ -275,7 +276,7 @@ class AdminController extends Controller
 
             //update train with new image
             $train->images()->where('konten', 'biasa2')
-            ->update(['gambar' => $gambarPath->hashName(),]);
+                ->update(['gambar' => $gambarPath->hashName(),]);
         }
 
         // update gambar biasa3
@@ -289,7 +290,7 @@ class AdminController extends Controller
 
             //update train with new image
             $train->images()->where('konten', 'biasa3')
-            ->update(['gambar' => $gambarPath->hashName(),]);
+                ->update(['gambar' => $gambarPath->hashName(),]);
         }
 
         // update gambar denah
@@ -303,7 +304,7 @@ class AdminController extends Controller
 
             //update train with new image
             $train->images()->where('konten', 'denah')
-            ->update(['gambar' => $gambarPath->hashName(),]);
+                ->update(['gambar' => $gambarPath->hashName(),]);
         }
 
 

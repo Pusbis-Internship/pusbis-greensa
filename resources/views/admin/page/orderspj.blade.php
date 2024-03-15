@@ -118,8 +118,7 @@
         {{ session('success') }}
     </div>
     @endif
-    <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
-        @csrf
+    
         <table>
             <thead>
                 <tr>
@@ -167,7 +166,7 @@
                 @endforeach
             </tbody>
         </table>
-        <button type="submit" onclick="return submitForm(document.getElementById('deleteForm'))" class="delete-button"><i class="fas fa-trash"></i> </button>
+       
     </form>
 </div>
 
