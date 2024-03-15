@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_kegiatan');
             $table->string('surat')->nullable();
             $table->string('metode_pembayaran')->nullable();
+            $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();
         });
     }

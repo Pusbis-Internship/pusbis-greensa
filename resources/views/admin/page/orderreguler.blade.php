@@ -132,7 +132,14 @@
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
 
+                    {{-- jika sudah dibayar, show tombol lihat bukti pembayaran --}}
+                    @if ($order->bukti_pembayaran !== null)
+                    <td><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" target="_blank">{{ $order->metode_pembayaran }}</a></td>
+
+                    {{-- jika belum bayar, show button biasa --}}
+                    @else
                     <td>{{ $order->metode_pembayaran }}</td>
+                    @endif
 
                     <td>
                         <form action="">

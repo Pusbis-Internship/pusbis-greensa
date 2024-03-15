@@ -932,11 +932,13 @@ class GuestController extends Controller
         $pending    = $order->items->every(function ($row) {return $row->status === 'Pending';});
         $accepted   = $order->items->every(function ($row) {return $row->status === 'Accepted';});
         $rejected   = $order->items->every(function ($row) {return $row->status === 'Rejected';});
+        $sudah_bayar = false;
 
         // ubah variable $status
         if ($pending)  {$status = 'Pending';}
         if ($accepted) {$status = 'Accepted';}
         if ($rejected) {$status = 'Rejected';}
+        if ($order->bukti_pembayaran !== null) {$sudah_bayar = true;}
         
         // get jumlah item dalam cart
         $cartItemCount = null;
@@ -951,7 +953,24 @@ class GuestController extends Controller
             'status'        => $status,
             'namaKegiatan'  => $namaKegiatan,
             'totalHarga'    => $totalHarga,
+            'sudah_bayar'   => $sudah_bayar,
             'cartItemCount' => $cartItemCount,
         ]);
+    }
+
+    public function kirimPayment(Request $request)
+    {
+        // get order
+        $order = Order::findOrFail($request->id);;
+
+        // upload bukti pembayaran
+        $gambarPath = $request->file('bukti_pembayaran');
+        $gambarPath->storeAs('public/posts/bukti', $gambarPath->hashName());
+
+        // update database
+        $order->update(['bukti_pembayaran' => $gambarPath->hashName()]);
+
+        // redirect
+        return redirect()->back();
     }
 }

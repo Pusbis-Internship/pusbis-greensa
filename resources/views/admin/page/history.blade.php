@@ -84,9 +84,9 @@
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
                     <td id="status">{{$item->status}}</td>
                     @if ($order->surat === null)
-                        <td id="tipe">Reguler</td>                        
+                        <td id="tipe"><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" target="_blank">Reguler</a></td>                        
                     @else
-                        <td id="tipe"><a href="">Komplimen</a></td> 
+                        <td id="tipe"><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" target="_blank">Komplimen</a></td> 
                     @endif
                 </tr>
                 @endforeach

@@ -62,6 +62,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/invoice-show/{id}', [GuestController::class, 'invoiceShow'])->middleware('guestmustlogin');
     Route::get('/invoice-download/{id}', [GuestController::class, 'invoiceDownload'])->middleware('guestmustlogin');
     Route::get('/payment/{id}', [GuestController::class, 'showPayment'])->middleware('guestmustlogin')->name('showPayment');
+    Route::post('/payment/kirim', [GuestController::class, 'kirimPayment'])->middleware('guestmustlogin');
 
     Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');
     Route::put('/profile/update/{id}', [GuestController::class, 'updateprofile'])->name('profile.update')->middleware('guestmustlogin');

@@ -9,8 +9,8 @@
                 </form>
             </div>
 
-            {{-- jika masih pending / belum bayar --}}
-            @if ($status === 'Pending')
+            {{-- jika pending, dan belum upload pembayaran --}}
+            @if ($status === 'Pending' && $sudah_bayar === false)
                 {{-- BSI --}}
                 @if ($order->metode_pembayaran === 'BSI')
                     <div class="col-12 card d-flex align-items-center justify-content-center text-center">
@@ -23,10 +23,12 @@
 
                         <div class="col-5 mb-3">
                             <label class="labels">Upload bukti transfer<span class="text-danger">*</span></label>
-                            <input type="file" name="surat" accept=".pdf" class="form-control"
-                                placeholder="Upload file SPJ" required>
                             <div class="col-12">
-                                <button class="btn btn-success my-4 w-100">Kirim</button>
+                                <form action="/payment/kirim" method="POST" enctype="multipart/form-data"> @csrf
+                                    <input type="hidden" name="id" value="{{ $order->id }}">
+                                    <input type="file" name="bukti_pembayaran" class="form-control" accept="image/*">
+                                    <button class="btn btn-success my-4 w-100" type="submit">Kirim</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -42,17 +44,42 @@
 
                         <div class="col-5 mb-3">
                             <label class="labels">Upload bukti transfer<span class="text-danger">*</span></label>
-                            <input type="file" name="surat" accept=".pdf" class="form-control"
-                                placeholder="Upload file SPJ" required>
                             <div class="col-12">
-                                <button class="btn btn-success my-4 w-100">Kirim</button>
+                                <form action="/payment/kirim" method="POST" enctype="multipart/form-data"> @csrf
+                                    <input type="hidden" name="id" value="{{ $order->id }}">
+                                    <input type="file" name="bukti_pembayaran" class="form-control" accept="image/*">
+                                    <button class="btn btn-success my-4 w-100" type="submit">Kirim</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 @endif
             @endif
 
-            {{-- jika sudah bayar --}}
+            {{-- jika pending, dan sudah upload bukti pembayaran --}}
+            @if ($status === 'Pending' && $sudah_bayar === true)
+                {{-- BSI --}}
+                @if ($order->metode_pembayaran === 'BSI')
+                    <div class="col-12 card d-flex align-items-center justify-content-center text-center">
+                        <img src="{{ asset('assets/images/BSI.png') }}" alt="" class="mt-3" style="width: 30%">
+                        <h5 class="m-0 mt-4">030-098-0976</h5>
+                        <p class="text-secondary">a/n Greensa</p>
+                        <p class="m-0 mt-5"><span class="fw-bold text-success">Bukti pembayaran sudah terkirim.</span>
+                            <br>Menunggu konfirmasi dari admin</p>
+                    </div>
+                @else
+                    {{-- BTN --}}
+                    <div class="col-12 card d-flex align-items-center justify-content-center text-center">
+                        <img src="{{ asset('assets/images/BTN.png') }}" alt="" class="mt-5" style="width: 30%">
+                        <h5 class="m-0 mt-4">030-098-0976</h5>
+                        <p class="text-secondary">a/n Greensa</p>
+                        <p class="m-0 mt-5"><span class="fw-bold text-success">Bukti pembayaran sudah terkirim.</span>
+                            <br>Menunggu konfirmasi dari admin</p>
+                    </div>
+                @endif
+            @endif
+
+            {{-- jika order di-acc --}}
             @if ($status === 'Accepted')
                 <div class="col-12 card d-flex align-items-center justify-content-center text-center">
                     <h1 class="mb-3 countdown display-2 fw-bold text-success">Pesanan sudah dibayar</h1>

@@ -271,40 +271,6 @@
                                     @endif
 
                                 </div>
-
-                                {{-- <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-4 left_img">
-                                                <img class="img-fluid" src="https://picsum.photos/id/20/400/450"
-                                                    alt="" />
-                                            </div>
-                                            <div class="col-md-8 d-flex align-items-center">
-                                                <div class="member-info">
-                                                    <h4>Lorem ipsum dolor</h4>
-                                                    <span>Chief Executive Officer</span>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-                                                        reiciendis
-                                                        ipsa nulla magnam eligendi odit laudantium in voluptatum
-                                                        reprehenderit
-                                                        qui adipisci aliquam, doloribus quisquam facere dolore soluta,
-                                                        dolorem,
-                                                        illum quis.
-                                                    </p>
-                                                    <div class="social">
-                                                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                                                        <a href=""><i class="fab fa-twitter"></i></a>
-                                                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                                                        <a href=""> <i class="fab fa-twitter"></i> </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4"><img class="img-fluid" src="https://picsum.photos/id/1068/400/300"
-                                            alt="" /></div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
