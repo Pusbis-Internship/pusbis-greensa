@@ -108,25 +108,25 @@
     <h1 class="mb-4">Admin - Show Order Komplimen</h1>
     <div class="row g-3" style="position:relative;">
         <div class="col-md-3">
-            <label for="formGroupExampleInput" class="form-label">Nama Kegiatan</label>
-            <input type="text" class="form-control" id="searchKegiatan" placeholder="Nama Kegiatan">
-          </div>
-        <div class="col-md-3">
             <label for="formGroupExampleInput" class="form-label">Nama User</label>
             <input type="text" class="form-control" id="searchUser" placeholder="Nama User">
-          </div>
-        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
             <label for="formGroupExampleInput" class="form-label">Ruangan</label>
             <input type="text" class="form-control" id="searchRuangan" placeholder="Ruangan">
-          </div>
+        </div>
         <div class="col-md-2">
             <label for="formGroupExampleInput" class="form-label">Tanggal Awal</label>
             <input type="date" class="form-control" id="searchTanggalAwal" placeholder="Tanggal Awal">
-          </div>
+        </div>
         <div class="col-md-2">
             <label for="formGroupExampleInput" class="form-label">Tanggal Akhir</label>
             <input type="date" class="form-control" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
-          </div>
+        </div>
+        <div class="col-md-2">
+            <label for="formGroupExampleInput" class="form-label">Kegiatan</label>
+            <input type="text" class="form-control" id="searchKegiatan" placeholder="Kegiatan">
+        </div>
 
         {{-- <input type="text" id="searchUser" placeholder="Nama user">
         <input type="text" id="searchRuangan" placeholder="Ruangan">
