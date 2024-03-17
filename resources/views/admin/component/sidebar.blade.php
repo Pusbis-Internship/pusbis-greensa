@@ -1,8 +1,8 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
   <div class="sidebar-brand d-none d-md-flex">
-    <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-      <use xlink:href="/assets/brand/coreui.svg#full"></use>
-    </svg>
+    <img src="{{ asset('assets/images/LOGO GREENSA.png') }}" class="sidebar-brand-full" width="100" alt="Greensa Inn">
+      {{-- <use xlink:href="/assets/brand/coreui.svg#full"></use> --}}
+    </img>
   </div>
   <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
     <li class="nav-item"><a class="nav-link" href="/admin">

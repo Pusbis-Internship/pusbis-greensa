@@ -13,7 +13,7 @@
                 <svg class="icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
                 </svg>)</span></div>
-            <div>Order pending</div>
+            <div>Pending/Month</div>
           </div>
           <div class="dropdown">
             <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +39,7 @@
                 <svg class="icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
                 </svg>)</span></div>
-            <div>Order di-Acc bulan ini</div>
+            <div>Accepted/Month</div>
           </div>
           <div class="dropdown">
             <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,7 +65,7 @@
                 <svg class="icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
                 </svg>)</span></div>
-            <div>Order ditolak bulan ini</div>
+            <div>Rejected/Month</div>
           </div>
           <div class="dropdown">
             <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,7 +91,7 @@
                 <svg class="icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
                 </svg>)</span></div>
-            <div>Pendapatan bulan ini</div>
+            <div>Revenue</div>
           </div>
           <div class="dropdown">
             <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

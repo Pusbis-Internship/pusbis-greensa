@@ -105,13 +105,34 @@
 </style>
 
 <div class="container">
-    <h1>Admin - Show Order Komplimen</h1>
-    <div style="position:relative;">
-        <input type="text" id="searchUser" placeholder="Nama user">
+    <h1 class="mb-4">Admin - Show Order Komplimen</h1>
+    <div class="row g-3" style="position:relative;">
+        <div class="col-md-3">
+            <label for="formGroupExampleInput" class="form-label">Nama Kegiatan</label>
+            <input type="text" class="form-control" id="searchKegiatan" placeholder="Nama Kegiatan">
+          </div>
+        <div class="col-md-3">
+            <label for="formGroupExampleInput" class="form-label">Nama User</label>
+            <input type="text" class="form-control" id="searchUser" placeholder="Nama User">
+          </div>
+        <div class="col-md-2">
+            <label for="formGroupExampleInput" class="form-label">Ruangan</label>
+            <input type="text" class="form-control" id="searchRuangan" placeholder="Ruangan">
+          </div>
+        <div class="col-md-2">
+            <label for="formGroupExampleInput" class="form-label">Tanggal Awal</label>
+            <input type="date" class="form-control" id="searchTanggalAwal" placeholder="Tanggal Awal">
+          </div>
+        <div class="col-md-2">
+            <label for="formGroupExampleInput" class="form-label">Tanggal Akhir</label>
+            <input type="date" class="form-control" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
+          </div>
+
+        {{-- <input type="text" id="searchUser" placeholder="Nama user">
         <input type="text" id="searchRuangan" placeholder="Ruangan">
         <input type="date" id="searchTanggalAwal" placeholder="Tanggal awal">
         <input type="date" id="searchTanggalAkhir" placeholder="Tanggal akhir">
-        <input type="text" id="searchKegiatan" placeholder="Nama kegiatan">
+        <input type="text" id="searchKegiatan" placeholder="Nama kegiatan"> --}}
     </div>
     @if(session('success'))
     <div class="success-message">
