@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\MonthlyUsersChart;
 use App\Models\Admin;
 use App\Models\Guest;
 use App\Models\Order;
@@ -173,8 +174,9 @@ class AdminController extends Controller
         return view('admin.page.listTC.trainedit', ['train' => $train]);
     }
 
-    public function showadmin()
+    public function showadmin(MonthlyUsersChart $chart)
     {
+        $orderschart['chart'] = $chart->build();
         $orders = Order::all();
         $order_pending = OrderItem::where('status', 'Pending')->count();
         $order_acc = OrderItem::where('status', 'Accepted')->count();
@@ -187,6 +189,7 @@ class AdminController extends Controller
             'order_acc' => $order_acc,
             'order_rej' => $order_rej,
             'pendapatan' => $pendapatan,
+            'orderschart' => $orderschart
         ]);
     }
 
