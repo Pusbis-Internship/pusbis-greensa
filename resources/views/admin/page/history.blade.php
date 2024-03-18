@@ -137,10 +137,14 @@
                                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                                     <td id="namaKegiatan">{{ $order->nama_kegiatan }}</td>
                                     <td id="status">{{ $item->status }}</td>
-                                    @if ($order->surat === null)
-                                        <td id="tipe">Reguler</td>
+                                    @if ($order->surat !== null)
+                                        <td id="tipe"><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" target="_blank">Komplimen</a></td>
                                     @else
-                                        <td id="tipe"><a href="">Komplimen</a></td>
+                                        @if ($order->bukti_pembayaran !== null)
+                                            <td id="tipe"><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" target="_blank">Reguler</a></td>
+                                        @else
+                                            <td id="tipe">Reguler</td>
+                                        @endif
                                     @endif
                                 </tr>
                             @endforeach
