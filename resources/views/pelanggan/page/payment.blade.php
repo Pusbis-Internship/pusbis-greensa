@@ -9,8 +9,16 @@
                 </form>
             </div>
 
-            {{-- jika pending, dan belum upload pembayaran --}}
-            @if ($status === 'Pending' && $sudah_bayar === false)
+            {{-- jika sudah expired --}}
+            @if ($order->is_expired === 1)
+                <div class="col-12 card d-flex align-items-center justify-content-center text-center">
+                    <p class="m-0 mt-5"><span class="fw-bold text-danger">Order gagal karena waktu transfer sudah habis</span></p>
+                    <h1 class="mb-3 countdown display-2 fw-bold text-danger">00:00:00</h1>
+                </div>
+
+            @else
+                {{-- jika pending, dan belum upload pembayaran --}}
+                @if ($status === 'Pending' && $sudah_bayar === false)
                 {{-- BSI --}}
                 @if ($order->metode_pembayaran === 'BSI')
                     <div class="col-12 card d-flex align-items-center justify-content-center text-center">
@@ -92,6 +100,7 @@
                     <h1 class="mb-3 countdown display-2 fw-bold text-danger">Pesanan ditolak oleh admin</h1>
                 </div>
             @endif
+            @endif
 
         </div>
     </div>
@@ -99,78 +108,43 @@
     <script>
         // Get the timestamp from Laravel's created_at column
         var createdAtTimestamp = "{{ $order->created_at }}"; // Replace with the timestamp from Laravel's created_at column
-
+    
         // Convert the timestamp to a JavaScript Date object
         var createdAtDate = new Date(createdAtTimestamp);
-
+    
         // Add 1 hour to the created_at time
-        var targetTime = new Date(createdAtDate.getTime() + (1 * 60 * 60 * 1000)); // 1 hour in milliseconds
-
+        var targetTime = new Date(createdAtDate.getTime() + (1 * 1 * 60 * 1000)); // 1 hour in milliseconds
+    
         // Function to update the countdown label every second
         function updateCountdown() {
             // Get the current time
             var currentTime = new Date();
-
+    
             // Calculate the difference in milliseconds between the current time and the target time
             var difference = targetTime.getTime() - currentTime.getTime();
-
+    
             // Calculate remaining hours, minutes, and seconds
             var remainingHours = Math.floor(difference / (1000 * 60 * 60));
             var remainingMinutes = Math.floor((difference / (1000 * 60)) % 60);
             var remainingSeconds = Math.floor((difference / 1000) % 60);
-
+    
             // Update the countdown label
             var countdownLabel = document.getElementById("countdown");
             countdownLabel.textContent = remainingHours.toString().padStart(2, '0') + ":" +
                 remainingMinutes.toString().padStart(2, '0') + ":" +
                 remainingSeconds.toString().padStart(2, '0');
-
-            // If remaining time becomes negative, stop the countdown
+    
+            // If remaining time becomes negative, stop the countdown and delete the order
             if (difference <= 0) {
                 clearInterval(interval);
                 countdownLabel.textContent = "00:00:00";
+                // location.reload();
+                window.location.href = "/payment-failed/{{ $order->id }}"
             }
         }
-
+    
         // Update the countdown label every second
         var interval = setInterval(updateCountdown, 1000);
     </script>
 
-    {{-- Di bagian bawah file blade --}}
-    {{-- <script>
-        // Fungsi untuk menginisialisasi dan memulai countdown
-        function startCountdown(duration, displayElement) {
-            var timer = duration,
-                hours, minutes, seconds;
-
-            // Mengatur interval countdown
-            var countdownInterval = setInterval(function() {
-                hours = parseInt(timer / 3600, 10);
-                minutes = parseInt((timer % 3600) / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-
-                hours = hours < 10 ? "0" + hours : hours;
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                // Menampilkan waktu countdown pada elemen yang sesuai
-                displayElement.textContent = hours + ":" + minutes + ":" + seconds;
-
-                // Mengurangi satu detik dari waktu countdown
-                if (--timer < 0) {
-                    clearInterval(countdownInterval); // Menghentikan countdown jika waktu habis
-                    // Tambahkan logika atau tindakan yang ingin dilakukan saat waktu habis
-                    alert('Waktu pembayaran telah habis!');
-                }
-            }, 1000); // Setiap 1 detik
-        }
-
-        // Memanggil fungsi startCountdown saat dokumen telah siap
-        document.addEventListener('DOMContentLoaded', function() {
-            var countdownElement = document.querySelector('.countdown'); // Ganti dengan kelas yang sesuai
-            var countdownTime = 180 * 60; // 1 jam dalam detik
-
-            startCountdown(countdownTime, countdownElement);
-        });
-    </script> --}}
 @endsection

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('surat')->nullable();
             $table->string('metode_pembayaran')->nullable();
             $table->string('bukti_pembayaran')->nullable();
+            $table->string('is_expired')->default(false);
             $table->timestamps();
         });
     }

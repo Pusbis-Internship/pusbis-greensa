@@ -689,6 +689,15 @@ class GuestController extends Controller
         ]);
     }
 
+    public function deleteorder($id)
+    {
+        // delete order
+        Order::findOrFail($id)->delete();
+
+        // delete order items
+        OrderItem::where('order_id', $id)->delete();
+    }
+
     public function showcheckout()
     {
         // get jumlah item dalam cart
@@ -956,13 +965,6 @@ class GuestController extends Controller
         if ($accepted) {$status = 'Accepted';}
         if ($rejected) {$status = 'Rejected';}
         if ($order->bukti_pembayaran !== null) {$sudah_bayar = true;}
-        
-        // get jumlah item dalam cart
-        $cartItemCount = null;
-        if (auth('guest')->check()) {
-            $cartCount = Cart::where('guest_id', auth('guest')->id())->first();
-            $cartItemCount = $cartCount->items->count();
-        }
 
         return view('pelanggan.page.payment', [
             'title'         => 'payment',
@@ -971,7 +973,28 @@ class GuestController extends Controller
             'namaKegiatan'  => $namaKegiatan,
             'totalHarga'    => $totalHarga,
             'sudah_bayar'   => $sudah_bayar,
-            'cartItemCount' => $cartItemCount,
+        ]);
+    }
+
+    public function showPaymentFailed($orderId)
+    {
+        $order = Order::where('id', $orderId)->first();
+        $order->update(['is_expired' => 1]);
+        $order->save();
+
+        // cek status semua pesanan
+        $namaKegiatan = null;
+        $totalHarga = null;
+        $sudah_bayar = null;
+        $status = null;
+
+        return view('pelanggan.page.payment', [
+            'title'         => 'payment',
+            'order'         => $order,
+            'status'        => $status,
+            'namaKegiatan'  => $namaKegiatan,
+            'totalHarga'    => $totalHarga,
+            'sudah_bayar'   => $sudah_bayar,
         ]);
     }
 

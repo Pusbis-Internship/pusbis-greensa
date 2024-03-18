@@ -59,9 +59,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::post('/checkout-reguler-langsung', [GuestController::class, 'checkoutRegulerLangsung'])->middleware('guestmustlogin');
     
     Route::get('/order', [GuestController::class, 'showorder'])->middleware('guestmustlogin');
+    Route::get('/delete-order/{id}', [GuestController::class, 'deleteorder'])->middleware('guestmustlogin');
     Route::get('/invoice-show/{id}', [GuestController::class, 'invoiceShow'])->middleware('guestmustlogin');
     Route::get('/invoice-download/{id}', [GuestController::class, 'invoiceDownload'])->middleware('guestmustlogin');
     Route::get('/payment/{id}', [GuestController::class, 'showPayment'])->middleware('guestmustlogin')->name('showPayment');
+    Route::get('/payment-failed/{id}', [GuestController::class, 'showPaymentFailed'])->middleware('guestmustlogin');
     Route::post('/payment/kirim', [GuestController::class, 'kirimPayment'])->middleware('guestmustlogin');
 
     Route::get('/profile', [GuestController::class, 'showprofile'])->middleware('guestmustlogin');
@@ -78,7 +80,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::post('/guestregister', [GuestController::class, 'register']);
     Route::post('/guestlogout', [GuestController::class, 'logout']);
 
-
     Route::get('/forgot-password', [GuestController::class, 'showforgotpw']);
     Route::post('/forgot-password', [GuestController::class, 'forgetpassword'])->name('forget.password.post');
     Route::get('/Reset-password/{token}', [GuestController::class, 'showResetPW'])->name('reset.password');
@@ -92,8 +93,4 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     })->name('verification.notice');
 
     Route::get('/email/verify/{id}/{hash}', [GuestController::class, 'registerVerified'])->name('verification.verify');
-
-    // Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    //     return view('pelanggan.page.home');
-    // })->middleware(['auth', 'signed'])->name('verification.verify');
 // EmailVerification
