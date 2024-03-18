@@ -10,6 +10,10 @@
             border-radius: 5px;
         }
 
+        .table {
+            font-size: 0.9rem;
+        }
+
         th,
         td {
             padding: 12px 15px;
@@ -68,28 +72,28 @@
         <div class="row g-3">
             <div class="col-md-3">
                 <label for="formGroupExampleInput" class="form-label">Nama User</label>
-                <input type="text" class="form-control" id="searchUser" placeholder="Nama User">
+                <input type="text" class="form-control form-control-sm" id="searchUser" placeholder="Nama User">
             </div>
             <div class="col-md-3">
                 <label for="formGroupExampleInput" class="form-label">Ruangan</label>
-                <input type="text" class="form-control" id="searchRuangan" placeholder="Ruangan">
+                <input type="text" class="form-control form-control-sm" id="searchRuangan" placeholder="Ruangan">
             </div>
             <div class="col-md-2">
                 <label for="formGroupExampleInput" class="form-label">Tanggal Awal</label>
-                <input type="date" class="form-control" id="searchTanggalAwal" placeholder="Tanggal Awal">
+                <input type="date" class="form-control form-control-sm" id="searchTanggalAwal" placeholder="Tanggal Awal">
             </div>
             <div class="col-md-2">
                 <label for="formGroupExampleInput" class="form-label">Tanggal Akhir</label>
-                <input type="date" class="form-control" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
+                <input type="date" class="form-control form-control-sm" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
             </div>
             <div class="col-md-2">
                 <label for="formGroupExampleInput" class="form-label">Kegiatan</label>
-                <input type="text" class="form-control" id="searchKegiatan" placeholder="Kegiatan">
+                <input type="text" class="form-control form-control-sm" id="searchKegiatan" placeholder="Kegiatan">
             </div>
 
             <div class="col-6">
                 <label for="formGroupExampleInput" class="form-label">Status</label>
-                <select id="searchStatus" class="form-select" aria-label="Default select example">
+                <select id="searchStatus" class="form-select form-select-sm" aria-label="Default select example">
                     <option value="All" selected>All</option>
                     <option value="Accepted">Accepted</option>
                     <option value="Rejected">Rejected</option>
@@ -98,7 +102,7 @@
 
             <div class="col-6">
                 <label for="formGroupExampleInput" class="form-label">Tipe</label>
-                <select id="searchTipe" class="form-select" aria-label="Default select example">
+                <select id="searchTipe" class="form-select form-select-sm" aria-label="Default select example">
                     <option value="All" selected>All</option>
                     <option value="Komplimen">Komplimen</option>
                     <option value="Reguler">Reguler</option>
@@ -111,46 +115,52 @@
             @endif
             <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
                 @csrf
-                <table>
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="checkAll"></th>
-                            <th>Pemesan</th>
-                            <th>Ruangan</th>
-                            <th>Check-In</th>
-                            <th>Check-Out</th>
-                            <th>Harga</th>
-                            <th>Kegiatan</th>
-                            <th>Status</th>
-                            <th>Tipe</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orderTableBody">
-                        @foreach ($orders->reverse() as $order)
-                            @foreach ($order->items as $item)
-                                <tr>
-                                    <td><input type="checkbox" name="order_ids[]" value="{{ $item->id }}"></td>
-                                    <td id="namaUser">{{ $order->guest->name }}</td>
-                                    <td id="namaRuangan">{{ $item->train->nama }}</td>
-                                    <td id="tanggalAwal">{{ $item->checkin }}</td>
-                                    <td id="tanggalAkhir">{{ $item->checkout }}</td>
-                                    <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
-                                    <td id="namaKegiatan">{{ $order->nama_kegiatan }}</td>
-                                    <td id="status">{{ $item->status }}</td>
-                                    @if ($order->surat !== null)
-                                        <td id="tipe"><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" target="_blank">Komplimen</a></td>
-                                    @else
-                                        @if ($order->bukti_pembayaran !== null)
-                                            <td id="tipe"><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" target="_blank">Reguler</a></td>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="checkAll"></th>
+                                <th>Pemesan</th>
+                                <th>Ruangan</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Harga</th>
+                                <th>Kegiatan</th>
+                                <th>Status</th>
+                                <th>Tipe</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderTableBody">
+                            @foreach ($orders->reverse() as $order)
+                                @foreach ($order->items as $item)
+                                    <tr>
+                                        <td><input type="checkbox" name="order_ids[]" value="{{ $item->id }}"></td>
+                                        <td id="namaUser">{{ $order->guest->name }}</td>
+                                        <td id="namaRuangan">{{ $item->train->nama }}</td>
+                                        <td id="tanggalAwal">{{ $item->checkin }}</td>
+                                        <td id="tanggalAkhir">{{ $item->checkout }}</td>
+                                        <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                        <td id="namaKegiatan">{{ $order->nama_kegiatan }}</td>
+                                        <td id="status">{{ $item->status }}</td>
+                                        @if ($order->surat !== null)
+                                            <td id="tipe"><a
+                                                    href="{{ asset('storage/posts/surat/' . $order->surat) }}"
+                                                    target="_blank">Komplimen</a></td>
                                         @else
-                                            <td id="tipe">Reguler</td>
+                                            @if ($order->bukti_pembayaran !== null)
+                                                <td id="tipe"><a
+                                                        href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}"
+                                                        target="_blank">Reguler</a></td>
+                                            @else
+                                                <td id="tipe">Reguler</td>
+                                            @endif
                                         @endif
-                                    @endif
-                                </tr>
+                                    </tr>
+                                @endforeach
                             @endforeach
-                        @endforeach
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
 
                 @if ($orders->isNotEmpty())
                     <button type="submit" onclick="validateAndDelete()" class="delete-button w-100 mb-3"><i

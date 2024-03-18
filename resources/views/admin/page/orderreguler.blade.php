@@ -10,6 +10,10 @@
             border-radius: 20px;
         }
 
+        .table {
+            font-size: 0.9rem;
+        }
+
         th,
         td {
             padding: 12px 15px;
@@ -101,23 +105,23 @@
 
             <div class="col-md-3">
                 <label for="formGroupExampleInput" class="form-label">Nama User</label>
-                <input type="text" class="form-control" id="searchUser" placeholder="Nama User">
+                <input type="text" class="form-control form-control-sm" id="searchUser" placeholder="Nama User">
             </div>
             <div class="col-md-3">
                 <label for="formGroupExampleInput" class="form-label">Ruangan</label>
-                <input type="text" class="form-control" id="searchRuangan" placeholder="Ruangan">
+                <input type="text" class="form-control form-control-sm" id="searchRuangan" placeholder="Ruangan">
             </div>
             <div class="col-md-2">
                 <label for="formGroupExampleInput" class="form-label">Tanggal Awal</label>
-                <input type="date" class="form-control" id="searchTanggalAwal" placeholder="Tanggal Awal">
+                <input type="date" class="form-control form-control-sm" id="searchTanggalAwal" placeholder="Tanggal Awal">
             </div>
             <div class="col-md-2">
                 <label for="formGroupExampleInput" class="form-label">Tanggal Akhir</label>
-                <input type="date" class="form-control" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
+                <input type="date" class="form-control form-control-sm" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
             </div>
             <div class="col-md-2">
                 <label for="formGroupExampleInput" class="form-label">Kegiatan</label>
-                <input type="text" class="form-control" id="searchKegiatan" placeholder="Kegiatan">
+                <input type="text" class="form-control form-control-sm" id="searchKegiatan" placeholder="Kegiatan">
             </div>
 
             {{-- <input type="text" id="searchUser" placeholder="Nama user">
@@ -126,64 +130,65 @@
         <input type="date" id="searchTanggalAkhir" placeholder="Tanggal akhir">
         <input type="text" id="searchKegiatan" placeholder="Nama kegiatan"> --}}
         </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"></th>
+                        <th>Pemesan</th>
+                        <th>Ruangan</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Harga</th>
+                        <th>Kegiatan</th>
+                        <th>Pembayaran</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTableBody">
+                    @foreach ($orders as $order)
+                        @foreach ($order->items->where('status', 'Pending') as $item)
+                            <tr>
+                                <td><input type="checkbox" name="order_ids[]" value="{{ $item->id }}"></td>
+                                <td id="namaUser">{{ $order->guest->name }}</td>
+                                <td id="namaRuangan">{{ $item->train->nama }}</td>
+                                <td id="tanggalAwal">{{ $item->checkin }}</td>
+                                <td id="tanggalAkhir">{{ $item->checkout }}</td>
+                                <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                <td id="namaKegiatan">{{ $order->nama_kegiatan }}</td>
 
-        <table>
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="checkAll"></th>
-                    <th>Pemesan</th>
-                    <th>Ruangan</th>
-                    <th>Check-In</th>
-                    <th>Check-Out</th>
-                    <th>Harga</th>
-                    <th>Kegiatan</th>
-                    <th>Pembayaran</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="orderTableBody">
-                @foreach ($orders as $order)
-                    @foreach ($order->items->where('status', 'Pending') as $item)
-                        <tr>
-                            <td><input type="checkbox" name="order_ids[]" value="{{ $item->id }}"></td>
-                            <td id="namaUser">{{ $order->guest->name }}</td>
-                            <td id="namaRuangan">{{ $item->train->nama }}</td>
-                            <td id="tanggalAwal">{{ $item->checkin }}</td>
-                            <td id="tanggalAkhir">{{ $item->checkout }}</td>
-                            <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
-                            <td id="namaKegiatan">{{ $order->nama_kegiatan }}</td>
+                                {{-- jika sudah dibayar, show tombol lihat bukti pembayaran --}}
+                                @if ($order->bukti_pembayaran !== null)
+                                    <td><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}"
+                                            target="_blank">{{ $order->metode_pembayaran }}</a></td>
 
-                            {{-- jika sudah dibayar, show tombol lihat bukti pembayaran --}}
-                            @if ($order->bukti_pembayaran !== null)
-                                <td><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}"
-                                        target="_blank">{{ $order->metode_pembayaran }}</a></td>
+                                    {{-- jika belum bayar, show button biasa --}}
+                                @else
+                                    <td>{{ $order->metode_pembayaran }}</td>
+                                @endif
 
-                                {{-- jika belum bayar, show button biasa --}}
-                            @else
-                                <td>{{ $order->metode_pembayaran }}</td>
-                            @endif
+                                <td>
+                                    <form action="">
+                                        @csrf
+                                    </form>
+                                    <form action="{{ route('admin.order.acc', $item->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="action-button"><i class="fas fa-check"></i></button>
+                                    </form>
+                                    <form action="{{ route('admin.order.reject', $item->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="action-button"><i class="fas fa-times"></i></button>
+                                    </form>
+                                </td>
 
-                            <td>
-                                <form action="">
-                                    @csrf
-                                </form>
-                                <form action="{{ route('admin.order.acc', $item->id) }}" method="POST"
-                                    style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="action-button"><i class="fas fa-check"></i></button>
-                                </form>
-                                <form action="{{ route('admin.order.reject', $item->id) }}" method="POST"
-                                    style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="action-button"><i class="fas fa-times"></i></button>
-                                </form>
-                            </td>
-
-                        </tr>
+                            </tr>
+                        @endforeach
                     @endforeach
-                @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
 
         </form>
     </div>
@@ -252,7 +257,7 @@
 
         // Default tanggalAkhir
         const lastDateOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1,
-        0); // Get the last day of the next month, then subtract 1
+            0); // Get the last day of the next month, then subtract 1
         const formattedLastDateOfMonth = lastDateOfMonth.toISOString().split('T')[0]; // Format as YYYY-MM-DD
         document.getElementById('searchTanggalAkhir').value = formattedLastDateOfMonth;
     </script>

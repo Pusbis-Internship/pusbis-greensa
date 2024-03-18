@@ -9,6 +9,9 @@
         margin: 20px 0;
         border-radius: 20px;
     }
+    .table{
+            font-size: 0.9rem;
+        }
 
     th,
     td {
@@ -109,23 +112,23 @@
     <div class="row g-3" style="position:relative;">
         <div class="col-md-3">
             <label for="formGroupExampleInput" class="form-label">Nama User</label>
-            <input type="text" class="form-control" id="searchUser" placeholder="Nama User">
+            <input type="text" class="form-control form-control-sm" id="searchUser" placeholder="Nama User">
         </div>
         <div class="col-md-3">
             <label for="formGroupExampleInput" class="form-label">Ruangan</label>
-            <input type="text" class="form-control" id="searchRuangan" placeholder="Ruangan">
+            <input type="text" class="form-control form-control-sm" id="searchRuangan" placeholder="Ruangan">
         </div>
         <div class="col-md-2">
             <label for="formGroupExampleInput" class="form-label">Tanggal Awal</label>
-            <input type="date" class="form-control" id="searchTanggalAwal" placeholder="Tanggal Awal">
+            <input type="date" class="form-control form-control-sm" id="searchTanggalAwal" placeholder="Tanggal Awal">
         </div>
         <div class="col-md-2">
             <label for="formGroupExampleInput" class="form-label">Tanggal Akhir</label>
-            <input type="date" class="form-control" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
+            <input type="date" class="form-control form-control-sm" id="searchTanggalAkhir" placeholder="Tanggal Akhir">
         </div>
         <div class="col-md-2">
             <label for="formGroupExampleInput" class="form-label">Kegiatan</label>
-            <input type="text" class="form-control" id="searchKegiatan" placeholder="Kegiatan">
+            <input type="text" class="form-control form-control-sm" id="searchKegiatan" placeholder="Kegiatan">
         </div>
 
         {{-- <input type="text" id="searchUser" placeholder="Nama user">
@@ -139,8 +142,8 @@
         {{ session('success') }}
     </div>
     @endif
-    
-        <table>
+    <div class="table-responsive">
+        <table class="table">
             <thead>
                 <tr>
                     <th><input type="checkbox" id="checkAll"></th>
@@ -187,6 +190,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
        
     </form>
 </div>
