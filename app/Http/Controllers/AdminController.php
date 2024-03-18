@@ -127,19 +127,22 @@ class AdminController extends Controller
         // Mendapatkan order_ids dari request
         $orderIds = $request->order_ids;
 
+        // Mendapatkan order_items yang sesuai dengan order_ids
+        $orderItems = OrderItem::whereIn('id', $orderIds)->get();
+
+        // Mendapatkan order_ids yang unik dari order_items
+        $uniqueOrderIds = $orderItems->pluck('order_id')->unique()->toArray();
+
         // Menghapus order_items yang sesuai dengan order_ids
         OrderItem::whereIn('id', $orderIds)->delete();
 
         // Menghapus order yang memiliki order_id yang sama dengan order_ids
-        Order::whereIn('id', function ($query) use ($orderIds) {
-            $query->select('order_id')
-                ->from('order_items')
-                ->whereIn('id', $orderIds);
-        })->delete();
+        Order::whereIn('id', $uniqueOrderIds)->delete();
 
         // Redirect atau kembali ke halaman yang sesuai setelah penghapusan berhasil
-        return redirect()->back()->with('success', 'data berhasil dihapus.');
+        return redirect()->back()->with('success', 'Selected orders have been deleted successfully.');
     }
+
 
     public function showtcstore()
     {
