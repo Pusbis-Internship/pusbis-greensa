@@ -89,9 +89,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // Email Verification
     Route::get('/email/verify', function () {
         return view('pelanggan.auth.verify');
-    })->middleware('guestmustlogin')->name('verification.notice');
+    })->name('verification.notice');
 
-    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-        return view('pelanggan.page.home');
-    })->middleware(['auth', 'signed'])->name('verification.verify');
+    Route::get('/email/verify/{id}/{hash}', [GuestController::class, 'registerVerified'])->name('verification.verify');
+
+    // Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    //     return view('pelanggan.page.home');
+    // })->middleware(['auth', 'signed'])->name('verification.verify');
 // EmailVerification

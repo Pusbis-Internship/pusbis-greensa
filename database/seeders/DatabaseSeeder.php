@@ -37,7 +37,8 @@ class DatabaseSeeder extends Seeder
             'negara' => 'sby',
             'username' => 'anon@mail',
             'email' => 'faridsyarifudin10@gmail.com',
-            'password' => bcrypt(1)
+            'password' => bcrypt(1),
+            'is_activated' => true,
         ]);
 
         Guest::create([
@@ -50,7 +51,8 @@ class DatabaseSeeder extends Seeder
             'negara' => 'sby',
             'username' => 'anon2@mail',
             'email' => 'anon2@mail',
-            'password' => bcrypt(1)
+            'password' => bcrypt(1),
+            'is_activated' => true,
         ]);
 
         // create train

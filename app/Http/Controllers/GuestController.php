@@ -594,12 +594,12 @@ class GuestController extends Controller
             // kirim email
             event(new Registered($guest));
 
-            // login
-            Auth::guard('guest')->login($guest);
+            // // login
+            // Auth::guard('guest')->login($guest);
 
             // redirect
-            $request->session()->regenerate();
-            $request->session()->put('guest', $guest);
+            // $request->session()->regenerate();
+            // $request->session()->put('guest', $guest);
             return redirect('/email/verify');
 
             // return redirect('/login')->withErrors('Akun berhasil dibuat !!!');
@@ -610,7 +610,20 @@ class GuestController extends Controller
             notify()->error('Email sudah terdaftar.');
             return redirect('/register');
         }
+    }
 
+    public function registerVerified($id, Request $request)
+    {
+        // update is_verified to true
+        $guest = Guest::where('id', $id)->first();
+        $guest->is_activated = 1;
+        $guest->save();
+        
+        // login
+        Auth::guard('guest')->login($guest);
+        $request->session()->regenerate();
+        $request->session()->put('guest', $guest);
+        return redirect('/');
     }
 
     public function login(Request $request)
@@ -622,18 +635,22 @@ class GuestController extends Controller
 
         $guest = Guest::where('username', $credentials['username'])->first();
 
+        // jika email belum terdaftar
         if (!$guest) {
-            // Notifikasi untuk email belum terdaftar
             notify()->error('Email belum terdaftar.');
-
             return redirect()->back()->withErrors(['username' => 'Email belum terdaftar']);
         }
 
+        // jika email sudah terdaftar, tapi belum aktivasi
+        if ($guest->is_activated === 0) {
+            return redirect('/email/verify');
+        }
+
+        // jika email terdaftar dan aktif
         if (Auth::guard('guest')->attempt($credentials)) {
             $request->session()->regenerate();
             $request->session()->put('guest', $guest);
 
-            // Notifikasi untuk login berhasil
             notify()->success('Anda telah berhasil login!');
 
             return redirect()->intended('/');

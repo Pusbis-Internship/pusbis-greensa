@@ -32,7 +32,7 @@
                 <div class="col-12 text-center mb-5 ">
                     <h4 class="mb-2">Verifikasi Akun</h4>
                     <p class="mb-4">Silahkan periksa email anda sekarang untuk menverifikasi akun anda</p>
-                    <a href="https://mail.google.com/" class="btn btn-success fw-bold w-25">Email</a>
+                    <a href="https://mail.google.com/" class="btn btn-success fw-bold w-25" target="_blank">Email</a>
                 </div>
             </div>
         </div>
