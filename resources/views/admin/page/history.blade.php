@@ -116,7 +116,7 @@
             <form action="{{ route('admin.orders.delete') }}" method="POST" id="deleteForm">
                 @csrf
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="historyTable" name="historyTable">
                         <thead>
                             <tr>
                                 <th><input type="checkbox" id="checkAll"></th>
@@ -166,14 +166,14 @@
                     <button type="submit" onclick="validateAndDelete()" class="delete-button w-100 mb-3"><i
                             class="fas fa-trash"></i></button>
 
-
-                    <a href="{{ route('admin.export') }}" class="btn btn-success text-white w-100">Export Excel</a>
+                    <button onclick="downloadExcel()" class="btn btn-success text-white w-100">Download Excel</button>
                 @endif
             </form>
 
         </div>
     </div>
 
+    {{-- js filter --}}
     <script>
         // Search by namaUser
         document.getElementById('searchUser').addEventListener('keyup', searchTable);
@@ -250,6 +250,7 @@
         document.getElementById('searchTanggalAkhir').value = formattedLastDateOfMonth;
     </script>
 
+    {{-- js delete --}}
     <script>
         function validateAndDelete() {
             // Memeriksa apakah setidaknya satu checkbox terpilih
@@ -275,6 +276,32 @@
                 // Jika pengguna membatalkan, tidak melakukan apa-apa
                 return false;
             }
+        }
+    </script>
+
+    {{-- js download excel --}}
+    <script>
+        function downloadExcel() {
+            var table = document.getElementById('historyTable');
+
+            // Convert HTML table to workbook object
+            var workbook = XLSX.utils.table_to_book(table);
+
+            // Convert workbook to binary Excel data
+            var excelData = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+            // Create a Blob object from the Excel data
+            var blob = new Blob([excelData], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Create a download link element
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'greensa-rekap.xlsx';
+
+            // Append the link to the document and trigger the download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 @endsection

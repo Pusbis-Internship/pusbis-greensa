@@ -20,7 +20,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     
     Route::get('/admin-training-center-history-order', [AdminController::class, 'showhistory'])->middleware('adminmustlogin');
     Route::get('/admin-training-center-order-spj', [AdminController::class, 'showorderspj'])->middleware('adminmustlogin');
-    Route::get('/admin-training-center-history-order-export', [AdminController::class, 'export'])->name('admin.export')->middleware('adminmustlogin');
     Route::get('/admin-training-center-order-reguler', [AdminController::class, 'showorderreguler'])->middleware('adminmustlogin');
     Route::post('/admin/order/{orderId}/acc', [AdminController::class, 'accOrder'])->name('admin.order.acc');
     Route::post('/admin/order/{orderId}/reject', [AdminController::class, 'rejectOrder'])->name('admin.order.reject');

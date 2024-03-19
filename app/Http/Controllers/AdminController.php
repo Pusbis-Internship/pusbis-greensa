@@ -80,12 +80,6 @@ class AdminController extends Controller
         return view('admin.page.history', ['orders' => $orders]);
     }
 
-    public function export()
-    {
-        return Excel::download(new HistoryExport, 'users.xlsx');
-    }
-
-
     public function accOrder($itemId)
     {
         $item = OrderItem::findOrFail($itemId);
