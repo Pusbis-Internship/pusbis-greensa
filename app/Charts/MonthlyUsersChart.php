@@ -16,50 +16,50 @@ class MonthlyUsersChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\LineChart
     {
-        $tahun = date('Y');
-        $bulan = date('m');
-        $totalOrdersPerMonth = [];
+        $tahun = 2024; // Tahun yang diinginkan
 
-        $monthLabels = []; // array untuk menyimpan label bulan
+        $totalOrders = [];
 
-        // for ($i = 1; $i <= $bulan; $i++) {
-        //     // Menghitung total pesanan untuk bulan ini
-        //     $totalOrders = OrderItem::whereYear('created_at', $tahun)
-        //         ->whereMonth('created_at', $i)
-        //         ->where('status', 'Accepted')
-        //         ->count();
-
-        //     // Menyimpan total pesanan ke dalam array dengan kunci bulan
-        //     $totalOrdersPerMonth[] = $totalOrders;
-
-        //     // Menambahkan label bulan ke dalam array label bulan
-        //     $monthLabels[] = \Carbon\Carbon::create($tahun, $i, 1)->format('F'); // Menggunakan Carbon untuk mendapatkan nama bulan
-        // }
-        for ($i = 11; $i >= 0; $i--) {
-            // Mendapatkan bulan dan tahun untuk bulan saat ini ditambah $i bulan
-            $bulanIni = \Carbon\Carbon::now()->subMonths($i);
-            $tahun = $bulanIni->year;
-            $bulan = $bulanIni->month;
-        
-            // Menghitung total pesanan dengan status "Accepted" untuk bulan ini
-            $totalOrders = OrderItem::whereYear('created_at', $tahun)
-                                     ->whereMonth('created_at', $bulan)
-                                     ->where('status', 'Accepted')
-                                     ->count();
-        
-            // Menyimpan total pesanan ke dalam array dengan kunci bulan
-            $totalOrdersPerMonth[] = $totalOrders;
-        
-            // Menambahkan label bulan ke dalam array label bulan
-            $monthLabels[] = $bulanIni->format('F'); // Menggunakan Carbon untuk mendapatkan nama bulan
+        // Perulangan dari bulan 1 hingga 12
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            // Hitung total pesanan berdasarkan tahun, bulan, dan status "Accepted"
+            $totalOrders[$bulan] = OrderItem::whereYear('checkin', $tahun)
+                ->whereMonth('checkin', $bulan)
+                ->where('status', 'Accepted')
+                ->count();
         }
-        
 
+        // Buat array untuk label bulan
+        $monthLabels = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $monthLabels[] = date('M', mktime(0, 0, 0, $i, 1));
+        }
+
+        // Buat chart
         return $this->chart->lineChart()
-            ->setTitle('Total Order.')
-            ->setSubtitle('Total Order selama 12 bulan.')
-            ->addData('Total Order', $totalOrdersPerMonth)
+            ->setTitle('Total Order')
+            ->setSubtitle('Total Order untuk Tahun ' . $tahun)
+            ->addData('Total Order', array_values($totalOrders))
             ->setHeight(280)
-            ->setXAxis($monthLabels); // Mengatur sumbu x berdasarkan label bulan yang telah dibuat
+            ->setXAxis($monthLabels); // X-axis berisi label bulan dari Januari hingga Desember
     }
+
+    // for ($i = 11; $i >= 0; $i--) {
+    //     // Mendapatkan bulan dan tahun untuk bulan saat ini ditambah $i bulan
+    //     $bulanIni = \Carbon\Carbon::now()->subMonths($i);
+    //     $tahun = $bulanIni->year;
+    //     $bulan = $bulanIni->month;
+
+    //     // Menghitung total pesanan dengan status "Accepted" untuk bulan ini
+    //     $totalOrders = OrderItem::whereYear('checkin', $tahun)
+    //                              ->whereMonth('checkin', $bulan)
+    //                              ->where('status', 'Accepted')
+    //                              ->count();
+
+    //     // Menyimpan total pesanan ke dalam array dengan kunci bulan
+    //     $totalOrdersPerMonth[] = $totalOrders;
+
+    //     // Menambahkan label bulan ke dalam array label bulan
+    //     $monthLabels[] = $bulanIni->format('F'); // Menggunakan Carbon untuk mendapatkan nama bulan
+    // 
 }

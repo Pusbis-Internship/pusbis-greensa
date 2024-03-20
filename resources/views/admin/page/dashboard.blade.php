@@ -1,5 +1,9 @@
 @extends('admin.layouts.index')
 
+@section('chart')
+<script src="{{ $orderschart['chart']->cdn() }}"></script>
+{{ $orderschart['chart']->script() }}
+@endsection
 @section('content')
 
 {{-- Card highlight --}}
@@ -9,11 +13,14 @@
     <div class="card mb-4 text-white bg-dark">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold">{{ $order_pending }} <span class="fs-6 fw-normal">(-12.4%
-              <svg class="icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-              </svg>)</span></div>
-          <div>Pending/Month</div>
+          <div class="fs-4 fw-semibold" id="order_pending">{{ $order_pending }} <span class="fs-6 fw-normal" hidden>
+            </span></div>
+          <div id="pendingall">Pending All </div>
+          <div class="fs-4 fw-semibold" id="pendingOrdersByMonth" style="display:none;">
+            {{ $order_pending_month }}
+            <span class="fs-6 fw-normal"></span>
+          </div>
+          <div id="pendingmonth" hidden>Pending month </div>
         </div>
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,7 +28,10 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
             </svg>
           </button>
-          <div class="dropdown-menu dropdown-menu-end" style=""><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a id="showPendingByMonth" class="dropdown-item" href="#" onclick="showPendingByMonth()">Bulan</a>
+            <a id="showPendingByOverall" class="dropdown-item" href="#" onclick="showPendingByOverall()">Keseluruhan</a>
+          </div>
         </div>
       </div>
       <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -49,19 +59,24 @@
     <div class="card mb-4 text-white bg-info">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold">{{ $order_acc }} <span class="fs-6 fw-normal">(40.9%
-              <svg class="icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-              </svg>)</span></div>
-          <div>Accepted/Month</div>
+          <div class="fs-4 fw-semibold" id="orderAcc">{{ $order_acc }} <span class="fs-6 fw-normal" hidden>
+              </svg></span></div>
+          <div id="accall">Accepted All</div>
+          <div class="fs-4 fw-semibold" id="acceptedOrdersByMonth" style="display:none;">{{$total_accmonth}}<span class="fs-6 fw-normal">
+              </svg></span></div>
+          <div id="accmonth" hidden>Accepted Month</div>
         </div>
+
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <svg class="icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
             </svg>
           </button>
-          <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a id="showByMonth" class="dropdown-item" href="#" onclick="showByMonth()">Bulan</a>
+            <a id="showByOverall" class="dropdown-item" href="#" onclick="showByOverall()">Keseluruhan</a>
+          </div>
         </div>
       </div>
       <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -89,11 +104,14 @@
     <div class="card mb-4 text-white bg-danger">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold">{{ $order_rej }} <span class="fs-6 fw-normal">(84.7%
-              <svg class="icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-              </svg>)</span></div>
-          <div>Rejected/Month</div>
+          <div class="fs-4 fw-semibold" id="order_rej">{{ $order_rej }} <span class="fs-6 fw-normal" hidden>
+            </span></div>
+          <div id="rejectall">Reject Keseluruhan</div>
+          <div class="fs-4 fw-semibold" id="rejectedOrdersByMonth" style="display:none;">
+            {{ $order_rejected_month }}
+            <span class="fs-6 fw-normal"></span>
+          </div>
+          <div id="rejectmonth" hidden>Reject Bulan ini</div>
         </div>
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,7 +119,10 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
             </svg>
           </button>
-          <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a id="showRejectedByMonth" class="dropdown-item" href="#" onclick="showRejectedByMonth()">Bulan</a>
+            <a id="showRejectedByOverall" class="dropdown-item" href="#" onclick="showRejectedByOverall()">Keseluruhan</a>
+          </div>
         </div>
       </div>
       <div class="c-chart-wrapper mt-3" style="height:70px;">
@@ -115,11 +136,10 @@
     <div class="card mb-4 text-white bg-success">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold">Rp {{ number_format($pendapatan, 0, ',', '.')}} <span class="fs-6 fw-normal">(-23.6%
-              <svg class="icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-              </svg>)</span></div>
-          <div>Revenue</div>
+          <div class="fs-4 fw-semibold" id="revenue">Rp {{ number_format($pendapatan, 0, ',', '.') }} <span class="fs-6 fw-normal"></span></div>
+          <div id="pendapatansemua">Pendapatan Keseluruhan </div>
+          <div class="fs-4 fw-semibold" id="revenueMonth" style="display:none;">Rp {{ number_format($pendapatan_month, 0, ',', '.') }} <span class="fs-6 fw-normal"></span></div>
+          <div id="revenueText" hidden>Pendapatan (Bulan ini)</div>
         </div>
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -127,7 +147,10 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
             </svg>
           </button>
-          <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a id="showRevenueByMonth" class="dropdown-item" href="#" onclick="showRevenueByMonth()">Bulan</a>
+            <a id="showRevenueByOverall" class="dropdown-item" href="#" onclick="showRevenueByOverall()">Keseluruhan</a>
+          </div>
         </div>
       </div>
       <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -137,10 +160,9 @@
   </div>
 </div>
 
-<hr>
 
 {{-- Chart --}}
-<div class="card-body">
+<!-- <div class="card-body">
   <div class="d-flex justify-content-between">
     <div>
       <h4 class="card-title mb-0">Trafficoo</h4>
@@ -150,16 +172,77 @@
   <div class="c-chart-wrapper" style="height:400px;margin-top:40px;">
     <canvas class="chart" id="main-chart" height="300" width="1262" style="display: block; box-sizing: border-box; height: 300px; width: 1262px;"></canvas>
   </div>
-</div>
+</div> -->
 
 <hr>
 <div class="p-4 m-4 bg-white rounded shadow chart-container">
   {!! $orderschart['chart']->container() !!}
 </div>
 
-<script src="{{ $orderschart['chart']->cdn() }}"></script>
 
-{{ $orderschart['chart']->script() }}
+<script>
+    function showByOverall() {
+      $('#orderAcc').show();
+      $('#accall').show();
+      $('#accmonth').attr('hidden', 'hidden');
+      $('#acceptedOrdersByMonth').hide();
+
+    }
+
+    function showByMonth() {
+      $('#orderAcc').hide();
+      $('#acceptedOrdersAll').hide();
+      $('#acceptedOrdersByMonth').show();
+      $('#accall').hide();
+      $('#accmonth').removeAttr('hidden');
+
+    }
+
+    function showPendingByMonth() {
+      $('#pendingall').hide();
+      $('#pendingmonth').removeAttr('hidden');
+      $('#order_pending').hide();
+      $('#pendingOrdersByMonth').show();
+    }
+
+    function showPendingByOverall() {
+      $('#pendingall').show();
+      $('#pendingmonth').attr('hidden', 'hidden');
+      $('#order_pending').show();
+      $('#pendingOrdersByMonth').hide();
+    }
+
+    function showRejectedByMonth() {
+      $('#rejectall').hide();
+      $('#rejectmonth').removeAttr('hidden');
+      $('#order_rej').hide();
+      $('#rejectedOrdersByMonth').show();
+    }
+
+    function showRejectedByOverall() {
+
+      $('#rejectall').show();
+      $('#rejectmonth').attr('hidden', 'hidden');
+      $('#order_rej').show();
+      $('#rejectedOrdersByMonth').hide();
+    }
+
+    function showRevenueByMonth() {
+      $('#pendapatansemua').hide();
+      $('#revenue').hide();
+      $('#revenueMonth').show();
+      $('#revenueText').removeAttr('hidden'); // Menampilkan teks "Revenue (This Month)"
+    }
+
+    function showRevenueByOverall() {
+      $('#pendapatansemua').show();
+      $('#revenue').show();
+      $('#revenueMonth').hide();
+      $('#revenueText').attr('hidden', 'hidden'); // Menyembunyikan teks "Revenue (This Month)"
+    }
+  </script>
+
+
 
 
 @endsection

@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\HistoryExport;
 use App\Models\LayoutModels;
+use Illuminate\Support\Facades\Db;
+
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -170,12 +172,35 @@ class AdminController extends Controller
 
     public function showadmin(MonthlyUsersChart $chart)
     {
-        $orderschart['chart'] = $chart->build();
+        // Logika pengambilan data berdasarkan filter yang dipilih
         $orders = Order::all();
         $order_pending = OrderItem::where('status', 'Pending')->count();
         $order_acc = OrderItem::where('status', 'Accepted')->count();
         $order_rej = OrderItem::where('status', 'Rejected')->count();
         $pendapatan = OrderItem::where('status', 'Accepted')->sum('harga');
+        $orderschart['chart'] = $chart->build();
+
+        $currentMonth = Carbon::now()->month; // Mengambil bulan saat ini
+
+        $order_accmonth = OrderItem::where('status', 'Accepted')
+            ->whereMonth('checkin', $currentMonth) // Hanya pesanan dalam bulan ini
+            ->select(DB::raw('count(*) as total'))
+            ->first(); // Menggunakan first() untuk hanya mengambil satu baris hasil pertama
+
+        $total_accmonth = $order_accmonth->total;
+
+        $order_pending_month = OrderItem::where('status', 'Pending')
+        ->whereMonth('checkin', $currentMonth)
+        ->count();
+        // dd($order_pending_month);
+        $order_rejected_month = OrderItem::where('status', 'Rejected')
+        ->whereMonth('checkin', $currentMonth)
+        ->count();
+        
+        $pendapatan_month = OrderItem::where('status', 'Accepted')
+        ->whereMonth('checkin', $currentMonth)
+        ->sum('harga');
+        // dd($pendapatan);
 
         return view('admin.page.dashboard', [
             'orders' => $orders,
@@ -183,9 +208,14 @@ class AdminController extends Controller
             'order_acc' => $order_acc,
             'order_rej' => $order_rej,
             'pendapatan' => $pendapatan,
-            'orderschart' => $orderschart
+            'orderschart' => $orderschart,
+            'total_accmonth' => $total_accmonth,
+            'order_pending_month'=> $order_pending_month,
+            'order_rejected_month'=> $order_rejected_month,
+            'pendapatan_month'=>$pendapatan_month // Mengirim total pesanan yang diterima pada bulan ini
         ]);
     }
+
 
     public function showtrlist()
     {

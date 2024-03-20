@@ -17,7 +17,7 @@
     <!-- Main styles for this application-->
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       th, td {
         text-align: center;
@@ -42,6 +42,8 @@
         <div class="container-lg">
           {{-- Content Section --}}
           @yield('content')
+          @yield('chart')
+          
         </div>
       </div>
       
