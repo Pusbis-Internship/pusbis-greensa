@@ -307,40 +307,6 @@ class AdminController extends Controller
                 ->update(['gambar' => $gambarPath->hashName(),]);
         }
 
-
-        // //check if image is uploaded
-        // if ($request->hasFile('gambar')) {
-
-        //     //upload new image
-        //     $gambarPath = $request->file('gambar');
-        //     $gambarPath->storeAs('public/posts', $gambarPath->hashName());
-
-        //     //delete old image
-        //     Storage::delete('public/posts/' . $train->gambar);
-
-        //     //update train with new image
-        //     $train->update([
-        //         'nama' => $request->nama,
-        //         'lantai' => $request->lantai,
-        //         'kap_class' => $request->kap_class,
-        //         'kap_teater' => $request->kap_teater,
-        //         'harga' => $request->harga,
-        //         'deskripsi' => $request->deskripsi,
-        //         'gambar' => $gambarPath->hashName(),
-        //     ]);
-        // } else {
-
-        //     //update train without image
-        //     $train->update([
-        //         'nama' => $request->nama,
-        //         'lantai' => $request->lantai,
-        //         'kap_class' => $request->kap_class,
-        //         'kap_teater' => $request->kap_teater,
-        //         'harga' => $request->harga,
-        //         'deskripsi' => $request->deskripsi,
-        //     ]);
-        // }
-
         return redirect()->route('train.showlist')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
@@ -356,30 +322,78 @@ class AdminController extends Controller
 
     public function tcstore(Request $request)
     {
-        // validasi
-        $request->validate([
-            'nama'          => 'required',
-            'lantai'        => 'required',
-            'kap_class'     => 'required|numeric',
-            'kap_teater'    => 'required|numeric',
-            'kap_roundtable' => 'required|numeric',
-            'kap_ushape'    => 'required|numeric',
-            'harga'         => 'required|numeric',
-            'deskripsi'     => 'required',
-            // 'gambar'        => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        // $gambarPath = $request->file('gambar');
-        // $gambarPath->storeAs('public/posts', $gambarPath->hashName());
-
         // create train
         $train = Train::create([
             'nama'      => $request->nama,
             'lantai'    => $request->lantai,
             'harga'     => $request->harga,
             'deskripsi' => $request->deskripsi,
-            // 'gambar' => $gambarPath->hashName(),
         ]);
+
+        // add gambar utama
+        if ($request->hasFile('gambar_utama')) {
+            // upload new image
+            $gambarPath = $request->file('gambar_utama');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            // update train with new image
+            $train->images()->create([
+                'konten' => 'utama',
+                'gambar' => $gambarPath->hashName(),
+            ]);
+        }
+
+        // add gambar biasa1
+        if ($request->hasFile('gambar_biasa1')) {
+            // upload new image
+            $gambarPath = $request->file('gambar_biasa1');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            // update train with new image
+            $train->images()->create([
+                'konten' => 'biasa1',
+                'gambar' => $gambarPath->hashName(),
+            ]);
+        }
+
+        // add gambar biasa2
+        if ($request->hasFile('gambar_biasa2')) {
+            // upload new image
+            $gambarPath = $request->file('gambar_biasa2');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            // update train with new image
+            $train->images()->create([
+                'konten' => 'biasa2',
+                'gambar' => $gambarPath->hashName(),
+            ]);
+        }
+
+        // add gambar biasa3
+        if ($request->hasFile('gambar_biasa3')) {
+            // upload new image
+            $gambarPath = $request->file('gambar_biasa3');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            // update train with new image
+            $train->images()->create([
+                'konten' => 'biasa3',
+                'gambar' => $gambarPath->hashName(),
+            ]);
+        }
+
+        // add gambar denah
+        if ($request->hasFile('gambar_denah')) {
+            // upload new image
+            $gambarPath = $request->file('gambar_denah');
+            $gambarPath->storeAs('public/posts', $gambarPath->hashName());
+
+            // update train with new image
+            $train->images()->create([
+                'konten' => 'denah',
+                'gambar' => $gambarPath->hashName(),
+            ]);
+        }
 
         // create layout
         LayoutModels::create([

@@ -51,8 +51,28 @@
         </div>
 
         <div class="mb-3">
-            <label for="gambar" class="form-label">Gambar</label>
-            <input type="file" class="form-control" name="gambar" accept="image/*">
+            <label>Gambar Utama</label>
+            <input type="file" class="form-control" name="gambar_utama" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Display 1</label>
+            <input type="file" class="form-control" name="gambar_biasa1" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Display 2</label>
+            <input type="file" class="form-control" name="gambar_biasa2" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Display 3</label>
+            <input type="file" class="form-control" name="gambar_biasa3" accept="image/*">
+        </div>
+
+        <div class="mb-3">
+            <label>Gambar Denah</label>
+            <input type="file" class="form-control" name="gambar_denah" accept="image/*">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

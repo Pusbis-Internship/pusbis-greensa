@@ -58,7 +58,7 @@
         </div>
 
         <div class="mb-3">
-            <label>Gambar DIsplay 3</label>
+            <label>Gambar Display 3</label>
             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" class="img-fluid rounded" width="200">
             <input type="file" class="form-control" name="gambar_biasa3" accept="image/*">
         </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TrainImage extends Model
 {
     use HasFactory;
-    protected $fillable = ['train_id', 'gambar'];
+    protected $fillable = ['train_id', 'konten', 'gambar'];
 
     public function train()
     {
