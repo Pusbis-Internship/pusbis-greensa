@@ -112,7 +112,7 @@
                                                             <div class="col-12 p-md-0 text-muted keterangan">
                                                                 {{ $item->layout }}</div>
                                                             <div class="col-12 p-md-0 text-muted keterangan ">
-                                                                {{ $item->checkin }}</div>
+                                                                {{ date('d-m-Y', strtotime($item->checkin)) }}</div>
                                                             <div class="col-12 p-md-0 text-muted keterangan ">
                                                                 {{ $item->lama }} hari</div>
                                                         </div>

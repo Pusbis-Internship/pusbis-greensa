@@ -14,6 +14,7 @@
                 <div class="col-12 card d-flex align-items-center justify-content-center text-center">
                     <p class="m-0 mt-5"><span class="fw-bold text-danger">Order gagal karena waktu transfer sudah habis</span></p>
                     <h1 class="mb-3 countdown display-2 fw-bold text-danger">00:00:00</h1>
+                    <p>Waktu pembuatan pesanan: {{ \Carbon\Carbon::parse($order->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</p>
                 </div>
 
             @else
