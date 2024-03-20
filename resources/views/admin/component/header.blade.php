@@ -18,11 +18,11 @@
           <div class="avatar avatar-md"><img class="avatar-img" src="/assets/img/avatars/8.jpg" alt="user@email.com"></div>
         </a>
         <div class="dropdown-menu dropdown-menu-end pt-0">
-          <a class="dropdown-item" href="#">
+          {{-- <a class="dropdown-item" href="#">
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
             </svg> Profile
-          </a>
+          </a> --}}
           <div class="dropdown-divider"></div>
           <form action="{{ url('/admin-logout') }}" method="POST">
             @csrf

@@ -141,7 +141,17 @@
                                         <td id="tanggalAkhir">{{ $item->checkout }}</td>
                                         <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                                         <td id="namaKegiatan">{{ $order->nama_kegiatan }}</td>
-                                        <td id="status">{{ $item->status }}</td>
+
+                                        {{-- status pesanan --}}
+                                        @if ($item->status === "Accepted")
+                                            <td id="status"><label class="text-success">{{ $item->status }}</label></td>@endif
+                                        @if ($item->status === "Rejected")
+                                            <td id="status"><label class="text-danger">{{ $item->status }}</label></td>@endif
+                                        @if ($order->is_expired === 1)
+                                            <td id="status"><label class="text-secondary">{{ $item->status }}</label></td>@endif
+                                        
+
+                                        {{-- tipe pesanan dan buka lampiran --}}
                                         @if ($order->surat !== null)
                                             <td id="tipe"><a
                                                     href="{{ asset('storage/posts/surat/' . $order->surat) }}"
@@ -149,8 +159,8 @@
                                         @else
                                             @if ($order->bukti_pembayaran !== null)
                                                 <td id="tipe"><a
-                                                        href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}"
-                                                        target="_blank">Reguler</a></td>
+                                                        href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" style="text-decoration: none;"
+                                                        target="_blank" class="text-white bg-primary p-1 rounded">Reguler</a></td>
                                             @else
                                                 <td id="tipe">Reguler</td>
                                             @endif

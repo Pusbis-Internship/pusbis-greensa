@@ -159,8 +159,8 @@
 
                                 {{-- jika sudah dibayar, show tombol lihat bukti pembayaran --}}
                                 @if ($order->bukti_pembayaran !== null)
-                                    <td><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}"
-                                            target="_blank">{{ $order->metode_pembayaran }}</a></td>
+                                    <td><a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" style="text-decoration: none;"
+                                            target="_blank" class="text-white bg-primary p-1 rounded">{{ $order->metode_pembayaran }}</a></td>
 
                                     {{-- jika belum bayar, show button biasa --}}
                                 @else
