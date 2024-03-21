@@ -38,39 +38,55 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// // MODAL set Capacity PAX
+// window.addEventListener('DOMContentLoaded', function () {
+//     var selectElements = document.querySelectorAll('.select-dropdown');
+    
+//     selectElements.forEach(function (selectElement) {
+//         var capacityInput = document.querySelector(selectElement.getAttribute('data-target'));
+        
+//         selectElement.addEventListener('change', function () {
+//             var selectedOption = selectElement.options[selectElement.selectedIndex];
+//             var kapasitas = selectedOption.getAttribute('data-value');
+//             capacityInput.value = kapasitas;
+//         });
+//     });
+// });
+
 // MODAL set Capacity PAX
 window.addEventListener('DOMContentLoaded', function () {
     var selectElements = document.querySelectorAll('.select-dropdown');
     
     selectElements.forEach(function (selectElement) {
-        var capacityInput = document.querySelector(selectElement.getAttribute('data-target'));
+        var ketKapasitas = document.querySelector(selectElement.getAttribute('data-target'));
+        var ketCukup = document.querySelector(selectElement.getAttribute('data-target2'));
+        var btnCart = document.querySelector(selectElement.getAttribute('data-target3'));
+        var btnReservasi = document.querySelector(selectElement.getAttribute('data-target4'));
         var pesertaInput = document.getElementById('peserta-cek');
         var pesertaValue = pesertaInput.value;
-        var keteranganKapasitas = document.getElementById('label-keterangan-kapasitas');
-        var btnCart = document.getElementById('addCart');
-        var btnPesan = document.getElementById('reservasi');
 
         selectElement.addEventListener('change', function () {
             var selectedOption = selectElement.options[selectElement.selectedIndex];
             var kapasitas_ruang = selectedOption.getAttribute('data-value');
-            capacityInput.value = kapasitas_ruang;
+            ketKapasitas.value = kapasitas_ruang;
 
-            if (kapasitas_ruang >= pesertaValue) {
-                capacityInput.classList.add('border', 'border-success');
-                capacityInput.classList.remove('border', 'border-danger');
-                keteranganKapasitas.style.color = 'green';
-                keteranganKapasitas.textContent = 'Kapasitas mencukupi untuk jumlah peserta (' + pesertaValue + ')';
-                keteranganKapasitas.hidden = false;
+            // jika kapasitas bisa menampung jumlah peserta
+            if (kapasitas_ruang >= parseInt(pesertaValue)) {
+                ketKapasitas.classList.add('border', 'border-success');
+                ketKapasitas.classList.remove('border', 'border-danger');
+                ketCukup.style.color = 'green';
+                ketCukup.textContent = 'Kapasitas mencukupi untuk jumlah peserta (' + pesertaValue + ')';
+                ketCukup.hidden = false;
                 btnCart.disabled = false;
-                btnPesan.disabled = false;
+                btnReservasi.disabled = false;
             } else {
-                capacityInput.classList.add('border', 'border-danger');
-                capacityInput.classList.remove('border', 'border-success');
-                keteranganKapasitas.style.color = 'red';
-                keteranganKapasitas.textContent = 'Kapasitas tidak mencukupi untuk jumlah peserta (' + pesertaValue + ')';
-                keteranganKapasitas.hidden = false;
+                ketKapasitas.classList.add('border', 'border-danger');
+                ketKapasitas.classList.remove('border', 'border-success');
+                ketCukup.style.color = 'red';
+                ketCukup.textContent = 'Kapasitas tidak mencukupi untuk jumlah peserta (' + pesertaValue + ')';
+                ketCukup.hidden = false;
                 btnCart.disabled = true;
-                btnPesan.disabled = true;
+                btnReservasi.disabled = true;
             }
         });
     });

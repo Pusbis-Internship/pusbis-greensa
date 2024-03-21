@@ -55,8 +55,7 @@
                                     <div class="peserta form-floating" name="peserta" id="peserta"
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta-cek"
-                                            placeholder="Jumlah Peserta" data-target="#date2" min="0"
-                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : 0 }}" />
+                                            placeholder="Jumlah Peserta" data-target="#date2" min="0" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : 0 }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>
@@ -342,7 +341,7 @@
 
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating">
-                                                                                    <select name="layout" id="select-layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}" required>
+                                                                                    <select name="layout" id="select-layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}" data-target2=".keterangan-input{{$index}}" data-target3=".btnCart{{$index}}" data-target4=".btnReservasi{{$index}}" data-target5=".jumlahPeserta{{$index}}" required>
                                                                                         <option value="" disabled selected>Pilih Layout</option>
                                                                                         @foreach ($train->layout_models as $layouts_model)
                                                                                             <option value="{{ $layouts_model->nama_layout }}" data-value="{{ $layouts_model->kapasitas }}">
@@ -360,7 +359,7 @@
                                                                                     <div class="input-group-text">PAX</div>
                                                                                     <label class="labelBook" for="capacityPax{{$index}}">Kapasitas</label>
                                                                                 </div>
-                                                                                <p id="label-keterangan-kapasitas" style="font-size: smaller;" hidden></p>
+                                                                                <p id="label-keterangan-kapasitas" class="keterangan-input{{$index}}" hidden></p>
                                                                             </div>
 
                                                                             <div class="col-12">
@@ -379,12 +378,12 @@
                                                                             </div>
 
                                                                             <div class="col-6">
-                                                                                <button type="submit" name="cart" id="addCart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3">
+                                                                                <button type="submit" name="cart" id="addCart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3 btnCart{{ $index }}" disabled>
                                                                                     Tambah Keranjang</button>
                                                                             </div>
 
                                                                             <div class="col-6">
-                                                                                <button type="submit" name="reservasi" id="reservasi" formaction="/reservasi" class="btn btn-success w-100 py-3"> 
+                                                                                <button type="submit" name="reservasi" id="reservasi" formaction="/reservasi" class="btn btn-success w-100 py-3 btnReservasi{{ $index }}" disabled> 
                                                                                     Reservasi Sekarang</button>
                                                                             </div>
 
