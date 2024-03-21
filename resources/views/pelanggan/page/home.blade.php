@@ -92,10 +92,10 @@
                                 <div class="col-md-3">
                                     <div class="peserta form-floating" name="peserta" id="peserta"
                                         data-target-input="nearest">
-                                        <input type="number" name="peserta" class="form-control" id="peserta"
+                                        <input type="number" name="peserta" class="form-control" id="peserta-cek"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
                                             max="999"
-                                            value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
+                                            value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : 0 }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>

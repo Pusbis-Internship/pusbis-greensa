@@ -44,11 +44,34 @@ window.addEventListener('DOMContentLoaded', function () {
     
     selectElements.forEach(function (selectElement) {
         var capacityInput = document.querySelector(selectElement.getAttribute('data-target'));
-        
+        var pesertaInput = document.getElementById('peserta-cek');
+        var pesertaValue = pesertaInput.value;
+        var keteranganKapasitas = document.getElementById('label-keterangan-kapasitas');
+        var btnCart = document.getElementById('addCart');
+        var btnPesan = document.getElementById('reservasi');
+
         selectElement.addEventListener('change', function () {
             var selectedOption = selectElement.options[selectElement.selectedIndex];
-            var kapasitas = selectedOption.getAttribute('data-value');
-            capacityInput.value = kapasitas;
+            var kapasitas_ruang = selectedOption.getAttribute('data-value');
+            capacityInput.value = kapasitas_ruang;
+
+            if (kapasitas_ruang >= pesertaValue) {
+                capacityInput.classList.add('border', 'border-success');
+                capacityInput.classList.remove('border', 'border-danger');
+                keteranganKapasitas.style.color = 'green';
+                keteranganKapasitas.textContent = 'Kapasitas mencukupi untuk jumlah peserta (' + pesertaValue + ')';
+                keteranganKapasitas.hidden = false;
+                btnCart.disabled = false;
+                btnPesan.disabled = false;
+            } else {
+                capacityInput.classList.add('border', 'border-danger');
+                capacityInput.classList.remove('border', 'border-success');
+                keteranganKapasitas.style.color = 'red';
+                keteranganKapasitas.textContent = 'Kapasitas tidak mencukupi untuk jumlah peserta (' + pesertaValue + ')';
+                keteranganKapasitas.hidden = false;
+                btnCart.disabled = true;
+                btnPesan.disabled = true;
+            }
         });
     });
 });

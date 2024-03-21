@@ -481,11 +481,6 @@ class GuestController extends Controller
 
         $query = Train::query();
 
-        if ($peserta !== null) {
-            $queryLayout = LayoutModels::where('kapasitas', '>=', $peserta)->pluck('train_id')->unique()->toArray();
-            $query->whereIn('id', $queryLayout);
-        }
-
         if (Auth::guard('guest')->check()) {
             // Get train_id from self cart
             $roomInCart = CartItem::where(function ($query) use ($dateIn) {

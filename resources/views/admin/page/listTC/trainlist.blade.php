@@ -1,19 +1,52 @@
 @extends('admin.layouts.index')
 
 <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        border-radius: 20px;
+    }
+
     .table {
         font-size: 0.7rem;
+    }
+
+    td {
+        padding: 12px 15px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    td {
+        background-color: #fff;
+        color: #666;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover td {
+        background-color: #f2f2f2;
     }
 </style>
 
 @section('content')
     <!-- content -->
     <div class="container">
-        <h2>TC List</h2>
+        <h4 class="mb-4">List Training Center</h4> <hr>
 
-        <a href="/admin-training-center-store" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Insert</a>
+        <a href="/admin-training-center-store" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Ruangan Baru</a>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Nama</th>
@@ -28,7 +61,7 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="orderTableBody">
                     @foreach ($trains as $train)
                         <tr>
                             <td>{{ $train->nama }}</td>

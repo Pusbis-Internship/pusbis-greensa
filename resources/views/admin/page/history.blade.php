@@ -68,7 +68,7 @@
     </style>
 
     <div class="container mb-5">
-        <h4 class="mb-4">History</h4>
+        <h4 class="mb-4">History</h4> <hr>
         <div class="row g-3">
             <div class="col-md-3">
                 <label for="formGroupExampleInput" class="form-label">Nama User</label>
@@ -154,8 +154,8 @@
                                         {{-- tipe pesanan dan buka lampiran --}}
                                         @if ($order->surat !== null)
                                             <td id="tipe"><a
-                                                    href="{{ asset('storage/posts/surat/' . $order->surat) }}"
-                                                    target="_blank">Komplimen</a></td>
+                                                    href="{{ asset('storage/posts/surat/' . $order->surat) }}" style="text-decoration: none;"
+                                                    target="_blank" class="text-white bg-primary p-1 rounded">Komplimen</a></td>
                                         @else
                                             @if ($order->bukti_pembayaran !== null)
                                                 <td id="tipe"><a

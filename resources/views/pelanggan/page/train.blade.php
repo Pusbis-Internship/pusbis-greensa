@@ -54,9 +54,9 @@
                                 <div class="col-md-3">
                                     <div class="peserta form-floating" name="peserta" id="peserta"
                                         data-target-input="nearest">
-                                        <input type="number" name="peserta" class="form-control" id="peserta"
+                                        <input type="number" name="peserta" class="form-control" id="peserta-cek"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0"
-                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
+                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : 0 }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>
@@ -342,7 +342,7 @@
 
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating">
-                                                                                    <select name="layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}" required>
+                                                                                    <select name="layout" id="select-layout" class="form-select select-dropdown" data-target=".capacity-input{{$index}}" required>
                                                                                         <option value="" disabled selected>Pilih Layout</option>
                                                                                         @foreach ($train->layout_models as $layouts_model)
                                                                                             <option value="{{ $layouts_model->nama_layout }}" data-value="{{ $layouts_model->kapasitas }}">
@@ -356,10 +356,11 @@
                                                                         
                                                                             <div class="col-md-6">
                                                                                 <div class="form-floating input-group">
-                                                                                    <input name="kapasitas" type="number" class="form-control capacity-input capacity-input{{$index}}" placeholder="Kapasitas" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
+                                                                                    <input name="kapasitas" id="kapasitas" type="number" class="form-control capacity-input capacity-input{{$index}}" placeholder="Kapasitas" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
                                                                                     <div class="input-group-text">PAX</div>
                                                                                     <label class="labelBook" for="capacityPax{{$index}}">Kapasitas</label>
                                                                                 </div>
+                                                                                <p id="label-keterangan-kapasitas" style="font-size: smaller;" hidden></p>
                                                                             </div>
 
                                                                             <div class="col-12">
@@ -378,12 +379,12 @@
                                                                             </div>
 
                                                                             <div class="col-6">
-                                                                                <button type="submit" name="cart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3">
+                                                                                <button type="submit" name="cart" id="addCart" formaction="/add-to-cart" class="btn btn-outline-success w-100 py-3">
                                                                                     Tambah Keranjang</button>
                                                                             </div>
 
                                                                             <div class="col-6">
-                                                                                <button type="submit" name="reservasi" formaction="/reservasi" class="btn btn-success w-100 py-3">
+                                                                                <button type="submit" name="reservasi" id="reservasi" formaction="/reservasi" class="btn btn-success w-100 py-3"> 
                                                                                     Reservasi Sekarang</button>
                                                                             </div>
 
@@ -457,8 +458,31 @@
                 $('.form-check-tipe').change(filterTrainCards);
             });
 
-
         </script>
+
+        {{-- js cek kapasitas --}}
+        {{-- <script>
+            var capacity = 20;
+            var dropdown = document.getElementById('select-layout');
+            var textInput = document.getElementById('kapasitas');
+
+            dropdown.addEventListener('change', function() {
+                var selectedCapacity = parseInt(dropdown.value);
+
+                if (selectedCapacity === 'Classroom') {
+                    textInput.classList.add('border', 'border-success');
+                    textInput.classList.remove('border', 'border-danger');
+                    textInput.value = 'Capacity is good';
+                } else if (selectedCapacity === 20) {
+                    textInput.classList.add('border', 'border-danger');
+                    textInput.classList.remove('border', 'border-success');
+                    textInput.value = 'Capacity overload';
+                } else {
+                    textInput.classList.remove('border', 'border-success', 'border-danger');
+                    textInput.value = '';
+                }
+            });
+        </script> --}}
 
     </section>
     <x-notify::notify class="notify-container" />

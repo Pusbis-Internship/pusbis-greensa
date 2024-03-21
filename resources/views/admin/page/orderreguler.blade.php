@@ -100,7 +100,7 @@
     </style>
 
     <div class="container">
-        <h1 class="mb-4">Admin - Show Order Reguler</h1>
+        <h4 class="mb-4">Order Reguler</h4> <hr>
         <div class="row g-3" style="position:relative;">
 
             <div class="col-md-3">
@@ -124,11 +124,6 @@
                 <input type="text" class="form-control form-control-sm" id="searchKegiatan" placeholder="Kegiatan">
             </div>
 
-            {{-- <input type="text" id="searchUser" placeholder="Nama user">
-        <input type="text" id="searchRuangan" placeholder="Ruangan">
-        <input type="date" id="searchTanggalAwal" placeholder="Tanggal awal">
-        <input type="date" id="searchTanggalAkhir" placeholder="Tanggal akhir">
-        <input type="text" id="searchKegiatan" placeholder="Nama kegiatan"> --}}
         </div>
         <div class="table-responsive">
             <table class="table">
