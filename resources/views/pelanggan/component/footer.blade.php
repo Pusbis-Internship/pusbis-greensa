@@ -5,11 +5,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h6>About</h6>
-                    <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the
-                        upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or
-                        snippets as the code wants to be simple. We will help programmers build up concepts in different
-                        programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL
-                        and Algorithm.</p>
+                    <p class="text-justify">GreenSA Inn adalah hotel dan training center UIN Sunan Ampel Surabaya. Hotel ini memadukan desain elegan, nyaman, dan bernuansa Islam. Menyediakan 66 kamar &23 meeting room yang tersebar di bangunan berlantai 5. GreenSA Inn berlokasi di Jl. Raya Juanda Sidoarjo, Jawa Timur. Kurang dari 10 menit dari bandara Internasional Juanda dan dekat dengan area bisnis utama kota. Dekat dengan Pusat Pameran Internasional Jatim, pusat perbelanjaan dan jalan tol Sidoarjo dan Gresik</p>
                 </div>
         
                 <div class="col-xs-6 col-md-3">
@@ -44,10 +40,10 @@
         
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
                     </ul>
                 </div>
             </div>
