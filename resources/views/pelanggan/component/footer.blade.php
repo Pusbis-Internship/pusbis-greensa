@@ -11,8 +11,9 @@
                 <div class="col-xs-6 col-md-3">
                     <h6>Categories</h6>
                     <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/category/c-language/">Rooms</a></li>
-                        <li><a href="http://scanfcode.com/category/front-end-development/">Training Center</a></li>
+                        {{-- <li><a href="http://scanfcode.com/category/c-language/">Rooms</a></li> --}}
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/training-center">Training Center</a></li>
         
                     </ul>
                 </div>
@@ -20,11 +21,11 @@
                 <div class="col-xs-6 col-md-3">
                     <h6>Quick Links</h6>
                     <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        {{-- <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
                         <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
                         <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li> --}}
                     </ul>
                 </div>
             </div>

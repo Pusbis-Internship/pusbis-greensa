@@ -131,10 +131,9 @@
 
                 <div class="col-lg-6">
                     {{-- <h6 class="section-title text-start text-success text-uppercase">About Us</h6> --}}
-                    <h2 class="mb-4">Welcome to <br> <span class="text-success text-uppercase fw-bolder">GreenSA &
+                    <h2 class="mb-3">Welcome to <br> <span class="text-success text-uppercase fw-bolder">GreenSA &
                             Training Center </span></h2>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    <p class="mb-4">GreenSA Inn adalah hotel dan training center UIN Sunan Ampel Surabaya. Hotel ini memadukan desain elegan, nyaman, dan bernuansa Islam. Menyediakan 66 kamar &23 meeting room yang tersebar di bangunan berlantai 5. GreenSA Inn berlokasi di Jl. Raya Juanda Sidoarjo, Jawa Timur. Kurang dari 10 menit dari bandara Internasional Juanda dan dekat dengan area bisnis utama kota. Dekat dengan Pusat Pameran Internasional Jatim, pusat perbelanjaan dan jala tol Sidoarjo dan Gresik
                     </p>
                     <div class="row g-3 pb-4">
                         <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
@@ -165,7 +164,9 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-success py-3 px-5 mt-2" href="">Explore More</a>
+                    <div class="text-center">
+                        <a class="btn btn-success py-3 px-5 mt-2" href="/training-center">Explore More</a>
+                    </div>
                 </div>
 
             </div>
@@ -174,7 +175,7 @@
     <!-- About End -->
 
 
-    <div class="container content-contacts mb-5">
+    <div class="container content-contacts mb-5" id="contact">
         <div class="heading mb-5 text-center ">
             <h2>Contact Us</h2>
         </div>
@@ -193,7 +194,7 @@
                         <i class="icon-contact fas fa-map-marker-alt mb-2 fs-3"></i>
                         <h5>Find Us</h5>
                         <p class="contact-text m-0 fw-lighter text-success">
-                            Jl. Contoh No. 123, Kota Anda
+                            Jl. Raya Juanda no. 86 Sedati Agung, Sedati, Kab. Sidoarjo, Jawa Timur 61253
                         </p>
                     </div>
                     <div class="px-0 d-flex align-items-center gap-2">
@@ -201,14 +202,14 @@
                             <i class="icon-contact fas fa-envelope mb-2"></i>
                             <h5>Mail Us</h5>
                             <p class="contact-text m-0 fw-lighter text-success">
-                                info@example.com
+                                greensainn@gmail.com
                             </p>
                         </div>
                         <div class="col-6 card border-0 p-3 shadow-sm">
                             <i class="icon-contact fas fa-phone mb-2"></i>
                             <h5>Call Us</h5>
                             <p class="contact-text m-0 fw-lighter text-success">
-                                +123 456 789
+                                (031)8668631
                             </p>
                         </div>
                     </div>
