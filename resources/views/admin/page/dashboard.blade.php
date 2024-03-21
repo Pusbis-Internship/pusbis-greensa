@@ -13,14 +13,14 @@
     <div class="card mb-4 text-white bg-dark">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold" id="order_pending">{{ $order_pending }} <span class="fs-6 fw-normal" hidden>
+          <div class="fs-5 fw-semibold" id="order_pending">{{ $order_pending }} <span class="fs-6 fw-normal" hidden>
             </span></div>
-          <div id="pendingall">Pending All </div>
-          <div class="fs-4 fw-semibold" id="pendingOrdersByMonth" style="display:none;">
+          <div id="pendingall">Pending</div>
+          <div class="fs-5 fw-semibold" id="pendingOrdersByMonth" style="display:none;">
             {{ $order_pending_month }}
             <span class="fs-6 fw-normal"></span>
           </div>
-          <div id="pendingmonth" hidden>Pending month </div>
+          <div id="pendingmonth" hidden>Pending (Month)</div>
         </div>
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,8 +35,11 @@
         </div>
       </div>
       <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-        <canvas class="chart" id="card-chart1" height="70" width="272" style="display: block; box-sizing: border-box; height: 70px; width: 272px;"></canvas>
-        <div class="chartjs-tooltip" style="opacity: 0; left: 283px; top: 144.339px;">
+        <div class="pending text-end me-2"  >
+          <i class="fas fa-hourglass-end opacity-50" style="font-size:3rem;"></i>
+        </div>
+        {{-- <canvas class="chart" id="card-chart1" height="70" width="272" style="display: block; box-sizing: border-box; height: 70px; width: 272px;"></canvas> --}}
+        {{-- <div class="chartjs-tooltip" style="opacity: 0; left: 283px; top: 144.339px;">
           <table style="margin: 0px;">
             <thead class="chartjs-tooltip-header">
               <tr class="chartjs-tooltip-header-item" style="border-width: 0px;">
@@ -49,7 +52,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
@@ -59,12 +62,12 @@
     <div class="card mb-4 text-white bg-info">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold" id="orderAcc">{{ $order_acc }} <span class="fs-6 fw-normal" hidden>
+          <div class="fs-5 fw-semibold" id="orderAcc">{{ $order_acc }} <span class="fs-6 fw-normal" hidden>
               </svg></span></div>
-          <div id="accall">Accepted All</div>
-          <div class="fs-4 fw-semibold" id="acceptedOrdersByMonth" style="display:none;">{{$total_accmonth}}<span class="fs-6 fw-normal">
+          <div id="accall">Accepted</div>
+          <div class="fs-5 fw-semibold" id="acceptedOrdersByMonth" style="display:none;">{{$total_accmonth}}<span class="fs-6 fw-normal">
               </svg></span></div>
-          <div id="accmonth" hidden>Accepted Month</div>
+          <div id="accmonth" hidden>Accepted (Month)</div>
         </div>
 
         <div class="dropdown">
@@ -80,7 +83,10 @@
         </div>
       </div>
       <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-        <canvas class="chart" id="card-chart2" height="70" width="272" style="display: block; box-sizing: border-box; height: 70px; width: 272px;"></canvas>
+        <div class="pending text-end " style="margin-top: -.5rem">
+          <i class="fas fa-check-circle opacity-50" style="font-size:4rem;"></i>
+        </div>
+        {{-- <canvas class="chart" id="card-chart2" height="70" width="272" style="display: block; box-sizing: border-box; height: 70px; width: 272px;"></canvas>
         <div class="chartjs-tooltip" style="opacity: 0; left: 283px; top: 130.25px;">
           <table style="margin: 0px;">
             <thead class="chartjs-tooltip-header">
@@ -94,7 +100,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
@@ -104,14 +110,14 @@
     <div class="card mb-4 text-white bg-danger">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold" id="order_rej">{{ $order_rej }} <span class="fs-6 fw-normal" hidden>
+          <div class="fs-5 fw-semibold" id="order_rej">{{ $order_rej }} <span class="fs-6 fw-normal" hidden>
             </span></div>
-          <div id="rejectall">Reject Keseluruhan</div>
-          <div class="fs-4 fw-semibold" id="rejectedOrdersByMonth" style="display:none;">
+          <div id="rejectall">Reject</div>
+          <div class="fs-5 fw-semibold" id="rejectedOrdersByMonth" style="display:none;">
             {{ $order_rejected_month }}
             <span class="fs-6 fw-normal"></span>
           </div>
-          <div id="rejectmonth" hidden>Reject Bulan ini</div>
+          <div id="rejectmonth" hidden>Reject (Month)</div>
         </div>
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,7 +132,10 @@
         </div>
       </div>
       <div class="c-chart-wrapper mt-3" style="height:70px;">
-        <canvas class="chart" id="card-chart3" height="70" width="304" style="display: block; box-sizing: border-box; height: 70px; width: 304px;"></canvas>
+        <div class="pending text-end me-3" style="margin-top: -.5rem">
+          <i class="fas fa-times-circle opacity-50" style="font-size:4rem;"></i>
+        </div>
+        {{-- <canvas class="chart" id="card-chart3" height="70" width="304" style="display: block; box-sizing: border-box; height: 70px; width: 304px;"></canvas> --}}
       </div>
     </div>
   </div>
@@ -136,10 +145,10 @@
     <div class="card mb-4 text-white bg-success">
       <div class="card-body pb-0 d-flex justify-content-between align-items-start">
         <div>
-          <div class="fs-4 fw-semibold" id="revenue">Rp {{ number_format($pendapatan, 0, ',', '.') }} <span class="fs-6 fw-normal"></span></div>
-          <div id="pendapatansemua">Pendapatan Keseluruhan </div>
-          <div class="fs-4 fw-semibold" id="revenueMonth" style="display:none;">Rp {{ number_format($pendapatan_month, 0, ',', '.') }} <span class="fs-6 fw-normal"></span></div>
-          <div id="revenueText" hidden>Pendapatan (Bulan ini)</div>
+          <div class="fs-5 fw-semibold" id="revenue">Rp {{ number_format($pendapatan, 0, ',', '.') }} <span class="fs-6 fw-normal"></span></div>
+          <div id="pendapatansemua">Income</div>
+          <div class="fs-5 fw-semibold" id="revenueMonth" style="display:none;">Rp {{ number_format($pendapatan_month, 0, ',', '.') }} <span class="fs-6 fw-normal"></span></div>
+          <div id="revenueText" hidden>Income (Month)</div>
         </div>
         <div class="dropdown">
           <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -154,7 +163,10 @@
         </div>
       </div>
       <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-        <canvas class="chart" id="card-chart4" height="70" width="272" style="display: block; box-sizing: border-box; height: 70px; width: 272px;"></canvas>
+        <div class="pending text-end " style="margin-top: -.5rem">
+          <i class="fas fa-money-bill-wave opacity-50" style="font-size:4rem;"></i>
+        </div>
+        {{-- <canvas class="chart" id="card-chart4" height="70" width="272" style="display: block; box-sizing: border-box; height: 70px; width: 272px;"></canvas> --}}
       </div>
     </div>
   </div>

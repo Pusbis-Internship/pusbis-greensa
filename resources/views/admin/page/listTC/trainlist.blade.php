@@ -42,7 +42,8 @@
 @section('content')
     <!-- content -->
     <div class="container">
-        <h4 class="mb-4">List Training Center</h4> <hr>
+        <h4 class="mb-4">List Training Center</h4>
+        <hr>
 
         <a href="/admin-training-center-store" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Ruangan Baru</a>
         <div class="table-responsive">
@@ -77,11 +78,15 @@
                                     class="img-fluid rounded" alt="Train Image" width="100"></td>
 
                             <td class="d-flex justify-content-center">
-                                <form class="mt-3" action="/admin-training-center-delete/{{ $train->id }}" method="POST"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                <form class="mt-3" action="/admin-training-center-delete/{{ $train->id }}"
+                                    method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                     @csrf
-                                    <a href="{{ route('train.showedit', $train->id) }}" class="btn btn-warning me-1"><i class="fas fa-pen text-white py-1"></i></a>
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash text-white py-1"></i></button>
+                                    <div class="d-flex align-items-center">
+                                        <a href="{{ route('train.showedit', $train->id) }}" class="btn btn-warning me-1"><i
+                                                class="fas fa-pen text-white py-1"></i></a>
+                                        <button type="submit" class="btn btn-danger"><i
+                                                class="fas fa-trash text-white py-1"></i></button>
+                                    </div>
                                 </form>
                             </td>
 
