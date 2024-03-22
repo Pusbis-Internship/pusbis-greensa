@@ -19,6 +19,8 @@ return new class extends Migration
             $table->date('checkin');
             $table->date('checkout');
             $table->integer('lama');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->bigInteger('harga');
             $table->string('status');
             $table->string('special')->nullable();

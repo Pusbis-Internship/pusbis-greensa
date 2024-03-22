@@ -38,21 +38,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// // MODAL set Capacity PAX
-// window.addEventListener('DOMContentLoaded', function () {
-//     var selectElements = document.querySelectorAll('.select-dropdown');
-    
-//     selectElements.forEach(function (selectElement) {
-//         var capacityInput = document.querySelector(selectElement.getAttribute('data-target'));
-        
-//         selectElement.addEventListener('change', function () {
-//             var selectedOption = selectElement.options[selectElement.selectedIndex];
-//             var kapasitas = selectedOption.getAttribute('data-value');
-//             capacityInput.value = kapasitas;
-//         });
-//     });
-// });
-
 // MODAL set Capacity PAX
 window.addEventListener('DOMContentLoaded', function () {
     var selectElements = document.querySelectorAll('.select-dropdown');
@@ -91,6 +76,39 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// jam Selesai otomatis 8 jam setelah jam Mulai
+// Get all the input elements with the name 'jam_mulai' and 'jam_selesai'
+const jamMulaiInputs = document.querySelectorAll('[name="jam_mulai"]');
+const jamSelesaiInputs = document.querySelectorAll('[name="jam_selesai"]');
+
+// Add event listeners to the 'jamMulaiInputs' for change events
+jamMulaiInputs.forEach(function(jamMulaiInput, index) {
+    jamMulaiInput.addEventListener('change', function() {
+        // Get the selected time from the current 'jamMulaiInput'
+        const jamMulaiValue = jamMulaiInput.value;
+
+        // Calculate the time 8 hours after 'jamMulaiValue'
+        const jamSelesaiValue = calculateJamSelesai(jamMulaiValue);
+
+        // Update the corresponding 'jam_selesai' input value
+        jamSelesaiInputs[index].value = jamSelesaiValue;
+    });
+});
+
+// Function to calculate 'jam_selesai' value
+function calculateJamSelesai(jamMulai) {
+    // Convert 'jamMulai' to a Date object
+    const jamMulaiTime = new Date(`2000-01-01T${jamMulai}`);
+
+    // Add 8 hours to 'jamMulaiTime'
+    jamMulaiTime.setHours(jamMulaiTime.getHours() + 8);
+
+    // Format the 'jam_selesai' time as "HH:MM"
+    const jamSelesai = jamMulaiTime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+
+    return jamSelesai;
+}
 
 // CAPACITY IN DETAIL
 document.addEventListener('DOMContentLoaded', function () {

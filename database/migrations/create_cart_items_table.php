@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('layout');
             $table->date('checkin');
             $table->integer('lama');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->date('checkout');
             $table->bigInteger('harga');
             $table->string('special')->nullable();

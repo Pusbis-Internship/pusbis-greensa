@@ -362,6 +362,22 @@
                                                                                 <p id="label-keterangan-kapasitas" class="keterangan-input{{$index}}" hidden></p>
                                                                             </div>
 
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-floating">
+                                                                                    <input name="jam_mulai" id="jam_mulai" type="time" class="form-control" placeholder="jam mulai" data-target=".time-input{{$index}}" required>
+                                                                                    <label class="labelBook" for="jam_mulai{{$index}}">jam mulai <span class="text-danger">*</span></label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-floating input-group">
+                                                                                    <input name="jam_selesai" id="jam_selesai" type="time" class="form-control time-input time-input{{$index}}" placeholder="jam selesai" readonly style="background-color: #e2e2e2; cursor: not-allowed;">
+                                                                                    <div class="input-group-text">WIB</div>
+                                                                                    <label class="labelBook" for="capacityPax{{$index}}">jam selesai</label>
+                                                                                </div>
+                                                                                <p id="label-keterangan-kapasitas" class="keterangan-input{{$index}}" hidden></p>
+                                                                            </div>
+
                                                                             <div class="col-12">
                                                                                 <div class="form-floating">
                                                                                     <textarea name="special" class="form-control" placeholder="Special Request" id="message"></textarea>
