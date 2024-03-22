@@ -128,6 +128,7 @@
                                 <th>Kegiatan</th>
                                 <th>Status</th>
                                 <th>Tipe</th>
+                                <th>Info</th>
                             </tr>
                         </thead>
                         <tbody id="orderTableBody">
@@ -155,17 +156,45 @@
                                         @if ($order->surat !== null)
                                             <td id="tipe"><a
                                                     href="{{ asset('storage/posts/surat/' . $order->surat) }}" style="text-decoration: none;"
-                                                    target="_blank" class="text-white bg-primary p-1 rounded">Komplimen</a></td>
+                                                    target="_blank" class="text-white bg-primary p-2 rounded">Komplimen</a></td>
                                         @else
                                             @if ($order->bukti_pembayaran !== null)
                                                 <td id="tipe"><a
                                                         href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" style="text-decoration: none;"
-                                                        target="_blank" class="text-white bg-primary p-1 rounded">Reguler</a></td>
+                                                        target="_blank" class="text-white bg-primary p-2 rounded">Reguler</a></td>
                                             @else
                                                 <td id="tipe">Reguler</td>
                                             @endif
                                         @endif
+
+                                        <td><a href="/" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $item->id }}">Detail</a></td>
                                     </tr>
+
+                                    {{-- Modal detail --}}
+                                    <div class="modal fade" id="modalDetail{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <!-- Modal content -->
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Detail Pesanan - Komplimen</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>Pemesan: {{ $order->guest->name }}</h6>
+                                                <h6>Kegiatan: {{ $order->nama_kegiatan }}</h6>
+                                                <h6>Ruangan: {{ $item->train->nama }}</h6>
+                                                <h6>Layout: {{ $item->layout }}</h6>
+                                                <h6>Checkin: {{ $item->checkin }}</h6>
+                                                <h6>Checkout: {{ $item->checkout }}</h6>
+                                                <h6>Jam Mulai: {{ $item->jam_mulai }}</h6>
+                                                <h6>Jam Selesai: {{ $item->jam_selesai }}</h6>
+                                                <h6>Harga: {{ $item->harga }}</h6>
+                                                <h6>Metode Pembayaran: {{ $order->metode_pembayaran }}</h6>
+                                                <h6>Special Request: {{ $item->special }}</h6>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             @endforeach
                         </tbody>

@@ -782,6 +782,8 @@ class GuestController extends Controller
                 'checkin'       => $item->checkin,
                 'checkout'      => $item->checkout,
                 'lama'          => $item->lama,
+                'jam_mulai'     => $item->jam_mulai,
+                'jam_selesai'   => $item->jam_selesai,
                 'harga'         => $item->harga,
                 'special'       => $item->special,
                 'status'        => 'Pending',
@@ -816,6 +818,8 @@ class GuestController extends Controller
                 'checkin'       => $item->checkin,
                 'checkout'      => $item->checkout,
                 'lama'          => $item->lama,
+                'jam_mulai'     => $item->jam_mulai,
+                'jam_selesai'   => $item->jam_selesai,
                 'harga'         => $item->harga,
                 'special'       => $item->special,
                 'status'        => 'Pending',
@@ -854,6 +858,8 @@ class GuestController extends Controller
             'checkin'       => $request->checkin,
             'checkout'      => $checkout,
             'lama'          => $request->lamaHari,
+            'jam_mulai'     => $request->jam_mulai,
+            'jam_selesai'     => $request->jam_selesai,
             'harga'         => $request->harga,
             'special'       => $request->special,
         ];
@@ -892,6 +898,8 @@ class GuestController extends Controller
             'checkout'      => $item['checkout'],
             'lama'          => $item['lama'],
             'harga'         => $item['harga'],
+            'jam_mulai'     => $item['jam_mulai'],
+            'jam_selesai'   => $item['jam_selesai'],
             'special'       => $item['special'],
             'status'        => 'Pending',
         ]);
@@ -902,6 +910,7 @@ class GuestController extends Controller
     public function checkoutRegulerLangsung(Request $request)
     {
         $item = json_decode($request->input('item'), true);
+        
 
         $order = Order::create([
             'guest_id'      => $item['guest_id'],
@@ -917,6 +926,8 @@ class GuestController extends Controller
             'checkout'      => $item['checkout'],
             'lama'          => $item['lama'],
             'harga'         => $item['harga'],
+            'jam_mulai'     => $item['jam_mulai'],
+            'jam_selesai'   => $item['jam_selesai'],
             'nama_kegiatan' => $request->nama_kegiatan,
             'special'       => $item['special'],
             'status'        => 'Pending',

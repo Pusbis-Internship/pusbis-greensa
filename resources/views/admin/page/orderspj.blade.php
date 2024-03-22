@@ -153,7 +153,7 @@
                     <th>Check-Out</th>
                     <th>Harga</th>
                     <th>Kegiatan</th>
-                    <th>SPJ</th>
+                    <th colspan="2">Info</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -169,7 +169,8 @@
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
 
-                    <td><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>Lihat</a></td>
+                    <td><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>SPJ</a></td>
+                    <td><a href="/" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $item->id }}">Detail</a></td>
 
                     <td>
                         <form action="">
@@ -186,6 +187,31 @@
                     </td>
 
                 </tr>
+
+                {{-- Modal detail --}}
+                <div class="modal fade" id="modalDetail{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <!-- Modal content -->
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Detail Pesanan - Komplimen</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Pemesan: {{ $order->guest->name }}</h6>
+                            <h6>Kegiatan: {{ $order->nama_kegiatan }}</h6>
+                            <h6>Ruangan: {{ $item->train->nama }}</h6>
+                            <h6>Layout: {{ $item->layout }}</h6>
+                            <h6>Checkin: {{ $item->checkin }}</h6>
+                            <h6>Checkout: {{ $item->checkout }}</h6>
+                            <h6>Jam Mulai: {{ $item->jam_mulai }}</h6>
+                            <h6>Jam Selesai: {{ $item->jam_selesai }}</h6>
+                            <h6>Harga: {{ $item->harga }}</h6>
+                            <h6>Special Request: {{ $item->special }}</h6>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
                 @endforeach
             </tbody>
