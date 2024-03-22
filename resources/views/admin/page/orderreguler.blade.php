@@ -169,16 +169,18 @@
                                     <form action="">
                                         @csrf
                                     </form>
-                                    <form action="{{ route('admin.order.acc', $item->id) }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <button type="submit" class="action-button"><i class="fas fa-check"></i></button>
-                                    </form>
-                                    <form action="{{ route('admin.order.reject', $item->id) }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <button type="submit" class="action-button"><i class="fas fa-times"></i></button>
-                                    </form>
+                                    <div class="d-flex align-items-center">
+                                        <form action="{{ route('admin.order.acc', $item->id) }}" method="POST"
+                                            style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="action-button"><i class="fas fa-check"></i></button>
+                                        </form>
+                                        <form action="{{ route('admin.order.reject', $item->id) }}" method="POST"
+                                            style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="action-button"><i class="fas fa-times"></i></button>
+                                        </form>
+                                    </div>
                                 </td>
 
                             </tr>

@@ -194,7 +194,7 @@
                         <i class="icon-contact fas fa-map-marker-alt mb-2 fs-3"></i>
                         <h5>Find Us</h5>
                         <p class="contact-text m-0 fw-lighter text-success">
-                            Jl. Raya Juanda no. 86 Sedati Agung, Sedati, Kab. Sidoarjo, Jawa Timur 61253
+                            Jl. Raya Juanda no. 86 Sedati Agung, Sedati, Kab. Sidoarjo, <br> Jawa Timur 61253
                         </p>
                     </div>
                     <div class="px-0 d-flex align-items-center gap-2">

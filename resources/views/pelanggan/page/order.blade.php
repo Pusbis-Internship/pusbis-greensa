@@ -209,7 +209,7 @@
 
                             {{-- jika di-acc --}}
                             @if ($order->items->every(function ($item) {return $item->status === 'Accepted';}))
-                                <a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" class="btn btn-primary w-75" target="_blank">Lihat Bukti Pembayaran</a>
+                                <a href="{{ asset('storage/posts/bukti/' . $order->bukti_pembayaran) }}" class="btn btn-primary w-75" target="_blank">Bukti </a>
                             @endif
 
                             {{-- jika di-reject --}}

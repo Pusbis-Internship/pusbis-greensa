@@ -73,7 +73,7 @@
                         <img src="{{ asset('assets/images/BSI.png') }}" alt="" class="mt-3" style="width: 30%">
                         <h5 class="m-0 mt-4">030-098-0976</h5>
                         <p class="text-secondary">a/n Greensa</p>
-                        <p class="m-0 mt-5"><span class="fw-bold text-success">Bukti pembayaran sudah terkirim.</span>
+                        <p class="m-0 my-5"><span class="fw-bold text-success">Bukti pembayaran sudah terkirim.</span>
                             <br>Menunggu konfirmasi dari admin</p>
                     </div>
                 @else
@@ -82,7 +82,7 @@
                         <img src="{{ asset('assets/images/BTN.png') }}" alt="" class="mt-5" style="width: 30%">
                         <h5 class="m-0 mt-4">030-098-0976</h5>
                         <p class="text-secondary">a/n Greensa</p>
-                        <p class="m-0 mt-5"><span class="fw-bold text-success">Bukti pembayaran sudah terkirim.</span>
+                        <p class="m-0 my-5"><span class="fw-bold text-success">Bukti pembayaran sudah terkirim.</span>
                             <br>Menunggu konfirmasi dari admin</p>
                     </div>
                 @endif

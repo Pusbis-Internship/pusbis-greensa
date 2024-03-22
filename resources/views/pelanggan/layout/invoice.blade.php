@@ -38,8 +38,8 @@
                         </address>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-sm-6 col-md-8">
+                <div class="row mb-3 d-flex align-items-center">
+                    <div class="col-12 col-sm-6 col-md-7">
                         <h4>Bill To</h4>
                         <address>
                             <strong>Greensa Inn & Training Center</strong><br>
@@ -50,22 +50,18 @@
                             Email: greensainn@gmail.com
                         </address>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4">
+                    <div class="col-12 col-sm-6 col-md-5">
                         <h4 class="row">
                             <span class="col-6">Invoice </span>
                             {{-- <span class="col-6 text-sm-end">INT-001</span> --}}
                         </h4>
                         <div class="row">
-                            <span class="col-6">Account</span>
-                            <span class="col-6 text-sm-end">786-54984</span>
                             <span class="col-6">Kegiatan</span>
-                            <span class="col-6 text-sm-end"><strong>{{ $namaKegiatan }}</strong></span>
+                            <span class="col-6 text-sm-end"><strong>: {{ $namaKegiatan }}</strong></span>
                             <span class="col-6">Order ID</span>
-                            <span class="col-6 text-sm-end">#9742</span>
-                            <span class="col-6">Invoice Date</span>
-                            <span class="col-6 text-sm-end">12/10/2025</span>
-                            <span class="col-6">Due Date</span>
-                            <span class="col-6 text-sm-end">18/12/2025</span>
+                            <span class="col-6 text-sm-end">: {{ $order->id }}</span>
+                            <span class="col-6">Tanggal Invoice</span>
+                            <span class="col-6 text-sm-end">: 12/10/2025</span>
                         </div>
                     </div>
                 </div>

@@ -140,7 +140,7 @@
                 <div class="col-12 text-center mb-4">
                     <h2 class="fw-bolder">Training Center</h2>
                     <span class="sub-title fs-5">Berkegiatan bersama-sama dengan nyaman</span>
-                </div>
+                </div>z
                 <div class="row mb-5 d-flex align-items-center text-center">
                     <div class="col-md-4 col-sm-6 col-12 gy-md-0 mt-md-3 mt-5">
                         <div class="card border-0 p-2">
