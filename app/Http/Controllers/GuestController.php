@@ -142,7 +142,7 @@ class GuestController extends Controller
             ->where('token', $request->token)
             ->first();
 
-        if (!$updatePassword || Carbon::parse($updatePassword->created_at)->addMinutes(1)->isPast()) {
+        if (!$updatePassword || Carbon::parse($updatePassword->created_at)->addMinutes(3)->isPast()) {
             // Redirect kembali ke halaman reset password dengan pesan error
             return redirect("/forgot-password")->with('error', 'Token kadaluarsa, mohon kirim ulang email anda');
         }
