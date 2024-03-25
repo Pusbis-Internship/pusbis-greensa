@@ -84,13 +84,13 @@
                                             placeholder="name@example.com" required>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <label for="password" class="form-label">Sandi <span
+                                        <label for="password" class="form-label">Kata Sandi <span
                                                 class="text-danger">*</span></label>
                                         <input type="password" class="form-control" name="password" id="password"
                                             minlength="8" placeholder="Masukkan password" required>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <label for="password" class="form-label">Konfirmasi Sandi <span
+                                        <label for="password" class="form-label">Konfirmasi Kata Sandi <span
                                                 class="text-danger">*</span></label>
                                         <input type="password" class="form-control" name="password_repeat"
                                             id="password_repeat" value="" placeholder="Masukkan password" required>

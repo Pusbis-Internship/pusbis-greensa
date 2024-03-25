@@ -29,7 +29,7 @@
                                     <input type="email" class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="username" id="email" placeholder="name@example.com" required>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                    <label for="password" class="form-label">Kata Sandi <span class="text-danger">*</span></label>
                                     <input type="password" class="form-control {{ $errors->has('password') ? 'error' : '' }}" name="password" id="password" value="" placeholder="Masukkan password" required>
                                 </div>
                                 
@@ -47,7 +47,7 @@
                                 <hr class=" mb-2 border-secondary-subtle">
                                 <div class="d-flex px-0 gap-2 gap-md-5 flex-column flex-md-row justify-content-md-evenly">
                                     <a href="/register" method="GET" class="link-secondary text-decoration-none">Buat Akun</a>
-                                    <a href="/forgot-password" class="link-secondary text-decoration-none">Lupa Password</a>
+                                    <a href="/forgot-password" class="link-secondary text-decoration-none">Lupa Kata Sandi?</a>
                                 </div>
                             </div>
                         </div>
