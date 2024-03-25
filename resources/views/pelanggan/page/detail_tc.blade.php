@@ -35,7 +35,8 @@
 
                                 <div class="col-md-3">
                                     <div class="date form-floating " id="date1" data-target-input="nearest">
-                                        <input type="date" name="dateIn" class="form-control" id="check-in" placeholder="Check in" data-target="#date1"
+                                        <input type="date" name="dateIn" class="form-control" id="check-in"
+                                            placeholder="Check in" data-target="#date1"
                                             value="{{ isset($_POST['dateIn']) ? $_POST['dateIn'] : $currentDate->format('Y-m-d') }}"
                                             min="{{ $currentDate->format('Y-m-d') }}" />
                                         <label class="labelBook" for="check-in">Check-in</label>
@@ -45,8 +46,8 @@
                                 <div class="col-md-3">
                                     <div class="hari form-floating " id="hari" data-target-input="nearest">
                                         <input type="number" name="lama" class="form-control" id="hari"
-                                            placeholder="Lama Hari" value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}" data-target="#date2" min="1"
-                                            max="999" />
+                                            placeholder="Lama Hari" value="{{ isset($_POST['lama']) ? $_POST['lama'] : 1 }}"
+                                            data-target="#date2" min="1" max="999" />
                                         <label class="labelBook" for="hari">Lama Hari</label>
                                     </div>
                                 </div>
@@ -55,8 +56,8 @@
                                     <div class="peserta form-floating" name="peserta" id="peserta"
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
-                                            placeholder="Jumlah Peserta" data-target="#date2" min="0"
-                                            max="999" value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
+                                            placeholder="Jumlah Peserta" data-target="#date2" min="0" max="999"
+                                            value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>
@@ -85,35 +86,35 @@
 
                 <div class="col-md-6">
                     <div class="row mb-1">
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}"
-                            data-toggle="lightbox" data-gallery="example-gallery" class="col-12 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}" class="img-fluid">
+                        <a class="col-12 column-img img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}"
+                                class="img-fluid">
                         </a>
                     </div>
 
                     <div class="row g-1">
-                        
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" data-toggle="lightbox" data-gallery="example-gallery"
-                            class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" class="img-fluid">
+
+                        <a class="col-4 column-img img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}"
+                                class="img-fluid">
                         </a>
 
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" data-toggle="lightbox" data-gallery="example-gallery"
-                            class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" class="img-fluid">
+                        <a class="col-4 column-img img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}"
+                                class="img-fluid">
                         </a>
 
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" data-toggle="lightbox" data-gallery="example-gallery"
-                            class="col-4 column-img img-fluid">
-                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" class="img-fluid">
+                        <a class="col-4 column-img img-fluid">
+                            <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}"
+                                class="img-fluid">
                         </a>
-                        
+
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-4">
                     <div class="small mb-1">SKU: BST-498</div>
-                    <h1 class="display-5 fw-bolder" style="text-transform:uppercase" >{{ $train->nama }}</h1>
+                    <h1 class="display-5 fw-bolder" style="text-transform:uppercase">{{ $train->nama }}</h1>
                     <div class="facilities mb-3">
                         <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i>
                             Sound</span>
@@ -125,10 +126,11 @@
                             Conditioner</span>
                     </div>
                     <div class="fw-medium">
-                        <span class="text-decoration-line-through">Rp {{ number_format($train->harga * 0.75, 0, ',', '.')}}</span>
+                        <span class="text-decoration-line-through">Rp
+                            {{ number_format($train->harga * 0.75, 0, ',', '.') }}</span>
                     </div>
                     <div class="fs-3 fw-bolder text-success mb-3">
-                        <span>Rp {{ number_format($train->harga, 0, ',', '.')}}</span>
+                        <span>Rp {{ number_format($train->harga, 0, ',', '.') }}</span>
                     </div>
                     <div class="lantai d-flex align-items-center mb-1">
                         <div class="col-6">
@@ -166,35 +168,39 @@
                     </div>
 
                     @guest('guest')
-                    <div class="d-flex">
-                        <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal" data-bs-target="#modalBookNotLogin">
-                            <i class="bi-cart-fill me-1"></i>
-                            Reservasi
-                        </button>
-                    </div>
+                        <div class="d-flex">
+                            <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal"
+                                data-bs-target="#modalBookNotLogin">
+                                <i class="bi-cart-fill me-1"></i>
+                                Reservasi
+                            </button>
+                        </div>
                     @endguest
 
                     @auth('guest')
-                    <div class="d-flex">
-                        <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal" data-bs-target="#modalBookLogin">
-                            <i class="bi-cart-fill me-1"></i>
-                            Reservasi
-                        </button>
-                    </div>
+                        <div class="d-flex">
+                            <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal"
+                                data-bs-target="#modalBookLogin">
+                                <i class="bi-cart-fill me-1"></i>
+                                Reservasi
+                            </button>
+                        </div>
                     @endauth
-                    
-                    <a href="#denah" class="btn btn-primary flex-shrink-0 w-100 my-3"> 
+
+                    <a href="#denah" class="btn btn-primary flex-shrink-0 w-100 my-3">
                         <i class="bi bi-geo-fill me-1"></i>Lihat Denah Ruangan
                     </a>
 
                     {{-- Modal not login --}}
-                    <div class="modal fade" id="modalBookNotLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalBookNotLogin" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
 
                                 <div class="modal-header">
                                     <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
 
                                 <div class="modal-body">
@@ -208,16 +214,16 @@
                                                 </h6>
                                             </div>
 
-                                            <div class="col-lg-12"> 
+                                            <div class="col-lg-12">
                                                 <div class="row g-3">
                                                     <div class="col-6">
-                                                        <button class="btn btn-outline-success w-100 py-3" data-bs-dismiss="modal"
-                                                        type="button">Kembali</button>
+                                                        <button class="btn btn-outline-success w-100 py-3"
+                                                            data-bs-dismiss="modal" type="button">Kembali</button>
                                                     </div>
                                                     <div class="col-6">
                                                         <form action="/login" method="GET">
                                                             <button class="btn btn-success w-100 py-3" type="submit">
-                                                            Login</button>
+                                                                Login</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -231,21 +237,17 @@
                     </div>
                     {{-- Modal not login --}}
 
-                    {{-- Modal login --}}
-
-                    {{-- Modal login --}}
-
                 </div>
 
                 <div class="col-12 text-center mt-5 denah" id="denah">
                     <h2 class="fw-bold mb-4">DENAH RUANGAN</h2>
-                    <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}" alt="" class="w-100">
+                    <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
+                        alt="" class="w-100">
                 </div>
-                
+
             </div>
         </div>
 
 
     </section>
-
 @endsection
