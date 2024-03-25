@@ -1,5 +1,5 @@
 @extends('pelanggan.layout.index')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @section('content')
     <!-- Banner Start -->
     <div class="container-fluid p-0 mb-5">
@@ -86,7 +86,7 @@
 
                 <div class="col-md-6">
                     <div class="row mb-1">
-                        <a class="col-12 column-img img-fluid">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}" class="col-12 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
@@ -94,17 +94,17 @@
 
                     <div class="row g-1">
 
-                        <a class="col-4 column-img img-fluid">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" class="col-4 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
 
-                        <a class="col-4 column-img img-fluid">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" class="col-4 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
 
-                        <a class="col-4 column-img img-fluid">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" class="col-4 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
@@ -113,7 +113,6 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <div class="small mb-1">SKU: BST-498</div>
                     <h1 class="display-5 fw-bolder" style="text-transform:uppercase">{{ $train->nama }}</h1>
                     <div class="facilities mb-3">
                         <span class="badge bg-light text-dark text-wrap"> <i class="fa-solid fa-volume-high me-1"></i>
@@ -247,7 +246,7 @@
 
             </div>
         </div>
-
-
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
