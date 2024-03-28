@@ -1,5 +1,8 @@
 @extends('pelanggan.layout.index')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
+    integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 @section('content')
     <!-- Banner Start -->
     <div class="container-fluid p-0 mb-5">
@@ -86,7 +89,8 @@
 
                 <div class="col-md-6">
                     <div class="row mb-1">
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}" class="col-12 column-img img-fluid" data-lightbox="roadtrip">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}"
+                            class="col-12 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'utama')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
@@ -94,17 +98,20 @@
 
                     <div class="row g-1">
 
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}" class="col-4 column-img img-fluid" data-lightbox="roadtrip">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}"
+                            class="col-4 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa1')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
 
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}" class="col-4 column-img img-fluid" data-lightbox="roadtrip">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}"
+                            class="col-4 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa2')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
 
-                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}" class="col-4 column-img img-fluid" data-lightbox="roadtrip">
+                        <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}"
+                            class="col-4 column-img img-fluid" data-lightbox="roadtrip">
                             <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'biasa3')->value('gambar')) }}"
                                 class="img-fluid">
                         </a>
@@ -165,27 +172,12 @@
                             </fieldset>
                         </div>
                     </div>
-
-                    @guest('guest')
-                        <div class="d-flex">
-                            <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modalBookNotLogin">
-                                <i class="bi-cart-fill me-1"></i>
-                                Reservasi
-                            </button>
-                        </div>
-                    @endguest
-
-                    @auth('guest')
-                        <div class="d-flex">
-                            <button class="btn btn-success flex-shrink-0 w-100" type="submit" data-bs-toggle="modal"
-                                data-bs-target="#modalBookLogin">
-                                <i class="bi-cart-fill me-1"></i>
-                                Reservasi
-                            </button>
-                        </div>
-                    @endauth
-
+                    <div class="d-flex">
+                        <a href="#layout" class="btn btn-success flex-shrink-0 w-100">
+                            <i class="bi bi-grid-1x2-fill me-1"></i>
+                            Layout Ruang
+                        </a>
+                    </div>
                     <a href="#denah" class="btn btn-primary flex-shrink-0 w-100 my-3">
                         <i class="bi bi-geo-fill me-1"></i>Lihat Denah Ruangan
                     </a>
@@ -240,13 +232,45 @@
 
                 <div class="col-12 text-center mt-5 denah" id="denah">
                     <h2 class="fw-bold mb-4">DENAH RUANGAN</h2>
-                    <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
-                        alt="" class="w-100">
+                    <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
+                        data-lightbox="denah">
+                        <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
+                            alt="" class="w-100">
+                    </a>
+                </div>
+                <div class="col-12 text-center mt-5 layout" id="denah">
+                    <h2 class="fw-bold mb-4">Layout Ruang</h2>
+                    <div class="row">
+                        <div class="col-md-3 col-6">
+                            <a href="{{ asset('assets/images/layout_ruang/CLASSROOM.png') }}" data-lightbox="layout">
+                                <img src="{{ asset('assets/images/layout_ruang/CLASSROOM.png') }}" alt="CLASSROOM"
+                                    class="w-100">
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="{{ asset('assets/images/layout_ruang/TEATER.png') }}" data-lightbox="layout"></a>
+                            <img src="{{ asset('assets/images/layout_ruang/TEATER.png') }}" alt="TEATER"
+                                class="w-100">
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="{{ asset('assets/images/layout_ruang/ROUND TABLE.png') }}"
+                                data-lightbox="layout"></a>
+                            <img src="{{ asset('assets/images/layout_ruang/ROUND TABLE.png') }}" alt="ROUND TABLE"
+                                class="w-100">
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="{{ asset('assets/images/layout_ruang/U-SHAPE.png') }}" data-lightbox="layout"></a>
+                            <img src="{{ asset('assets/images/layout_ruang/U-SHAPE.png') }}" alt="U-SHAPE"
+                                class="w-100">
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+        integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection

@@ -55,17 +55,17 @@
             <ul class="navbar-nav ms-0 gap-2 me-4">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
-                        href="/">Home</a>
+                        href="/">Beranda</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'training-center' ? 'active' : '' }}"
                         href="/training-center">Training Center</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == 'about' ? 'active' : '' }}" href="/about">About</a>
+                    <a class="nav-link {{ Request::path() == 'about' ? 'active' : '' }}" href="/about">Tentang Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == 'package' ? 'active' : '' }}" href="/package">Package</a>
+                    <a class="nav-link {{ Request::path() == 'package' ? 'active' : '' }}" href="/package">Paket</a>
                 </li>
             </ul>
         </div>

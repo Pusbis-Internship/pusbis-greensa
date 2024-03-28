@@ -10,7 +10,7 @@
         border-radius: 20px;
     }
     .table{
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
     th,
@@ -153,7 +153,7 @@
                     <th>Check-Out</th>
                     <th>Harga</th>
                     <th>Kegiatan</th>
-                    <th colspan="2">Info</th>
+                    <th>Info</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -169,7 +169,7 @@
                     <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                     <td id="namaKegiatan">{{$order->nama_kegiatan}}</td>
 
-                    <td><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>SPJ</a></td>
+                    {{-- <td><a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-primary" view>SPJ</a></td> --}}
                     <td><a href="/" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalDetail{{ $item->id }}">Detail</a></td>
 
                     <td>
@@ -198,7 +198,76 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <h6>Pemesan: {{ $order->guest->name }}</h6>
+                            <div class="row g-3 mb-3">
+                                <div class="col-4">
+                                    Pemesan
+                                </div>
+                                <div class="col-8">
+                                    : {{ $order->guest->name }}
+                                </div>
+                                <div class="col-4">
+                                    Kegiatan
+                                </div>
+                                <div class="col-8">
+                                    : {{ $order->nama_kegiatan }}
+                                </div>
+                                <div class="col-4">
+                                    Ruangan
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->train->nama }}
+                                </div>
+                                <div class="col-4">
+                                    Layout
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->layout }}
+                                </div>
+                                <div class="col-4">
+                                    Check-in
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->checkin }}
+                                </div>
+                                <div class="col-4">
+                                    Check-out
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->checkout }}
+                                </div>
+                                <div class="col-4">
+                                    Jam Mulai
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->jam_mulai }}
+                                </div>
+                                <div class="col-4">
+                                    Jam Selesai
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->jam_selesai }}
+                                </div>
+                                <div class="col-4">
+                                    Harga
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->harga }}
+                                </div>
+                                <div class="col-4">
+                                    Special Request
+                                </div>
+                                <div class="col-8">
+                                    : {{ $item->special }}
+                                </div>
+                                <div class="col-4">
+                                    File SPJ
+                                </div>
+                                <div class="col-8">
+                                    : <a href="{{ asset('storage/posts/surat/' . $order->surat) }}" class="btn btn-success"
+                                        view>Lihat File</a>
+                                </div>
+                            </div>
+                            {{-- <h6>Pemesan: {{ $order->guest->name }}</h6>
                             <h6>Kegiatan: {{ $order->nama_kegiatan }}</h6>
                             <h6>Ruangan: {{ $item->train->nama }}</h6>
                             <h6>Layout: {{ $item->layout }}</h6>
@@ -207,7 +276,7 @@
                             <h6>Jam Mulai: {{ $item->jam_mulai }}</h6>
                             <h6>Jam Selesai: {{ $item->jam_selesai }}</h6>
                             <h6>Harga: {{ $item->harga }}</h6>
-                            <h6>Special Request: {{ $item->special }}</h6>
+                            <h6>Special Request: {{ $item->special }}</h6> --}}
                         </div>
                         </div>
                     </div>

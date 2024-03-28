@@ -123,7 +123,11 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-md-3 col-12 text-muted text-center m-0">
-                                                        <span>{{ $item->status }}</span>
+                                                        @if ($order->is_expired == 0)
+                                                            <span>{{ $item->status }}</span>
+                                                        @else
+                                                            <span>Expired</span>
+                                                        @endif
                                                     </div>
 
                                                 </div>
