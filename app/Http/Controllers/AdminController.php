@@ -52,7 +52,9 @@ class AdminController extends Controller
 
     public function showorderreguler()
     {
-        $orders = Order::whereNull('surat')->get();
+        $orders = Order::whereNull('surat')
+                ->where('is_expired', 0)
+                ->get();
 
         // cek order yang kadaluarsa
         $now = Carbon::now();
@@ -67,8 +69,11 @@ class AdminController extends Controller
 
     public function showhistory()
     {
-        $orders = Order::whereHas('items', function ($query) {
-            $query->where('status', '!=', 'Pending');
+        // get order yang statusnya bukan pending atau order yang expired
+        $orders = Order::where(function ($query) {
+            $query->whereHas('items', function ($subQuery) {
+                $subQuery->where('status', '!=', 'Pending');
+            })->orWhere('is_expired', 1);
         })->get();
 
         // cek order yang kadaluarsa

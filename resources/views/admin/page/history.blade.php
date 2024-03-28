@@ -148,8 +148,8 @@
                                             <td id="status"><label class="text-success">{{ $item->status }}</label></td>@endif
                                         @if ($item->status === "Rejected")
                                             <td id="status"><label class="text-danger">{{ $item->status }}</label></td>@endif
-                                        @if ($order->is_expired === 1)
-                                            <td id="status"><label class="text-secondary">{{ $item->status }}</label></td>@endif
+                                        @if ($order->is_expired == 1)
+                                            <td id="status"><label class="text-secondary">Expired</label></td>@endif
                                         
 
                                         {{-- tipe pesanan dan buka lampiran --}}

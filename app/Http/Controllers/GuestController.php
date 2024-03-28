@@ -596,15 +596,8 @@ class GuestController extends Controller
             // kirim email
             event(new Registered($guest));
 
-            // // login
-            // Auth::guard('guest')->login($guest);
-
             // redirect
-            // $request->session()->regenerate();
-            // $request->session()->put('guest', $guest);
             return redirect('/email/verify');
-
-            // return redirect('/login')->withErrors('Akun berhasil dibuat !!!');
         }
         
         catch (Exception $e)
