@@ -1091,7 +1091,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 1,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah101.png',
         ]);
 
         TrainImage::create([
@@ -1122,7 +1122,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 2,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah102.png',
         ]);
 
         TrainImage::create([
@@ -1153,7 +1153,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 3,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah103.png',
         ]);
 
         TrainImage::create([
@@ -1184,7 +1184,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 4,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah104.png',
         ]);
 
         TrainImage::create([
@@ -1215,7 +1215,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 5,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah201.png',
         ]);
 
         TrainImage::create([
@@ -1246,7 +1246,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 6,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah202.png',
         ]);
 
         TrainImage::create([
@@ -1277,7 +1277,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 7,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah203.png',
         ]);
 
         TrainImage::create([
@@ -1308,7 +1308,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 8,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah204.png',
         ]);
 
         TrainImage::create([
@@ -1339,7 +1339,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 9,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah205.png',
         ]);
 
         TrainImage::create([
@@ -1370,7 +1370,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 10,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah206.png',
         ]);
 
         TrainImage::create([
@@ -1401,7 +1401,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 11,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah207.png',
         ]);
 
         TrainImage::create([
@@ -1432,7 +1432,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 12,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah208.png',
         ]);
 
         TrainImage::create([
@@ -1463,7 +1463,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 13,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah301.png',
         ]);
 
         TrainImage::create([
@@ -1494,7 +1494,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 14,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah302.png',
         ]);
 
         TrainImage::create([
@@ -1525,7 +1525,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 15,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah303.png',
         ]);
 
         TrainImage::create([
@@ -1556,7 +1556,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 16,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah304.png',
         ]);
 
         TrainImage::create([
@@ -1587,7 +1587,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 17,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah305.png',
         ]);
 
         TrainImage::create([
@@ -1618,7 +1618,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 18,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah306.png',
         ]);
 
         TrainImage::create([
@@ -1649,7 +1649,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 19,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah307.png',
         ]);
 
         TrainImage::create([
@@ -1680,7 +1680,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 20,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah308.png',
         ]);
 
         TrainImage::create([
@@ -1711,7 +1711,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 21,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah309.png',
         ]);
 
         TrainImage::create([
@@ -1742,7 +1742,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 22,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah310.png',
         ]);
 
         TrainImage::create([
@@ -1773,7 +1773,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 23,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah401.png',
         ]);
 
         TrainImage::create([
@@ -1804,7 +1804,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 24,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah402.png',
         ]);
 
         TrainImage::create([
@@ -1835,7 +1835,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 25,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah403.png',
         ]);
 
         TrainImage::create([
@@ -1866,7 +1866,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 26,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah404.png',
         ]);
 
         TrainImage::create([
@@ -1897,7 +1897,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 27,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah405.png',
         ]);
 
         TrainImage::create([
@@ -1928,7 +1928,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 28,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denah406.png',
         ]);
 
         TrainImage::create([
@@ -1959,7 +1959,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 29,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denahUjianTerbuka.png',
         ]);
 
         TrainImage::create([
@@ -1990,7 +1990,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 30,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denahAljabar.png',
         ]);
 
         TrainImage::create([
@@ -2021,7 +2021,7 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 31,
             'konten'    => 'denah',
-            'gambar'    => 'denah101.jpg',
+            'gambar'    => 'denahConventionHall.png',
         ]);
 
         TrainImage::create([

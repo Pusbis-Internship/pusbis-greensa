@@ -172,15 +172,16 @@
                             </fieldset>
                         </div>
                     </div>
+                    <a href="#denah" class="btn btn-primary flex-shrink-0 w-100 my-3">
+                        <i class="bi bi-geo-fill me-1"></i>Lihat Denah Ruangan
+                    </a>
                     <div class="d-flex">
                         <a href="#layout" class="btn btn-success flex-shrink-0 w-100">
                             <i class="bi bi-grid-1x2-fill me-1"></i>
                             Layout Ruang
                         </a>
                     </div>
-                    <a href="#denah" class="btn btn-primary flex-shrink-0 w-100 my-3">
-                        <i class="bi bi-geo-fill me-1"></i>Lihat Denah Ruangan
-                    </a>
+                    
 
                     {{-- Modal not login --}}
                     <div class="modal fade" id="modalBookNotLogin" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -232,13 +233,13 @@
 
                 <div class="col-12 text-center mt-5 denah" id="denah">
                     <h2 class="fw-bold mb-4">DENAH RUANGAN</h2>
-                    <a href="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
+                    <a href="{{ asset('/storage/posts/denah/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
                         data-lightbox="denah">
-                        <img src="{{ asset('/storage/posts/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
+                        <img src="{{ asset('/storage/posts/denah/' . $train->images()->where('konten', 'denah')->value('gambar')) }}"
                             alt="" class="w-100">
                     </a>
                 </div>
-                <div class="col-12 text-center mt-5 layout" id="denah">
+                <div class="col-12 text-center mt-5 layout" id="layout">
                     <h2 class="fw-bold mb-4">Layout Ruang</h2>
                     <div class="row">
                         <div class="col-md-3 col-6">
