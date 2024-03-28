@@ -44,7 +44,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/training-center', [GuestController::class, 'showtrain']);
     Route::get('/about', [GuestController::class, 'showabout']);
     Route::get('/package', [GuestController::class, 'showpackage']);
-    Route::get('/detail/{id}', [GuestController::class, 'showdetail_tc'])->name('train.detail');
+    Route::post('/detail/{id}', [GuestController::class, 'showdetail_tc'])->name('train.detail');
 
     Route::get('/cart', [GuestController::class, 'showcart'])->middleware('guestmustlogin');
     Route::post('/add-to-cart', [GuestController::class, 'addToCart'])->middleware('guestmustlogin');

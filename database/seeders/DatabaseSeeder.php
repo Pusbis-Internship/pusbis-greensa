@@ -57,84 +57,84 @@ class DatabaseSeeder extends Seeder
 
         // create train
         Train::create([
-            'nama' => 'Reguler 101',
+            'nama' => 'Ruang 101',
             'lantai' => 1,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 102',
+            'nama' => 'Ruang 102',
             'lantai' => 1,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 201',
+            'nama' => 'Ruang 201',
             'lantai' => 2,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 202',
+            'nama' => 'Ruang 202',
             'lantai' => 2,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 203',
+            'nama' => 'Ruang 203',
             'lantai' => 2,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 204',
+            'nama' => 'Ruang 204',
             'lantai' => 2,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 301',
+            'nama' => 'Ruang 301',
             'lantai' => 3,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 302',
+            'nama' => 'Ruang 302',
             'lantai' => 3,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 303',
+            'nama' => 'Ruang 303',
             'lantai' => 3,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 304',
+            'nama' => 'Ruang 304',
             'lantai' => 3,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 401',
+            'nama' => 'Ruang 401',
             'lantai' => 4,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
-            'nama' => 'Reguler 402',
+            'nama' => 'Ruang 402',
             'lantai' => 4,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',

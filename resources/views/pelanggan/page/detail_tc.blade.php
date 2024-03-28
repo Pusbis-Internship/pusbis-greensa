@@ -57,7 +57,7 @@
                                         data-target-input="nearest">
                                         <input type="number" name="peserta" class="form-control" id="peserta"
                                             placeholder="Jumlah Peserta" data-target="#date2" min="0" max="999"
-                                            value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : '' }}" />
+                                            value="{{ isset($_POST['peserta']) ? $_POST['peserta'] : 0 }}" />
                                         <label class="labelBook" for="peserta" style="color: #6c757d;">Jumlah
                                             Peserta</label>
                                     </div>
@@ -178,7 +178,7 @@
 
                     @auth('guest')
                         <div class="d-flex">
-                            <button class="btn btn-success flex-shrink-0 w-100" type="button" data-bs-toggle="modal"
+                            <button class="btn btn-success flex-shrink-0 w-100" type="submit" data-bs-toggle="modal"
                                 data-bs-target="#modalBookLogin">
                                 <i class="bi-cart-fill me-1"></i>
                                 Reservasi

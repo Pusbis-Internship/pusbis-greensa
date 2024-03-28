@@ -126,8 +126,8 @@
                                         <div class="border bg-light p-3 rounded mb-3">
                                             <h6 class="mb-3" style="font-size: 18px;">Ruangan</h6>
                                             <div class="mb-2">
-                                                <input type="checkbox" id="f1" class="form-check-tipe shadow-none me-1" value="Reguler">
-                                                <label class="form-check-label" for="f1">Reguler</label>
+                                                <input type="checkbox" id="f1" class="form-check-tipe shadow-none me-1" value="Ruang">
+                                                <label class="form-check-label" for="f1">Ruang</label>
                                             </div>
                                             <div class="mb-2">
                                                 <input type="checkbox" id="f2" class="form-check-tipe shadow-none me-1" value="Ujian Terbuka">
@@ -237,8 +237,12 @@
                                                         Reservasi</a>
                                                     @endauth
                                                     
-                                                    <a href="{{ route('train.detail', $train->id) }}"
-                                                        class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat Detail</a>
+                                                    <form action="{{ route('train.detail', $train->id) }}" method="POST"> @csrf
+                                                        <input type="date" hidden>
+                                                        <input type="number" hidden>
+                                                        <input type="number" hidden>
+                                                        <button type="submit" class="btn btn-sm btn-outline-success w-100 shadow-none">Lihat Detail</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
