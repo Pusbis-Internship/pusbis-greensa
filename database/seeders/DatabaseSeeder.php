@@ -59,12 +59,26 @@ class DatabaseSeeder extends Seeder
         Train::create([
             'nama' => 'Ruang 101',
             'lantai' => 1,
-            'harga' => 2000000,
+            'harga' => 1200000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
             'nama' => 'Ruang 102',
+            'lantai' => 1,
+            'harga' => 2000000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 103',
+            'lantai' => 1,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 104',
             'lantai' => 1,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
@@ -99,9 +113,37 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Train::create([
+            'nama' => 'Ruang 205',
+            'lantai' => 2,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 206',
+            'lantai' => 2,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 207',
+            'lantai' => 2,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 208',
+            'lantai' => 2,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
             'nama' => 'Ruang 301',
             'lantai' => 3,
-            'harga' => 2000000,
+            'harga' => 1200000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
@@ -115,26 +157,96 @@ class DatabaseSeeder extends Seeder
         Train::create([
             'nama' => 'Ruang 303',
             'lantai' => 3,
-            'harga' => 2000000,
+            'harga' => 1200000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
             'nama' => 'Ruang 304',
             'lantai' => 3,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 305',
+            'lantai' => 3,
             'harga' => 2000000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 306',
+            'lantai' => 3,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 307',
+            'lantai' => 3,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 308',
+            'lantai' => 3,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 309',
+            'lantai' => 3,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 310',
+            'lantai' => 3,
+            'harga' => 1200000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
             'nama' => 'Ruang 401',
             'lantai' => 4,
-            'harga' => 2000000,
+            'harga' => 1200000,
             'deskripsi' => 'Ini deskripsi dolor...',
         ]);
 
         Train::create([
             'nama' => 'Ruang 402',
+            'lantai' => 4,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 403',
+            'lantai' => 4,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 404',
+            'lantai' => 4,
+            'harga' => 1200000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 405',
+            'lantai' => 4,
+            'harga' => 2000000,
+            'deskripsi' => 'Ini deskripsi dolor...',
+        ]);
+
+        Train::create([
+            'nama' => 'Ruang 406',
             'lantai' => 4,
             'harga' => 2000000,
             'deskripsi' => 'Ini deskripsi dolor...',
@@ -466,22 +578,17 @@ class DatabaseSeeder extends Seeder
         LayoutModels::create([
             'train_id' => 1,
             'nama_layout' => 'Classroom',
-            'kapasitas' => 30
+            'kapasitas' => 15
         ]);
         LayoutModels::create([
             'train_id' => 1,
             'nama_layout' => 'Teater',
-            'kapasitas' => 40
-        ]);
-        LayoutModels::create([
-            'train_id' => 1,
-            'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
         LayoutModels::create([
             'train_id' => 1,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -499,31 +606,21 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
-        LayoutModels::create([
-            'train_id' => 2,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
-        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 3,
             'nama_layout' => 'Classroom',
-            'kapasitas' => 30
+            'kapasitas' => 15
         ]);
         LayoutModels::create([
             'train_id' => 3,
             'nama_layout' => 'Teater',
-            'kapasitas' => 40
-        ]);
-        LayoutModels::create([
-            'train_id' => 3,
-            'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
         LayoutModels::create([
             'train_id' => 3,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -541,11 +638,6 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
-        LayoutModels::create([
-            'train_id' => 4,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
-        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 5,
@@ -561,11 +653,6 @@ class DatabaseSeeder extends Seeder
             'train_id' => 5,
             'nama_layout' => 'Round Table',
             'kapasitas' => 20
-        ]);
-        LayoutModels::create([
-            'train_id' => 5,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -583,11 +670,6 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
-        LayoutModels::create([
-            'train_id' => 6,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
-        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 7,
@@ -603,11 +685,6 @@ class DatabaseSeeder extends Seeder
             'train_id' => 7,
             'nama_layout' => 'Round Table',
             'kapasitas' => 20
-        ]);
-        LayoutModels::create([
-            'train_id' => 7,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
@@ -625,155 +702,386 @@ class DatabaseSeeder extends Seeder
             'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
-        LayoutModels::create([
-            'train_id' => 8,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
-        ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 9,
             'nama_layout' => 'Classroom',
-            'kapasitas' => 30
+            'kapasitas' => 15
         ]);
         LayoutModels::create([
             'train_id' => 9,
             'nama_layout' => 'Teater',
-            'kapasitas' => 40
-        ]);
-        LayoutModels::create([
-            'train_id' => 9,
-            'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
         LayoutModels::create([
             'train_id' => 9,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 10,
             'nama_layout' => 'Classroom',
-            'kapasitas' => 30
+            'kapasitas' => 15
         ]);
         LayoutModels::create([
             'train_id' => 10,
             'nama_layout' => 'Teater',
-            'kapasitas' => 40
-        ]);
-        LayoutModels::create([
-            'train_id' => 10,
-            'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
         LayoutModels::create([
             'train_id' => 10,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 11,
             'nama_layout' => 'Classroom',
-            'kapasitas' => 30
+            'kapasitas' => 15
         ]);
         LayoutModels::create([
             'train_id' => 11,
             'nama_layout' => 'Teater',
-            'kapasitas' => 40
-        ]);
-        LayoutModels::create([
-            'train_id' => 11,
-            'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
         LayoutModels::create([
             'train_id' => 11,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 12,
             'nama_layout' => 'Classroom',
-            'kapasitas' => 30
+            'kapasitas' => 15
         ]);
         LayoutModels::create([
             'train_id' => 12,
             'nama_layout' => 'Teater',
-            'kapasitas' => 40
-        ]);
-        LayoutModels::create([
-            'train_id' => 12,
-            'nama_layout' => 'Round Table',
             'kapasitas' => 20
         ]);
         LayoutModels::create([
             'train_id' => 12,
-            'nama_layout' => 'U Shape',
-            'kapasitas' => 15
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
             'train_id' => 13,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 13,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 13,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 14,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 15,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 16,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 16,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 16,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 17,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 17,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 17,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 18,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 18,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 18,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 19,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 19,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 19,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 20,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 20,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 20,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 21,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 21,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 21,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 22,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 22,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 22,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 23,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 23,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 23,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 24,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 24,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 24,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 25,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 25,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 25,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 26,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 15
+        ]);
+        LayoutModels::create([
+            'train_id' => 26,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 20
+        ]);
+        LayoutModels::create([
+            'train_id' => 26,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 10
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 27,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 27,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 27,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 28,
+            'nama_layout' => 'Classroom',
+            'kapasitas' => 30
+        ]);
+        LayoutModels::create([
+            'train_id' => 28,
+            'nama_layout' => 'Teater',
+            'kapasitas' => 40
+        ]);
+        LayoutModels::create([
+            'train_id' => 28,
+            'nama_layout' => 'Round Table',
+            'kapasitas' => 20
+        ]);
+        // LAYOUTS MODEL
+        LayoutModels::create([
+            'train_id' => 29,
             'nama_layout' => 'Classroom',
             'kapasitas' => 60
         ]);
         LayoutModels::create([
-            'train_id' => 13,
+            'train_id' => 29,
             'nama_layout' => 'Teater',
             'kapasitas' => 90
         ]);
         LayoutModels::create([
-            'train_id' => 13,
+            'train_id' => 29,
             'nama_layout' => 'Round Table',
             'kapasitas' => 40
         ]);
         LayoutModels::create([
-            'train_id' => 13,
+            'train_id' => 29,
             'nama_layout' => 'U Shape',
             'kapasitas' => 30
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
-            'train_id' => 14,
+            'train_id' => 30,
             'nama_layout' => 'Classroom',
             'kapasitas' => 40
         ]);
         LayoutModels::create([
-            'train_id' => 14,
+            'train_id' => 30,
             'nama_layout' => 'Teater',
             'kapasitas' => 60
         ]);
         LayoutModels::create([
-            'train_id' => 14,
+            'train_id' => 30,
             'nama_layout' => 'Round Table',
             'kapasitas' => 30
         ]);
         LayoutModels::create([
-            'train_id' => 14,
+            'train_id' => 30,
             'nama_layout' => 'U Shape',
             'kapasitas' => 20
         ]);
         // LAYOUTS MODEL
         LayoutModels::create([
-            'train_id' => 15,
+            'train_id' => 31,
             'nama_layout' => 'Classroom',
             'kapasitas' => 130
         ]);
         LayoutModels::create([
-            'train_id' => 15,
+            'train_id' => 31,
             'nama_layout' => 'Teater',
             'kapasitas' => 250
         ]);
         LayoutModels::create([
-            'train_id' => 15,
+            'train_id' => 31,
             'nama_layout' => 'Round Table',
             'kapasitas' => 45
         ]);
         LayoutModels::create([
-            'train_id' => 15,
+            'train_id' => 31,
             'nama_layout' => 'U Shape',
             'kapasitas' => 30
         ]);
@@ -1161,25 +1469,25 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 13,
             'konten'    => 'utama',
-            'gambar'    => 'room2.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 13,
             'konten'    => 'biasa1',
-            'gambar'    => 'room2.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 13,
             'konten'    => 'biasa2',
-            'gambar'    => 'room2.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 13,
             'konten'    => 'biasa3',
-            'gambar'    => 'room2.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         // gambar train 14
@@ -1192,25 +1500,25 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 14,
             'konten'    => 'utama',
-            'gambar'    => 'room3.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 14,
             'konten'    => 'biasa1',
-            'gambar'    => 'room3.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 14,
             'konten'    => 'biasa2',
-            'gambar'    => 'room3.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 14,
             'konten'    => 'biasa3',
-            'gambar'    => 'room3.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         // gambar train 15
@@ -1223,23 +1531,519 @@ class DatabaseSeeder extends Seeder
         TrainImage::create([
             'train_id'  => 15,
             'konten'    => 'utama',
-            'gambar'    => 'room4.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 15,
             'konten'    => 'biasa1',
-            'gambar'    => 'room4.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 15,
             'konten'    => 'biasa2',
-            'gambar'    => 'room4.jpg',
+            'gambar'    => 'room1.jpg',
         ]);
 
         TrainImage::create([
             'train_id'  => 15,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 16
+        TrainImage::create([
+            'train_id'  => 16,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 16,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 16,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 16,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 16,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 17
+        TrainImage::create([
+            'train_id'  => 17,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 17,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 17,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 17,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 17,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 18
+        TrainImage::create([
+            'train_id'  => 18,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 18,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 18,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 18,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 18,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 19
+        TrainImage::create([
+            'train_id'  => 19,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 19,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 19,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 19,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 19,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 20
+        TrainImage::create([
+            'train_id'  => 20,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 20,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 20,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 20,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 20,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 21
+        TrainImage::create([
+            'train_id'  => 21,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 21,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 21,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 21,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 21,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 22
+        TrainImage::create([
+            'train_id'  => 22,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 22,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 22,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 22,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 22,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 23
+        TrainImage::create([
+            'train_id'  => 23,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 23,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 23,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 23,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 23,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 24
+        TrainImage::create([
+            'train_id'  => 24,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 24,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 24,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 24,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 24,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 25
+        TrainImage::create([
+            'train_id'  => 25,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 25,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 25,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 25,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 25,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 26
+        TrainImage::create([
+            'train_id'  => 26,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 26,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 26,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 26,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 26,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 27
+        TrainImage::create([
+            'train_id'  => 27,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 27,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 27,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 27,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 27,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 28
+        TrainImage::create([
+            'train_id'  => 28,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 28,
+            'konten'    => 'utama',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 28,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 28,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 28,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room1.jpg',
+        ]);
+
+        // gambar train 29
+        TrainImage::create([
+            'train_id'  => 29,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 29,
+            'konten'    => 'utama',
+            'gambar'    => 'room2.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 29,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room2.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 29,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room2.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 29,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room2.jpg',
+        ]);
+
+        // gambar train 30
+        TrainImage::create([
+            'train_id'  => 30,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 30,
+            'konten'    => 'utama',
+            'gambar'    => 'room3.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 30,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room3.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 30,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room3.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 30,
+            'konten'    => 'biasa3',
+            'gambar'    => 'room3.jpg',
+        ]);
+
+        // gambar train 31
+        TrainImage::create([
+            'train_id'  => 31,
+            'konten'    => 'denah',
+            'gambar'    => 'denah101.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 31,
+            'konten'    => 'utama',
+            'gambar'    => 'room4.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 31,
+            'konten'    => 'biasa1',
+            'gambar'    => 'room4.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 31,
+            'konten'    => 'biasa2',
+            'gambar'    => 'room4.jpg',
+        ]);
+
+        TrainImage::create([
+            'train_id'  => 31,
             'konten'    => 'biasa3',
             'gambar'    => 'room4.jpg',
         ]);
